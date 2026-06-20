@@ -24,6 +24,9 @@
         .day-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
         .day-card.open .day-detail{max-height:4000px;opacity:1}
         .day-card.open .chevron{transform:rotate(180deg)}
+        .day-card{overflow:hidden}
+        .day-hero{width:100%;height:160px;object-fit:cover;filter:saturate(.92);transition:filter .4s}
+        .day-card.open .day-hero{filter:saturate(1)}
         .chevron{transition:transform .3s}
         .must-badge{background:linear-gradient(135deg,#C0392B,#922B21);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px;letter-spacing:.08em}
         .tag{padding:2px 10px;border-radius:999px;font-size:.65rem;font-weight:600;border:1px solid}
@@ -171,7 +174,9 @@
         <div class="grid sm:grid-cols-2 gap-2 text-sm text-white/80">
             <p>• <strong class="text-kin">Suica digital</strong> — Ciudades</p>
             <p>• <strong class="text-kin">SmartEX</strong> — Shinkansen</p>
-            <p>• <strong class="text-kin">Kansai Hiroshima Pass</strong> 5d</p>
+            <p>• <strong class="text-kin">Kansai-Hiroshima Pass</strong> 5d — Himeji/Hiroshima/Miyajima</p>
+            <p>• <strong class="text-kin">Kansai-WIDE</strong> 5d — Kinosaki + Himeji</p>
+            <p>• <strong class="text-kin">JR Pass 7d</strong> — evaluar SOLO para el tramo final (Hiroshima + Osaka→Tokio)</p>
             <p>• <strong class="text-kin">Pases locales</strong> Nikko/Enoshima</p>
         </div>
     </div>
@@ -296,6 +301,37 @@ function gmapsRoute(acts){
 function wikiLink(t){ return 'https://en.wikipedia.org/wiki/'+t; }
 function ytLink(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' historia documental'); }
 
+// ============ HERO IMAGES (Wikimedia, ancho 960 verificado) ============
+const IMGB='https://upload.wikimedia.org/wikipedia/commons/thumb/';
+function hero(p,fn){ return IMGB+p+'/960px-'+fn; }
+const HERO={
+ 1:hero('9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg','Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg'),
+ 2:hero('4/43/Sensoji_2023.jpg','Sensoji_2023.jpg'),
+ 3:hero('8/88/Shibuya_Crossing%2C_Aerial.jpg','Shibuya_Crossing%2C_Aerial.jpg'),
+ 4:hero('c/c1/Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg','Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg'),
+ 5:hero('2/26/200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg','200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg'),
+ 6:hero('1/18/KawaguchiKo.jpg','KawaguchiKo.jpg'),
+ 7:hero('c/cf/230128_Kamakura_Daibutsu_Japan04s3.jpg','230128_Kamakura_Daibutsu_Japan04s3.jpg'),
+ 8:hero('5/50/1_tsumago_juku_2024.jpg','1_tsumago_juku_2024.jpg'),
+ 9:hero('e/e6/Ogi_Shirakawa-g%C5%8D%2C_Gifu%2C_Japan.jpg','Ogi_Shirakawa-g%C5%8D%2C_Gifu%2C_Japan.jpg'),
+ 10:hero('4/48/Linimo_train_advertising_Ghibli_Park_at_Yakusa_Station.jpg','Linimo_train_advertising_Ghibli_Park_at_Yakusa_Station.jpg'),
+ 11:hero('3/3c/Kiyomizu.jpg','Kiyomizu.jpg'),
+ 12:hero('0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg','Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg'),
+ 13:hero('0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg','Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg'),
+ 14:hero('e/e4/Kurama-dera_sanmon.jpg','Kurama-dera_sanmon.jpg'),
+ 15:hero('c/ce/Nishiki_Ichiba_by_matsuyuki.jpg','Nishiki_Ichiba_by_matsuyuki.jpg'),
+ 16:hero('4/47/Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg','Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg'),
+ 17:hero('d/d2/New_Tsutenkaku%2C_Osaka.jpg','New_Tsutenkaku%2C_Osaka.jpg'),
+ 18:hero('d/d9/Kuromon_Ichiba_Market_at_LaLaport_Kadoma4.jpg','Kuromon_Ichiba_Market_at_LaLaport_Kadoma4.jpg'),
+ 19:hero('b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg','Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg'),
+ 20:hero('e/ef/Itsukushima_Shrine_Torii_Gate_%2813890465459%29.jpg','Itsukushima_Shrine_Torii_Gate_%2813890465459%29.jpg'),
+ 21:hero('3/35/Kinosaki_Onsen_by_day.jpg','Kinosaki_Onsen_by_day.jpg'),
+ 22:hero('a/ad/Gobyoubasi.jpg','Gobyoubasi.jpg'),
+ 23:hero('8/8d/G2_Street_20090626_2.jpg','G2_Street_20090626_2.jpg'),
+ 24:hero('5/5b/Ginza-WAKO_at_night.jpg','Ginza-WAKO_at_night.jpg'),
+ 25:hero('7/7d/All_haneda.jpg','All_haneda.jpg'),
+};
+
 // ============ DATA ============
 // acts:[{n,lat,lng,t,roi,w(wiki)}] · t: tradition/history/nature/pop/local/food/onsen/night/transit
 const DAYS=[
@@ -312,7 +348,7 @@ am:"Ryogoku: sumo con traje inflable (reservar). Museo Sumo.",pm:"Harajuku: Meij
 acts:[{n:"Ryogoku (sumo)",lat:35.6967,lng:139.7933,t:"pop",roi:5,w:"Ryōgoku"},{n:"Meiji Jingu",lat:35.6764,lng:139.6993,t:"tradition",roi:5,w:"Meiji_Shrine"},{n:"Takeshita (Harajuku)",lat:35.6716,lng:139.7031,t:"pop",roi:3},{n:"Shibuya Sky / Scramble",lat:35.6595,lng:139.7004,t:"pop",roi:5,w:"Shibuya_Crossing"}]},
 
 {day:4,date:"Oct 30",week:"w1",title:"Arte Digital + Tokyo Drift",loc:"Tokio·Azabudai→Kinshicho",tags:["pop","adventure","night"],mustDo:"TeamLab + Tokyo Drift",lodge:"Shinjuku",effort:2,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:20,
-am:"TeamLab Borderless (Azabudai Hills). Reservar. 2–3h.",pm:"Shimokitazawa: vintage, indie, curry.",night:"🏎️ TOKYO DRIFT (desde 17h). Conducir un JDM (Skyline/Silvia $180 o GT-R R34 $410) por calles de Tokio de noche. Rainbow Bridge iluminado. ⚠️ Requiere permiso válido (ver Crítica).",food:"Curry Shimokitazawa · Street food",transport:"Metro",costT:4400,costF:3500,
+am:"TeamLab Borderless (Azabudai Hills). Reservar. 2–3h.",pm:"Shimokitazawa: vintage, indie, curry.",night:"🏎️ TOKYO DRIFT (desde 17h). ⚠️ CONDUCIR requiere licencia válida en Japón y el IDP colombiano normalmente NO sirve (Colombia no firmó la Convención de Ginebra 1949). Plan por defecto: ir de COPILOTO en el JDM (Skyline/Silvia o GT-R R34) por el Rainbow Bridge iluminado. Confirmar con el operador antes de pagar.",food:"Curry Shimokitazawa · Street food",transport:"Metro",costT:4400,costF:3500,
 acts:[{n:"TeamLab Borderless (Azabudai)",lat:35.6595,lng:139.7290,t:"pop",roi:5},{n:"Shimokitazawa",lat:35.6613,lng:139.6680,t:"local",roi:4},{n:"Tokyo Drift · Rainbow Bridge",lat:35.6365,lng:139.7634,t:"night",roi:5}]},
 
 {day:5,date:"Oct 31",week:"w1",title:"Montaña Sagrada 🎃",loc:"Nikko (excursión)",tags:["nature","tradition"],mustDo:false,lodge:"Shinjuku",effort:4,luggage:false,laundry:false,transitMin:300,bufferP:10,contempl:40,
@@ -327,16 +363,16 @@ acts:[{n:"Lago Kawaguchi",lat:35.5170,lng:138.7530,t:"nature",roi:5,w:"Lake_Kawa
 am:"Pagoda Chureito amanecer. Bus a Tokio.",pm:"Tren a Kamakura: Hasedera, Daibutsu. Enoden→Enoshima.",night:"Sunset Fuji desde Sea Candle. Regreso.",food:"Shirasu-don Enoshima",transport:"Bus+Freepass",costT:3540,costF:3000,
 acts:[{n:"Pagoda Chureito",lat:35.4951,lng:138.8009,t:"tradition",roi:5,w:"Arakurayama_Sengen_Park"},{n:"Daibutsu (Kotoku-in)",lat:35.3169,lng:139.5358,t:"tradition",roi:5,w:"Kōtoku-in"},{n:"Hasedera",lat:35.3127,lng:139.5331,t:"tradition",roi:4,w:"Hase-dera_(Kamakura)"},{n:"Enoshima",lat:35.2990,lng:139.4800,t:"nature",roi:4,w:"Enoshima"}]},
 
-{day:8,date:"Nov 3",week:"w2",title:"Sendero Feudal",loc:"Tokio→Nakasendo→Takayama",tags:["tradition","adventure"],mustDo:"Sendero Nakasendo",lodge:"Takayama",effort:5,luggage:true,laundry:false,transitMin:420,bufferP:5,contempl:45,
-am:"Azusa a Matsumoto. Castillo Negro rápido.",pm:"Bus Nakatsugawa. Caminata Magome→Tsumago (~3h).",night:"Bus a Takayama. Check-in.",food:"Goheimochi · Soba Nagano",transport:"Azusa+buses",costT:8620,costF:2500,
+{day:8,date:"Nov 3",week:"w2",title:"Sendero Feudal",loc:"Tokio→Nakasendo→Takayama",tags:["tradition","adventure"],mustDo:"Sendero Nakasendo",lodge:"Takayama",effort:5,luggage:true,laundry:false,transitMin:420,bufferP:12,contempl:45,
+am:"Azusa a Matsumoto. Solo foto exterior del Castillo Negro para ganar tiempo (no entrar al interior).",pm:"Bus Nakatsugawa. Caminata Magome→Tsumago (~3h).",night:"Bus a Takayama. Check-in.",food:"Goheimochi · Soba Nagano",transport:"Azusa+buses",costT:8620,costF:2500,
 acts:[{n:"Castillo Matsumoto",lat:36.2384,lng:137.9690,t:"history",roi:5,w:"Matsumoto_Castle"},{n:"Magome-juku",lat:35.5278,lng:137.5667,t:"local",roi:5,w:"Magome-juku"},{n:"Tsumago-juku",lat:35.5775,lng:137.5950,t:"local",roi:5,w:"Tsumago-juku"}]},
 
 {day:9,date:"Nov 4",week:"w2",title:"Aldea de Cuento",loc:"Takayama→Shirakawa-go",tags:["tradition","adventure"],mustDo:"Shirakawa-go",lodge:"Takayama",effort:3,luggage:false,laundry:false,transitMin:180,bufferP:20,contempl:50,
 am:"Mercado Miyagawa. Sanmachi Suji, sake.",pm:"Bus Shirakawa-go: casas Gassho (UNESCO).",night:"Cena Hida beef.",food:"Hida beef sushi · Sake",transport:"Nohi Bus r/t",costT:4600,costF:4000,
 acts:[{n:"Mercado Miyagawa",lat:36.1430,lng:137.2580,t:"local",roi:4},{n:"Sanmachi Suji",lat:36.1400,lng:137.2570,t:"local",roi:4},{n:"Shirakawa-go",lat:36.2580,lng:136.9060,t:"tradition",roi:5,w:"Shirakawa-gō"}]},
 
-{day:10,date:"Nov 5",week:"w2",title:"El Mundo de Ghibli",loc:"Takayama→Nagoya→Ghibli Park",tags:["pop","adventure"],mustDo:"Ghibli Park",lodge:"Tránsito → Kioto",effort:4,luggage:true,laundry:false,transitMin:300,bufferP:10,contempl:35,
-am:"Tren Hida a Nagoya. Lockers.",pm:"Linimo→Ghibli Park. Grand Warehouse + áreas.",night:"Shinkansen Nagoya→Kioto. Check-in.",food:"Bento Ghibli · Kishimen Nagoya",transport:"Hida+Linimo+Shinkansen",costT:11380,costF:3000,
+{day:10,date:"Nov 5",week:"w2",title:"El Mundo de Ghibli",loc:"Takayama→Nagoya→Ghibli Park",tags:["pop","adventure"],mustDo:"Ghibli Park",lodge:"Tránsito → Kioto",effort:4,luggage:true,laundry:false,transitMin:300,bufferP:15,contempl:35,
+am:"Tren Hida a Nagoya. Lockers. ⏰ Ghibli Park: tickets con fecha/hora, comprar 1–2 meses antes (se agotan). Enviar maletas Takayama→Kioto por takkyubin.",pm:"Linimo→Ghibli Park. Grand Warehouse + áreas.",night:"Shinkansen Nagoya→Kioto. Check-in.",food:"Bento Ghibli · Kishimen Nagoya",transport:"Hida+Linimo+Shinkansen",costT:11380,costF:3000,
 acts:[{n:"Ghibli Park",lat:35.1820,lng:137.0790,t:"pop",roi:5,w:"Ghibli_Park"},{n:"Nagoya (tránsito)",lat:35.1709,lng:136.8815,t:"transit",roi:2},{n:"Shinkansen → Kioto",lat:35.0116,lng:135.7681,t:"transit",roi:2}]},
 
 {day:11,date:"Nov 6",week:"w2",title:"Kioto: Primer Contacto",loc:"Kioto·Higashiyama",tags:["tradition","nature","night"],mustDo:false,lodge:"Kioto",effort:3,luggage:false,laundry:false,transitMin:60,bufferP:20,contempl:40,
@@ -375,9 +411,9 @@ acts:[{n:"Mercado Kuromon",lat:34.6657,lng:135.5060,t:"food",roi:5},{n:"Spa Worl
 am:"USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Regreso. Cena rápida Namba.",food:"Comida parque · Butterbeer",transport:"JR Yumesaki",costT:200,costF:3000,
 acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5},{n:"Super Nintendo World",lat:34.6660,lng:135.4310,t:"pop",roi:5}]},
 
-{day:20,date:"Nov 15",week:"w4",title:"Garza Blanca y Memoria",loc:"Himeji→Hiroshima→Miyajima",tags:["history","tradition"],mustDo:false,lodge:"Osaka (day trip largo)",effort:5,luggage:false,laundry:false,transitMin:480,bufferP:5,contempl:35,
-am:"Shinkansen Himeji. Castillo.",pm:"Hiroshima: Museo de la Paz.",night:"Ferry Miyajima. Torii+Momijidani. Regreso Osaka.",food:"Okonomiyaki Hiroshima · Ostras Miyajima",transport:"Kansai Hiroshima Pass",costT:17000,costF:3500,
-acts:[{n:"Castillo Himeji",lat:34.8394,lng:134.6939,t:"history",roi:5,w:"Himeji_Castle"},{n:"Memorial de la Paz (Hiroshima)",lat:34.3955,lng:132.4536,t:"history",roi:5,w:"Hiroshima_Peace_Memorial"},{n:"Itsukushima (Miyajima)",lat:34.2959,lng:132.3197,t:"tradition",roi:5,w:"Itsukushima_Shrine"}]},
+{day:20,date:"Nov 15",week:"w4",title:"Memoria y Mar",loc:"Hiroshima→Miyajima",tags:["history","tradition"],mustDo:false,lodge:"Osaka (day trip)",effort:4,luggage:false,laundry:false,transitMin:360,bufferP:15,contempl:45,
+am:"Shinkansen DIRECTO a Hiroshima (se quita la escala en Himeji para no convertir el día en maratón). Parque y Museo de la Paz, Cúpula Atómica.",pm:"Ferry a Miyajima: Gran Torii de Itsukushima + Momijidani en pleno otoño.",night:"Okonomiyaki de Hiroshima / ostras. Regreso a Osaka a hora razonable.",food:"Okonomiyaki Hiroshima · Ostras Miyajima",transport:"Kansai Hiroshima Pass",costT:15000,costF:3500,
+acts:[{n:"Parque Memorial de la Paz",lat:34.3914,lng:132.4525,t:"history",roi:5,w:"Hiroshima_Peace_Memorial"},{n:"Cúpula de la Bomba Atómica",lat:34.3955,lng:132.4536,t:"history",roi:5,w:"Hiroshima_Peace_Memorial"},{n:"Itsukushima (Miyajima)",lat:34.2959,lng:132.3197,t:"tradition",roi:5,w:"Itsukushima_Shrine"},{n:"Momijidani (Miyajima)",lat:34.2980,lng:132.3210,t:"nature",roi:4}]},
 
 {day:21,date:"Nov 16",week:"w4",title:"Termas sin Tabú",loc:"Kinosaki Onsen",tags:["onsen","adventure"],mustDo:"Kinosaki Onsen",lodge:"Ryokan Kinosaki",effort:1,luggage:true,laundry:false,transitMin:180,bufferP:30,contempl:65,
 am:"Limited Express a Kinosaki. 7 onsens públicos.",pm:"Recorrido baños en yukata. Todo tattoo-friendly.",night:"Kaiseki cangrejo de nieve. Baños nocturnos.",food:"Cangrejo kaiseki · Onsen tamago",transport:"Ltd Express (pass)",costT:0,costF:10000,
@@ -387,7 +423,7 @@ acts:[{n:"Kinosaki Onsen (7 baños)",lat:35.6258,lng:134.8097,t:"onsen",roi:5,w:
 am:"Kinosaki→Osaka→Nankai+funicular Koyasan.",pm:"Okunoin: 2km cementerio entre cedros.",night:"Shojin ryori. Paseo nocturno Okunoin con faroles.",food:"Shojin Ryori (incluida) · Goma-dofu",transport:"Nankai+funicular",costT:2540,costF:0,
 acts:[{n:"Okunoin (Koyasan)",lat:34.2150,lng:135.5910,t:"tradition",roi:5,w:"Okunoin"},{n:"Monte Koya (templos)",lat:34.2130,lng:135.5830,t:"tradition",roi:5,w:"Mount_Kōya"}]},
 
-{day:23,date:"Nov 18",week:"w4",title:"Vuelta a Tokio",loc:"Koyasan→Osaka→Tokio",tags:["pop","night"],mustDo:false,lodge:"Tokio Shinjuku",effort:2,luggage:true,laundry:true,transitMin:330,bufferP:15,contempl:30,
+{day:23,date:"Nov 18",week:"w4",title:"Vuelta a Tokio",loc:"Koyasan→Osaka→Tokio",tags:["pop","night"],mustDo:false,lodge:"Tokio Shinjuku",effort:2,luggage:true,laundry:true,transitMin:330,bufferP:18,contempl:30,
 am:"Ceremonia fuego monjes amanecer. Descenso.",pm:"Shinkansen Osaka→Tokio. Check-in.",night:"Golden Gai o Ikebukuro.",food:"Bento Shinkansen · Ramen Shinjuku",transport:"Nankai+Shinkansen",costT:16410,costF:3500,
 acts:[{n:"Shinkansen Osaka→Tokio",lat:35.6812,lng:139.7671,t:"transit",roi:2},{n:"Golden Gai",lat:35.6940,lng:139.7045,t:"night",roi:5,w:"Golden_Gai"}]},
 
@@ -438,7 +474,9 @@ function renderWeek(wk){
         }).join('');
         html+=`
         <div class="day-card bg-white border border-haiiro rounded-xl mb-3 hover:shadow-md transition-shadow">
-            <div class="flex items-center justify-between p-4 cursor-pointer select-none" onclick="this.parentElement.classList.toggle('open')">
+            <div class="cursor-pointer select-none" onclick="this.parentElement.classList.toggle('open')">
+                <img class="day-hero" loading="lazy" src="${HERO[d.day]||''}" alt="${d.title}">
+                <div class="flex items-center justify-between p-4">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="shrink-0 text-center">
                         <div class="w-11 h-11 rounded-lg bg-aka/10 text-aka font-bold flex items-center justify-center text-sm">D${d.day}</div>
@@ -459,6 +497,7 @@ function renderWeek(wk){
                 <div class="flex items-center gap-2 shrink-0 ml-2">
                     <div class="hidden sm:flex gap-1">${tagHtml}</div>
                     <span class="chevron text-kuro/30 text-xs">▼</span>
+                </div>
                 </div>
             </div>
             <div class="day-detail border-t border-haiiro">
@@ -509,7 +548,7 @@ const FOOD_LINES=[
 const ACT_LINES=[
     ["TeamLab Borderless",3800],["Sumo inflable (experiencia)",5000],["🏎️ Tokyo Drift — Opción A",29000],
     ["Ghibli Park (ticket)",3500],["Universal Studios Japan",8600],["USJ Express Pass",12000],["Shibuya Sky",2000],
-    ["Templos Kioto (varios)",3500],["Ceremonia del té Uji",2200],["Castillo Himeji",1000],
+    ["Templos Kioto (varios)",3500],["Ceremonia del té Uji",2200],
     ["Museo de la Paz Hiroshima",200],["Miyajima ropeway",1800],["Karaoke nomihodai (2 noches)",5000],
 ];
 const LODGE_LINES=[
@@ -594,12 +633,12 @@ function renderMetrics(){
 
 // ============ CRITIQUE ============
 const CRITIQUE=[
-    ['🔴','Día 20 es un maratón inviable','Osaka→Himeji→Hiroshima→Miyajima→Osaka en un solo día son ~10–12 h de tren + ferry (480 min de tránsito, esfuerzo 5). Llegarás de noche a todo. <b>Mejora:</b> pernocta 1 noche en Hiroshima, o recorta Himeji, o muévelo a 2 días aprovechando el Kansai-Hiroshima Pass.'],
-    ['🔴','Licencia para Tokyo Drift','Japón reconoce el Permiso Internacional de Conducción solo bajo la Convención de Ginebra 1949; <b>Colombia no es parte</b>, así que un IDP colombiano normalmente <b>no es válido</b> para conducir en Japón (se necesitaría licencia japonesa o traducción oficial JAF, disponible solo para ciertos países). <b>Verificar antes de pagar $180–410</b> o cambiar por experiencia de copiloto/circuito cerrado.'],
-    ['🟠','Ritmo global muy alto','9 días con esfuerzo ≥4 y 4 días con buffer ≤10%. Tres semanas a este ritmo agotan la “batería social” del Pacto. <b>Mejora:</b> sube el buffer de D8, D10, D20, D23 reubicando 1 actividad cada uno.'],
-    ['🟠','Ghibli Park (D10) con tickets a término','Las entradas son con fecha y hora y se agotan 1–2 meses antes; además dependes de encadenar Hida + Linimo + Shinkansen el mismo día con maletas. <b>Mejora:</b> compra apenas abran ventas y envía maletas por takkyubin Takayama→Kioto.'],
+    ['✅','APLICADO · Día 20 ya no es un maratón','Se quitó la escala en Himeji: el D20 ahora es Hiroshima (Parque + Museo de la Paz, Cúpula) + Miyajima (Itsukushima + Momijidani). Esfuerzo 5→4, tránsito 480→360 min, buffer 5%→15%. <b>Alternativa aún válida</b> si quieren un ritmo más calmado: pernoctar 1 noche en Hiroshima (implicaría reacomodar Kinosaki).'],
+    ['✅','APLICADO · Tokyo Drift de-riesgado','El plan ahora marca que conducir requiere licencia válida en Japón (el IDP colombiano normalmente no sirve: Colombia no firmó la Conv. de Ginebra 1949) y propone <b>ir de copiloto por defecto</b>. Falta solo confirmar con el operador antes de pagar $180–410.'],
+    ['🟠','Ritmo global alto (mitigado)','Aún hay días intensos, pero <b>aplicado:</b> se subieron los buffers de D8 (5→12%), D10 (10→15%), D20 (5→15%) y D23 (15→18%), y el Castillo de Matsumoto del D8 pasa a “solo foto exterior”. Vigilar D19 (USJ) que sigue al máximo por naturaleza del parque.'],
+    ['🟠','Ghibli Park (D10) con tickets a término','Las entradas son con fecha y hora y se agotan 1–2 meses antes; además encadena Hida + Linimo + Shinkansen el mismo día con maletas. <b>Aplicado:</b> recordatorio en el D10 para comprar apenas abran ventas y enviar maletas por takkyubin Takayama→Kioto.'],
     ['🟠','Momiji en Kioto puede ir adelantado','Kioto (D11–15, 6–10 nov) suele alcanzar el pico de otoño ~15–25 nov; podrías ver color parcial. <b>Trade-off:</b> Nikko/Fuji (finales oct) sí estarán en pico. Si el momiji de Kioto es prioridad, considera correr Kansai unos días.'],
-    ['🟠','Transporte: reevaluar pases','Con tanto Shinkansen (Nagoya–Kioto, Osaka–Hiroshima, Osaka–Tokio, Koyasan, Kinosaki) el total ~¥110k es alto. <b>Mejora:</b> evalúa Hokuriku Arch Pass, Kansai-WIDE y el Kansai-Hiroshima juntos; a veces el JR Pass nacional de 7 días sí conviene para la mitad final.'],
+    ['🟠','Transporte: reevaluar pases','Con tanto Shinkansen (Nagoya–Kioto, Osaka–Hiroshima, Osaka–Tokio, Koyasan, Kinosaki) el total ~¥110k es alto. <b>Aplicado:</b> en el Resumen ya se listan Kansai-Hiroshima, Kansai-WIDE y la opción de JR Pass 7d para el tramo final. Falta cotizar la combinación real según fechas.'],
     ['🟡','Coherencia geográfica en 2 días','D7 (Chureito+Kamakura+Enoshima) y D20 cruzan grandes distancias. <b>Mejora:</b> agrupa por zona o acepta que son “días de traslado escénico”.'],
     ['🟡','Horarios y cierres','Muchos templos cierran 16:00–17:00 y algunos museos cierran lunes. Varios días encadenan 4–6 lugares: confirma horarios reales para no quedarte por fuera (p. ej. Kinkaku-ji cierra ~17:00).'],
     ['🟡','Onsen y tatuajes','Bien resuelto con Kinosaki (tattoo-friendly) y baño privado en Kawaguchiko, pero Spa World (D18) y algunos de Koyasan pueden pedir parche. Llevar parches grandes.'],
