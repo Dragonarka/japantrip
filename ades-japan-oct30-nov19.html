@@ -56,6 +56,8 @@
         .day-hero{width:100%;height:170px;object-fit:cover;filter:saturate(.92);transition:filter .4s}
         .gps-link{color:#2471A3;text-decoration:none;border-bottom:1px dotted #2471A355}
         .gps-link:hover{color:#C0392B}
+        .hist-link{text-decoration:none;font-size:.8rem;margin-left:3px}
+        #fx-banner{font-size:.72rem}
         .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}
         .meter>div{height:100%;border-radius:5px}
         .sup-cell{font-size:.7rem;padding:6px 8px;border-radius:6px;text-align:center;font-weight:600}
@@ -73,7 +75,8 @@
     <h1 class="font-jp text-4xl md:text-6xl font-black tracking-tight relative leading-tight">日本の秋</h1>
     <p class="font-jp text-xl md:text-2xl font-bold text-kuro/70 mt-1 relative">Japón en Otoño · AdeS</p>
     <p class="text-xs text-kuro/50 mt-3 relative">Tokio · Fuji · Kioto · Nara · Osaka · Hiroshima · Kanazawa</p>
-    <a href="index.html" class="inline-block mt-5 bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition relative">↔ Ver plan del otro grupo (v3, 25 días)</a>
+    <p id="fx-banner" class="text-kuro/55 mt-3 relative">Cargando tasas de cambio…</p>
+    <a href="index.html" class="inline-block mt-4 bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition relative">↔ Ver plan del otro grupo (v3, 25 días)</a>
 </header>
 
 <nav class="sticky top-0 z-40 bg-washi/95 backdrop-blur-sm border-b border-haiiro">
@@ -85,6 +88,7 @@
         <button class="week-tab" data-week="costs">💰 Costos</button>
         <button class="week-tab" data-week="metrics">📊 Indicadores</button>
         <button class="week-tab" data-week="overlap">🔀 Superposición</button>
+        <button class="week-tab" data-week="critique">🔎 Crítica</button>
         <button class="week-tab" data-week="maps">🗺️ Mapas/KML</button>
     </div>
 </nav>
@@ -128,7 +132,8 @@
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Fujikawaguchiko <span class="text-xs font-normal text-kuro/50">— 1 noche (3 nov)</span></p><p class="text-xs text-kuro/60">Onsen Fuji Yurari + vista al lago.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Kioto <span class="text-xs font-normal text-kuro/50">— 3 noches (4–6 nov)</span></p><p class="text-xs text-kuro/60">Caminable a Gion/Higashiyama/Pontocho.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Osaka · Namba <span class="text-xs font-normal text-kuro/50">— 3 noches (8–10 nov)</span></p><p class="text-xs text-kuro/60">Dotonbori, Kuromon, Shinsekai a pie.</p></div>
-                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Kanazawa <span class="text-xs font-normal text-kuro/50">— 2 noches (11–12 nov)</span></p><p class="text-xs text-kuro/60">Kenroku-en, Higashi Chaya, Nagamachi.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Hiroshima <span class="text-xs font-normal text-kuro/50">— 1 noche (11 nov) · NUEVO</span></p><p class="text-xs text-kuro/60">Pernocte añadido para no encadenar Hiroshima con el largo traslado a Kanazawa el mismo día.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Kanazawa <span class="text-xs font-normal text-kuro/50">— 1 noche (12 nov)</span></p><p class="text-xs text-kuro/60">Kenroku-en, Higashi Chaya, Nagamachi.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio <span class="text-xs font-normal text-kuro/50">— 4 noches (14–17 nov)</span> + 🚌 bus nocturno 13 nov</p><p class="text-xs text-kuro/60">Recta final: Shinjuku, Meiji, Shibuya.</p></div>
             </div>
         </div>
@@ -159,7 +164,7 @@
 <!-- ==================== COSTS ==================== -->
 <section class="section" id="costs">
     <h2 class="font-jp text-2xl font-black mb-2">💰 Presupuesto Estimado</h2>
-    <p class="text-xs text-kuro/50 mb-6">Por persona. Conversión doble del PDF: <strong>28</strong> y <strong>22</strong> COP/JPY. USD ≈ ¥150.</p>
+    <p class="text-xs text-kuro/50 mb-6">Por persona. Tabla original del PDF (COP a 28→22 JPY). Además, pasa el cursor por cualquier monto en yenes del plan para ver <strong>USD + COP con la tasa en vivo de hoy</strong>.</p>
     <div class="bg-white border border-haiiro rounded-xl p-5 mb-6 overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2">Categoría</th><th class="py-2 text-right">COP (28→22)</th><th class="py-2">Observaciones</th></tr></thead>
@@ -231,15 +236,55 @@
     </div>
 </section>
 
+<!-- ==================== CRITIQUE ==================== -->
+<section class="section" id="critique">
+    <h2 class="font-jp text-2xl font-black mb-2">🔎 Crítica Profunda & Trade-offs</h2>
+    <p class="text-xs text-kuro/50 mb-6">Revisión honesta para seguir refinando. Severidad: 🔴 crítico · 🟠 importante · 🟡 menor · ✅ ya aplicado.</p>
+    <div id="critique-list" class="space-y-3"></div>
+</section>
+
 </main>
 
 <footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan AdeS · 30 Oct – 19 Nov 2026 · Coordenadas, imágenes y costos son estimados — verificar horarios y reservas. <a href="index.html" class="underline">Plan v3 (otro grupo)</a></footer>
 
 <script>
-// ============ HELPERS ============
-const YEN_TO_USD = 1/150;
-function y2d(yen){ return '$' + Math.round(yen * YEN_TO_USD) }
-function usdTip(yen){ return '≈ ' + y2d(yen) + ' USD' }
+// ============ LIVE FX (fallback = tasas reales 20 jun 2026) ============
+const RATES={usd:0.006201, cop:21.51, src:'fallback 20 jun 2026'};
+function y2d(yen){ const v=yen*RATES.usd; return '$'+(v<10?v.toFixed(1):Math.round(v).toLocaleString()); }
+function y2cop(yen){ return '$'+Math.round(yen*RATES.cop).toLocaleString('es-CO'); }
+function usdTip(yen){ return y2d(yen)+' USD · '+y2cop(yen)+' COP'; }
+function fmtFxBanner(){
+    const usdJpy=Math.round(1/RATES.usd);
+    document.getElementById('fx-banner').innerHTML=`💱 1 USD = ¥${usdJpy} · ¥1 = ${RATES.cop.toFixed(1)} COP · 1 USD = $${Math.round(RATES.cop/RATES.usd).toLocaleString('es-CO')} COP <span class="text-kuro/35">(${RATES.src})</span>`;
+}
+async function loadRates(){
+    try{
+        const ctrl=new AbortController(); setTimeout(()=>ctrl.abort(),5000);
+        const r=await fetch('https://open.er-api.com/v6/latest/JPY',{signal:ctrl.signal}); const j=await r.json();
+        if(j&&j.rates&&j.rates.USD&&j.rates.COP){ RATES.usd=j.rates.USD; RATES.cop=j.rates.COP; RATES.src='en vivo · '+(j.time_last_update_utc||'hoy').replace(' 00:00:01 +0000',''); }
+    }catch(e){ RATES.src='sin conexión · '+RATES.src; }
+    renderAll();
+}
+// Historia: 📖 Wikipedia (verificada) + 🎬 YouTube (búsqueda)
+function wikiLink(t){ return 'https://en.wikipedia.org/wiki/'+t; }
+function ytLink(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' historia documental'); }
+const WIKI={
+ "Templo Senso-ji":"Sensō-ji","Tokyo Skytree":"Tokyo_Skytree","Museo Nacional de Tokio":"Tokyo_National_Museum",
+ "Santuario Nezu":"Nezu_Shrine","Akihabara":"Akihabara","Palacio Imperial de Japón":"Tokyo_Imperial_Palace",
+ "Teatro Kabuki-za (opcional)":"Kabuki-za","Mercado de Tsukiji (desayuno)":"Tsukiji","Torre de Tokio":"Tokyo_Tower",
+ "Isla Odaiba":"Odaiba","Pagoda Chureito":"Arakurayama_Sengen_Park","Mt. Fuji Panoramic Ropeway":"Mount_Fuji",
+ "Bosque de Bambú de Arashiyama":"Arashiyama","Templo Tenryu-ji":"Tenryū-ji","Kinkaku-ji (Pabellón Dorado)":"Kinkaku-ji",
+ "Castillo Nijō":"Nijō_Castle","Templo Kiyomizu-dera":"Kiyomizu-dera","Gion y Santuario Yasaka":"Gion",
+ "Fushimi Inari Taisha (Senbon Torii)":"Fushimi_Inari-taisha","Templo Daigo-ji":"Daigo-ji",
+ "Parque de Nara y venados Sika":"Nara_Park","Templo Todai-ji":"Tōdai-ji","Santuario Kasuga-Taisha":"Kasuga-taisha",
+ "Dotonbori y Hozenji Yokocho":"Dōtonbori","Castillo de Osaka":"Osaka_Castle","Templo Shitennoji":"Shitennō-ji",
+ "Barrio Shinsekai (cena)":"Shinsekai","Universal Studios Japan (opción)":"Universal_Studios_Japan",
+ "Acuario de Osaka Kaiyukan (opción)":"Osaka_Aquarium_Kaiyukan","Isla Miyajima: Gran Torii y templo":"Itsukushima_Shrine",
+ "Cúpula de la Bomba Atómica":"Hiroshima_Peace_Memorial","Parque Memorial de la Paz":"Hiroshima_Peace_Memorial_Park",
+ "Jardín Kenroku-en":"Kenroku-en","Castillo de Kanazawa (opcional)":"Kanazawa_Castle","Jardín Nacional Shinjuku Gyoen":"Shinjuku_Gyo-en",
+ "Santuario Meiji Jingu":"Meiji_Shrine","Parque Yoyogi":"Yoyogi_Park","Shibuya y estatua de Hachiko":"Shibuya_Crossing",
+ "teamLab Borderless (opción)":"TeamLab",
+};
 function gmapsPt(lat,lng,n){ return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`+(n?`&query_place_id=`:''); }
 function gmapsRoute(acts){
     const pts=acts.filter(a=>a.lat).map(a=>`${a.lat},${a.lng}`);
@@ -270,11 +315,11 @@ acts:[{n:"Palacio Imperial de Japón",lat:35.6852,lng:139.7528,t:"history",roi:3
 img:IMG+"5/58/Tokyo_Tower_2023.jpg/960px-Tokyo_Tower_2023.jpg",
 acts:[{n:"Mercado de Tsukiji (desayuno)",lat:35.6655,lng:139.7707,t:"food",roi:5},{n:"Isla Odaiba",lat:35.6300,lng:139.7796,t:"pop",roi:3},{n:"Roppongi Hills (cena)",lat:35.6604,lng:139.7292,t:"pop",roi:3},{n:"Torre de Tokio",lat:35.6586,lng:139.7454,t:"pop",roi:4}]},
 
-{day:5,date:"3 Nov",dow:"Mar",week:"w1",title:"Lagos y Termas del Fuji",loc:"Fujikawaguchiko",lodge:"Fujikawaguchiko",effort:3,km:6,transitMin:180,bufferP:10,costT:3500,costF:2500,lodgeCost:13000,laundry:false,contempl:45,
+{day:5,date:"3 Nov",dow:"Mar",week:"w1",title:"Lagos y Termas del Fuji",loc:"Fujikawaguchiko",lodge:"Fujikawaguchiko",effort:3,km:6,transitMin:180,bufferP:15,costT:3500,costF:2500,lodgeCost:13000,laundry:false,contempl:45,
 img:IMG+"1/18/KawaguchiKo.jpg/960px-KawaguchiKo.jpg",
 acts:[{n:"Mt. Fuji Panoramic Ropeway",lat:35.5009,lng:138.7522,t:"nature",roi:5},{n:"Calles de Fujikawaguchiko (almuerzo)",lat:35.5000,lng:138.7700,t:"local",roi:3},{n:"Parque de Oishi",lat:35.5300,lng:138.7530,t:"nature",roi:5},{n:"Onsen Fuji Yurari",lat:35.4860,lng:138.7600,t:"onsen",roi:5}]},
 
-{day:6,date:"4 Nov",dow:"Mié",week:"w1",title:"Pagoda Chureito → Kioto",loc:"Fuji → Kioto",lodge:"Kioto",effort:3,km:5,transitMin:240,bufferP:10,costT:12000,costF:2500,lodgeCost:7500,laundry:false,contempl:35,
+{day:6,date:"4 Nov",dow:"Mié",week:"w1",title:"Pagoda Chureito → Kioto",loc:"Fuji → Kioto",lodge:"Kioto",effort:3,km:5,transitMin:240,bufferP:15,costT:12000,costF:2500,lodgeCost:7500,laundry:false,contempl:35,
 img:IMG+"6/66/Chuurei-tou_Fujiyoshida_17025277650_c59733d6ba_o.jpg/960px-Chuurei-tou_Fujiyoshida_17025277650_c59733d6ba_o.jpg",
 acts:[{n:"Pagoda Chureito",lat:35.4951,lng:138.8009,t:"tradition",roi:5},{n:"Calle retro Fujiyoshida",lat:35.4870,lng:138.8060,t:"local",roi:4},{n:"Santuario Kitaguchi Hongu Fuji Sengen",lat:35.4793,lng:138.7906,t:"tradition",roi:4},{n:"Shinkansen Mishima – Kioto",lat:35.1265,lng:138.9110,t:"transit",roi:2}]},
 
@@ -290,7 +335,7 @@ acts:[{n:"Templo Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5},{n
 img:IMG+"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
 acts:[{n:"Fushimi Inari Taisha (Senbon Torii)",lat:34.9671,lng:135.7727,t:"tradition",roi:5},{n:"Templo Daigo-ji",lat:34.9510,lng:135.8200,t:"tradition",roi:4},{n:"Kyoto Ramen Koji (almuerzo)",lat:34.9858,lng:135.7588,t:"food",roi:4},{n:"Torre de Kioto",lat:34.9876,lng:135.7590,t:"pop",roi:3},{n:"teamLab Biovortex",lat:34.9700,lng:135.7600,t:"pop",roi:4}]},
 
-{day:10,date:"8 Nov",dow:"Dom",week:"w2",title:"Venados de Nara → Osaka",loc:"Nara → Osaka",lodge:"Osaka",effort:4,km:11,transitMin:150,bufferP:10,costT:1500,costF:3500,lodgeCost:7000,laundry:false,contempl:30,
+{day:10,date:"8 Nov",dow:"Dom",week:"w2",title:"Venados de Nara → Osaka",loc:"Nara → Osaka",lodge:"Osaka",effort:4,km:11,transitMin:150,bufferP:15,costT:1500,costF:3500,lodgeCost:7000,laundry:false,contempl:30,
 img:IMG+"2/2f/T%C5%8Ddai-ji_Kon-d%C5%8D.jpg/960px-T%C5%8Ddai-ji_Kon-d%C5%8D.jpg",
 acts:[{n:"Parque de Nara y venados Sika",lat:34.6851,lng:135.8430,t:"nature",roi:5},{n:"Templo Todai-ji",lat:34.6890,lng:135.8398,t:"tradition",roi:5},{n:"Santuario Kasuga-Taisha",lat:34.6817,lng:135.8483,t:"tradition",roi:4},{n:"Dotonbori y Hozenji Yokocho",lat:34.6687,lng:135.5010,t:"local",roi:5},{n:"Llegada a Osaka",lat:34.6661,lng:135.5020,t:"transit",roi:2}]},
 
@@ -302,13 +347,13 @@ acts:[{n:"Castillo de Osaka",lat:34.6873,lng:135.5259,t:"history",roi:5},{n:"Tem
 img:IMG+"f/f4/Kaiy%C5%ABkan.jpg/960px-Kaiy%C5%ABkan.jpg",
 acts:[{n:"Universal Studios Japan (opción)",lat:34.6654,lng:135.4323,t:"pop",roi:5},{n:"Acuario de Osaka Kaiyukan (opción)",lat:34.6545,lng:135.4289,t:"nature",roi:4},{n:"Pueblito cercano (opción)",lat:34.6900,lng:135.5000,t:"local",roi:3}]},
 
-{day:13,date:"11 Nov",dow:"Mié",week:"w2",title:"Memoria y Mar → Kanazawa",loc:"Hiroshima · Miyajima",lodge:"Kanazawa",effort:5,km:8,transitMin:480,bufferP:5,costT:20000,costF:3000,lodgeCost:7000,laundry:false,contempl:40,
+{day:13,date:"11 Nov",dow:"Mié",week:"w2",title:"Memoria y Mar · NOCHE en Hiroshima",loc:"Hiroshima · Miyajima",lodge:"Hiroshima",effort:4,km:8,transitMin:240,bufferP:15,costT:9000,costF:3000,lodgeCost:7000,laundry:false,contempl:45,
 img:IMG+"e/ef/Itsukushima_Shrine_Torii_Gate_%2813890465459%29.jpg/960px-Itsukushima_Shrine_Torii_Gate_%2813890465459%29.jpg",
-acts:[{n:"Shinkansen Osaka – Hiroshima",lat:34.3978,lng:132.4753,t:"transit",roi:2},{n:"Isla Miyajima: Gran Torii y templo",lat:34.2959,lng:132.3197,t:"tradition",roi:5},{n:"Cúpula de la Bomba Atómica",lat:34.3955,lng:132.4536,t:"history",roi:5},{n:"Parque Memorial de la Paz",lat:34.3914,lng:132.4525,t:"history",roi:5},{n:"Trenes hacia Kanazawa",lat:36.5780,lng:136.6477,t:"transit",roi:1}]},
+acts:[{n:"Shinkansen Osaka – Hiroshima",lat:34.3978,lng:132.4753,t:"transit",roi:2},{n:"Isla Miyajima: Gran Torii y templo",lat:34.2959,lng:132.3197,t:"tradition",roi:5},{n:"Cúpula de la Bomba Atómica",lat:34.3955,lng:132.4536,t:"history",roi:5},{n:"Parque Memorial de la Paz",lat:34.3914,lng:132.4525,t:"history",roi:5},{n:"Cena okonomiyaki + noche en Hiroshima (ya NO se viaja a Kanazawa hoy)",lat:34.3955,lng:132.4596,t:"local",roi:4}]},
 
-{day:14,date:"12 Nov",dow:"Jue",week:"w2",title:"Jardines y Geishas",loc:"Kanazawa",lodge:"Kanazawa",effort:3,km:9,transitMin:60,bufferP:20,costT:600,costF:3500,lodgeCost:7000,laundry:false,contempl:45,
+{day:14,date:"12 Nov",dow:"Jue",week:"w2",title:"Hiroshima → Kanazawa · Jardines",loc:"Hiroshima → Kanazawa",lodge:"Kanazawa",effort:4,km:7,transitMin:330,bufferP:12,costT:14000,costF:3500,lodgeCost:7000,laundry:false,contempl:40,
 img:IMG+"3/31/Stone_lantern_Kenrokuen.jpg/960px-Stone_lantern_Kenrokuen.jpg",
-acts:[{n:"Jardín Kenroku-en",lat:36.5620,lng:136.6624,t:"nature",roi:5},{n:"Distrito Higashi Chaya (almuerzo)",lat:36.5723,lng:136.6680,t:"local",roi:5},{n:"Visita a una casa de té",lat:36.5720,lng:136.6685,t:"tradition",roi:4},{n:"Caminata por el centro (Katamachi)",lat:36.5610,lng:136.6550,t:"local",roi:3}]},
+acts:[{n:"Tren Hiroshima → Kanazawa (vía Shin-Osaka, ~5 h por la mañana)",lat:36.5780,lng:136.6477,t:"transit",roi:1},{n:"Jardín Kenroku-en (tarde)",lat:36.5620,lng:136.6624,t:"nature",roi:5},{n:"Distrito Higashi Chaya + casa de té",lat:36.5723,lng:136.6680,t:"local",roi:5},{n:"Caminata por el centro (Katamachi)",lat:36.5610,lng:136.6550,t:"local",roi:3}]},
 
 {day:15,date:"13 Nov",dow:"Vie",week:"w3",title:"Barrio Samurái → Tokio",loc:"Kanazawa → Tokio (bus)",lodge:"Bus nocturno",effort:3,km:8,transitMin:120,bufferP:15,costT:8000,costF:3500,lodgeCost:4000,laundry:false,contempl:35,
 img:IMG+"8/88/Kanazawa-M-5937.jpg/960px-Kanazawa-M-5937.jpg",
@@ -366,10 +411,12 @@ function renderWeek(wk){
         const laundryHtml=d.laundry?`<span class="laundry-badge">🧺 Lavandería</span>`:'';
         const actsHtml=d.acts.map(a=>{
             const isT=a.t==='transit';
+            const wk=a.w||WIKI[a.n];
+            const hist=wk?` <a class="hist-link" title="Historia (Wikipedia)" href="${wikiLink(wk)}" target="_blank">📖</a><a class="hist-link" title="Videos históricos (YouTube)" href="${ytLink(a.n)}" target="_blank">🎬</a>`:'';
             return `<li class="flex items-start gap-2 py-1 ${isT?'opacity-60':''}">
                 <span class="text-xs mt-0.5">${isT?'🚆':'📍'}</span>
                 <span class="text-sm text-kuro/80 flex-1">${a.n}
-                ${!isT?` <a class="gps-link text-xs" href="${gmapsPt(a.lat,a.lng)}" target="_blank">GPS↗</a>`:''}
+                ${!isT?` <a class="gps-link text-xs" href="${gmapsPt(a.lat,a.lng)}" target="_blank">GPS↗</a>`:''}${hist}
                 </span>
                 <span class="tag tag-${a.t} shrink-0">${TAG_LABELS[a.t].split(' ')[0]}</span>
             </li>`;
@@ -614,11 +661,12 @@ const BASES=[
     {lat:35.5018,lng:138.7660,name:"Fujikawaguchiko",d:"D5"},
     {lat:35.0116,lng:135.7681,name:"Kioto",d:"D6–7 (base D4–6)"},
     {lat:34.6687,lng:135.5032,name:"Osaka",d:"D10–12 (base D8–10)"},
-    {lat:36.5613,lng:136.6562,name:"Kanazawa",d:"D14–15 (base D11–12)"},
+    {lat:34.3853,lng:132.4553,name:"Hiroshima",d:"D13 (noche)"},
+    {lat:36.5613,lng:136.6562,name:"Kanazawa",d:"D14"},
 ];
 const EXC=[
     {lat:35.4951,lng:138.8009,n:"Pagoda Chureito"},{lat:34.6851,lng:135.8430,n:"Nara"},
-    {lat:34.2959,lng:132.3197,n:"Miyajima"},{lat:34.3955,lng:132.4536,n:"Hiroshima"},
+    {lat:34.2959,lng:132.3197,n:"Miyajima"},
 ];
 // Secuencia de ruta (ciudades base en orden cronológico)
 const ROUTE_SEQ=[
@@ -651,12 +699,37 @@ function animatePath(){
     step();
 }
 
+// ============ CRITIQUE ============
+const CRITIQUE=[
+    ['✅','APLICADO · El D13 ya no es un maratón','Antes: Hiroshima/Miyajima + ~5–6 h de trenes a Kanazawa el MISMO día (480 min, esfuerzo 5). Ahora se <b>pernocta en Hiroshima</b> (D13, esfuerzo 5→4, buffer 5→15%) y el traslado a Kanazawa pasa a la mañana del D14. Kanazawa queda con ~1 día y medio; si quieren más Kanazawa, la alternativa es saltarse Miyajima o sumar una noche.'],
+    ['🟠','Bus nocturno Kanazawa→Tokio (D15)','El bus nocturno (~7–8 h) ahorra una noche de hotel pero llega molido a Tokio. <b>Mejora:</b> Kanazawa→Tokio por <b>Shinkansen Hokuriku son solo ~2,5 h directo</b>; si el presupuesto lo permite, salir temprano en tren da mucho mejor descanso por poco más.'],
+    ['🟠','Reservas con anticipación','teamLab Biovortex (D9), Universal Studios (D12), el ryokan/onsen de Kawaguchiko (D5) y restaurantes top se reservan con semanas/meses. <b>Acción:</b> bloquear fechas apenas se confirme el viaje.'],
+    ['🟠','Momiji en Kioto puede ir adelantado','Kioto (D7–9, 5–7 nov) suele alcanzar el pico de otoño ~15–25 nov: podrían ver color parcial. Kanazawa (12 nov) y altura de Fuji (3–4 nov) sí estarán mejor. <b>Trade-off</b> de fechas; tenerlo presente.'],
+    ['🟠','Conexión Fuji → Kioto (D6)','El Shinkansen sale de <b>Mishima</b>, no de Kawaguchiko: confirmar el bus/tren Kawaguchiko→Mishima (~1 h) y horarios para no perder el enlace. Enviar maletas por takkyubin (ya contemplado).'],
+    ['🟡','Onsen y tatuajes','El onsen Fuji Yurari (D5) puede pedir parche para tatuajes; llevar parches grandes. El resto del plan tiene poco onsen público, así que el riesgo es bajo.'],
+    ['🟢','Lo que está muy bien','Pocas bases con maletas ligeras (takkyubin), buen balance clásico/local, día comodín real (D12), Nara como day-trip eficiente y el Pacto del Samurái para la convivencia. La estructura es sólida; los ajustes son de calibración.'],
+    ['💱','Presupuesto con FX de hoy','Con ¥161/USD (vs ¥150 que asumía el PDF), el viaje sale ~7% más barato en USD. En COP, ¥1≈21,5 (mejor que el peor caso del PDF de 28). Los montos del plan muestran USD + COP en vivo al pasar el cursor.'],
+];
+function renderCritique(){
+    document.getElementById('critique-list').innerHTML=CRITIQUE.map(([sev,t,b])=>
+        `<div class="bg-white border border-haiiro rounded-xl p-4 flex gap-3"><span class="text-xl shrink-0">${sev}</span><div><h3 class="font-bold text-sm mb-1">${t}</h3><p class="text-sm text-kuro/70">${b}</p></div></div>`
+    ).join('');
+}
+
+// ============ RENDER ALL ============
+function renderAll(){
+    fmtFxBanner();
+    ['w1','w2','w3'].forEach(renderWeek);
+    renderCosts();
+    renderMetrics();
+    renderOverlap();
+    renderRouteLinks();
+    renderCritique();
+}
+
 // ============ INIT ============
-['w1','w2','w3'].forEach(renderWeek);
-renderCosts();
-renderMetrics();
-renderOverlap();
-renderRouteLinks();
+renderAll();   // render inmediato con tasas fallback (correctas para hoy)
+loadRates();   // luego actualiza FX en vivo y re-renderiza
 
 document.querySelectorAll('.week-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
