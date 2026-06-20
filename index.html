@@ -22,22 +22,29 @@
         .font-jp{font-family:'Noto Serif JP',serif}
         body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");background-size:256px;opacity:.4}
         .day-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
-        .day-card.open .day-detail{max-height:3000px;opacity:1}
+        .day-card.open .day-detail{max-height:4000px;opacity:1}
         .day-card.open .chevron{transform:rotate(180deg)}
         .chevron{transition:transform .3s}
         .must-badge{background:linear-gradient(135deg,#C0392B,#922B21);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px;letter-spacing:.08em}
         .tag{padding:2px 10px;border-radius:999px;font-size:.65rem;font-weight:600;border:1px solid}
-        .tag-momiji{color:#C0392B;border-color:#C0392B33;background:#C0392B0D}
-        .tag-night{color:#7D3C98;border-color:#7D3C9833;background:#7D3C980D}
-        .tag-tradition{color:#1A6B4A;border-color:#1A6B4A33;background:#1A6B4A0D}
-        .tag-adventure{color:#2471A3;border-color:#2471A333;background:#2471A30D}
+        .tag-tradition{color:#C0392B;border-color:#C0392B33;background:#C0392B0D}
+        .tag-history{color:#7D6608;border-color:#7D660833;background:#7D66080D}
+        .tag-nature{color:#1A6B4A;border-color:#1A6B4A33;background:#1A6B4A0D}
         .tag-pop{color:#D4740E;border-color:#D4740E33;background:#D4740E0D}
+        .tag-local{color:#2471A3;border-color:#2471A333;background:#2471A30D}
+        .tag-food{color:#A93226;border-color:#A9322633;background:#A932260D}
+        .tag-onsen{color:#7D3C98;border-color:#7D3C9833;background:#7D3C980D}
+        .tag-night{color:#5B2A6B;border-color:#5B2A6B33;background:#5B2A6B0D}
+        .tag-adventure{color:#2471A3;border-color:#2471A333;background:#2471A30D}
+        .tag-transit{color:#777;border-color:#77777733;background:#7777770D}
         .week-tab{cursor:pointer;padding:10px 14px;font-size:.75rem;font-weight:600;border-bottom:2px solid transparent;transition:all .2s;color:#888;white-space:nowrap}
         .week-tab:hover{color:#1A1A1A}
         .week-tab.active{color:#C0392B;border-color:#C0392B}
         .section{display:none}
         .section.visible{display:block;animation:fadeUp .4s ease forwards}
         @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes growBar{from{width:0}}
+        .anim-bar{animation:growBar .8s cubic-bezier(.4,0,.2,1)}
         #map-container{transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;max-height:0;opacity:0;overflow:hidden}
         #map-container.open{max-height:600px;opacity:1}
         #route-map{height:450px;width:100%;border-radius:12px;z-index:1}
@@ -48,8 +55,14 @@
         .effort-bar{height:6px;border-radius:3px;background:#E8E4DC;overflow:hidden;width:80px}
         .effort-fill{height:100%;border-radius:3px;transition:width .3s}
         .luggage-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#FDE8E8;color:#C0392B;border:1px solid #C0392B33}
+        .laundry-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#E8F0FE;color:#2471A3;border:1px solid #2471A333}
         .calc-input{border:1px solid #E8E4DC;border-radius:8px;padding:6px 10px;font-size:.85rem;width:100%;background:#fff;outline:none}
         .calc-input:focus{border-color:#C5982A;box-shadow:0 0 0 2px #C5982A22}
+        .gps-link{color:#2471A3;text-decoration:none;font-size:.65rem;border-bottom:1px dotted #2471A355}
+        .hist-link{text-decoration:none;font-size:.7rem;margin-left:4px}
+        .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}
+        .meter>div{height:100%;border-radius:5px}
+        #fx-banner{font-size:.7rem}
         @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}}
     </style>
 </head>
@@ -59,8 +72,9 @@
     <div class="absolute inset-0 opacity-[0.03]" style="background-image:repeating-linear-gradient(0deg,#1A1A1A 0px,transparent 1px,transparent 60px),repeating-linear-gradient(90deg,#1A1A1A 0px,transparent 1px,transparent 60px)"></div>
     <p class="text-xs tracking-[0.3em] uppercase text-aka font-bold mb-4 relative">27 Oct – 20 Nov 2026 · 25 Días · 3 Viajeros</p>
     <h1 class="font-jp text-4xl md:text-6xl font-black tracking-tight relative leading-tight">日本の秋</h1>
-    <p class="font-jp text-xl md:text-2xl font-bold text-kuro/70 mt-1 relative">Japón en Otoño</p>
-    <a href="ades-japan-oct30-nov19.html" class="inline-block mt-5 bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition relative">↔ Ver plan AdeS (otro grupo) + Superposición</a>
+    <p class="font-jp text-xl md:text-2xl font-bold text-kuro/70 mt-1 relative">Japón en Otoño · Plan Principal</p>
+    <p id="fx-banner" class="text-kuro/55 mt-4 relative">Cargando tasas de cambio…</p>
+    <a href="ades-japan-oct30-nov19.html" class="inline-block mt-4 bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition relative">↔ Ver plan AdeS (otro grupo) + Superposición</a>
 </header>
 
 <nav class="sticky top-0 z-40 bg-washi/95 backdrop-blur-sm border-b border-haiiro">
@@ -71,7 +85,9 @@
         <button class="week-tab" data-week="w3">S3·Kansai</button>
         <button class="week-tab" data-week="w4">S4·Oeste</button>
         <button class="week-tab" data-week="costs">💰 Costos</button>
+        <button class="week-tab" data-week="metrics">📊 Indicadores</button>
         <button class="week-tab" data-week="calculator">🧮 Calculadora</button>
+        <button class="week-tab" data-week="critique">🔎 Crítica</button>
     </div>
 </nav>
 
@@ -119,31 +135,31 @@
                 <div class="lodge-card bg-washi rounded-lg p-3">
                     <p class="font-bold">Tokio · Shinjuku <span class="text-xs font-normal text-kuro/50">— 7 noches (Oct 27–Nov 2)</span></p>
                     <p class="text-xs text-kuro/60">Hub JR Yamanote, buses a Fuji, nightlife a pie. <em>Tokyu Stay, Citadines, APA Kabukicho.</em></p>
-                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-usd="≈ $53–100 USD">¥8,000–15,000/n</span></p>
+                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-yen="8000-15000">¥8,000–15,000/n</span></p>
                 </div>
                 <div class="lodge-card bg-washi rounded-lg p-3">
                     <p class="font-bold">Kawaguchiko · Ryokan <span class="text-xs font-normal text-kuro/50">— 1 noche (Nov 1)</span></p>
                     <p class="text-xs text-kuro/60">Onsen privado + vista Fuji + kaiseki incluida. <em>Kozantei Ubuya, Kukuna.</em></p>
-                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-usd="≈ $100–200 USD">¥15,000–30,000/n</span></p>
+                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-yen="15000-30000">¥15,000–30,000/n</span></p>
                 </div>
                 <div class="lodge-card bg-washi rounded-lg p-3">
                     <p class="font-bold">Takayama <span class="text-xs font-normal text-kuro/50">— 2 noches (Nov 3–4)</span></p>
                     <p class="text-xs text-kuro/60">Base Nakasendo + Shirakawa-go. <em>K's House, Country Hotel.</em></p>
-                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-usd="≈ $40–80 USD">¥6,000–12,000/n</span></p>
+                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-yen="6000-12000">¥6,000–12,000/n</span></p>
                 </div>
                 <div class="lodge-card bg-washi rounded-lg p-3">
                     <p class="font-bold">Kioto · Kawaramachi <span class="text-xs font-normal text-kuro/50">— 5 noches (Nov 6–10)</span></p>
                     <p class="text-xs text-kuro/60">Caminable a Gion/Pontocho/Higashiyama. <em>Mitsui Garden, Hotel Gracery.</em></p>
-                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-usd="≈ $53–93 USD">¥8,000–14,000/n</span></p>
+                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-yen="8000-14000">¥8,000–14,000/n</span></p>
                 </div>
                 <div class="lodge-card bg-washi rounded-lg p-3">
                     <p class="font-bold">Osaka · Namba <span class="text-xs font-normal text-kuro/50">— 7 noches (Nov 11–19)</span></p>
                     <p class="text-xs text-kuro/60">Hub Nankai/JR/Kintetsu. Street food a pie. <em>Cross Hotel, Monterey Grasmere.</em></p>
-                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-usd="≈ $47–87 USD">¥7,000–13,000/n</span></p>
+                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-yen="7000-13000">¥7,000–13,000/n</span></p>
                 </div>
                 <div class="lodge-card bg-washi rounded-lg p-3">
                     <p class="font-bold">Especiales: <span class="text-xs font-normal text-kuro/50">Kinosaki ryokan (D21) + Koyasan shukubo (D22)</span></p>
-                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-usd="≈ $80–167 USD">¥12,000–25,000/n</span></p>
+                    <p class="text-xs text-kin font-bold mt-1"><span class="tooltip-usd" data-yen="12000-25000">¥12,000–25,000/n</span></p>
                 </div>
             </div>
         </div>
@@ -151,7 +167,7 @@
 
     <div class="bg-sumi text-white rounded-xl p-6 mb-6">
         <h2 class="font-jp font-bold text-lg mb-3 text-kin">🚆 Transporte</h2>
-        <p class="text-sm mb-3 text-white/70">JR Pass nacional <strong class="text-aka">NO recomendado</strong>. Usar:</p>
+        <p class="text-sm mb-3 text-white/70">JR Pass nacional <strong class="text-aka">NO recomendado</strong> en la forma actual. Reevaluar pases regionales combinados (ver Crítica). Usar:</p>
         <div class="grid sm:grid-cols-2 gap-2 text-sm text-white/80">
             <p>• <strong class="text-kin">Suica digital</strong> — Ciudades</p>
             <p>• <strong class="text-kin">SmartEX</strong> — Shinkansen</p>
@@ -160,15 +176,10 @@
         </div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white border border-haiiro rounded-xl p-6">
-            <h2 class="font-jp font-bold text-lg mb-3">🍁 Clima</h2>
-            <p class="text-sm text-kuro/70">Momiji norte→sur: Nikko/Fuji (finales oct), Kioto (mediados nov), Miyajima (nov). Temp: 8–20°C, capas + chaqueta.</p>
-        </div>
-        <div class="bg-white border border-haiiro rounded-xl p-6">
-            <h2 class="font-jp font-bold text-lg mb-3">♨️ Onsen & Tatuajes</h2>
-            <p class="text-sm text-kuro/70"><strong>Kinosaki</strong> (D21): 7 baños públicos tattoo-friendly. <strong>Kawaguchiko</strong> (D6): baño privado. <strong>Koyasan</strong> (D22): generalmente relajados.</p>
-        </div>
+    <div class="grid md:grid-cols-3 gap-4">
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🍁 Clima</h3><p class="text-sm text-kuro/70">Momiji norte→sur: Nikko/Fuji (finales oct), Kioto (mediados nov), Miyajima (nov). Temp 8–20°C, capas + chaqueta.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🧺 Lavandería</h3><p class="text-sm text-kuro/70">~1×/semana en coin-laundry (~¥600–1.000): <strong>D3 Tokio</strong>, <strong>D13 Kioto</strong>, <strong>D18 Osaka</strong>, <strong>D23 Tokio</strong>.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">♨️ Onsen & Tatuajes</h3><p class="text-sm text-kuro/70"><strong>Kinosaki</strong> (D21): 7 baños tattoo-friendly. <strong>Kawaguchiko</strong> (D6): baño privado. <strong>Koyasan</strong> (D22): relajados.</p></div>
     </div>
 </section>
 
@@ -180,265 +191,225 @@
 
 <!-- ==================== COSTS TAB ==================== -->
 <section class="section" id="costs">
-    <h2 class="font-jp text-2xl font-black mb-6">💰 Desglose de Costos Totales (por persona)</h2>
-    <p class="text-xs text-kuro/50 mb-4">Tasa: ¥150 = $1 USD (aproximado Oct 2026)</p>
+    <h2 class="font-jp text-2xl font-black mb-2">💰 Desglose de Costos Totales (por persona)</h2>
+    <p class="text-xs text-kuro/50 mb-4" id="costs-fx-note"></p>
 
     <div class="grid md:grid-cols-2 gap-6 mb-6">
-        <!-- TRANSPORTE -->
         <div class="bg-white border border-haiiro rounded-xl p-5">
             <h3 class="font-bold text-sm mb-3">🚆 Transporte</h3>
             <div class="space-y-1 text-xs" id="cost-transport"></div>
         </div>
-        <!-- COMIDA -->
         <div class="bg-white border border-haiiro rounded-xl p-5">
             <h3 class="font-bold text-sm mb-3">🍱 Alimentación</h3>
-            <div class="space-y-1 text-xs">
-                <div class="flex justify-between py-1 border-b border-haiiro"><span>Desayuno/día (konbini)</span><span class="tooltip-usd" data-usd="$2–4">¥300–600</span></div>
-                <div class="flex justify-between py-1 border-b border-haiiro"><span>Almuerzo/día (ramen/set)</span><span class="tooltip-usd" data-usd="$5–10">¥800–1,500</span></div>
-                <div class="flex justify-between py-1 border-b border-haiiro"><span>Cena/día (izakaya)</span><span class="tooltip-usd" data-usd="$10–23">¥1,500–3,500</span></div>
-                <div class="flex justify-between py-1 border-b border-haiiro"><span>Snacks/bebidas/día</span><span class="tooltip-usd" data-usd="$2–3">¥300–500</span></div>
-                <div class="flex justify-between py-1 border-b border-haiiro"><span>Kaiseki cangrejo Kinosaki</span><span class="tooltip-usd" data-usd="$53–100">¥8,000–15,000</span></div>
-                <div class="flex justify-between py-1 border-b border-haiiro"><span>Cena despedida Wagyu/Omakase</span><span class="tooltip-usd" data-usd="$33–80">¥5,000–12,000</span></div>
-                <div class="flex justify-between py-1 font-bold text-aka"><span>Total comida 25 días</span><span class="tooltip-usd" data-usd="$670–1,070">¥100,000–160,000</span></div>
-            </div>
+            <div class="space-y-1 text-xs" id="cost-food"></div>
         </div>
     </div>
 
-    <!-- ACTIVIDADES Y ENTRADAS -->
     <div class="bg-white border border-haiiro rounded-xl p-5 mb-6">
         <h3 class="font-bold text-sm mb-3">🎟️ Entradas y Actividades</h3>
-        <div class="space-y-1 text-xs" id="cost-activities">
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>TeamLab Borderless</span><span class="tooltip-usd" data-usd="$25">¥3,800</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Sumo inflable (experiencia)</span><span class="tooltip-usd" data-usd="$33">~¥5,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro">
-                <span>🏎️ Tokyo Drift — Opción A (Skyline/Silvia)</span>
-                <span class="tooltip-usd" data-usd="$180 USD">$180 USD</span>
-            </div>
-            <div class="flex justify-between py-1 border-b border-haiiro">
-                <span>🏎️ Tokyo Drift — Opción B (GT-R R34)</span>
-                <span class="tooltip-usd" data-usd="$410 USD">$410 USD</span>
-            </div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Ghibli Park (ticket)</span><span class="tooltip-usd" data-usd="$23">¥3,500</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Universal Studios Japan</span><span class="tooltip-usd" data-usd="$57">¥8,600</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>USJ Express Pass (recomendado)</span><span class="tooltip-usd" data-usd="$60–100">¥9,000–15,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Shibuya Sky</span><span class="tooltip-usd" data-usd="$13">¥2,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Koyasan shukubo (cena+desayuno incl.)</span><span class="tooltip-usd" data-usd="$80–133">(en hospedaje)</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Templos varios (Kiyomizu, Kinkaku, etc.)</span><span class="tooltip-usd" data-usd="$20–27 total">¥3,000–4,000 total</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Ceremonia del té Uji</span><span class="tooltip-usd" data-usd="$10–20">¥1,500–3,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Castillo Himeji</span><span class="tooltip-usd" data-usd="$7">¥1,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Museo de la Paz Hiroshima</span><span class="tooltip-usd" data-usd="$1.3">¥200</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Miyajima ropeway</span><span class="tooltip-usd" data-usd="$12">¥1,800</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Karaoke nomihodai (2 noches)</span><span class="tooltip-usd" data-usd="$27–40">¥4,000–6,000</span></div>
-            <div class="flex justify-between py-1 font-bold text-aka"><span>Total actividades (con Drift A)</span><span class="tooltip-usd" data-usd="$490–600">~¥73,000–90,000</span></div>
-        </div>
+        <div class="space-y-1 text-xs" id="cost-activities"></div>
     </div>
 
-    <!-- HOSPEDAJE -->
     <div class="bg-white border border-haiiro rounded-xl p-5 mb-6">
         <h3 class="font-bold text-sm mb-3">🏨 Hospedaje (por persona, habitación triple)</h3>
-        <div class="space-y-1 text-xs">
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Tokio Shinjuku × 7n</span><span class="tooltip-usd" data-usd="$124–233">¥18,600–35,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Ryokan Kawaguchiko × 1n</span><span class="tooltip-usd" data-usd="$33–67">¥5,000–10,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Takayama × 2n</span><span class="tooltip-usd" data-usd="$27–53">¥4,000–8,000</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Kioto × 5n</span><span class="tooltip-usd" data-usd="$89–156">¥13,300–23,300</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Osaka × 7n</span><span class="tooltip-usd" data-usd="$109–202">¥16,300–30,300</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Kinosaki ryokan × 1n</span><span class="tooltip-usd" data-usd="$27–56">¥4,000–8,300</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Koyasan shukubo × 1n</span><span class="tooltip-usd" data-usd="$27–56">¥4,000–8,300</span></div>
-            <div class="flex justify-between py-1 border-b border-haiiro"><span>Tokio final × 2n</span><span class="tooltip-usd" data-usd="$35–67">¥5,300–10,000</span></div>
-            <div class="flex justify-between py-1 font-bold text-aka"><span>Total hospedaje / persona</span><span class="tooltip-usd" data-usd="$470–890">¥70,500–133,200</span></div>
-        </div>
+        <div class="space-y-1 text-xs" id="cost-lodging"></div>
     </div>
 
-    <!-- GRAND TOTAL -->
     <div class="bg-sumi text-white rounded-xl p-6">
         <h3 class="font-jp font-bold text-lg text-kin mb-4">📊 Gran Total por Persona (sin vuelo)</h3>
-        <div class="space-y-2 text-sm">
-            <div class="flex justify-between"><span>Transporte</span><span class="text-kin font-bold">$645</span></div>
-            <div class="flex justify-between"><span>Alimentación</span><span class="text-kin font-bold">$670–1,070</span></div>
-            <div class="flex justify-between"><span>Actividades</span><span class="text-kin font-bold">$490–600</span></div>
-            <div class="flex justify-between"><span>Hospedaje</span><span class="text-kin font-bold">$470–890</span></div>
-            <div class="flex justify-between"><span>Souvenirs (estimado)</span><span class="text-kin font-bold">$100–200</span></div>
-            <div class="flex justify-between border-t border-white/20 pt-2 mt-2 text-lg"><span class="font-bold">TOTAL</span><span class="text-kin font-black">$2,375 – $3,405</span></div>
-        </div>
+        <div class="space-y-2 text-sm" id="cost-grand"></div>
+    </div>
+</section>
+
+<!-- ==================== METRICS TAB ==================== -->
+<section class="section" id="metrics">
+    <h2 class="font-jp text-2xl font-black mb-2">📊 Indicadores de Análisis del Itinerario</h2>
+    <p class="text-xs text-kuro/50 mb-6">Calculados sobre los 25 días. Verde = saludable · ámbar = vigilar · rojo = ajustar.</p>
+    <div id="metrics-grid" class="grid md:grid-cols-2 gap-4 mb-8"></div>
+    <h3 class="font-jp text-lg font-bold mb-3">Detalle por día</h3>
+    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+        <table class="w-full text-xs"><thead><tr class="text-left text-kuro/50 border-b border-haiiro">
+            <th class="py-2">Día</th><th>Densidad</th><th>Buffer</th><th>Tránsito</th><th>Esfuerzo</th><th>Clásico/Local</th><th>Burn</th>
+        </tr></thead><tbody id="metrics-day-table"></tbody></table>
     </div>
 </section>
 
 <!-- ==================== CALCULATOR TAB ==================== -->
 <section class="section" id="calculator">
     <h2 class="font-jp text-2xl font-black mb-2">🧮 Calculadora de Viaje</h2>
-    <p class="text-xs text-kuro/50 mb-6">Cada viajero puede configurar su vuelo, fechas, y nivel de hospedaje. Los costos en tierra se calculan automáticamente.</p>
-
+    <p class="text-xs text-kuro/50 mb-6">Cada viajero configura vuelo, fechas y hospedaje. Los costos en tierra y la conversión a COP usan la tasa en vivo.</p>
     <div id="travelers-container"></div>
-
     <button id="add-traveler" class="mt-4 bg-aka text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-aka/80 transition">+ Agregar Viajero</button>
-
     <div class="bg-sumi text-white rounded-xl p-6 mt-6" id="calc-summary" style="display:none">
         <h3 class="font-jp font-bold text-lg text-kin mb-3">📊 Resumen del Grupo</h3>
         <div id="calc-summary-body" class="space-y-2 text-sm"></div>
     </div>
 </section>
 
+<!-- ==================== CRITIQUE TAB ==================== -->
+<section class="section" id="critique">
+    <h2 class="font-jp text-2xl font-black mb-2">🔎 Crítica Profunda & Trade-offs</h2>
+    <p class="text-xs text-kuro/50 mb-6">Revisión honesta del itinerario para seguir refinando. Severidad: 🔴 crítico · 🟠 importante · 🟡 menor.</p>
+    <div id="critique-list" class="space-y-3"></div>
+</section>
+
 </main>
 
-<footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">27 Oct – 20 Nov 2026 · Verificar horarios y reservas</footer>
+<footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">27 Oct – 20 Nov 2026 · Coordenadas, costos y tasas son estimados — verificar horarios y reservas. <a href="ades-japan-oct30-nov19.html" class="underline">Plan AdeS (otro grupo)</a></footer>
 
 <script>
-// ============ CONSTANTS ============
-const YEN_TO_USD = 1/150;
-function y2d(yen){ return '$' + Math.round(yen * YEN_TO_USD) }
-function usdTip(yen){ return '≈ ' + y2d(yen) + ' USD' }
+// ============ LIVE FX RATES ============
+// Fallback = tasas reales del 20 jun 2026 (open.er-api.com). Se actualizan en vivo al cargar.
+const RATES={usd:0.006201, cop:21.51, src:'fallback 20 jun 2026'};
+function y2d(yen){ const v=yen*RATES.usd; return '$'+(v<10?v.toFixed(1):Math.round(v).toLocaleString()); }
+function y2cop(yen){ return '$'+Math.round(yen*RATES.cop).toLocaleString('es-CO'); }
+function usdTip(yen){ return y2d(yen)+' USD · '+y2cop(yen)+' COP'; }
+function rangeTip(s){ const [a,b]=s.split('-').map(Number); return b?`${y2d(a)}–${y2d(b)} USD · ${y2cop(a)}–${y2cop(b)} COP`:usdTip(a); }
+function fmtFxBanner(){
+    const usdJpy=Math.round(1/RATES.usd);
+    document.getElementById('fx-banner').innerHTML=
+      `💱 1 USD = ¥${usdJpy} · ¥1 = ${RATES.cop.toFixed(1)} COP · 1 USD = $${Math.round(RATES.cop/RATES.usd).toLocaleString('es-CO')} COP <span class="text-kuro/35">(${RATES.src})</span>`;
+    const note=document.getElementById('costs-fx-note');
+    if(note) note.innerHTML=`Tasa en vivo: ¥1 = ${y2d(1).replace('$','')} USD = ${y2cop(1)} COP · fuente ${RATES.src}. Pasa el cursor por cualquier monto para ver USD + COP.`;
+}
+async function loadRates(){
+    try{
+        const ctrl=new AbortController(); setTimeout(()=>ctrl.abort(),5000);
+        const r=await fetch('https://open.er-api.com/v6/latest/JPY',{signal:ctrl.signal});
+        const j=await r.json();
+        if(j&&j.rates&&j.rates.USD&&j.rates.COP){
+            RATES.usd=j.rates.USD; RATES.cop=j.rates.COP;
+            RATES.src='en vivo · '+(j.time_last_update_utc||'hoy').replace(' 00:00:01 +0000','');
+        }
+    }catch(e){ RATES.src='sin conexión · '+RATES.src; }
+    renderAll();
+}
+
+// ============ MAPS DEEP-LINKS ============
+function gmapsPt(lat,lng){ return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`; }
+function gmapsRoute(acts){
+    const pts=acts.filter(a=>a.lat).map(a=>`${a.lat},${a.lng}`);
+    if(pts.length<2) return pts.length?`https://www.google.com/maps/search/?api=1&query=${pts[0]}`:'#';
+    const o=pts[0],d=pts[pts.length-1],w=pts.slice(1,-1).join('|');
+    return `https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}`+(w?`&waypoints=${encodeURIComponent(w)}`:'')+'&travelmode=transit';
+}
+function wikiLink(t){ return 'https://en.wikipedia.org/wiki/'+t; }
+function ytLink(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' historia documental'); }
 
 // ============ DATA ============
+// acts:[{n,lat,lng,t,roi,w(wiki)}] · t: tradition/history/nature/pop/local/food/onsen/night/transit
 const DAYS=[
-// S1
-{day:1,date:"Oct 27",week:"w1",title:"Llegada y Neón",loc:"Tokio·Shinjuku",tags:["night","pop"],mustDo:false,lodge:"Shinjuku",effort:1,luggage:true,
-am:"Llegada Narita/Haneda. Ta-Q-Bin maletas. Check-in Shinjuku.",pm:"Aclimatación. Suica digital. Explorar barrio.",night:"Omoide Yokocho: yakitori+cerveza. Kabukicho.",food:"Yakitori · Ramen Fuunji",transport:"Narita Express",costT:3250,costF:3000},
-{day:2,date:"Oct 28",week:"w1",title:"Tradición y Otaku",loc:"Tokio·Asakusa→Akihabara",tags:["tradition","pop"],mustDo:"Akihabara",lodge:"Shinjuku",effort:2,luggage:false,
-am:"Senso-ji temprano. Nakamise.",pm:"Akihabara: Super Potato, arcades, manga.",night:"Ameyoko (Ueno): izakayas.",food:"Melon Pan · Takoyaki · Izakaya",transport:"Metro Ginza",costT:600,costF:3500},
-{day:3,date:"Oct 29",week:"w1",title:"Sumo y Scramble",loc:"Tokio·Ryogoku→Shibuya",tags:["tradition","night","adventure"],mustDo:"Sumo inflable",lodge:"Shinjuku",effort:3,luggage:false,
-am:"Ryogoku: sumo con traje inflable (reservar). Museo Sumo.",pm:"Harajuku: Meiji Jingu + Takeshita. Shibuya Sky atardecer.",night:"Scramble→Nonbei Yokocho.",food:"Crepes Harajuku · Kaiten sushi",transport:"Yamanote",costT:5600,costF:3500},
-{day:4,date:"Oct 30",week:"w1",title:"Arte Digital + Tokyo Drift",loc:"Tokio·Azabudai→Kinshicho",tags:["pop","adventure","night"],mustDo:"TeamLab + Tokyo Drift",lodge:"Shinjuku",effort:2,luggage:false,
-am:"TeamLab Borderless (Azabudai Hills). Reservar. 2–3h.",pm:"Shimokitazawa: vintage, indie, curry.",night:"🏎️ TOKYO DRIFT (desde 17h). Conducir un JDM (Skyline/Silvia $180 o GT-R R34 $410) por calles de Tokio de noche. Rainbow Bridge iluminado. Requiere IDP (Permiso Internacional).",food:"Curry Shimokitazawa · Street food",transport:"Metro",costT:4400,costF:3500},
-{day:5,date:"Oct 31",week:"w1",title:"Montaña Sagrada 🎃",loc:"Nikko (excursión)",tags:["momiji","tradition"],mustDo:false,lodge:"Shinjuku",effort:4,luggage:false,
-am:"Tobu Express a Nikko. Toshogu (UNESCO).",pm:"Irohazaka→Lago Chuzenji+Cascada Kegon. Momiji pico.",night:"Regreso. Halloween en Shibuya/Roppongi si hay energía.",food:"Yuba · Dango asado",transport:"Tobu Nikko Pass",costT:4780,costF:2500},
-{day:6,date:"Nov 1",week:"w1",title:"Hacia el Volcán",loc:"Kawaguchiko·Monte Fuji",tags:["momiji","tradition"],mustDo:"Monte Fuji",lodge:"Ryokan Kawaguchiko",effort:2,luggage:true,
-am:"Bus Shinjuku→Kawaguchiko. Bicis por el lago.",pm:"Momiji Kairo. Check-in ryokan.",night:"Onsen privado + Kaiseki con vista Fuji.",food:"Hoto · Kaiseki (incluida)",transport:"Bus Fujikyuko",costT:1900,costF:1500},
-{day:7,date:"Nov 2",week:"w1",title:"Gran Buda y el Mar",loc:"Fuji→Kamakura→Enoshima",tags:["tradition","adventure"],mustDo:"Kamakura y el mar",lodge:"Shinjuku (última n.)",effort:4,luggage:true,
-am:"Pagoda Chureito amanecer. Bus a Tokio.",pm:"Tren a Kamakura: Hasedera, Daibutsu. Enoden→Enoshima.",night:"Sunset Fuji desde Sea Candle. Regreso.",food:"Shirasu-don Enoshima",transport:"Bus+Freepass",costT:3540,costF:3000},
+{day:1,date:"Oct 27",week:"w1",title:"Llegada y Neón",loc:"Tokio·Shinjuku",tags:["night","pop"],mustDo:false,lodge:"Shinjuku",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:30,contempl:25,
+am:"Llegada Narita/Haneda. Ta-Q-Bin maletas. Check-in Shinjuku.",pm:"Aclimatación. Suica digital. Explorar barrio.",night:"Omoide Yokocho: yakitori+cerveza. Kabukicho.",food:"Yakitori · Ramen Fuunji",transport:"Narita Express",costT:3250,costF:3000,
+acts:[{n:"Narita/Haneda → Shinjuku",lat:35.6896,lng:139.7006,t:"transit",roi:1},{n:"Omoide Yokocho",lat:35.6936,lng:139.6995,t:"local",roi:4},{n:"Kabukicho",lat:35.6955,lng:139.7027,t:"night",roi:4,w:"Kabukichō"}]},
 
-// S2
-{day:8,date:"Nov 3",week:"w2",title:"Sendero Feudal",loc:"Tokio→Nakasendo→Takayama",tags:["tradition","adventure"],mustDo:"Sendero Nakasendo",lodge:"Takayama",effort:5,luggage:true,
-am:"Azusa a Matsumoto. Castillo Negro rápido.",pm:"Bus Nakatsugawa. Caminata Magome→Tsumago (~3h).",night:"Bus a Takayama. Check-in.",food:"Goheimochi · Soba Nagano",transport:"Azusa+buses",costT:8620,costF:2500},
-{day:9,date:"Nov 4",week:"w2",title:"Aldea de Cuento",loc:"Takayama→Shirakawa-go",tags:["tradition","adventure"],mustDo:"Shirakawa-go",lodge:"Takayama",effort:3,luggage:false,
-am:"Mercado Miyagawa. Sanmachi Suji, sake.",pm:"Bus Shirakawa-go: casas Gassho (UNESCO).",night:"Cena Hida beef.",food:"Hida beef sushi · Sake",transport:"Nohi Bus r/t",costT:4600,costF:4000},
-{day:10,date:"Nov 5",week:"w2",title:"El Mundo de Ghibli",loc:"Takayama→Nagoya→Ghibli Park",tags:["pop","adventure"],mustDo:"Ghibli Park",lodge:"Tránsito → Kioto",effort:4,luggage:true,
-am:"Tren Hida a Nagoya. Lockers.",pm:"Linimo→Ghibli Park. Grand Warehouse + áreas.",night:"Shinkansen Nagoya→Kioto. Check-in.",food:"Bento Ghibli · Kishimen Nagoya",transport:"Hida+Linimo+Shinkansen",costT:11380,costF:3000},
-{day:11,date:"Nov 6",week:"w2",title:"Kioto: Primer Contacto",loc:"Kioto·Higashiyama",tags:["tradition","momiji","night"],mustDo:false,lodge:"Kioto",effort:3,luggage:false,
-am:"Kiyomizu-dera. Sannen-zaka, Ninen-zaka.",pm:"Kodai-ji, Yasaka. Gion buscando maikos.",night:"Iluminaciones nocturnas momiji Eikan-do.",food:"Matcha dulces · Tofu kaiseki",transport:"Bus+caminar",costT:500,costF:4000},
+{day:2,date:"Oct 28",week:"w1",title:"Tradición y Otaku",loc:"Tokio·Asakusa→Akihabara",tags:["tradition","pop"],mustDo:"Akihabara",lodge:"Shinjuku",effort:2,luggage:false,laundry:false,transitMin:70,bufferP:20,contempl:30,
+am:"Senso-ji temprano. Nakamise.",pm:"Akihabara: Super Potato, arcades, manga.",night:"Ameyoko (Ueno): izakayas.",food:"Melon Pan · Takoyaki · Izakaya",transport:"Metro Ginza",costT:600,costF:3500,
+acts:[{n:"Templo Senso-ji",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Calle Nakamise",lat:35.7113,lng:139.7964,t:"local",roi:3},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"},{n:"Ameyoko (Ueno)",lat:35.7080,lng:139.7745,t:"local",roi:4}]},
 
-// S3
-{day:12,date:"Nov 7",week:"w3",title:"Bambú y Oro",loc:"Kioto·Arashiyama→Kinkaku-ji",tags:["tradition","momiji"],mustDo:false,lodge:"Kioto",effort:3,luggage:false,
-am:"Bosque Bambú (madrugar). Tenryu-ji.",pm:"Kinkaku-ji al atardecer.",night:"Cena Pontocho junto al río.",food:"Okonomiyaki · Yudofu",transport:"JR Sagano+bus",costT:700,costF:4000},
-{day:13,date:"Nov 8",week:"w3",title:"Mil Toriis y Té",loc:"Kioto·Fushimi Inari→Uji",tags:["tradition"],mustDo:false,lodge:"Kioto",effort:4,luggage:false,
-am:"Fushimi Inari temprano. Subir montaña toriis.",pm:"Tren Uji: Byodo-in, ceremonia del té.",night:"Craft beer Kawaramachi.",food:"Parfait matcha · Soba de té",transport:"JR Nara Line",costT:500,costF:3500},
-{day:14,date:"Nov 9",week:"w3",title:"Kioto Oculto",loc:"Kioto·Kurama→Kibune",tags:["momiji","adventure"],mustDo:false,lodge:"Kioto",effort:4,luggage:false,
-am:"Eizan a Kurama. Senderismo→Kibune.",pm:"Onsen natural Kurama. Musgo, arces.",night:"Preparar para Osaka.",food:"Kawadoko (río) · Shojin ryori",transport:"Eizan train",costT:800,costF:3500},
-{day:15,date:"Nov 10",week:"w3",title:"Karaoke y Kioto Nocturno",loc:"Kioto·Día Libre",tags:["night","pop"],mustDo:false,lodge:"Kioto (última n.)",effort:1,luggage:false,
-am:"Mañana libre. Dormir, descansar, pasear sin agenda. Café en Kawaramachi.",pm:"Explorar barrio Nishiki Market (cocina callejera). Compras recuerdos en Teramachi.",night:"🎤 Karaoke nomihodai (barra libre). Última noche en Kioto, celebrar.",food:"Nishiki Market (street food) · Cena libre",transport:"Caminar",costT:300,costF:4000},
-{day:16,date:"Nov 11",week:"w3",title:"Neones de Osaka",loc:"Kioto→Osaka",tags:["night","pop"],mustDo:false,lodge:"Osaka Namba",effort:2,luggage:true,
-am:"Traslado Osaka. Check-in Namba.",pm:"Castillo Osaka + ginkgos. Shinsekai.",night:"Dotonbori: takoyaki, neón, okonomiyaki.",food:"Takoyaki · Kushikatsu · Okonomiyaki",transport:"JR+metro",costT:880,costF:4500},
-{day:17,date:"Nov 12",week:"w3",title:"Osaka Profundo",loc:"Osaka",tags:["pop","night"],mustDo:false,lodge:"Osaka",effort:2,luggage:false,
-am:"Amerikamura. Vintage, skate.",pm:"Den-Den Town. Arcades retro.",night:"Ura-Namba izakayas.",food:"Gyoza · Ramen · Highball",transport:"Metro",costT:500,costF:4000},
-{day:18,date:"Nov 13",week:"w3",title:"Día Relax",loc:"Osaka",tags:["adventure"],mustDo:false,lodge:"Osaka",effort:1,luggage:false,
-am:"Mercado Kuromon: sashimi, uni.",pm:"Spa World (onsen grande, zonas tattoo-ok).",night:"Dormir temprano para USJ.",food:"Kuromon sashimi · Frutas",transport:"Metro",costT:500,costF:4000},
-{day:19,date:"Nov 14",week:"w3",title:"Adrenalina Pura",loc:"Osaka·USJ",tags:["pop"],mustDo:"Universal Studios Japan",lodge:"Osaka",effort:5,luggage:false,
-am:"USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Regreso. Cena rápida Namba.",food:"Comida parque · Butterbeer",transport:"JR Yumesaki",costT:200,costF:3000},
+{day:3,date:"Oct 29",week:"w1",title:"Sumo y Scramble",loc:"Tokio·Ryogoku→Shibuya",tags:["tradition","night","adventure"],mustDo:"Sumo inflable",lodge:"Shinjuku",effort:3,luggage:false,laundry:true,transitMin:80,bufferP:20,contempl:25,
+am:"Ryogoku: sumo con traje inflable (reservar). Museo Sumo.",pm:"Harajuku: Meiji Jingu + Takeshita. Shibuya Sky atardecer.",night:"Scramble→Nonbei Yokocho.",food:"Crepes Harajuku · Kaiten sushi",transport:"Yamanote",costT:5600,costF:3500,
+acts:[{n:"Ryogoku (sumo)",lat:35.6967,lng:139.7933,t:"pop",roi:5,w:"Ryōgoku"},{n:"Meiji Jingu",lat:35.6764,lng:139.6993,t:"tradition",roi:5,w:"Meiji_Shrine"},{n:"Takeshita (Harajuku)",lat:35.6716,lng:139.7031,t:"pop",roi:3},{n:"Shibuya Sky / Scramble",lat:35.6595,lng:139.7004,t:"pop",roi:5,w:"Shibuya_Crossing"}]},
 
-// S4
-{day:20,date:"Nov 15",week:"w4",title:"Garza Blanca y Memoria",loc:"Himeji→Hiroshima→Miyajima",tags:["tradition","momiji"],mustDo:false,lodge:"Osaka (day trip largo)",effort:5,luggage:false,
-am:"Shinkansen Himeji. Castillo.",pm:"Hiroshima: Museo de la Paz.",night:"Ferry Miyajima. Torii+Momijidani. Regreso Osaka.",food:"Okonomiyaki Hiroshima · Ostras Miyajima",transport:"Kansai Hiroshima Pass",costT:17000,costF:3500},
-{day:21,date:"Nov 16",week:"w4",title:"Termas sin Tabú",loc:"Kinosaki Onsen",tags:["tradition","adventure"],mustDo:"Kinosaki Onsen",lodge:"Ryokan Kinosaki",effort:1,luggage:true,
-am:"Limited Express a Kinosaki. 7 onsens públicos.",pm:"Recorrido baños en yukata. Todo tattoo-friendly.",night:"Kaiseki cangrejo de nieve. Baños nocturnos.",food:"Cangrejo kaiseki · Onsen tamago",transport:"Ltd Express (pass)",costT:0,costF:10000},
-{day:22,date:"Nov 17",week:"w4",title:"Retiro Budista",loc:"Koyasan·Monte Koya",tags:["tradition","adventure"],mustDo:"Koyasan",lodge:"Shukubo Koyasan",effort:2,luggage:true,
-am:"Kinosaki→Osaka→Nankai+funicular Koyasan.",pm:"Okunoin: 2km cementerio entre cedros.",night:"Shojin ryori. Paseo nocturno Okunoin con faroles.",food:"Shojin Ryori (incluida) · Goma-dofu",transport:"Nankai+funicular",costT:2540,costF:0},
-{day:23,date:"Nov 18",week:"w4",title:"Vuelta a Tokio",loc:"Koyasan→Osaka→Tokio",tags:["pop"],mustDo:false,lodge:"Tokio Shinjuku",effort:2,luggage:true,
-am:"Ceremonia fuego monjes amanecer. Descenso.",pm:"Shinkansen Osaka→Tokio. Check-in.",night:"Golden Gai o Ikebukuro.",food:"Bento Shinkansen · Ramen Shinjuku",transport:"Nankai+Shinkansen",costT:16410,costF:3500},
-{day:24,date:"Nov 19",week:"w4",title:"Compras y Sayonara",loc:"Tokio·Libre",tags:["pop","night"],mustDo:false,lodge:"Tokio",effort:2,luggage:false,
-am:"Ginza, Akihabara (2da pasada), Harajuku.",pm:"Don Quijote souvenirs. Tsukiji.",night:"Wagyu A5 o omakase. Karaoke nomihodai final.",food:"Wagyu/Omakase · Karaoke libre",transport:"Metro",costT:600,costF:10000},
-{day:25,date:"Nov 20",week:"w4",title:"Sayonara 日本",loc:"Tokio→Aeropuerto",tags:[],mustDo:false,lodge:"—",effort:1,luggage:true,
-am:"Últimos paseos. Empacar.",pm:"Tren al aeropuerto.",night:"Vuelo.",food:"Último ramen aeropuerto",transport:"Narita Express",costT:3250,costF:2000},
+{day:4,date:"Oct 30",week:"w1",title:"Arte Digital + Tokyo Drift",loc:"Tokio·Azabudai→Kinshicho",tags:["pop","adventure","night"],mustDo:"TeamLab + Tokyo Drift",lodge:"Shinjuku",effort:2,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:20,
+am:"TeamLab Borderless (Azabudai Hills). Reservar. 2–3h.",pm:"Shimokitazawa: vintage, indie, curry.",night:"🏎️ TOKYO DRIFT (desde 17h). Conducir un JDM (Skyline/Silvia $180 o GT-R R34 $410) por calles de Tokio de noche. Rainbow Bridge iluminado. ⚠️ Requiere permiso válido (ver Crítica).",food:"Curry Shimokitazawa · Street food",transport:"Metro",costT:4400,costF:3500,
+acts:[{n:"TeamLab Borderless (Azabudai)",lat:35.6595,lng:139.7290,t:"pop",roi:5},{n:"Shimokitazawa",lat:35.6613,lng:139.6680,t:"local",roi:4},{n:"Tokyo Drift · Rainbow Bridge",lat:35.6365,lng:139.7634,t:"night",roi:5}]},
+
+{day:5,date:"Oct 31",week:"w1",title:"Montaña Sagrada 🎃",loc:"Nikko (excursión)",tags:["nature","tradition"],mustDo:false,lodge:"Shinjuku",effort:4,luggage:false,laundry:false,transitMin:300,bufferP:10,contempl:40,
+am:"Tobu Express a Nikko. Toshogu (UNESCO).",pm:"Irohazaka→Lago Chuzenji+Cascada Kegon. Momiji pico.",night:"Regreso. Halloween en Shibuya/Roppongi si hay energía.",food:"Yuba · Dango asado",transport:"Tobu Nikko Pass",costT:4780,costF:2500,
+acts:[{n:"Nikko Toshogu",lat:36.7580,lng:139.5989,t:"tradition",roi:5,w:"Nikkō_Tōshō-gū"},{n:"Lago Chuzenji",lat:36.7300,lng:139.4900,t:"nature",roi:4,w:"Lake_Chūzenji"},{n:"Cascada Kegon",lat:36.7390,lng:139.5030,t:"nature",roi:4,w:"Kegon_Falls"}]},
+
+{day:6,date:"Nov 1",week:"w1",title:"Hacia el Volcán",loc:"Kawaguchiko·Monte Fuji",tags:["nature","onsen"],mustDo:"Monte Fuji",lodge:"Ryokan Kawaguchiko",effort:2,luggage:true,laundry:false,transitMin:150,bufferP:20,contempl:55,
+am:"Bus Shinjuku→Kawaguchiko. Bicis por el lago.",pm:"Momiji Kairo. Check-in ryokan.",night:"Onsen privado + Kaiseki con vista Fuji.",food:"Hoto · Kaiseki (incluida)",transport:"Bus Fujikyuko",costT:1900,costF:1500,
+acts:[{n:"Lago Kawaguchi",lat:35.5170,lng:138.7530,t:"nature",roi:5,w:"Lake_Kawaguchi"},{n:"Momiji Kairo",lat:35.5230,lng:138.7470,t:"nature",roi:4},{n:"Monte Fuji (vista)",lat:35.3606,lng:138.7274,t:"nature",roi:5,w:"Mount_Fuji"},{n:"Onsen ryokan",lat:35.5018,lng:138.7660,t:"onsen",roi:5}]},
+
+{day:7,date:"Nov 2",week:"w1",title:"Gran Buda y el Mar",loc:"Fuji→Kamakura→Enoshima",tags:["tradition","adventure"],mustDo:"Kamakura y el mar",lodge:"Shinjuku (última n.)",effort:4,luggage:true,laundry:false,transitMin:240,bufferP:10,contempl:40,
+am:"Pagoda Chureito amanecer. Bus a Tokio.",pm:"Tren a Kamakura: Hasedera, Daibutsu. Enoden→Enoshima.",night:"Sunset Fuji desde Sea Candle. Regreso.",food:"Shirasu-don Enoshima",transport:"Bus+Freepass",costT:3540,costF:3000,
+acts:[{n:"Pagoda Chureito",lat:35.4951,lng:138.8009,t:"tradition",roi:5,w:"Arakurayama_Sengen_Park"},{n:"Daibutsu (Kotoku-in)",lat:35.3169,lng:139.5358,t:"tradition",roi:5,w:"Kōtoku-in"},{n:"Hasedera",lat:35.3127,lng:139.5331,t:"tradition",roi:4,w:"Hase-dera_(Kamakura)"},{n:"Enoshima",lat:35.2990,lng:139.4800,t:"nature",roi:4,w:"Enoshima"}]},
+
+{day:8,date:"Nov 3",week:"w2",title:"Sendero Feudal",loc:"Tokio→Nakasendo→Takayama",tags:["tradition","adventure"],mustDo:"Sendero Nakasendo",lodge:"Takayama",effort:5,luggage:true,laundry:false,transitMin:420,bufferP:5,contempl:45,
+am:"Azusa a Matsumoto. Castillo Negro rápido.",pm:"Bus Nakatsugawa. Caminata Magome→Tsumago (~3h).",night:"Bus a Takayama. Check-in.",food:"Goheimochi · Soba Nagano",transport:"Azusa+buses",costT:8620,costF:2500,
+acts:[{n:"Castillo Matsumoto",lat:36.2384,lng:137.9690,t:"history",roi:5,w:"Matsumoto_Castle"},{n:"Magome-juku",lat:35.5278,lng:137.5667,t:"local",roi:5,w:"Magome-juku"},{n:"Tsumago-juku",lat:35.5775,lng:137.5950,t:"local",roi:5,w:"Tsumago-juku"}]},
+
+{day:9,date:"Nov 4",week:"w2",title:"Aldea de Cuento",loc:"Takayama→Shirakawa-go",tags:["tradition","adventure"],mustDo:"Shirakawa-go",lodge:"Takayama",effort:3,luggage:false,laundry:false,transitMin:180,bufferP:20,contempl:50,
+am:"Mercado Miyagawa. Sanmachi Suji, sake.",pm:"Bus Shirakawa-go: casas Gassho (UNESCO).",night:"Cena Hida beef.",food:"Hida beef sushi · Sake",transport:"Nohi Bus r/t",costT:4600,costF:4000,
+acts:[{n:"Mercado Miyagawa",lat:36.1430,lng:137.2580,t:"local",roi:4},{n:"Sanmachi Suji",lat:36.1400,lng:137.2570,t:"local",roi:4},{n:"Shirakawa-go",lat:36.2580,lng:136.9060,t:"tradition",roi:5,w:"Shirakawa-gō"}]},
+
+{day:10,date:"Nov 5",week:"w2",title:"El Mundo de Ghibli",loc:"Takayama→Nagoya→Ghibli Park",tags:["pop","adventure"],mustDo:"Ghibli Park",lodge:"Tránsito → Kioto",effort:4,luggage:true,laundry:false,transitMin:300,bufferP:10,contempl:35,
+am:"Tren Hida a Nagoya. Lockers.",pm:"Linimo→Ghibli Park. Grand Warehouse + áreas.",night:"Shinkansen Nagoya→Kioto. Check-in.",food:"Bento Ghibli · Kishimen Nagoya",transport:"Hida+Linimo+Shinkansen",costT:11380,costF:3000,
+acts:[{n:"Ghibli Park",lat:35.1820,lng:137.0790,t:"pop",roi:5,w:"Ghibli_Park"},{n:"Nagoya (tránsito)",lat:35.1709,lng:136.8815,t:"transit",roi:2},{n:"Shinkansen → Kioto",lat:35.0116,lng:135.7681,t:"transit",roi:2}]},
+
+{day:11,date:"Nov 6",week:"w2",title:"Kioto: Primer Contacto",loc:"Kioto·Higashiyama",tags:["tradition","nature","night"],mustDo:false,lodge:"Kioto",effort:3,luggage:false,laundry:false,transitMin:60,bufferP:20,contempl:40,
+am:"Kiyomizu-dera. Sannen-zaka, Ninen-zaka.",pm:"Kodai-ji, Yasaka. Gion buscando maikos.",night:"Iluminaciones nocturnas momiji Eikan-do.",food:"Matcha dulces · Tofu kaiseki",transport:"Bus+caminar",costT:500,costF:4000,
+acts:[{n:"Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomizu-dera"},{n:"Sannen-zaka / Ninen-zaka",lat:34.9967,lng:135.7820,t:"local",roi:5},{n:"Gion · Yasaka",lat:35.0036,lng:135.7755,t:"tradition",roi:5,w:"Gion"},{n:"Eikan-do (momiji noche)",lat:35.0140,lng:135.7950,t:"nature",roi:4}]},
+
+{day:12,date:"Nov 7",week:"w3",title:"Bambú y Oro",loc:"Kioto·Arashiyama→Kinkaku-ji",tags:["nature","tradition"],mustDo:false,lodge:"Kioto",effort:3,luggage:false,laundry:false,transitMin:90,bufferP:20,contempl:40,
+am:"Bosque Bambú (madrugar). Tenryu-ji.",pm:"Kinkaku-ji al atardecer.",night:"Cena Pontocho junto al río.",food:"Okonomiyaki · Yudofu",transport:"JR Sagano+bus",costT:700,costF:4000,
+acts:[{n:"Bosque de Bambú Arashiyama",lat:35.0170,lng:135.6717,t:"nature",roi:5,w:"Arashiyama"},{n:"Tenryu-ji",lat:35.0159,lng:135.6738,t:"tradition",roi:4,w:"Tenryū-ji"},{n:"Kinkaku-ji",lat:35.0394,lng:135.7292,t:"tradition",roi:5,w:"Kinkaku-ji"},{n:"Pontocho (cena)",lat:35.0050,lng:135.7707,t:"local",roi:5}]},
+
+{day:13,date:"Nov 8",week:"w3",title:"Mil Toriis y Té",loc:"Kioto·Fushimi Inari→Uji",tags:["tradition"],mustDo:false,lodge:"Kioto",effort:4,luggage:false,laundry:true,transitMin:90,bufferP:15,contempl:35,
+am:"Fushimi Inari temprano. Subir montaña toriis.",pm:"Tren Uji: Byodo-in, ceremonia del té.",night:"Craft beer Kawaramachi.",food:"Parfait matcha · Soba de té",transport:"JR Nara Line",costT:500,costF:3500,
+acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Byodo-in (Uji)",lat:34.8893,lng:135.8076,t:"tradition",roi:4,w:"Byōdō-in"},{n:"Ceremonia del té (Uji)",lat:34.8910,lng:135.8070,t:"local",roi:4}]},
+
+{day:14,date:"Nov 9",week:"w3",title:"Kioto Oculto",loc:"Kioto·Kurama→Kibune",tags:["nature","adventure"],mustDo:false,lodge:"Kioto",effort:4,luggage:false,laundry:false,transitMin:90,bufferP:20,contempl:55,
+am:"Eizan a Kurama. Senderismo→Kibune.",pm:"Onsen natural Kurama. Musgo, arces.",night:"Preparar para Osaka.",food:"Kawadoko (río) · Shojin ryori",transport:"Eizan train",costT:800,costF:3500,
+acts:[{n:"Kurama-dera",lat:35.1167,lng:135.7700,t:"nature",roi:4,w:"Kurama"},{n:"Kibune",lat:35.1230,lng:135.7620,t:"nature",roi:4},{n:"Onsen Kurama",lat:35.1190,lng:135.7680,t:"onsen",roi:4}]},
+
+{day:15,date:"Nov 10",week:"w3",title:"Karaoke y Kioto Nocturno",loc:"Kioto·Día Libre",tags:["night","local"],mustDo:false,lodge:"Kioto (última n.)",effort:1,luggage:false,laundry:false,transitMin:30,bufferP:45,contempl:55,
+am:"Mañana libre. Café en Kawaramachi.",pm:"Nishiki Market (cocina callejera). Compras Teramachi.",night:"🎤 Karaoke nomihodai. Última noche en Kioto.",food:"Nishiki Market (street food)",transport:"Caminar",costT:300,costF:4000,
+acts:[{n:"Nishiki Market",lat:35.0050,lng:135.7649,t:"food",roi:5},{n:"Teramachi",lat:35.0080,lng:135.7660,t:"local",roi:3},{n:"Karaoke Kawaramachi",lat:35.0040,lng:135.7690,t:"night",roi:4}]},
+
+{day:16,date:"Nov 11",week:"w3",title:"Neones de Osaka",loc:"Kioto→Osaka",tags:["night","pop"],mustDo:false,lodge:"Osaka Namba",effort:2,luggage:true,laundry:false,transitMin:90,bufferP:20,contempl:30,
+am:"Traslado Osaka. Check-in Namba.",pm:"Castillo Osaka + ginkgos. Shinsekai.",night:"Dotonbori: takoyaki, neón, okonomiyaki.",food:"Takoyaki · Kushikatsu · Okonomiyaki",transport:"JR+metro",costT:880,costF:4500,
+acts:[{n:"Castillo de Osaka",lat:34.6873,lng:135.5259,t:"history",roi:5,w:"Osaka_Castle"},{n:"Shinsekai",lat:34.6524,lng:135.5063,t:"local",roi:4,w:"Shinsekai"},{n:"Dotonbori",lat:34.6687,lng:135.5010,t:"pop",roi:5,w:"Dōtonbori"}]},
+
+{day:17,date:"Nov 12",week:"w3",title:"Osaka Profundo",loc:"Osaka",tags:["pop","night"],mustDo:false,lodge:"Osaka",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:25,contempl:30,
+am:"Amerikamura. Vintage, skate.",pm:"Den-Den Town. Arcades retro.",night:"Ura-Namba izakayas.",food:"Gyoza · Ramen · Highball",transport:"Metro",costT:500,costF:4000,
+acts:[{n:"Amerikamura",lat:34.6720,lng:135.4980,t:"local",roi:3},{n:"Den-Den Town",lat:34.6610,lng:135.5060,t:"pop",roi:4},{n:"Ura-Namba",lat:34.6650,lng:135.5020,t:"local",roi:4}]},
+
+{day:18,date:"Nov 13",week:"w3",title:"Día Relax",loc:"Osaka",tags:["onsen","food"],mustDo:false,lodge:"Osaka",effort:1,luggage:false,laundry:true,transitMin:40,bufferP:40,contempl:50,
+am:"Mercado Kuromon: sashimi, uni.",pm:"Spa World (onsen grande, zonas tattoo-ok).",night:"Dormir temprano para USJ.",food:"Kuromon sashimi · Frutas",transport:"Metro",costT:500,costF:4000,
+acts:[{n:"Mercado Kuromon",lat:34.6657,lng:135.5060,t:"food",roi:5},{n:"Spa World",lat:34.6520,lng:135.5050,t:"onsen",roi:4}]},
+
+{day:19,date:"Nov 14",week:"w3",title:"Adrenalina Pura",loc:"Osaka·USJ",tags:["pop"],mustDo:"Universal Studios Japan",lodge:"Osaka",effort:5,luggage:false,laundry:false,transitMin:60,bufferP:5,contempl:15,
+am:"USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Regreso. Cena rápida Namba.",food:"Comida parque · Butterbeer",transport:"JR Yumesaki",costT:200,costF:3000,
+acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5},{n:"Super Nintendo World",lat:34.6660,lng:135.4310,t:"pop",roi:5}]},
+
+{day:20,date:"Nov 15",week:"w4",title:"Garza Blanca y Memoria",loc:"Himeji→Hiroshima→Miyajima",tags:["history","tradition"],mustDo:false,lodge:"Osaka (day trip largo)",effort:5,luggage:false,laundry:false,transitMin:480,bufferP:5,contempl:35,
+am:"Shinkansen Himeji. Castillo.",pm:"Hiroshima: Museo de la Paz.",night:"Ferry Miyajima. Torii+Momijidani. Regreso Osaka.",food:"Okonomiyaki Hiroshima · Ostras Miyajima",transport:"Kansai Hiroshima Pass",costT:17000,costF:3500,
+acts:[{n:"Castillo Himeji",lat:34.8394,lng:134.6939,t:"history",roi:5,w:"Himeji_Castle"},{n:"Memorial de la Paz (Hiroshima)",lat:34.3955,lng:132.4536,t:"history",roi:5,w:"Hiroshima_Peace_Memorial"},{n:"Itsukushima (Miyajima)",lat:34.2959,lng:132.3197,t:"tradition",roi:5,w:"Itsukushima_Shrine"}]},
+
+{day:21,date:"Nov 16",week:"w4",title:"Termas sin Tabú",loc:"Kinosaki Onsen",tags:["onsen","adventure"],mustDo:"Kinosaki Onsen",lodge:"Ryokan Kinosaki",effort:1,luggage:true,laundry:false,transitMin:180,bufferP:30,contempl:65,
+am:"Limited Express a Kinosaki. 7 onsens públicos.",pm:"Recorrido baños en yukata. Todo tattoo-friendly.",night:"Kaiseki cangrejo de nieve. Baños nocturnos.",food:"Cangrejo kaiseki · Onsen tamago",transport:"Ltd Express (pass)",costT:0,costF:10000,
+acts:[{n:"Kinosaki Onsen (7 baños)",lat:35.6258,lng:134.8097,t:"onsen",roi:5,w:"Kinosaki_Onsen"}]},
+
+{day:22,date:"Nov 17",week:"w4",title:"Retiro Budista",loc:"Koyasan·Monte Koya",tags:["tradition","adventure"],mustDo:"Koyasan",lodge:"Shukubo Koyasan",effort:2,luggage:true,laundry:false,transitMin:240,bufferP:20,contempl:65,
+am:"Kinosaki→Osaka→Nankai+funicular Koyasan.",pm:"Okunoin: 2km cementerio entre cedros.",night:"Shojin ryori. Paseo nocturno Okunoin con faroles.",food:"Shojin Ryori (incluida) · Goma-dofu",transport:"Nankai+funicular",costT:2540,costF:0,
+acts:[{n:"Okunoin (Koyasan)",lat:34.2150,lng:135.5910,t:"tradition",roi:5,w:"Okunoin"},{n:"Monte Koya (templos)",lat:34.2130,lng:135.5830,t:"tradition",roi:5,w:"Mount_Kōya"}]},
+
+{day:23,date:"Nov 18",week:"w4",title:"Vuelta a Tokio",loc:"Koyasan→Osaka→Tokio",tags:["pop","night"],mustDo:false,lodge:"Tokio Shinjuku",effort:2,luggage:true,laundry:true,transitMin:330,bufferP:15,contempl:30,
+am:"Ceremonia fuego monjes amanecer. Descenso.",pm:"Shinkansen Osaka→Tokio. Check-in.",night:"Golden Gai o Ikebukuro.",food:"Bento Shinkansen · Ramen Shinjuku",transport:"Nankai+Shinkansen",costT:16410,costF:3500,
+acts:[{n:"Shinkansen Osaka→Tokio",lat:35.6812,lng:139.7671,t:"transit",roi:2},{n:"Golden Gai",lat:35.6940,lng:139.7045,t:"night",roi:5,w:"Golden_Gai"}]},
+
+{day:24,date:"Nov 19",week:"w4",title:"Compras y Sayonara",loc:"Tokio·Libre",tags:["pop","night"],mustDo:false,lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:60,bufferP:35,contempl:35,
+am:"Ginza, Akihabara (2da pasada), Harajuku.",pm:"Don Quijote souvenirs. Tsukiji.",night:"Wagyu A5 o omakase. Karaoke nomihodai final.",food:"Wagyu/Omakase · Karaoke libre",transport:"Metro",costT:600,costF:10000,
+acts:[{n:"Ginza",lat:35.6717,lng:139.7650,t:"pop",roi:3},{n:"Akihabara (2ª)",lat:35.6984,lng:139.7731,t:"pop",roi:3,w:"Akihabara"},{n:"Tsukiji (exterior)",lat:35.6655,lng:139.7707,t:"food",roi:4,w:"Tsukiji"}]},
+
+{day:25,date:"Nov 20",week:"w4",title:"Sayonara 日本",loc:"Tokio→Aeropuerto",tags:["transit"],mustDo:false,lodge:"—",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:50,contempl:40,
+am:"Últimos paseos. Empacar.",pm:"Tren al aeropuerto.",night:"Vuelo.",food:"Último ramen aeropuerto",transport:"Narita Express",costT:3250,costF:2000,
+acts:[{n:"Narita / Haneda",lat:35.7720,lng:140.3929,t:"transit",roi:1}]},
 ];
 
-// Transport cost table for costs tab
-const TRANSPORT_LINES = [
-    ["Narita→Shinjuku","N'EX",3250],["Nikko r/t","Tobu Pass",4780],["Kamakura/Enoshima","Freepass",1640],
-    ["Tokio→Kawaguchiko r/t","Bus",3800],["Tokio→Matsumoto","Azusa",6620],["Matsumoto→Takayama","Bus",3300],
-    ["Takayama→Shirakawa r/t","Nohi",4600],["Takayama→Nagoya","Hida",5610],["Nagoya→Kioto","Shinkansen",5170],
-    ["Kioto→Osaka","JR",580],["Kansai Hiroshima Pass 5d","Pass",17000],["Osaka→Kinosaki r/t","Ltd Exp",10560],
-    ["Osaka→Koyasan r/t","Nankai",5080],["Osaka→Tokio","Shinkansen",13870],["Tokio→Narita","N'EX",3250],
-    ["Metro/buses 25d","Suica",15000],
-];
-
-function renderTransportCosts(){
-    const el=document.getElementById('cost-transport');
-    let total=0;
-    let html='';
-    TRANSPORT_LINES.forEach(([name,type,cost])=>{
-        total+=cost;
-        html+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${name}</span><span class="tooltip-usd" data-usd="${usdTip(cost).replace('≈ ','')}">${'¥'+cost.toLocaleString()}</span></div>`;
-    });
-    html+=`<div class="flex justify-between py-1 font-bold text-aka"><span>Total transporte</span><span class="tooltip-usd" data-usd="${usdTip(total).replace('≈ ','')}">¥${total.toLocaleString()}</span></div>`;
-    el.innerHTML=html;
-}
-
-// ============ MAP ============
-const ROUTE_SEQ=[
-    {lat:35.6895,lng:139.6917,name:"Tokio"},{lat:36.7500,lng:139.5983,name:"Nikko"},{lat:35.6895,lng:139.6917,name:"Tokio"},
-    {lat:35.5018,lng:138.7660,name:"Kawaguchiko"},{lat:35.3192,lng:139.5467,name:"Kamakura"},
-    {lat:35.6895,lng:139.6917,name:"Tokio"},{lat:36.2381,lng:137.9720,name:"Matsumoto"},
-    {lat:35.5268,lng:137.5678,name:"Nakasendo"},{lat:36.1461,lng:137.2524,name:"Takayama"},
-    {lat:36.2579,lng:136.9060,name:"Shirakawa"},{lat:36.1461,lng:137.2524,name:"Takayama"},
-    {lat:35.1755,lng:136.9066,name:"Nagoya/Ghibli"},{lat:35.0116,lng:135.7681,name:"Kioto"},
-    {lat:34.6687,lng:135.5032,name:"Osaka"},{lat:34.8394,lng:134.6939,name:"Himeji"},
-    {lat:34.3853,lng:132.4553,name:"Hiroshima"},{lat:34.2960,lng:132.3198,name:"Miyajima"},
-    {lat:34.6687,lng:135.5032,name:"Osaka"},{lat:35.6282,lng:134.8127,name:"Kinosaki"},
-    {lat:34.6687,lng:135.5032,name:"Osaka"},{lat:34.2130,lng:135.5830,name:"Koyasan"},
-    {lat:34.6687,lng:135.5032,name:"Osaka"},{lat:35.6895,lng:139.6917,name:"Tokio"},
-];
-
-const BASES=[
-    {lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–7,D23–25"},
-    {lat:35.5018,lng:138.7660,name:"Kawaguchiko",d:"D6"},
-    {lat:36.1461,lng:137.2524,name:"Takayama",d:"D8–9"},
-    {lat:35.0116,lng:135.7681,name:"Kioto",d:"D11–15"},
-    {lat:34.6687,lng:135.5032,name:"Osaka",d:"D16–22"},
-    {lat:35.6282,lng:134.8127,name:"Kinosaki",d:"D21"},
-    {lat:34.2130,lng:135.5830,name:"Koyasan",d:"D22"},
-];
-
-let map,animLine,animMarker;
-function initMap(){
-    map=L.map('route-map',{scrollWheelZoom:false}).setView([35.5,136.5],6);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OSM © CARTO',maxZoom:18}).addTo(map);
-    // Base markers
-    BASES.forEach(b=>{
-        L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9})
-            .bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map);
-    });
-    // Excursion markers
-    [{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},
-     {lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli Park"},{lat:36.238,lng:137.972,n:"Matsumoto"},
-     {lat:34.839,lng:134.694,n:"Himeji"},{lat:34.385,lng:132.455,n:"Hiroshima"},{lat:34.296,lng:132.320,n:"Miyajima"}
-    ].forEach(p=>{
-        L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8})
-            .bindPopup(`<strong>${p.n}</strong>`).addTo(map);
-    });
-    animatePath();
-}
-
-function animatePath(){
-    if(animLine) map.removeLayer(animLine);
-    if(animMarker) map.removeLayer(animMarker);
-    const coords=ROUTE_SEQ.map(p=>[p.lat,p.lng]);
-    animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7}).addTo(map);
-    animMarker=L.circleMarker(coords[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);
-    let i=0;
-    function step(){
-        if(i>=coords.length){return;}
-        animLine.addLatLng(coords[i]);
-        animMarker.setLatLng(coords[i]);
-        i++;
-        setTimeout(step,300);
-    }
-    step();
-}
-
-// ============ RENDER WEEKS ============
-const TAG_LABELS={momiji:'🍁 Momiji',night:'🏮 Noche',tradition:'⛩️ Tradición',adventure:'🗺️ Aventura',pop:'🎮 Pop'};
-const TAG_CLASSES={momiji:'tag-momiji',night:'tag-night',tradition:'tag-tradition',adventure:'tag-adventure',pop:'tag-pop'};
+// ============ TAGS / TYPES ============
+const TAG_LABELS={tradition:'⛩️ Tradición',history:'🏯 Historia',nature:'🍁 Naturaleza',pop:'🎮 Pop',local:'🏮 Local',food:'🍱 Gastro',onsen:'♨️ Onsen',night:'🌙 Noche',adventure:'🗺️ Aventura',transit:'🚆 Tránsito'};
+const TYPE_LABELS={tradition:'⛩️ Tradición',history:'🏯 Historia',nature:'🍁 Naturaleza',pop:'🎮 Pop',local:'🏮 Local',food:'🍱 Gastro',onsen:'♨️ Onsen',night:'🌙 Noche',transit:'🚆 Tránsito'};
+const CLASSIC=['tradition','history','pop'];
+const LOCALC=['local','food','nature','onsen','night'];
 const EFFORT_LABELS=['','😌 Relax','🚶 Suave','🏃 Moderado','🥾 Intenso','🔥 Máximo'];
 const EFFORT_COLORS=['','#1A6B4A','#2471A3','#D4740E','#C0392B','#922B21'];
+function mainActs(d){ return (d.acts||[]).filter(a=>a.t!=='transit'); }
 
+// ============ RENDER WEEKS ============
 function renderWeek(wk){
     const el=document.getElementById(wk);
     const days=DAYS.filter(d=>d.week===wk);
@@ -451,13 +422,20 @@ function renderWeek(wk){
     const m=meta[wk];
     let html=`<div class="mb-8"><h2 class="font-jp text-2xl md:text-3xl font-black mb-1">${m.t}</h2><p class="text-sm text-kuro/60">${m.d}</p></div>`;
     days.forEach(d=>{
-        const tagHtml=d.tags.map(t=>`<span class="tag ${TAG_CLASSES[t]}">${TAG_LABELS[t]}</span>`).join(' ');
+        const tagHtml=d.tags.map(t=>`<span class="tag tag-${t}">${TAG_LABELS[t]||t}</span>`).join(' ');
         const mustHtml=d.mustDo?`<span class="must-badge">★ ${d.mustDo}</span>`:'';
         const luggageHtml=d.luggage?`<span class="luggage-badge">🧳 Maletas</span>`:'';
-        const ef=d.effort;
-        const efColor=EFFORT_COLORS[ef];
-        const efLabel=EFFORT_LABELS[ef];
-
+        const laundryHtml=d.laundry?`<span class="laundry-badge">🧺 Lavandería</span>`:'';
+        const ef=d.effort, dens=mainActs(d).length;
+        const actsHtml=(d.acts||[]).map(a=>{
+            const isT=a.t==='transit';
+            const hist=a.w?` <a class="hist-link" title="Historia (Wikipedia)" href="${wikiLink(a.w)}" target="_blank">📖</a><a class="hist-link" title="Videos históricos (YouTube)" href="${ytLink(a.n)}" target="_blank">🎬</a>`:'';
+            return `<li class="flex items-start gap-2 py-1 ${isT?'opacity-60':''}">
+                <span class="text-xs mt-0.5">${isT?'🚆':'📍'}</span>
+                <span class="text-sm text-kuro/80 flex-1">${a.n}${!isT?` <a class="gps-link" href="${gmapsPt(a.lat,a.lng)}" target="_blank">GPS↗</a>`:''}${hist}</span>
+                <span class="tag tag-${a.t} shrink-0">${(TYPE_LABELS[a.t]||a.t).split(' ')[0]}</span>
+            </li>`;
+        }).join('');
         html+=`
         <div class="day-card bg-white border border-haiiro rounded-xl mb-3 hover:shadow-md transition-shadow">
             <div class="flex items-center justify-between p-4 cursor-pointer select-none" onclick="this.parentElement.classList.toggle('open')">
@@ -468,13 +446,13 @@ function renderWeek(wk){
                     </div>
                     <div class="min-w-0">
                         <div class="flex flex-wrap items-center gap-2">
-                            <h3 class="font-bold text-sm md:text-base truncate">${d.title}</h3>
-                            ${mustHtml} ${luggageHtml}
+                            <h3 class="font-bold text-sm md:text-base">${d.title}</h3>
+                            ${mustHtml} ${luggageHtml} ${laundryHtml}
                         </div>
                         <p class="text-xs text-kuro/50 truncate">📍 ${d.loc}</p>
                         <div class="flex items-center gap-2 mt-1">
-                            <div class="effort-bar"><div class="effort-fill" style="width:${ef*20}%;background:${efColor}"></div></div>
-                            <span class="text-[10px] text-kuro/50">${efLabel}</span>
+                            <div class="effort-bar"><div class="effort-fill" style="width:${ef*20}%;background:${EFFORT_COLORS[ef]}"></div></div>
+                            <span class="text-[10px] text-kuro/50">${EFFORT_LABELS[ef]} · ${dens} act</span>
                         </div>
                     </div>
                 </div>
@@ -489,6 +467,8 @@ function renderWeek(wk){
                         <div><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">🌅 Mañana</p><p class="text-sm text-kuro/80">${d.am}</p></div>
                         <div><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">☀️ Tarde</p><p class="text-sm text-kuro/80">${d.pm}</p></div>
                         <div><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">🌙 Noche</p><p class="text-sm text-kuro/80">${d.night}</p></div>
+                        ${(d.acts&&d.acts.length)?`<div><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">📍 Lugares · GPS · 📖🎬 Historia</p><ul class="divide-y divide-haiiro/60">${actsHtml}</ul>
+                        <a href="${gmapsRoute(d.acts)}" target="_blank" class="inline-block mt-2 bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🧭 Recorrido del día en Google Maps</a></div>`:''}
                     </div>
                     <div class="space-y-3">
                         <div class="bg-washi rounded-lg p-3 border border-haiiro">
@@ -497,11 +477,13 @@ function renderWeek(wk){
                         </div>
                         <div class="bg-washi rounded-lg p-3 border border-haiiro">
                             <p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">🚆 Transporte · <span class="tooltip-usd text-kin" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span></p>
-                            <p class="text-sm text-kuro/80">${d.transport}</p>
+                            <p class="text-sm text-kuro/80">${d.transport} · ${d.transitMin} min</p>
                         </div>
-                        <div class="flex flex-wrap gap-2 items-center">
-                            <span class="text-xs bg-haiiro/50 px-2 py-1 rounded">🏨 ${d.lodge}</span>
-                            <div class="sm:hidden flex flex-wrap gap-1">${tagHtml}</div>
+                        <div class="bg-washi rounded-lg p-3 border border-haiiro grid grid-cols-2 gap-2 text-xs">
+                            <div><span class="text-kuro/40">Densidad</span><p class="font-bold ${dens>=2&&dens<=3?'text-midori':'text-aka'}">${dens} act</p></div>
+                            <div><span class="text-kuro/40">Buffer</span><p class="font-bold ${d.bufferP>=15?'text-midori':'text-aka'}">${d.bufferP}%</p></div>
+                            <div><span class="text-kuro/40">Contemplación</span><p class="font-bold">${d.contempl}%</p></div>
+                            <div><span class="text-kuro/40">Hospedaje</span><p class="font-bold">🏨 ${d.lodge}</p></div>
                         </div>
                     </div>
                 </div>
@@ -511,150 +493,251 @@ function renderWeek(wk){
     el.innerHTML=html;
 }
 
+// ============ COSTS ============
+const TRANSPORT_LINES=[
+    ["Narita→Shinjuku","N'EX",3250],["Nikko r/t","Tobu Pass",4780],["Kamakura/Enoshima","Freepass",1640],
+    ["Tokio→Kawaguchiko r/t","Bus",3800],["Tokio→Matsumoto","Azusa",6620],["Matsumoto→Takayama","Bus",3300],
+    ["Takayama→Shirakawa r/t","Nohi",4600],["Takayama→Nagoya","Hida",5610],["Nagoya→Kioto","Shinkansen",5170],
+    ["Kioto→Osaka","JR",580],["Kansai Hiroshima Pass 5d","Pass",17000],["Osaka→Kinosaki r/t","Ltd Exp",10560],
+    ["Osaka→Koyasan r/t","Nankai",5080],["Osaka→Tokio","Shinkansen",13870],["Tokio→Narita","N'EX",3250],
+    ["Metro/buses 25d","Suica",15000],
+];
+const FOOD_LINES=[
+    ["Desayuno/día (konbini)",450],["Almuerzo/día (ramen/set)",1150],["Cena/día (izakaya)",2500],
+    ["Snacks/bebidas/día",400],["Kaiseki cangrejo Kinosaki",11500],["Cena despedida Wagyu/Omakase",8500],
+];
+const ACT_LINES=[
+    ["TeamLab Borderless",3800],["Sumo inflable (experiencia)",5000],["🏎️ Tokyo Drift — Opción A",29000],
+    ["Ghibli Park (ticket)",3500],["Universal Studios Japan",8600],["USJ Express Pass",12000],["Shibuya Sky",2000],
+    ["Templos Kioto (varios)",3500],["Ceremonia del té Uji",2200],["Castillo Himeji",1000],
+    ["Museo de la Paz Hiroshima",200],["Miyajima ropeway",1800],["Karaoke nomihodai (2 noches)",5000],
+];
+const LODGE_LINES=[
+    ["Tokio Shinjuku × 7n",26800],["Ryokan Kawaguchiko × 1n",7500],["Takayama × 2n",6000],
+    ["Kioto × 5n",18300],["Osaka × 7n",23300],["Kinosaki ryokan × 1n",6200],["Koyasan shukubo × 1n",6200],["Tokio final × 2n",7700],
+];
+function costRows(id,lines){
+    let total=0,html='';
+    lines.forEach(([n,...rest])=>{ const c=rest.length===2?rest[1]:rest[0]; const type=rest.length===2?rest[0]:null; total+=c;
+        html+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${n}${type?` <span class="text-kuro/35">(${type})</span>`:''}</span><span class="tooltip-usd" data-usd="${usdTip(c)}">¥${c.toLocaleString()}</span></div>`; });
+    return {html,total};
+}
+function renderCosts(){
+    const t=costRows('cost-transport',TRANSPORT_LINES);
+    const f=costRows('cost-food',FOOD_LINES);
+    const a=costRows('cost-activities',ACT_LINES);
+    const l=costRows('cost-lodging',LODGE_LINES);
+    // food/day lines × días for the per-day ones (first 4 lines are per-day)
+    const foodPerDay=FOOD_LINES.slice(0,4).reduce((s,x)=>s+x[1],0)*25;
+    const foodSpecial=FOOD_LINES.slice(4).reduce((s,x)=>s+x[1],0);
+    const foodTotal=foodPerDay+foodSpecial;
+    function block(id,obj,totalLabel,totalVal){ document.getElementById(id).innerHTML=obj.html+
+        `<div class="flex justify-between py-1 font-bold text-aka"><span>${totalLabel}</span><span class="tooltip-usd" data-usd="${usdTip(totalVal)}">¥${totalVal.toLocaleString()}</span></div>`; }
+    block('cost-transport',t,'Total transporte',t.total);
+    document.getElementById('cost-food').innerHTML=f.html+`<div class="flex justify-between py-1 text-kuro/50"><span>(las 4 primeras × 25 días)</span><span></span></div><div class="flex justify-between py-1 font-bold text-aka"><span>Total comida 25 días</span><span class="tooltip-usd" data-usd="${usdTip(foodTotal)}">¥${foodTotal.toLocaleString()}</span></div>`;
+    block('cost-activities',a,'Total actividades',a.total);
+    block('cost-lodging',l,'Total hospedaje',l.total);
+    const souvenirsY=Math.round(150/RATES.usd);
+    const grand=t.total+foodTotal+a.total+l.total+souvenirsY;
+    document.getElementById('cost-grand').innerHTML=
+        [['Transporte',t.total],['Alimentación',foodTotal],['Actividades',a.total],['Hospedaje',l.total],['Souvenirs (≈$150)',souvenirsY]]
+        .map(([n,v])=>`<div class="flex justify-between"><span>${n}</span><span class="text-kin font-bold tooltip-usd" data-usd="${usdTip(v)}">${y2d(v)}</span></div>`).join('')+
+        `<div class="flex justify-between border-t border-white/20 pt-2 mt-2 text-lg"><span class="font-bold">TOTAL</span><span class="text-kin font-black">${y2d(grand)} · ${y2cop(grand)} COP</span></div>`;
+}
+
+// ============ METRICS ============
+function fmtPct(x){return Math.round(x)+'%';}
+function metricCard(emoji,title,value,color,bar,desc){
+    const barHtml=bar!=null?`<div class="meter mt-2"><div class="anim-bar" style="width:${Math.min(bar,100)}%;background:${color}"></div></div>`:'';
+    return `<div class="bg-white border border-haiiro rounded-xl p-5"><div class="flex items-baseline justify-between"><h3 class="font-bold text-sm">${emoji} ${title}</h3><span class="font-black text-lg" style="color:${color}">${value}</span></div>${barHtml}<p class="text-xs text-kuro/55 mt-2">${desc}</p></div>`;
+}
+function renderMetrics(){
+    const n=DAYS.length;
+    const dens=DAYS.map(d=>mainActs(d).length); const avgDens=dens.reduce((a,b)=>a+b,0)/n; const okDens=dens.filter(x=>x>=2&&x<=3).length;
+    const totTransit=DAYS.reduce((s,d)=>s+d.transitMin,0); const totAwake=n*840; const transitPct=totTransit/totAwake*100;
+    const avgBuffer=DAYS.reduce((s,d)=>s+d.bufferP,0)/n;
+    const burn=Math.round(DAYS.reduce((s,d)=>s+d.costT+d.costF,0)/n);
+    let roiSum=0,roiN=0; DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(a.t!=='transit'){roiSum+=a.roi;roiN++;}})); const avgRoi=roiSum/roiN;
+    const fixed=DAYS.reduce((s,d)=>s+(d.costT>=3000?d.costT:0),0)+LODGE_LINES.reduce((s,x)=>s+x[1],0);
+    const variable=DAYS.reduce((s,d)=>s+d.costF+(d.costT<3000?d.costT:0),0); const fixedPct=fixed/(fixed+variable)*100;
+    let run=0,maxRun=0; DAYS.forEach(d=>{const m=mainActs(d);const tr=m.filter(a=>a.t==='tradition'||a.t==='history').length;if(m.length&&tr/m.length>=0.5){run++;maxRun=Math.max(maxRun,run);}else run=0;});
+    let cl=0,lo=0; DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(CLASSIC.includes(a.t))cl++;else if(LOCALC.includes(a.t))lo++;})); const localPct=lo/(cl+lo)*100;
+    function spread(d){const m=mainActs(d).filter(a=>a.lat);if(m.length<2)return 0;const la=m.map(a=>a.lat),ln=m.map(a=>a.lng);const dLat=(Math.max(...la)-Math.min(...la))*111;const dLng=(Math.max(...ln)-Math.min(...ln))*91;return Math.sqrt(dLat*dLat+dLng*dLng);}
+    const coherent=DAYS.filter(d=>spread(d)<=15).length; const coherentPct=coherent/n*100;
+    const avgEffort=DAYS.reduce((s,d)=>s+d.effort,0)/n; const hardDays=DAYS.filter(d=>d.effort>=4).length;
+    const typeCount={}; DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(a.t!=='transit')typeCount[a.t]=(typeCount[a.t]||0)+1;}));
+    const totAct=Object.values(typeCount).reduce((a,b)=>a+b,0); const topType=Object.entries(typeCount).sort((a,b)=>b[1]-a[1])[0]; const redundPct=topType[1]/totAct*100;
+    const avgContempl=DAYS.reduce((s,d)=>s+d.contempl,0)/n;
+
+    const cards=[
+        metricCard('🎯','1 · Densidad de actividades/día',avgDens.toFixed(1),avgDens<=3?'#1A6B4A':'#C0392B',avgDens/5*100,`Ideal 2–3. ${okDens}/${n} días en rango. Promedio ${avgDens.toFixed(1)}.`),
+        metricCard('🚆','2 · Tránsito vs destino',fmtPct(transitPct),transitPct<=20?'#1A6B4A':transitPct<=30?'#C5982A':'#C0392B',transitPct,`${Math.round(totTransit/60)} h en transporte sobre ~${Math.round(totAwake/60)} h despierto. D8, D20 y D23 son los más pesados.`),
+        metricCard('🛋️','3 · Buffer (amortiguación)',fmtPct(avgBuffer),avgBuffer>=15?'#1A6B4A':'#C0392B',avgBuffer*2.5,`Objetivo 15–20% libre. Promedio ${fmtPct(avgBuffer)}. Hay 4 días con buffer ≤10% (riesgo de cascada de retrasos).`),
+        metricCard('💴','4 · Burn rate (en tierra)',`¥${burn.toLocaleString()}`,'#C5982A',burn/20000*100,`Transporte + comida por día ≈ ${usdTip(burn)} (sin hospedaje).`),
+        metricCard('❤️','5 · ROI emocional',avgRoi.toFixed(1)+'/5',avgRoi>=4?'#1A6B4A':'#C5982A',avgRoi/5*100,`Valor percibido medio por actividad. Picos: Fuji, Fushimi Inari, Miyajima, Koyasan, Shirakawa-go.`),
+        metricCard('🔒','6 · Costos fijos vs variables',fmtPct(fixedPct)+' fijos','#5B2A6B',fixedPct,`${fmtPct(fixedPct)} prepagable (hospedaje + trayectos largos) vs ${fmtPct(100-fixedPct)} sobre la marcha.`),
+        metricCard('😵','7 · Índice de fatiga cultural',maxRun+' días seguidos',maxRun<=3?'#1A6B4A':'#C0392B',maxRun/6*100,`Racha máxima dominada por templos/historia. ${maxRun<=3?'Bien repartido.':'Intercala naturaleza/pop en Kioto (D11–14).'}`),
+        metricCard('⚖️','8 · Balance clásico vs local',fmtPct(localPct)+' local',localPct>=35?'#1A6B4A':'#C5982A',localPct,`${fmtPct(100-localPct)} imperdibles masivos vs ${fmtPct(localPct)} barrio/mercado/naturaleza.`),
+        metricCard('🧭','9 · Coherencia geográfica',fmtPct(coherentPct),coherentPct>=70?'#1A6B4A':'#C5982A',coherentPct,`${coherent}/${n} días agrupados (<15 km). D7 (Fuji+Kamakura+Enoshima) y D20 (Himeji+Hiroshima) son los más dispersos.`),
+        metricCard('🥾','10 · Exigencia física diaria',avgEffort.toFixed(1)+'/5',avgEffort<=3.5?'#1A6B4A':'#C0392B',avgEffort/5*100,`Promedio ${avgEffort.toFixed(1)}/5. ${hardDays} días intensos (D8, D19, D20 al máximo).`),
+        metricCard('♻️','11 · Filtro de redundancia',fmtPct(redundPct)+' '+(TYPE_LABELS[topType[0]]||'').split(' ')[1],redundPct<=35?'#1A6B4A':'#C0392B',redundPct,`El tipo más repetido (${TYPE_LABELS[topType[0]]}) es ${topType[1]}/${totAct}. Vigila acumular santuarios/templos similares.`),
+        metricCard('🧘','12 · Contemplación (anti-checklist)',fmtPct(avgContempl),avgContempl>=35?'#1A6B4A':'#C5982A',avgContempl,`Momentos pausados/inmersión. Altos en Fuji, Kinosaki, Koyasan; bajos en USJ y días de traslado.`),
+    ];
+    document.getElementById('metrics-grid').innerHTML=cards.join('');
+    document.getElementById('metrics-day-table').innerHTML=DAYS.map(d=>{
+        const m=mainActs(d);const c=m.filter(a=>CLASSIC.includes(a.t)).length;const o=m.filter(a=>LOCALC.includes(a.t)).length;
+        return `<tr class="border-b border-haiiro/50"><td class="py-2 font-bold">D${d.day} <span class="text-kuro/40 font-normal">${d.date}</span></td>
+        <td class="${m.length>=2&&m.length<=3?'text-midori':'text-aka'} font-bold">${m.length}</td><td>${d.bufferP}%</td><td>${d.transitMin}m</td>
+        <td>${(EFFORT_LABELS[d.effort]||'').split(' ')[1]||''}</td><td>${c}/${o}</td><td>¥${(d.costT+d.costF).toLocaleString()}</td></tr>`;
+    }).join('');
+}
+
+// ============ CRITIQUE ============
+const CRITIQUE=[
+    ['🔴','Día 20 es un maratón inviable','Osaka→Himeji→Hiroshima→Miyajima→Osaka en un solo día son ~10–12 h de tren + ferry (480 min de tránsito, esfuerzo 5). Llegarás de noche a todo. <b>Mejora:</b> pernocta 1 noche en Hiroshima, o recorta Himeji, o muévelo a 2 días aprovechando el Kansai-Hiroshima Pass.'],
+    ['🔴','Licencia para Tokyo Drift','Japón reconoce el Permiso Internacional de Conducción solo bajo la Convención de Ginebra 1949; <b>Colombia no es parte</b>, así que un IDP colombiano normalmente <b>no es válido</b> para conducir en Japón (se necesitaría licencia japonesa o traducción oficial JAF, disponible solo para ciertos países). <b>Verificar antes de pagar $180–410</b> o cambiar por experiencia de copiloto/circuito cerrado.'],
+    ['🟠','Ritmo global muy alto','9 días con esfuerzo ≥4 y 4 días con buffer ≤10%. Tres semanas a este ritmo agotan la “batería social” del Pacto. <b>Mejora:</b> sube el buffer de D8, D10, D20, D23 reubicando 1 actividad cada uno.'],
+    ['🟠','Ghibli Park (D10) con tickets a término','Las entradas son con fecha y hora y se agotan 1–2 meses antes; además dependes de encadenar Hida + Linimo + Shinkansen el mismo día con maletas. <b>Mejora:</b> compra apenas abran ventas y envía maletas por takkyubin Takayama→Kioto.'],
+    ['🟠','Momiji en Kioto puede ir adelantado','Kioto (D11–15, 6–10 nov) suele alcanzar el pico de otoño ~15–25 nov; podrías ver color parcial. <b>Trade-off:</b> Nikko/Fuji (finales oct) sí estarán en pico. Si el momiji de Kioto es prioridad, considera correr Kansai unos días.'],
+    ['🟠','Transporte: reevaluar pases','Con tanto Shinkansen (Nagoya–Kioto, Osaka–Hiroshima, Osaka–Tokio, Koyasan, Kinosaki) el total ~¥110k es alto. <b>Mejora:</b> evalúa Hokuriku Arch Pass, Kansai-WIDE y el Kansai-Hiroshima juntos; a veces el JR Pass nacional de 7 días sí conviene para la mitad final.'],
+    ['🟡','Coherencia geográfica en 2 días','D7 (Chureito+Kamakura+Enoshima) y D20 cruzan grandes distancias. <b>Mejora:</b> agrupa por zona o acepta que son “días de traslado escénico”.'],
+    ['🟡','Horarios y cierres','Muchos templos cierran 16:00–17:00 y algunos museos cierran lunes. Varios días encadenan 4–6 lugares: confirma horarios reales para no quedarte por fuera (p. ej. Kinkaku-ji cierra ~17:00).'],
+    ['🟡','Onsen y tatuajes','Bien resuelto con Kinosaki (tattoo-friendly) y baño privado en Kawaguchiko, pero Spa World (D18) y algunos de Koyasan pueden pedir parche. Llevar parches grandes.'],
+    ['🟢','Lo que está muy bien','5 bases con pocos check-ins, equipaje ligero con takkyubin, mezcla sólida clásico/local, días libres reales (D15) y el Pacto del Samurái para la convivencia. La estructura es sólida; los ajustes son de calibración, no de rediseño.'],
+    ['💱','Nota de presupuesto (FX hoy)','Con la tasa actual (¥161/USD vs ¥150 asumido), el viaje sale ~7% más barato en USD que lo presupuestado. En COP, ¥1≈21,5 COP (mejor que el peor escenario del PDF de 28). Pasa el cursor por los montos para ver USD + COP en vivo.'],
+];
+function renderCritique(){
+    document.getElementById('critique-list').innerHTML=CRITIQUE.map(([sev,t,b])=>
+        `<div class="bg-white border border-haiiro rounded-xl p-4 flex gap-3"><span class="text-xl shrink-0">${sev}</span><div><h3 class="font-bold text-sm mb-1">${t}</h3><p class="text-sm text-kuro/70">${b}</p></div></div>`
+    ).join('');
+}
+
 // ============ CALCULATOR ============
 let travelers=[];
-const DAILY_GROUND_LOW=Math.round(DAYS.reduce((s,d)=>s+d.costT+d.costF,0)*YEN_TO_USD/25);
-const DAILY_GROUND_HIGH=DAILY_GROUND_LOW+30;
-const ACTIVITIES_LOW=490;
-const ACTIVITIES_HIGH=600;
-const SOUVENIRS=150;
-
-function addTraveler(name=''){
-    const id=Date.now();
-    travelers.push({id,name:name||`Viajero ${travelers.length+1}`,origin:'madrid',flightCost:0,days:25,hotelLevel:'mid',driftOption:'A'});
-    renderCalculator();
-}
-
-function removeTraveler(id){
-    travelers=travelers.filter(t=>t.id!==id);
-    renderCalculator();
-}
-
-function updateTraveler(id,field,value){
-    const t=travelers.find(t=>t.id===id);
-    if(t){
-        if(field==='flightCost'||field==='days') t[field]=parseFloat(value)||0;
-        else t[field]=value;
-    }
-    renderCalculator();
-}
-
+const DAILY_GROUND_YEN=Math.round(DAYS.reduce((s,d)=>s+d.costT+d.costF,0)/25);
+const ACTIVITIES_USD=545, SOUVENIRS_USD=150;
+function addTraveler(name=''){ travelers.push({id:Date.now()+Math.random(),name:name||`Viajero ${travelers.length+1}`,origin:'medellin',flightCost:0,days:25,hotelLevel:'mid',driftOption:'A'}); renderCalculator(); }
+function removeTraveler(id){ travelers=travelers.filter(t=>t.id!==id); renderCalculator(); }
+function updateTraveler(id,field,value){ const t=travelers.find(t=>t.id===id); if(t){ if(field==='flightCost'||field==='days')t[field]=parseFloat(value)||0; else t[field]=value; } renderCalculator(); }
 function calcTraveler(t){
     const hotelPerNight={budget:35,mid:60,comfort:90}[t.hotelLevel]||60;
     const driftCost=t.driftOption==='A'?180:t.driftOption==='B'?410:0;
-    const groundPerDay=(DAILY_GROUND_LOW+DAILY_GROUND_HIGH)/2;
+    const groundPerDayUSD=DAILY_GROUND_YEN*RATES.usd;
     const hotel=hotelPerNight*Math.max(t.days-1,0);
-    const ground=groundPerDay*t.days;
-    const activities=(ACTIVITIES_LOW+ACTIVITIES_HIGH)/2 + driftCost - 180; // base includes drift A
-    const souvenirs=SOUVENIRS;
-    const total=t.flightCost+hotel+ground+activities+souvenirs;
-    return {flight:t.flightCost,hotel,ground:Math.round(ground),activities:Math.round(activities),souvenirs,total:Math.round(total),hotelPerNight,driftCost};
+    const ground=groundPerDayUSD*t.days;
+    const activities=ACTIVITIES_USD + driftCost - 180;
+    const total=t.flightCost+hotel+ground+activities+SOUVENIRS_USD;
+    return {flight:t.flightCost,hotel,ground:Math.round(ground),activities:Math.round(activities),souvenirs:SOUVENIRS_USD,total:Math.round(total),hotelPerNight};
 }
-
 function renderCalculator(){
-    const container=document.getElementById('travelers-container');
-    let html='';
-    travelers.forEach((t,i)=>{
-        const c=calcTraveler(t);
-        html+=`
-        <div class="bg-white border border-haiiro rounded-xl p-5 mb-4">
+    const container=document.getElementById('travelers-container'); let html='';
+    travelers.forEach(t=>{ const c=calcTraveler(t);
+        html+=`<div class="bg-white border border-haiiro rounded-xl p-5 mb-4">
             <div class="flex justify-between items-center mb-4">
                 <input class="font-bold text-lg border-none bg-transparent outline-none" value="${t.name}" onchange="updateTraveler(${t.id},'name',this.value)" style="max-width:200px"/>
                 <button class="text-xs text-aka hover:underline" onclick="removeTraveler(${t.id})">✕ Eliminar</button>
             </div>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                <div>
-                    <label class="text-xs font-bold text-kuro/50 block mb-1">✈️ Origen del vuelo</label>
+                <div><label class="text-xs font-bold text-kuro/50 block mb-1">✈️ Origen</label>
                     <select class="calc-input" onchange="updateTraveler(${t.id},'origin',this.value)">
-                        <option value="madrid" ${t.origin==='madrid'?'selected':''}>Madrid (España)</option>
-                        <option value="barcelona" ${t.origin==='barcelona'?'selected':''}>Barcelona (España)</option>
-                        <option value="lax" ${t.origin==='lax'?'selected':''}>Los Ángeles (LAX)</option>
-                        <option value="bogota" ${t.origin==='bogota'?'selected':''}>Bogotá</option>
                         <option value="medellin" ${t.origin==='medellin'?'selected':''}>Medellín</option>
+                        <option value="bogota" ${t.origin==='bogota'?'selected':''}>Bogotá</option>
+                        <option value="madrid" ${t.origin==='madrid'?'selected':''}>Madrid</option>
+                        <option value="lax" ${t.origin==='lax'?'selected':''}>Los Ángeles</option>
                         <option value="otro" ${t.origin==='otro'?'selected':''}>Otro</option>
                     </select>
-                    <p class="text-[10px] text-kuro/40 mt-1">Ref: Madrid ~$650–900, LAX ~$500–800, Bogotá ~$900–1,300</p>
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-kuro/50 block mb-1">💵 Costo vuelo (USD)</label>
-                    <input type="number" class="calc-input" value="${t.flightCost}" onchange="updateTraveler(${t.id},'flightCost',this.value)" placeholder="0"/>
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-kuro/50 block mb-1">📅 Días en Japón</label>
-                    <input type="number" class="calc-input" value="${t.days}" min="1" max="30" onchange="updateTraveler(${t.id},'days',this.value)"/>
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-kuro/50 block mb-1">🏨 Nivel hospedaje</label>
+                    <p class="text-[10px] text-kuro/40 mt-1">Ref: MDE ~$900–1,400, Madrid ~$650–900</p></div>
+                <div><label class="text-xs font-bold text-kuro/50 block mb-1">💵 Vuelo (USD)</label><input type="number" class="calc-input" value="${t.flightCost}" onchange="updateTraveler(${t.id},'flightCost',this.value)" placeholder="0"/></div>
+                <div><label class="text-xs font-bold text-kuro/50 block mb-1">📅 Días</label><input type="number" class="calc-input" value="${t.days}" min="1" max="30" onchange="updateTraveler(${t.id},'days',this.value)"/></div>
+                <div><label class="text-xs font-bold text-kuro/50 block mb-1">🏨 Hospedaje</label>
                     <select class="calc-input" onchange="updateTraveler(${t.id},'hotelLevel',this.value)">
-                        <option value="budget" ${t.hotelLevel==='budget'?'selected':''}>Budget ($35/n hostels)</option>
-                        <option value="mid" ${t.hotelLevel==='mid'?'selected':''}>Medio ($60/n business hotel)</option>
-                        <option value="comfort" ${t.hotelLevel==='comfort'?'selected':''}>Comfort ($90/n hotel bonito)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-kuro/50 block mb-1">🏎️ Tokyo Drift</label>
+                        <option value="budget" ${t.hotelLevel==='budget'?'selected':''}>Budget ($35/n)</option>
+                        <option value="mid" ${t.hotelLevel==='mid'?'selected':''}>Medio ($60/n)</option>
+                        <option value="comfort" ${t.hotelLevel==='comfort'?'selected':''}>Comfort ($90/n)</option>
+                    </select></div>
+                <div><label class="text-xs font-bold text-kuro/50 block mb-1">🏎️ Tokyo Drift</label>
                     <select class="calc-input" onchange="updateTraveler(${t.id},'driftOption',this.value)">
-                        <option value="A" ${t.driftOption==='A'?'selected':''}>Opción A · Skyline/Silvia ($180)</option>
-                        <option value="B" ${t.driftOption==='B'?'selected':''}>Opción B · GT-R R34 ($410)</option>
+                        <option value="A" ${t.driftOption==='A'?'selected':''}>A · Skyline/Silvia ($180)</option>
+                        <option value="B" ${t.driftOption==='B'?'selected':''}>B · GT-R R34 ($410)</option>
                         <option value="none" ${t.driftOption==='none'?'selected':''}>No participo</option>
-                    </select>
-                </div>
+                    </select></div>
             </div>
-            <div class="bg-washi rounded-lg p-4 border border-haiiro">
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-                    <div><span class="text-kuro/50">✈️ Vuelo</span><p class="font-bold">$${c.flight.toLocaleString()}</p></div>
-                    <div><span class="text-kuro/50">🏨 Hotel (${c.hotelPerNight}/n)</span><p class="font-bold">$${c.hotel.toLocaleString()}</p></div>
-                    <div><span class="text-kuro/50">🚆🍱 Tierra/día</span><p class="font-bold">$${c.ground.toLocaleString()}</p></div>
-                    <div><span class="text-kuro/50">🎟️ Actividades</span><p class="font-bold">$${c.activities.toLocaleString()}</p></div>
-                    <div><span class="text-kuro/50">🎁 Souvenirs</span><p class="font-bold">$${c.souvenirs}</p></div>
-                    <div><span class="text-kuro/50 font-bold text-aka">TOTAL</span><p class="font-black text-aka text-lg">$${c.total.toLocaleString()}</p></div>
-                </div>
+            <div class="bg-washi rounded-lg p-4 border border-haiiro grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+                <div><span class="text-kuro/50">✈️ Vuelo</span><p class="font-bold">$${c.flight.toLocaleString()}</p></div>
+                <div><span class="text-kuro/50">🏨 Hotel (${c.hotelPerNight}/n)</span><p class="font-bold">$${c.hotel.toLocaleString()}</p></div>
+                <div><span class="text-kuro/50">🚆🍱 Tierra</span><p class="font-bold">$${c.ground.toLocaleString()}</p></div>
+                <div><span class="text-kuro/50">🎟️ Actividades</span><p class="font-bold">$${c.activities.toLocaleString()}</p></div>
+                <div><span class="text-kuro/50">🎁 Souvenirs</span><p class="font-bold">$${c.souvenirs}</p></div>
+                <div><span class="text-kuro/50 font-bold text-aka">TOTAL</span><p class="font-black text-aka text-lg">$${c.total.toLocaleString()}</p><p class="text-[10px] text-kuro/40">${y2cop(c.total/RATES.usd)} COP</p></div>
             </div>
-        </div>`;
-    });
+        </div>`; });
     container.innerHTML=html;
-
-    // Summary
-    const sumEl=document.getElementById('calc-summary');
-    const bodyEl=document.getElementById('calc-summary-body');
-    if(travelers.length>0){
-        sumEl.style.display='block';
-        let grandTotal=0;
-        let lines='';
-        travelers.forEach(t=>{
-            const c=calcTraveler(t);
-            grandTotal+=c.total;
-            lines+=`<div class="flex justify-between"><span>${t.name} (${t.days}d, desde ${t.origin})</span><span class="text-kin font-bold">$${c.total.toLocaleString()}</span></div>`;
-        });
-        lines+=`<div class="flex justify-between border-t border-white/20 pt-2 mt-2 text-lg"><span class="font-bold">TOTAL GRUPO</span><span class="text-kin font-black">$${grandTotal.toLocaleString()}</span></div>`;
+    const sumEl=document.getElementById('calc-summary'),bodyEl=document.getElementById('calc-summary-body');
+    if(travelers.length>0){ sumEl.style.display='block'; let g=0,lines='';
+        travelers.forEach(t=>{const c=calcTraveler(t);g+=c.total;lines+=`<div class="flex justify-between"><span>${t.name} (${t.days}d, ${t.origin})</span><span class="text-kin font-bold">$${c.total.toLocaleString()}</span></div>`;});
+        lines+=`<div class="flex justify-between border-t border-white/20 pt-2 mt-2 text-lg"><span class="font-bold">TOTAL GRUPO</span><span class="text-kin font-black">$${g.toLocaleString()} · ${y2cop(g/RATES.usd)} COP</span></div>`;
         bodyEl.innerHTML=lines;
-    } else { sumEl.style.display='none'; }
+    } else sumEl.style.display='none';
+}
+
+// ============ MAP ============
+const ROUTE_SEQ=[
+    [35.6895,139.6917],[36.7500,139.5983],[35.6895,139.6917],[35.5018,138.7660],[35.3192,139.5467],
+    [35.6895,139.6917],[36.2381,137.9720],[35.5268,137.5678],[36.1461,137.2524],[36.2579,136.9060],
+    [36.1461,137.2524],[35.1755,136.9066],[35.0116,135.7681],[34.6687,135.5032],[34.8394,134.6939],
+    [34.3853,132.4553],[34.2960,132.3198],[34.6687,135.5032],[35.6282,134.8127],[34.6687,135.5032],
+    [34.2130,135.5830],[34.6687,135.5032],[35.6895,139.6917],
+];
+const BASES=[
+    {lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–7,D23–25"},{lat:35.5018,lng:138.7660,name:"Kawaguchiko",d:"D6"},
+    {lat:36.1461,lng:137.2524,name:"Takayama",d:"D8–9"},{lat:35.0116,lng:135.7681,name:"Kioto",d:"D11–15"},
+    {lat:34.6687,lng:135.5032,name:"Osaka",d:"D16–22"},{lat:35.6282,lng:134.8127,name:"Kinosaki",d:"D21"},{lat:34.2130,lng:135.5830,name:"Koyasan",d:"D22"},
+];
+const EXC=[{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},
+ {lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli Park"},{lat:36.238,lng:137.972,n:"Matsumoto"},
+ {lat:34.839,lng:134.694,n:"Himeji"},{lat:34.385,lng:132.455,n:"Hiroshima"},{lat:34.296,lng:132.320,n:"Miyajima"}];
+let map,animLine,animMarker;
+function initMap(){
+    map=L.map('route-map',{scrollWheelZoom:false}).setView([35.5,136.5],6);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OSM © CARTO',maxZoom:18}).addTo(map);
+    BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));
+    EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));
+    animatePath();
+}
+function animatePath(){
+    if(animLine)map.removeLayer(animLine); if(animMarker)map.removeLayer(animMarker);
+    animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);
+    animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);
+    let i=0; (function step(){ if(i>=ROUTE_SEQ.length)return; animLine.addLatLng(ROUTE_SEQ[i]); animMarker.setLatLng(ROUTE_SEQ[i]); i++; setTimeout(step,300); })();
+}
+
+// ============ RENDER ALL ============
+function renderAll(){
+    fmtFxBanner();
+    ['w1','w2','w3','w4'].forEach(renderWeek);
+    renderCosts();
+    renderMetrics();
+    renderCritique();
+    renderCalculator();
 }
 
 // ============ INIT ============
-['w1','w2','w3','w4'].forEach(renderWeek);
-renderTransportCosts();
-addTraveler('Papi');
-addTraveler('Viajero 2');
-addTraveler('Viajero 3');
+renderAll();               // render inmediato con tasas fallback (correctas para hoy)
+loadRates();               // luego actualiza FX en vivo y re-renderiza
+if(travelers.length===0){ ['Papi','Viajero 2','Viajero 3'].forEach(addTraveler); }
 
-// Tabs
 document.querySelectorAll('.week-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
         document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));
         tab.classList.add('active');
         document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
         document.getElementById(tab.dataset.week).classList.add('visible');
-        if(tab.dataset.week==='calculator') renderCalculator();
         window.scrollTo({top:200,behavior:'smooth'});
     });
 });
-
-// Map
 let mapReady=false;
 document.getElementById('map-toggle').addEventListener('click',()=>{
-    const c=document.getElementById('map-container');
-    c.classList.toggle('open');
+    const c=document.getElementById('map-container'); c.classList.toggle('open');
     document.getElementById('map-chevron').style.transform=c.classList.contains('open')?'rotate(180deg)':'';
     if(!mapReady){setTimeout(initMap,200);mapReady=true;}
 });
