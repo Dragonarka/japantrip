@@ -108,7 +108,8 @@
         <div id="route-map"></div>
         <div class="bg-white border border-haiiro rounded-b-xl p-3 flex flex-wrap gap-4 text-xs text-kuro/70">
             <span>🔴 Ciudades base</span><span>⚫ Excursiones</span><span>✈️ Animación de ruta</span>
-            <button id="replay-btn" class="ml-auto bg-aka text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-aka/80">▶ Replay</button>
+            <a href="japan-v3-mapa.kml" download class="ml-auto bg-sumi text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-kuro">⬇ KML (My Maps)</a>
+            <button id="replay-btn" class="bg-aka text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-aka/80">▶ Replay</button>
         </div>
     </div>
 </div>
@@ -179,15 +180,15 @@
         <div class="grid sm:grid-cols-2 gap-2 text-sm text-white/80">
             <p>• <strong class="text-kin">Suica digital</strong> — Ciudades</p>
             <p>• <strong class="text-kin">SmartEX</strong> — Shinkansen</p>
-            <p>• <strong class="text-kin">Kansai-Hiroshima Pass</strong> 5d — Himeji/Hiroshima/Miyajima</p>
-            <p>• <strong class="text-kin">Kansai-WIDE</strong> 5d — Kinosaki + Himeji</p>
-            <p>• <strong class="text-kin">JR Pass 7d</strong> — evaluar SOLO para el tramo final (Hiroshima + Osaka→Tokio)</p>
+            <p>• <strong class="text-kin">Kansai-WIDE</strong> 5d — Kinosaki + Kobe + Himeji opcional</p>
+            <p>• <strong class="text-kin">ICOCA/Suica</strong> — Kobe y trayectos cortos</p>
+            <p>• <strong class="text-kin">JR Pass 7d</strong> — evaluar SOLO para Osaka→Tokio del final</p>
             <p>• <strong class="text-kin">Pases locales</strong> Nikko/Enoshima</p>
         </div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-4">
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🍁 Clima</h3><p class="text-sm text-kuro/70">Momiji norte→sur: Nikko/Fuji (finales oct), Kioto (mediados nov), Miyajima (nov). Temp 8–20°C, capas + chaqueta.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🍁 Clima</h3><p class="text-sm text-kuro/70">Momiji norte→sur: Nikko/Fuji (finales oct), Kioto (mediados nov), Kobe/Arima (nov). Temp 8–20°C, capas + chaqueta.</p></div>
         <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🧺 Lavandería</h3><p class="text-sm text-kuro/70">~1×/semana en coin-laundry (~¥600–1.000): <strong>D3 Tokio</strong>, <strong>D13 Kioto</strong>, <strong>D18 Osaka</strong>, <strong>D23 Tokio</strong>.</p></div>
         <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">♨️ Onsen & Tatuajes</h3><p class="text-sm text-kuro/70"><strong>Kinosaki</strong> (D21): 7 baños tattoo-friendly. <strong>Kawaguchiko</strong> (D6): baño privado. <strong>Koyasan</strong> (D22): relajados.</p></div>
     </div>
@@ -261,7 +262,7 @@
             <li><strong class="text-kin">8–10 nov</strong>: v3 en Kioto y AdeS en Osaka — 15 min en tren (Keihan/JR especial). Fácil día compartido en Nara o Dotonbori.</li>
             <li><strong class="text-kin">30 oct, Tokio</strong>: AdeS llega y v3 está en su último día de Tokio antes de salir hacia Nikko/Fuji — cena de bienvenida en Asakusa/Shinjuku.</li>
             <li><strong class="text-kin">18 nov, Tokio</strong>: v3 regresa a Tokio el día que AdeS vuela — posible desayuno de despedida si los horarios de vuelo lo permiten.</li>
-            <li>Ambos pasan por <strong>Fuji</strong> (v3 1–2 nov vs AdeS 3–4 nov) y <strong>Hiroshima/Miyajima</strong> (v3 15 nov vs AdeS 11 nov) en fechas distintas: para coincidir allí habría que correr fechas.</li>
+            <li>Ambos pasan por <strong>Fuji</strong> en fechas distintas (v3 1–2 nov vs AdeS 3–4 nov). Hiroshima/Miyajima ya <strong>no está en v3</strong> (sí en AdeS, 11 nov), así que no es punto de encuentro.</li>
         </ul>
     </div>
 </section>
@@ -289,6 +290,7 @@
 
 <footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">27 Oct – 20 Nov 2026 · Coordenadas, costos y tasas son estimados — verificar horarios y reservas. <a href="ades-japan-oct30-nov19.html" class="underline">Plan AdeS (otro grupo)</a></footer>
 
+<script src="trip-data.js"></script>
 <script>
 // ============ LIVE FX RATES ============
 // Fallback = tasas reales del 20 jun 2026 (open.er-api.com). Se actualizan en vivo al cargar.
@@ -351,7 +353,7 @@ const HERO={
  17:hero('d/d2/New_Tsutenkaku%2C_Osaka.jpg','New_Tsutenkaku%2C_Osaka.jpg'),
  18:hero('d/d9/Kuromon_Ichiba_Market_at_LaLaport_Kadoma4.jpg','Kuromon_Ichiba_Market_at_LaLaport_Kadoma4.jpg'),
  19:hero('b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg','Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg'),
- 20:hero('e/ef/Itsukushima_Shrine_Torii_Gate_%2813890465459%29.jpg','Itsukushima_Shrine_Torii_Gate_%2813890465459%29.jpg'),
+ 20:hero('1/1b/Kobe_Port_Tower_and_Harborland_at_night_20190202-1.jpg','Kobe_Port_Tower_and_Harborland_at_night_20190202-1.jpg'),
  21:hero('3/35/Kinosaki_Onsen_by_day.jpg','Kinosaki_Onsen_by_day.jpg'),
  22:hero('a/ad/Gobyoubasi.jpg','Gobyoubasi.jpg'),
  23:hero('8/8d/G2_Street_20090626_2.jpg','G2_Street_20090626_2.jpg'),
@@ -438,9 +440,9 @@ acts:[{n:"Mercado Kuromon",lat:34.6657,lng:135.5060,t:"food",roi:5},{n:"Spa Worl
 am:"USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Regreso. Cena rápida Namba.",food:"Comida parque · Butterbeer",transport:"JR Yumesaki",costT:200,costF:3000,
 acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5},{n:"Super Nintendo World",lat:34.6660,lng:135.4310,t:"pop",roi:5}]},
 
-{day:20,date:"Nov 15",week:"w4",title:"Memoria y Mar",loc:"Hiroshima→Miyajima",tags:["history","tradition"],mustDo:false,lodge:"Osaka (day trip)",effort:4,luggage:false,laundry:false,transitMin:360,bufferP:15,contempl:45,
-am:"Shinkansen DIRECTO a Hiroshima (se quita la escala en Himeji para no convertir el día en maratón). Parque y Museo de la Paz, Cúpula Atómica.",pm:"Ferry a Miyajima: Gran Torii de Itsukushima + Momijidani en pleno otoño.",night:"Okonomiyaki de Hiroshima / ostras. Regreso a Osaka a hora razonable.",food:"Okonomiyaki Hiroshima · Ostras Miyajima",transport:"Kansai Hiroshima Pass",costT:15000,costF:3500,
-acts:[{n:"Parque Memorial de la Paz",lat:34.3914,lng:132.4525,t:"history",roi:5,w:"Hiroshima_Peace_Memorial"},{n:"Cúpula de la Bomba Atómica",lat:34.3955,lng:132.4536,t:"history",roi:5,w:"Hiroshima_Peace_Memorial"},{n:"Itsukushima (Miyajima)",lat:34.2959,lng:132.3197,t:"tradition",roi:5,w:"Itsukushima_Shrine"},{n:"Momijidani (Miyajima)",lat:34.2980,lng:132.3210,t:"nature",roi:4}]},
+{day:20,date:"Nov 15",week:"w4",title:"Kobe: Puerto, Wagyu y Onsen",loc:"Kobe (excursión)",tags:["local","food","onsen"],mustDo:false,lodge:"Osaka (day trip)",effort:3,luggage:false,laundry:false,transitMin:120,bufferP:25,contempl:50,
+am:"Se elimina la excursión a Hiroshima (maratón poco coherente con el Kansai). Tren corto a Kobe (~40 min). Opcional: parar en Himeji para foto del Castillo Garza Blanca.",pm:"Barrio Kitano (casas extranjeras), Nankinmachi (Chinatown) para almuerzo, Meriken Park y Kobe Port Tower.",night:"Kobe beef teppanyaki. Opcional: Arima Onsen (llevar parche para tatuajes).",food:"Kobe beef · Dim sum Nankinmachi",transport:"JR Kobe Line",costT:1500,costF:4500,
+acts:[{n:"Castillo Himeji (opcional, en ruta)",lat:34.8394,lng:134.6939,t:"history",roi:4,w:"Himeji_Castle"},{n:"Barrio Kitano (Ijinkan)",lat:34.7016,lng:135.1880,t:"local",roi:4},{n:"Nankinmachi (Chinatown)",lat:34.6886,lng:135.1875,t:"food",roi:4,w:"Nankinmachi"},{n:"Meriken Park · Kobe Port Tower",lat:34.6822,lng:135.1860,t:"pop",roi:4},{n:"Arima Onsen (opcional)",lat:34.7975,lng:135.2480,t:"onsen",roi:4,w:"Arima_Onsen"}]},
 
 {day:21,date:"Nov 16",week:"w4",title:"Termas sin Tabú",loc:"Kinosaki Onsen",tags:["onsen","adventure"],mustDo:"Kinosaki Onsen",lodge:"Ryokan Kinosaki",effort:1,luggage:true,laundry:false,transitMin:180,bufferP:30,contempl:65,
 am:"Limited Express a Kinosaki. 7 onsens públicos.",pm:"Recorrido baños en yukata. Todo tattoo-friendly.",night:"Kaiseki cangrejo de nieve. Baños nocturnos.",food:"Cangrejo kaiseki · Onsen tamago",transport:"Ltd Express (pass)",costT:0,costF:10000,
@@ -564,7 +566,7 @@ const TRANSPORT_LINES=[
     ["Narita→Shinjuku","N'EX",3250],["Nikko r/t","Tobu Pass",4780],["Kamakura/Enoshima","Freepass",1640],
     ["Tokio→Kawaguchiko r/t","Bus",3800],["Tokio→Matsumoto","Azusa",6620],["Matsumoto→Takayama","Bus",3300],
     ["Takayama→Shirakawa r/t","Nohi",4600],["Takayama→Nagoya","Hida",5610],["Nagoya→Kioto","Shinkansen",5170],
-    ["Kioto→Osaka","JR",580],["Kansai Hiroshima Pass 5d","Pass",17000],["Osaka→Kinosaki r/t","Ltd Exp",10560],
+    ["Kioto→Osaka","JR",580],["Osaka→Kobe r/t","ICOCA",1200],["Osaka→Kinosaki r/t","Ltd Exp",10560],
     ["Osaka→Koyasan r/t","Nankai",5080],["Osaka→Tokio","Shinkansen",13870],["Tokio→Narita","N'EX",3250],
     ["Metro/buses 25d","Suica",15000],
 ];
@@ -576,7 +578,7 @@ const ACT_LINES=[
     ["TeamLab Borderless",3800],["Sumo inflable (experiencia)",5000],["🏎️ Tokyo Drift — Opción A",29000],
     ["Ghibli Park (ticket)",3500],["Universal Studios Japan",8600],["USJ Express Pass",12000],["Shibuya Sky",2000],
     ["Templos Kioto (varios)",3500],["Ceremonia del té Uji",2200],
-    ["Museo de la Paz Hiroshima",200],["Miyajima ropeway",1800],["Karaoke nomihodai (2 noches)",5000],
+    ["Kobe Nunobiki Ropeway (opcional)",1500],["Karaoke nomihodai (2 noches)",5000],
 ];
 const LODGE_LINES=[
     ["Tokio Shinjuku × 7n",26800],["Ryokan Kawaguchiko × 1n",7500],["Takayama × 2n",6000],
@@ -640,7 +642,7 @@ function renderMetrics(){
         metricCard('🚆','2 · Tránsito vs destino',fmtPct(transitPct),transitPct<=20?'#1A6B4A':transitPct<=30?'#C5982A':'#C0392B',transitPct,`${Math.round(totTransit/60)} h en transporte sobre ~${Math.round(totAwake/60)} h despierto. D8, D20 y D23 son los más pesados.`),
         metricCard('🛋️','3 · Buffer (amortiguación)',fmtPct(avgBuffer),avgBuffer>=15?'#1A6B4A':'#C0392B',avgBuffer*2.5,`Objetivo 15–20% libre. Promedio ${fmtPct(avgBuffer)}. Hay 4 días con buffer ≤10% (riesgo de cascada de retrasos).`),
         metricCard('💴','4 · Burn rate (en tierra)',`¥${burn.toLocaleString()}`,'#C5982A',burn/20000*100,`Transporte + comida por día ≈ ${usdTip(burn)} (sin hospedaje).`),
-        metricCard('❤️','5 · ROI emocional',avgRoi.toFixed(1)+'/5',avgRoi>=4?'#1A6B4A':'#C5982A',avgRoi/5*100,`Valor percibido medio por actividad. Picos: Fuji, Fushimi Inari, Miyajima, Koyasan, Shirakawa-go.`),
+        metricCard('❤️','5 · ROI emocional',avgRoi.toFixed(1)+'/5',avgRoi>=4?'#1A6B4A':'#C5982A',avgRoi/5*100,`Valor percibido medio por actividad. Picos: Fuji, Fushimi Inari, Kinosaki, Koyasan, Shirakawa-go.`),
         metricCard('🔒','6 · Costos fijos vs variables',fmtPct(fixedPct)+' fijos','#5B2A6B',fixedPct,`${fmtPct(fixedPct)} prepagable (hospedaje + trayectos largos) vs ${fmtPct(100-fixedPct)} sobre la marcha.`),
         metricCard('😵','7 · Índice de fatiga cultural',maxRun+' días seguidos',maxRun<=3?'#1A6B4A':'#C0392B',maxRun/6*100,`Racha máxima dominada por templos/historia. ${maxRun<=3?'Bien repartido.':'Intercala naturaleza/pop en Kioto (D11–14).'}`),
         metricCard('⚖️','8 · Balance clásico vs local',fmtPct(localPct)+' local',localPct>=35?'#1A6B4A':'#C5982A',localPct,`${fmtPct(100-localPct)} imperdibles masivos vs ${fmtPct(localPct)} barrio/mercado/naturaleza.`),
@@ -658,22 +660,7 @@ function renderMetrics(){
     }).join('');
 }
 
-// ============ OVERLAP (v3 vs AdeS) ============
-const V3_CITY=[
- ["Oct 27","Tokio"],["Oct 28","Tokio"],["Oct 29","Tokio"],["Oct 30","Tokio"],["Oct 31","Nikko"],
- ["Nov 1","Kawaguchiko"],["Nov 2","Tokio"],["Nov 3","Takayama"],["Nov 4","Takayama/Shirakawa"],["Nov 5","Kioto"],
- ["Nov 6","Kioto"],["Nov 7","Kioto"],["Nov 8","Kioto"],["Nov 9","Kioto"],["Nov 10","Kioto"],
- ["Nov 11","Osaka"],["Nov 12","Osaka"],["Nov 13","Osaka"],["Nov 14","Osaka"],["Nov 15","Hiroshima"],
- ["Nov 16","Kinosaki"],["Nov 17","Koyasan"],["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
-];
-const ADES_CITY={
- "Oct 30":"Tokio","Oct 31":"Tokio","Nov 1":"Tokio","Nov 2":"Tokio","Nov 3":"Fuji/Kawaguchiko",
- "Nov 4":"Kioto","Nov 5":"Kioto","Nov 6":"Kioto","Nov 7":"Kioto","Nov 8":"Osaka",
- "Nov 9":"Osaka","Nov 10":"Osaka","Nov 11":"Hiroshima","Nov 12":"Kanazawa","Nov 13":"Hiroshima→Kanazawa",
- "Nov 14":"Kanazawa","Nov 15":"Tokio","Nov 16":"Tokio","Nov 17":"Tokio","Nov 18":"viaje","Nov 19":"Medellín",
-};
-const KANSAI=["Kioto","Osaka","Nara","Fuji"];
-function normCity(c){return (c||"").split(/[\/→ ]/)[0];}
+// ============ OVERLAP (v3 vs AdeS) — datos en trip-data.js ============
 function renderOverlap(){
     let rows='',matches=0,nears=0;
     V3_CITY.forEach(([date,v3])=>{
@@ -686,12 +673,7 @@ function renderOverlap(){
         rows+=`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${date}</td><td class="px-2">${v3}</td><td class="px-2 text-kuro/60">${ad}</td><td class="px-2"><span class="sup-cell ${cls}">${label}</span></td></tr>`;
     });
     document.getElementById('overlap-table').innerHTML=rows;
-    const wins=[
-        ['🟢 Kioto · 5–7 nov','La mejor ventana: 3 días en la misma ciudad. Cena + Fushimi Inari juntos.'],
-        ['🟡 Kansai · 8–10 nov','v3 en Kioto, AdeS en Osaka. ~15 min en tren: día compartido en Nara/Dotonbori.'],
-        ['🟢 Tokio · 30 oct','AdeS llega; v3 en su último día de Tokio. Cena de bienvenida.'],
-        ['🟢 Tokio · 18 nov','v3 regresa a Tokio el día que AdeS vuela. Posible desayuno de despedida.'],
-    ];
+    const wins=OVERLAP_WINDOWS;
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${matches}</p><p class="text-xs text-white/60">días de encuentro directo (misma ciudad)</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nears}</p><p class="text-xs text-white/60">días de cercanía regional (Kansai)</p></div>`+
@@ -700,12 +682,12 @@ function renderOverlap(){
 
 // ============ CRITIQUE ============
 const CRITIQUE=[
-    ['✅','APLICADO · Día 20 ya no es un maratón','Se quitó la escala en Himeji: el D20 ahora es Hiroshima (Parque + Museo de la Paz, Cúpula) + Miyajima (Itsukushima + Momijidani). Esfuerzo 5→4, tránsito 480→360 min, buffer 5%→15%. <b>Alternativa aún válida</b> si quieren un ritmo más calmado: pernoctar 1 noche en Hiroshima (implicaría reacomodar Kinosaki).'],
+    ['✅','APLICADO · Hiroshima fuera de v3','Se eliminó la excursión a Himeji/Hiroshima/Miyajima: era un maratón de ~10–12 h desde Osaka y poco coherente con el resto del Kansai. El D20 ahora es un día ligero en <b>Kobe</b> (puerto, Nankinmachi, Kobe beef, Arima Onsen opcional), con Himeji como parada opcional en ruta. Esfuerzo 5→3, buffer 25%. Liberó ~¥30k de transporte/entradas.'],
     ['✅','APLICADO · Tokyo Drift de-riesgado','El plan ahora marca que conducir requiere licencia válida en Japón (el IDP colombiano normalmente no sirve: Colombia no firmó la Conv. de Ginebra 1949) y propone <b>ir de copiloto por defecto</b>. Falta solo confirmar con el operador antes de pagar $180–410.'],
     ['🟠','Ritmo global alto (mitigado)','Aún hay días intensos, pero <b>aplicado:</b> se subieron los buffers de D8 (5→12%), D10 (10→15%), D20 (5→15%) y D23 (15→18%), y el Castillo de Matsumoto del D8 pasa a “solo foto exterior”. Vigilar D19 (USJ) que sigue al máximo por naturaleza del parque.'],
     ['🟠','Ghibli Park (D10) con tickets a término','Las entradas son con fecha y hora y se agotan 1–2 meses antes; además encadena Hida + Linimo + Shinkansen el mismo día con maletas. <b>Aplicado:</b> recordatorio en el D10 para comprar apenas abran ventas y enviar maletas por takkyubin Takayama→Kioto.'],
     ['🟠','Momiji en Kioto puede ir adelantado','Kioto (D11–15, 6–10 nov) suele alcanzar el pico de otoño ~15–25 nov; podrías ver color parcial. <b>Trade-off:</b> Nikko/Fuji (finales oct) sí estarán en pico. Si el momiji de Kioto es prioridad, considera correr Kansai unos días.'],
-    ['🟠','Transporte: reevaluar pases','Con tanto Shinkansen (Nagoya–Kioto, Osaka–Hiroshima, Osaka–Tokio, Koyasan, Kinosaki) el total ~¥110k es alto. <b>Aplicado:</b> en el Resumen ya se listan Kansai-Hiroshima, Kansai-WIDE y la opción de JR Pass 7d para el tramo final. Falta cotizar la combinación real según fechas.'],
+    ['🟠','Transporte: reevaluar pases','Con los Shinkansen restantes (Nagoya–Kioto, Osaka–Tokio, Koyasan, Kinosaki) el total bajó al quitar Hiroshima (~¥17k menos). <b>Aplicado:</b> en el Resumen ya se listan Kansai-WIDE (Kinosaki/Kobe), ICOCA y la opción de JR Pass 7d para Osaka→Tokio. Falta cotizar la combinación real según fechas.'],
     ['🟡','Coherencia geográfica en 2 días','D7 (Chureito+Kamakura+Enoshima) y D20 cruzan grandes distancias. <b>Mejora:</b> agrupa por zona o acepta que son “días de traslado escénico”.'],
     ['🟡','Horarios y cierres','Muchos templos cierran 16:00–17:00 y algunos museos cierran lunes. Varios días encadenan 4–6 lugares: confirma horarios reales para no quedarte por fuera (p. ej. Kinkaku-ji cierra ~17:00).'],
     ['🟡','Onsen y tatuajes','Bien resuelto con Kinosaki (tattoo-friendly) y baño privado en Kawaguchiko, pero Spa World (D18) y algunos de Koyasan pueden pedir parche. Llevar parches grandes.'],
@@ -790,8 +772,8 @@ function renderCalculator(){
 const ROUTE_SEQ=[
     [35.6895,139.6917],[36.7500,139.5983],[35.6895,139.6917],[35.5018,138.7660],[35.3192,139.5467],
     [35.6895,139.6917],[36.2381,137.9720],[35.5268,137.5678],[36.1461,137.2524],[36.2579,136.9060],
-    [36.1461,137.2524],[35.1755,136.9066],[35.0116,135.7681],[34.6687,135.5032],[34.8394,134.6939],
-    [34.3853,132.4553],[34.2960,132.3198],[34.6687,135.5032],[35.6282,134.8127],[34.6687,135.5032],
+    [36.1461,137.2524],[35.1755,136.9066],[35.0116,135.7681],[34.6687,135.5032],[34.6900,135.1955],
+    [34.6687,135.5032],[35.6282,134.8127],[34.6687,135.5032],
     [34.2130,135.5830],[34.6687,135.5032],[35.6895,139.6917],
 ];
 const BASES=[
@@ -801,7 +783,7 @@ const BASES=[
 ];
 const EXC=[{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},
  {lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli Park"},{lat:36.238,lng:137.972,n:"Matsumoto"},
- {lat:34.839,lng:134.694,n:"Himeji"},{lat:34.385,lng:132.455,n:"Hiroshima"},{lat:34.296,lng:132.320,n:"Miyajima"}];
+ {lat:34.690,lng:135.1955,n:"Kobe"}];
 let map,animLine,animMarker;
 function initMap(){
     map=L.map('route-map',{scrollWheelZoom:false}).setView([35.5,136.5],6);

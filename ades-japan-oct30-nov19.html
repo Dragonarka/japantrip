@@ -247,6 +247,7 @@
 
 <footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan AdeS · 30 Oct – 19 Nov 2026 · Coordenadas, imágenes y costos son estimados — verificar horarios y reservas. <a href="index.html" class="underline">Plan v3 (otro grupo)</a></footer>
 
+<script src="trip-data.js"></script>
 <script>
 // ============ LIVE FX (fallback = tasas reales 20 jun 2026) ============
 const RATES={usd:0.006201, cop:21.51, src:'fallback 20 jun 2026'};
@@ -600,32 +601,14 @@ function renderMetrics(){
 }
 
 // ============ OVERLAP (AdeS vs v3) ============
-const V3=[ // fechas y ciudad del plan v3 (index.html)
- ["27 Oct","Tokio"],["28 Oct","Tokio"],["29 Oct","Tokio"],["30 Oct","Tokio"],["31 Oct","Nikko"],
- ["1 Nov","Kawaguchiko"],["2 Nov","Tokio"],["3 Nov","Takayama"],["4 Nov","Takayama/Shirakawa"],["5 Nov","Kioto"],
- ["6 Nov","Kioto"],["7 Nov","Kioto"],["8 Nov","Kioto"],["9 Nov","Kioto"],["10 Nov","Kioto"],
- ["11 Nov","Osaka"],["12 Nov","Osaka"],["13 Nov","Osaka"],["14 Nov","Osaka"],["15 Nov","Hiroshima"],
- ["16 Nov","Kinosaki"],["17 Nov","Koyasan"],["18 Nov","Tokio"],["19 Nov","Tokio"],["20 Nov","Tokio"],
-];
-const ADES={ // fecha -> ciudad AdeS
- "30 Oct":"Tokio","31 Oct":"Tokio","1 Nov":"Tokio","2 Nov":"Tokio","3 Nov":"Fuji/Kawaguchiko",
- "4 Nov":"Kioto","5 Nov":"Kioto","6 Nov":"Kioto","7 Nov":"Kioto","8 Nov":"Osaka",
- "9 Nov":"Osaka","10 Nov":"Osaka","11 Nov":"Hiroshima","12 Nov":"Kanazawa","13 Nov":"Tokio (bus)",
- "14 Nov":"Tokio","15 Nov":"Tokio","16 Nov":"Tokio","17 Nov":"Tokio","18 Nov":"viaje","19 Nov":"Medellín",
-};
-const KANSAI=["Kioto","Osaka","Nara","Fuji/Kawaguchiko"];
-function norm(c){return (c||"").split(/[\/ ]/)[0];}
-function renderOverlap(){
-    const allDates=V3.map(r=>r[0]);
-    let rows='';
-    let matches=0,nears=0;
-    allDates.forEach(date=>{
-        const v3=(V3.find(r=>r[0]===date)||[])[1]||"—";
-        const ad=ADES[date]||"—";
+function renderOverlap(){   // datos compartidos en trip-data.js
+    let rows='',matches=0,nears=0;
+    V3_CITY.forEach(([date,v3])=>{
+        const ad=ADES_CITY[date]||"—";
         let cls='sup-none',label='—';
-        if(ad!=="—"&&ad!=="viaje"){
-            if(norm(ad)===norm(v3)||(norm(ad)==="Fuji"&&v3==="Kawaguchiko")){cls='sup-match';label='✓ Encuentro';matches++;}
-            else if((KANSAI.includes(norm(ad))&&["Kioto","Osaka","Nara"].includes(norm(v3)))){cls='sup-near';label='≈ Cercanía';nears++;}
+        if(ad!=="—"&&ad!=="viaje"&&ad!=="Medellín"){
+            if(normCity(ad)===normCity(v3)||(normCity(ad)==="Fuji"&&v3==="Kawaguchiko")){cls='sup-match';label='✓ Encuentro';matches++;}
+            else if(KANSAI.includes(normCity(ad))&&["Kioto","Osaka","Nara"].includes(normCity(v3))){cls='sup-near';label='≈ Cercanía';nears++;}
         }
         rows+=`<tr class="border-b border-haiiro/50">
             <td class="py-2 pr-3 font-bold whitespace-nowrap">${date}</td>
@@ -636,12 +619,7 @@ function renderOverlap(){
     });
     document.getElementById('overlap-table').innerHTML=rows;
 
-    const wins=[
-        ['🟢 Kioto · 5–7 nov','Mejor ventana: 3 días en la misma ciudad. Cena + Fushimi Inari juntos.'],
-        ['🟡 Kansai · 8–10 nov','AdeS en Osaka, v3 en Kioto. ~15 min en tren: día compartido en Nara/Dotonbori.'],
-        ['🟢 Tokio · 30 oct','AdeS llega; v3 en su último día de Tokio. Cena de bienvenida.'],
-        ['🟢 Tokio · 18 nov','v3 regresa a Tokio el día que AdeS vuela. Posible desayuno de despedida.'],
-    ];
+    const wins=OVERLAP_WINDOWS;
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${matches}</p><p class="text-xs text-white/60">días de encuentro directo (misma ciudad)</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nears}</p><p class="text-xs text-white/60">días de cercanía regional (Kansai)</p></div>`+
