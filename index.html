@@ -66,6 +66,10 @@
         .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}
         .meter>div{height:100%;border-radius:5px}
         #fx-banner{font-size:.7rem}
+        .sup-cell{font-size:.7rem;padding:6px 8px;border-radius:6px;text-align:center;font-weight:600;display:inline-block}
+        .sup-match{background:#1A6B4A;color:#fff}
+        .sup-near{background:#C5982A;color:#fff}
+        .sup-none{background:#F1EEE8;color:#999}
         @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}}
     </style>
 </head>
@@ -89,6 +93,7 @@
         <button class="week-tab" data-week="w4">S4·Oeste</button>
         <button class="week-tab" data-week="costs">💰 Costos</button>
         <button class="week-tab" data-week="metrics">📊 Indicadores</button>
+        <button class="week-tab" data-week="overlap">🔀 Superposición</button>
         <button class="week-tab" data-week="calculator">🧮 Calculadora</button>
         <button class="week-tab" data-week="critique">🔎 Crítica</button>
     </div>
@@ -236,6 +241,28 @@
         <table class="w-full text-xs"><thead><tr class="text-left text-kuro/50 border-b border-haiiro">
             <th class="py-2">Día</th><th>Densidad</th><th>Buffer</th><th>Tránsito</th><th>Esfuerzo</th><th>Clásico/Local</th><th>Burn</th>
         </tr></thead><tbody id="metrics-day-table"></tbody></table>
+    </div>
+</section>
+
+<!-- ==================== OVERLAP TAB ==================== -->
+<section class="section" id="overlap">
+    <h2 class="font-jp text-2xl font-black mb-2">🔀 Superposición: este plan (v3) vs Plan AdeS</h2>
+    <p class="text-xs text-kuro/50 mb-5">Cada fila es una fecha. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad (encuentro)</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región (cercanía)</span>.</p>
+    <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
+    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto mb-6">
+        <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro">
+            <th class="py-2 pr-3">Fecha</th><th class="px-2">v3 (este plan)</th><th class="px-2">AdeS</th><th class="px-2">Coincidencia</th>
+        </tr></thead><tbody id="overlap-table"></tbody></table>
+    </div>
+    <div class="bg-sumi text-white rounded-xl p-6">
+        <h3 class="font-jp font-bold text-lg text-kin mb-3">💡 Recomendaciones para maximizar el encuentro</h3>
+        <ul class="space-y-2 text-sm text-white/80 list-disc pl-5">
+            <li><strong class="text-kin">Kioto, 5–7 nov</strong> es la mejor ventana: ambos grupos coinciden 3 días. Reservar la misma zona (Kawaramachi/Higashiyama) y planear 1 cena + Fushimi Inari juntos.</li>
+            <li><strong class="text-kin">8–10 nov</strong>: v3 en Kioto y AdeS en Osaka — 15 min en tren (Keihan/JR especial). Fácil día compartido en Nara o Dotonbori.</li>
+            <li><strong class="text-kin">30 oct, Tokio</strong>: AdeS llega y v3 está en su último día de Tokio antes de salir hacia Nikko/Fuji — cena de bienvenida en Asakusa/Shinjuku.</li>
+            <li><strong class="text-kin">18 nov, Tokio</strong>: v3 regresa a Tokio el día que AdeS vuela — posible desayuno de despedida si los horarios de vuelo lo permiten.</li>
+            <li>Ambos pasan por <strong>Fuji</strong> (v3 1–2 nov vs AdeS 3–4 nov) y <strong>Hiroshima/Miyajima</strong> (v3 15 nov vs AdeS 11 nov) en fechas distintas: para coincidir allí habría que correr fechas.</li>
+        </ul>
     </div>
 </section>
 
@@ -631,6 +658,46 @@ function renderMetrics(){
     }).join('');
 }
 
+// ============ OVERLAP (v3 vs AdeS) ============
+const V3_CITY=[
+ ["Oct 27","Tokio"],["Oct 28","Tokio"],["Oct 29","Tokio"],["Oct 30","Tokio"],["Oct 31","Nikko"],
+ ["Nov 1","Kawaguchiko"],["Nov 2","Tokio"],["Nov 3","Takayama"],["Nov 4","Takayama/Shirakawa"],["Nov 5","Kioto"],
+ ["Nov 6","Kioto"],["Nov 7","Kioto"],["Nov 8","Kioto"],["Nov 9","Kioto"],["Nov 10","Kioto"],
+ ["Nov 11","Osaka"],["Nov 12","Osaka"],["Nov 13","Osaka"],["Nov 14","Osaka"],["Nov 15","Hiroshima"],
+ ["Nov 16","Kinosaki"],["Nov 17","Koyasan"],["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
+];
+const ADES_CITY={
+ "Oct 30":"Tokio","Oct 31":"Tokio","Nov 1":"Tokio","Nov 2":"Tokio","Nov 3":"Fuji/Kawaguchiko",
+ "Nov 4":"Kioto","Nov 5":"Kioto","Nov 6":"Kioto","Nov 7":"Kioto","Nov 8":"Osaka",
+ "Nov 9":"Osaka","Nov 10":"Osaka","Nov 11":"Hiroshima","Nov 12":"Kanazawa","Nov 13":"Hiroshima→Kanazawa",
+ "Nov 14":"Kanazawa","Nov 15":"Tokio","Nov 16":"Tokio","Nov 17":"Tokio","Nov 18":"viaje","Nov 19":"Medellín",
+};
+const KANSAI=["Kioto","Osaka","Nara","Fuji"];
+function normCity(c){return (c||"").split(/[\/→ ]/)[0];}
+function renderOverlap(){
+    let rows='',matches=0,nears=0;
+    V3_CITY.forEach(([date,v3])=>{
+        const ad=ADES_CITY[date]||"—";
+        let cls='sup-none',label='—';
+        if(ad!=="—"&&ad!=="viaje"&&ad!=="Medellín"){
+            if(normCity(ad)===normCity(v3)||(normCity(ad)==="Fuji"&&v3==="Kawaguchiko")){cls='sup-match';label='✓ Encuentro';matches++;}
+            else if(KANSAI.includes(normCity(ad))&&["Kioto","Osaka","Nara"].includes(normCity(v3))){cls='sup-near';label='≈ Cercanía';nears++;}
+        }
+        rows+=`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${date}</td><td class="px-2">${v3}</td><td class="px-2 text-kuro/60">${ad}</td><td class="px-2"><span class="sup-cell ${cls}">${label}</span></td></tr>`;
+    });
+    document.getElementById('overlap-table').innerHTML=rows;
+    const wins=[
+        ['🟢 Kioto · 5–7 nov','La mejor ventana: 3 días en la misma ciudad. Cena + Fushimi Inari juntos.'],
+        ['🟡 Kansai · 8–10 nov','v3 en Kioto, AdeS en Osaka. ~15 min en tren: día compartido en Nara/Dotonbori.'],
+        ['🟢 Tokio · 30 oct','AdeS llega; v3 en su último día de Tokio. Cena de bienvenida.'],
+        ['🟢 Tokio · 18 nov','v3 regresa a Tokio el día que AdeS vuela. Posible desayuno de despedida.'],
+    ];
+    document.getElementById('overlap-windows').innerHTML=
+        `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${matches}</p><p class="text-xs text-white/60">días de encuentro directo (misma ciudad)</p></div>`+
+        `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nears}</p><p class="text-xs text-white/60">días de cercanía regional (Kansai)</p></div>`+
+        wins.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+}
+
 // ============ CRITIQUE ============
 const CRITIQUE=[
     ['✅','APLICADO · Día 20 ya no es un maratón','Se quitó la escala en Himeji: el D20 ahora es Hiroshima (Parque + Museo de la Paz, Cúpula) + Miyajima (Itsukushima + Momijidani). Esfuerzo 5→4, tránsito 480→360 min, buffer 5%→15%. <b>Alternativa aún válida</b> si quieren un ritmo más calmado: pernoctar 1 noche en Hiroshima (implicaría reacomodar Kinosaki).'],
@@ -756,6 +823,7 @@ function renderAll(){
     ['w1','w2','w3','w4'].forEach(renderWeek);
     renderCosts();
     renderMetrics();
+    renderOverlap();
     renderCritique();
     renderCalculator();
 }
