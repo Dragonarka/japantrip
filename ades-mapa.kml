@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>Japón AdeS · 30 Oct – 19 Nov 2026</name>
+  <description>Itinerario AdeS. Importar en Google My Maps: Crear un mapa nuevo → Importar → seleccionar este archivo.</description>
+
+  <Style id="base"><IconStyle><color>ff2d39c0</color><scale>1.2</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
+  <Style id="poi"><IconStyle><color>ff0e74d4</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href></Icon></IconStyle></Style>
+  <Style id="route"><LineStyle><color>ff2d39c0</color><width>3</width></LineStyle></Style>
+
+  <Folder><name>Ruta (ciudades base)</name>
+    <Placemark><name>Recorrido AdeS</name><styleUrl>#route</styleUrl>
+      <LineString><tessellate>1</tessellate><coordinates>
+        139.6917,35.6895,0 138.7660,35.5018,0 135.7681,35.0116,0 135.8430,34.6851,0 135.5032,34.6687,0 132.4536,34.3955,0 132.3197,34.2959,0 136.6562,36.5613,0 139.6917,35.6895,0
+      </coordinates></LineString>
+    </Placemark>
+  </Folder>
+
+  <Folder><name>Día 1 · 30 Oct · Tokio</name>
+    <Placemark><name>Ueno Park</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7731,35.7148,0</coordinates></Point></Placemark>
+    <Placemark><name>Museo Nacional de Tokio</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7766,35.7188,0</coordinates></Point></Placemark>
+    <Placemark><name>Ameyoko Market</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7745,35.7090,0</coordinates></Point></Placemark>
+    <Placemark><name>Calle Nakamise</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7955,35.7117,0</coordinates></Point></Placemark>
+    <Placemark><name>Templo Senso-ji</name><styleUrl>#base</styleUrl><Point><coordinates>139.7967,35.7148,0</coordinates></Point></Placemark>
+    <Placemark><name>Tokyo Skytree</name><styleUrl>#poi</styleUrl><Point><coordinates>139.8107,35.7101,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 2 · 31 Oct · Tokio</name>
+    <Placemark><name>Santuario Nezu</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7616,35.7206,0</coordinates></Point></Placemark>
+    <Placemark><name>Yanaka Ginza</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7660,35.7276,0</coordinates></Point></Placemark>
+    <Placemark><name>Ikebukuro / Sunshine City</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7190,35.7295,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 3 · 1 Nov · Tokio</name>
+    <Placemark><name>Palacio Imperial</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7528,35.6852,0</coordinates></Point></Placemark>
+    <Placemark><name>Teatro Kabuki-za</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7677,35.6695,0</coordinates></Point></Placemark>
+    <Placemark><name>Pokémon Café</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7710,35.6796,0</coordinates></Point></Placemark>
+    <Placemark><name>Akihabara</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7731,35.6984,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 4 · 2 Nov · Tokio</name>
+    <Placemark><name>Mercado de Tsukiji</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7707,35.6655,0</coordinates></Point></Placemark>
+    <Placemark><name>Isla Odaiba</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7796,35.6300,0</coordinates></Point></Placemark>
+    <Placemark><name>Roppongi Hills</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7292,35.6604,0</coordinates></Point></Placemark>
+    <Placemark><name>Torre de Tokio</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7454,35.6586,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 5 · 3 Nov · Fujikawaguchiko</name>
+    <Placemark><name>Mt. Fuji Panoramic Ropeway</name><styleUrl>#base</styleUrl><Point><coordinates>138.7522,35.5009,0</coordinates></Point></Placemark>
+    <Placemark><name>Calles de Fujikawaguchiko</name><styleUrl>#poi</styleUrl><Point><coordinates>138.7700,35.5000,0</coordinates></Point></Placemark>
+    <Placemark><name>Parque de Oishi</name><styleUrl>#poi</styleUrl><Point><coordinates>138.7530,35.5300,0</coordinates></Point></Placemark>
+    <Placemark><name>Onsen Fuji Yurari</name><styleUrl>#poi</styleUrl><Point><coordinates>138.7600,35.4860,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 6 · 4 Nov · Fuji → Kioto</name>
+    <Placemark><name>Pagoda Chureito</name><styleUrl>#base</styleUrl><Point><coordinates>138.8009,35.4951,0</coordinates></Point></Placemark>
+    <Placemark><name>Calle retro Fujiyoshida</name><styleUrl>#poi</styleUrl><Point><coordinates>138.8060,35.4870,0</coordinates></Point></Placemark>
+    <Placemark><name>Kitaguchi Hongu Fuji Sengen</name><styleUrl>#poi</styleUrl><Point><coordinates>138.7906,35.4793,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 7 · 5 Nov · Kioto (Arashiyama)</name>
+    <Placemark><name>Bosque de Bambú de Arashiyama</name><styleUrl>#base</styleUrl><Point><coordinates>135.6717,35.0170,0</coordinates></Point></Placemark>
+    <Placemark><name>Templo Tenryu-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.6738,35.0159,0</coordinates></Point></Placemark>
+    <Placemark><name>Kinkaku-ji (Pabellón Dorado)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7292,35.0394,0</coordinates></Point></Placemark>
+    <Placemark><name>Castillo Nijō</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7481,35.0142,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 8 · 6 Nov · Kioto (Higashiyama)</name>
+    <Placemark><name>Templo Kiyomizu-dera</name><styleUrl>#base</styleUrl><Point><coordinates>135.7850,34.9949,0</coordinates></Point></Placemark>
+    <Placemark><name>Sannenzaka y Ninenzaka</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7820,34.9967,0</coordinates></Point></Placemark>
+    <Placemark><name>Pagoda Hokan-ji (Torre Yasaka)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7800,34.9985,0</coordinates></Point></Placemark>
+    <Placemark><name>Gion y Santuario Yasaka</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7785,35.0036,0</coordinates></Point></Placemark>
+    <Placemark><name>Calle Pontocho</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7707,35.0050,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 9 · 7 Nov · Kioto (Fushimi)</name>
+    <Placemark><name>Fushimi Inari Taisha</name><styleUrl>#base</styleUrl><Point><coordinates>135.7727,34.9671,0</coordinates></Point></Placemark>
+    <Placemark><name>Templo Daigo-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8200,34.9510,0</coordinates></Point></Placemark>
+    <Placemark><name>Kyoto Ramen Koji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7588,34.9858,0</coordinates></Point></Placemark>
+    <Placemark><name>Torre de Kioto</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7590,34.9876,0</coordinates></Point></Placemark>
+    <Placemark><name>teamLab Biovortex</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7600,34.9700,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 10 · 8 Nov · Nara → Osaka</name>
+    <Placemark><name>Parque de Nara (venados)</name><styleUrl>#base</styleUrl><Point><coordinates>135.8430,34.6851,0</coordinates></Point></Placemark>
+    <Placemark><name>Templo Todai-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8398,34.6890,0</coordinates></Point></Placemark>
+    <Placemark><name>Santuario Kasuga-Taisha</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8483,34.6817,0</coordinates></Point></Placemark>
+    <Placemark><name>Dotonbori y Hozenji Yokocho</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5010,34.6687,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 11 · 9 Nov · Osaka</name>
+    <Placemark><name>Castillo de Osaka</name><styleUrl>#base</styleUrl><Point><coordinates>135.5259,34.6873,0</coordinates></Point></Placemark>
+    <Placemark><name>Templo Shitennoji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5165,34.6543,0</coordinates></Point></Placemark>
+    <Placemark><name>Mercado Kuromon</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5060,34.6657,0</coordinates></Point></Placemark>
+    <Placemark><name>Americamura</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4980,34.6720,0</coordinates></Point></Placemark>
+    <Placemark><name>Barrio Shinsekai</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6524,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 12 · 10 Nov · Osaka (comodín)</name>
+    <Placemark><name>Universal Studios Japan</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4323,34.6654,0</coordinates></Point></Placemark>
+    <Placemark><name>Acuario de Osaka Kaiyukan</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4289,34.6545,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 13 · 11 Nov · Hiroshima / Miyajima</name>
+    <Placemark><name>Isla Miyajima: Gran Torii</name><styleUrl>#base</styleUrl><Point><coordinates>132.3197,34.2959,0</coordinates></Point></Placemark>
+    <Placemark><name>Cúpula de la Bomba Atómica</name><styleUrl>#poi</styleUrl><Point><coordinates>132.4536,34.3955,0</coordinates></Point></Placemark>
+    <Placemark><name>Parque Memorial de la Paz</name><styleUrl>#poi</styleUrl><Point><coordinates>132.4525,34.3914,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 14 · 12 Nov · Kanazawa</name>
+    <Placemark><name>Jardín Kenroku-en</name><styleUrl>#base</styleUrl><Point><coordinates>136.6624,36.5620,0</coordinates></Point></Placemark>
+    <Placemark><name>Distrito Higashi Chaya</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6680,36.5723,0</coordinates></Point></Placemark>
+    <Placemark><name>Caminata Katamachi</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6550,36.5610,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 15 · 13 Nov · Kanazawa → Tokio</name>
+    <Placemark><name>Distrito Nagamachi (samurái)</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6520,36.5660,0</coordinates></Point></Placemark>
+    <Placemark><name>Casa Samurai Nomura</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6510,36.5655,0</coordinates></Point></Placemark>
+    <Placemark><name>Mercado Omicho</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6580,36.5717,0</coordinates></Point></Placemark>
+    <Placemark><name>Santuario Oyama</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6560,36.5640,0</coordinates></Point></Placemark>
+    <Placemark><name>Castillo de Kanazawa</name><styleUrl>#poi</styleUrl><Point><coordinates>136.6590,36.5645,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 16 · 14 Nov · Tokio</name>
+    <Placemark><name>Shinjuku Gyoen</name><styleUrl>#base</styleUrl><Point><coordinates>139.7100,35.6852,0</coordinates></Point></Placemark>
+    <Placemark><name>Ayuntamiento de Tokio (mirador)</name><styleUrl>#poi</styleUrl><Point><coordinates>139.6917,35.6896,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 17 · 15 Nov · Tokio</name>
+    <Placemark><name>Santuario Meiji Jingu</name><styleUrl>#base</styleUrl><Point><coordinates>139.6993,35.6764,0</coordinates></Point></Placemark>
+    <Placemark><name>Parque Yoyogi</name><styleUrl>#poi</styleUrl><Point><coordinates>139.6949,35.6720,0</coordinates></Point></Placemark>
+    <Placemark><name>Harajuku y Omotesando</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7026,35.6702,0</coordinates></Point></Placemark>
+    <Placemark><name>Avenida ginkgo (Jingu Gaien)</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7170,35.6750,0</coordinates></Point></Placemark>
+    <Placemark><name>Shibuya y Hachiko</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7006,35.6590,0</coordinates></Point></Placemark>
+  </Folder>
+
+  <Folder><name>Día 18–19 · 16–17 Nov · Tokio (libre)</name>
+    <Placemark><name>teamLab Borderless</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7290,35.6595,0</coordinates></Point></Placemark>
+    <Placemark><name>Ginza (compras)</name><styleUrl>#poi</styleUrl><Point><coordinates>139.7650,35.6717,0</coordinates></Point></Placemark>
+  </Folder>
+
+</Document>
+</kml>
