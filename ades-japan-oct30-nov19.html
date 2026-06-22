@@ -76,7 +76,10 @@
     <p class="font-jp text-xl md:text-2xl font-bold text-kuro/70 mt-1 relative">Japón en Otoño · AdeS</p>
     <p class="text-xs text-kuro/50 mt-3 relative">Tokio · Fuji · Kioto · Nara · Osaka · Hiroshima · Kanazawa</p>
     <p id="fx-banner" class="text-kuro/55 mt-3 relative">Cargando tasas de cambio…</p>
-    <a href="index.html" class="inline-block mt-4 bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition relative">↔ Ver plan del otro grupo (v3, 25 días)</a>
+    <div class="mt-4 relative flex gap-2 justify-center flex-wrap">
+        <a href="index.html" class="inline-block bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition">↔ Plan v3 (otro grupo)</a>
+        <a href="v4.html" class="inline-block bg-midori text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-midori/80 transition">★ Plan V4 (sincronizado con nosotros)</a>
+    </div>
 </header>
 
 <nav class="sticky top-0 z-40 bg-washi/95 backdrop-blur-sm border-b border-haiiro">
@@ -603,9 +606,9 @@ function renderMetrics(){
 
 // ============ OVERLAP (AdeS vs v3) ============
 let adesOffset=0;
-function setOffset(v){ if(v==='best')adesOffset=bestOffset(7).off; else if(v==='reset')adesOffset=0; else adesOffset=Math.max(-9,Math.min(9,adesOffset+v)); renderOverlap(); }
+function setOffset(v){ if(v==='best')adesOffset=bestOffset(V3_CITY,7).off; else if(v==='reset')adesOffset=0; else adesOffset=Math.max(-9,Math.min(9,adesOffset+v)); renderOverlap(); }
 function renderOverlap(){   // datos + lógica compartidos en trip-data.js
-    const off=adesOffset, data=overlapRows(off);
+    const off=adesOffset, data=overlapRows(V3_CITY,off);
     const matches=data.filter(r=>r.cls==='sup-match').length, nears=data.filter(r=>r.cls==='sup-near').length;
     document.getElementById('overlap-table').innerHTML=data.map(r=>`<tr class="border-b border-haiiro/50">
             <td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td>
@@ -613,7 +616,7 @@ function renderOverlap(){   // datos + lógica compartidos en trip-data.js
             <td class="px-2 text-kuro/60">${r.v3}</td>
             <td class="px-2"><span class="sup-cell ${r.cls}">${r.label}</span></td>
         </tr>`).join('');
-    const best=bestOffset(7), base=overlapStats(0);
+    const best=bestOffset(V3_CITY,7), base=overlapStats(V3_CITY,0);
     const offTxt= off===0?'sin desfase':(off>0?`AdeS empieza ${off} día(s) DESPUÉS`:`AdeS empieza ${-off} día(s) ANTES`);
     document.getElementById('overlap-opt').innerHTML=`
       <div class="bg-white border border-haiiro rounded-xl p-4">

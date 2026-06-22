@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japón V4 · Sincronizado con AdeS · 5 Viajeros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config={theme:{extend:{colors:{washi:'#FAF7F0',sumi:'#1A1A1A',aka:'#C0392B',kuro:'#2D2D2D',kin:'#C5982A',haiiro:'#E8E4DC',midori:'#1A6B4A'}}}}
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'DM Sans',sans-serif;background:#FAF7F0;color:#1A1A1A}
+        .font-jp{font-family:'Noto Serif JP',serif}
+        body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");background-size:256px;opacity:.4}
+        .day-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
+        .day-card.open .day-detail{max-height:4000px;opacity:1}
+        .day-card.open .chevron{transform:rotate(180deg)}
+        .day-card{overflow:hidden}
+        .day-hero{width:100%;height:160px;object-fit:cover;filter:saturate(.92)}
+        .chevron{transition:transform .3s}
+        .must-badge{background:linear-gradient(135deg,#C0392B,#922B21);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px;letter-spacing:.08em}
+        .joint-badge{background:linear-gradient(135deg,#1A6B4A,#0E5236);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px;letter-spacing:.05em}
+        .tag{padding:2px 10px;border-radius:999px;font-size:.65rem;font-weight:600;border:1px solid}
+        .tag-tradition{color:#C0392B;border-color:#C0392B33;background:#C0392B0D}
+        .tag-history{color:#7D6608;border-color:#7D660833;background:#7D66080D}
+        .tag-nature{color:#1A6B4A;border-color:#1A6B4A33;background:#1A6B4A0D}
+        .tag-pop{color:#D4740E;border-color:#D4740E33;background:#D4740E0D}
+        .tag-local{color:#2471A3;border-color:#2471A333;background:#2471A30D}
+        .tag-food{color:#A93226;border-color:#A9322633;background:#A932260D}
+        .tag-onsen{color:#7D3C98;border-color:#7D3C9833;background:#7D3C980D}
+        .tag-night{color:#5B2A6B;border-color:#5B2A6B33;background:#5B2A6B0D}
+        .tag-transit{color:#777;border-color:#77777733;background:#7777770D}
+        .week-tab{cursor:pointer;padding:10px 14px;font-size:.75rem;font-weight:600;border-bottom:2px solid transparent;transition:all .2s;color:#888;white-space:nowrap}
+        .week-tab:hover{color:#1A1A1A}
+        .week-tab.active{color:#C0392B;border-color:#C0392B}
+        .section{display:none}
+        .section.visible{display:block;animation:fadeUp .4s ease forwards}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes growBar{from{width:0}}
+        .anim-bar{animation:growBar .8s cubic-bezier(.4,0,.2,1)}
+        #map-container{transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;max-height:0;opacity:0;overflow:hidden}
+        #map-container.open{max-height:600px;opacity:1}
+        #route-map{height:450px;width:100%;border-radius:12px;z-index:1}
+        .lodge-card{border-left:3px solid #C5982A}
+        .tooltip-usd{position:relative;cursor:help;border-bottom:1px dotted #C5982A}
+        .tooltip-usd:hover::after{content:attr(data-usd);position:absolute;bottom:110%;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:3px 8px;border-radius:4px;font-size:.7rem;white-space:nowrap;z-index:10;font-weight:700}
+        .effort-bar{height:6px;border-radius:3px;background:#E8E4DC;overflow:hidden;width:80px}
+        .effort-fill{height:100%;border-radius:3px}
+        .luggage-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#FDE8E8;color:#C0392B;border:1px solid #C0392B33}
+        .laundry-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#E8F0FE;color:#2471A3;border:1px solid #2471A333}
+        .gps-link{color:#2471A3;text-decoration:none;font-size:.65rem;border-bottom:1px dotted #2471A355}
+        .hist-link{text-decoration:none;font-size:.7rem;margin-left:4px}
+        .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}.meter>div{height:100%;border-radius:5px}
+        #fx-banner{font-size:.7rem}
+        .sup-cell{font-size:.7rem;padding:6px 8px;border-radius:6px;text-align:center;font-weight:600;display:inline-block}
+        .sup-match{background:#1A6B4A;color:#fff}.sup-near{background:#C5982A;color:#fff}.sup-none{background:#F1EEE8;color:#999}
+        @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}}
+    </style>
+</head>
+<body class="min-h-screen">
+
+<header class="relative overflow-hidden py-14 md:py-20 px-6 text-center border-b border-haiiro">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image:repeating-linear-gradient(0deg,#1A1A1A 0px,transparent 1px,transparent 60px),repeating-linear-gradient(90deg,#1A1A1A 0px,transparent 1px,transparent 60px)"></div>
+    <p class="text-xs tracking-[0.3em] uppercase text-aka font-bold mb-4 relative">27 Oct – 20 Nov 2026 · 25 Días · 5 Viajeros · Plan V4</p>
+    <h1 class="font-jp text-4xl md:text-6xl font-black tracking-tight relative leading-tight">日本の秋 ・ V4</h1>
+    <p class="font-jp text-xl md:text-2xl font-bold text-kuro/70 mt-1 relative">Nuestro plan, sincronizado con el grupo AdeS</p>
+    <p id="fx-banner" class="text-kuro/55 mt-4 relative">Cargando tasas de cambio…</p>
+    <div class="mt-4 relative flex gap-2 justify-center flex-wrap">
+        <a href="index.html" class="inline-block bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition">← Plan v3 original</a>
+        <a href="ades-japan-oct30-nov19.html" class="inline-block bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition">Plan AdeS →</a>
+    </div>
+</header>
+
+<nav class="sticky top-0 z-40 bg-washi/95 backdrop-blur-sm border-b border-haiiro">
+    <div class="max-w-5xl mx-auto flex overflow-x-auto" style="scrollbar-width:none">
+        <button class="week-tab active" data-week="overview">Resumen</button>
+        <button class="week-tab" data-week="w1">S1·Tokio</button>
+        <button class="week-tab" data-week="w2">S2·Fuji/Alpes/Kioto</button>
+        <button class="week-tab" data-week="w3">S3·Kansai/Montañas</button>
+        <button class="week-tab" data-week="w4">S4·Tokio final</button>
+        <button class="week-tab" data-week="joint">🤝 Interacciones</button>
+        <button class="week-tab" data-week="costs">💰 Costos</button>
+        <button class="week-tab" data-week="metrics">📊 Indicadores</button>
+        <button class="week-tab" data-week="overlap">🔀 Superposición</button>
+    </div>
+</nav>
+
+<div class="max-w-5xl mx-auto px-4 pt-6">
+    <button id="map-toggle" class="w-full bg-sumi text-white rounded-xl p-4 flex items-center justify-between hover:bg-kuro transition font-bold text-sm">
+        <span>🗺️ Mapa de Ruta (animado)</span><span id="map-chevron" class="chevron text-xs">▼</span>
+    </button>
+    <div id="map-container" class="mt-2 rounded-xl overflow-hidden">
+        <div id="route-map"></div>
+        <div class="bg-white border border-haiiro rounded-b-xl p-3 flex flex-wrap gap-4 text-xs text-kuro/70">
+            <span>🔴 Ciudades base</span><span>⚫ Excursiones</span>
+            <a href="japan-v4-mapa.kml" download class="ml-auto bg-sumi text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-kuro">⬇ KML (My Maps)</a>
+            <button id="replay-btn" class="bg-aka text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-aka/80">▶ Replay</button>
+        </div>
+    </div>
+</div>
+
+<main class="max-w-5xl mx-auto px-4 py-8">
+
+<section class="section visible" id="overview">
+    <div class="bg-midori/10 border border-midori/30 rounded-xl p-6 mb-6 text-center">
+        <p class="text-4xl font-black text-midori" id="ov-matches">15</p>
+        <p class="text-sm text-kuro/70 font-bold">días en la misma ciudad que el grupo AdeS</p>
+        <p class="text-xs text-kuro/50 mt-1">V4 reordena el plan v3 (mismas fechas, mismos must-do) para coincidir con AdeS sin perder lo nuestro. El plan v3 original logra solo 6.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white border border-haiiro rounded-xl p-6">
+            <h2 class="font-jp font-bold text-lg mb-3">🎯 Must-Do (todos conservados)</h2>
+            <div class="space-y-1 text-sm text-kuro/80">
+                <p>USJ con AdeS (N10) · Ghibli Park (N6) · Monte Fuji con AdeS (N3)</p>
+                <p>Nakasendo (N4) · Shirakawa-go (N5) · Kinosaki onsen (N11)</p>
+                <p>Koyasan (N12) · Sumo (O28) · teamLab (O30) · Akihabara (O28)</p>
+                <p>Kamakura (N1) · Tokyo Drift (N2) · Nikko (O29)</p>
+            </div>
+        </div>
+        <div class="bg-white border border-haiiro rounded-xl p-6">
+            <h2 class="font-jp font-bold text-lg mb-3">🏨 Hospedaje · 5 viajeros</h2>
+            <p class="text-xs text-kuro/50 mb-3">Para 5 personas: 2 habitaciones triples/dobles o un Airbnb entero por base (suele salir más barato/persona).</p>
+            <div class="space-y-2 text-sm">
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio · Shinjuku <span class="text-xs text-kuro/50">— 7 n (O27–N2)</span></p><p class="text-xs text-kuro/60">Base Yamanote; Nikko/Kamakura/Fuji como day-trips o salida.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Ryokan Kawaguchiko <span class="text-xs text-kuro/50">— 1 n (N3)</span> 🤝</p><p class="text-xs text-kuro/60">Onsen + kaiseki con AdeS.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Takayama <span class="text-xs text-kuro/50">— 2 n (N4–5)</span></p><p class="text-xs text-kuro/60">Nakasendo + Shirakawa-go.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Kioto · Kawaramachi <span class="text-xs text-kuro/50">— 3 n (N6–8)</span> 🤝</p><p class="text-xs text-kuro/60">Misma zona que AdeS para verse fácil.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Osaka · Namba <span class="text-xs text-kuro/50">— 2 n (N9–10)</span> 🤝</p><p class="text-xs text-kuro/60">Dotonbori + USJ con AdeS.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Kinosaki + Koyasan <span class="text-xs text-kuro/50">— 2 n (N11–12)</span></p><p class="text-xs text-kuro/60">Onsen tattoo-friendly + shukubo.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio <span class="text-xs text-kuro/50">— 8 n (N13–20)</span> 🤝</p><p class="text-xs text-kuro/60">Recta final con AdeS (N13–17).</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="w1"></section>
+<section class="section" id="w2"></section>
+<section class="section" id="w3"></section>
+<section class="section" id="w4"></section>
+
+<section class="section" id="joint">
+    <h2 class="font-jp text-2xl font-black mb-2">🤝 Interacciones con el grupo AdeS</h2>
+    <p class="text-xs text-kuro/50 mb-6">Días en que ambos grupos están en la misma ciudad y pueden hacer cosas juntos.</p>
+    <div id="joint-list" class="space-y-3"></div>
+</section>
+
+<section class="section" id="costs">
+    <h2 class="font-jp text-2xl font-black mb-2">💰 Costos (por persona)</h2>
+    <p class="text-xs text-kuro/50 mb-4" id="costs-fx-note"></p>
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-bold text-sm mb-3">🚆 Transporte</h3><div class="space-y-1 text-xs" id="cost-transport"></div></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-bold text-sm mb-3">🎟️ Actividades</h3><div class="space-y-1 text-xs" id="cost-activities"></div></div>
+    </div>
+    <div class="bg-sumi text-white rounded-xl p-6">
+        <h3 class="font-jp font-bold text-lg text-kin mb-3">Gran Total por persona (sin vuelo)</h3>
+        <div class="space-y-2 text-sm" id="cost-grand"></div>
+        <p class="text-xs text-white/50 mt-3">5 viajeros: el hospedaje por persona baja repartiendo Airbnb/habitaciones; estimado ~$470–890 (igual que v3). Burn rate diario en tierra: <span id="burn-rate" class="text-kin font-bold"></span>.</p>
+    </div>
+</section>
+
+<section class="section" id="metrics">
+    <h2 class="font-jp text-2xl font-black mb-2">📊 Indicadores</h2>
+    <p class="text-xs text-kuro/50 mb-6">Sobre los 25 días. Verde = saludable · ámbar = vigilar · rojo = ajustar.</p>
+    <div id="metrics-grid" class="grid md:grid-cols-2 gap-4 mb-8"></div>
+    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+        <table class="w-full text-xs"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2">Día</th><th>Densidad</th><th>Buffer</th><th>Tránsito</th><th>Esfuerzo</th><th>🤝</th><th>Burn</th></tr></thead><tbody id="metrics-day-table"></tbody></table>
+    </div>
+</section>
+
+<section class="section" id="overlap">
+    <h2 class="font-jp text-2xl font-black mb-2">🔀 Superposición: V4 vs Plan AdeS</h2>
+    <p class="text-xs text-kuro/50 mb-5"><span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad (encuentro)</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span>.</p>
+    <div id="overlap-opt" class="mb-4"></div>
+    <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
+    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+        <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Fecha</th><th class="px-2">V4 (nosotros)</th><th class="px-2">AdeS</th><th class="px-2">Coincidencia</th></tr></thead><tbody id="overlap-table"></tbody></table>
+    </div>
+</section>
+
+</main>
+<footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan V4 · 27 Oct – 20 Nov 2026 · 5 viajeros · Estimado — verificar horarios y reservas. <a href="index.html" class="underline">v3</a> · <a href="ades-japan-oct30-nov19.html" class="underline">AdeS</a></footer>
+
+<script src="trip-data.js"></script>
+<script>
+// ===== FX en vivo =====
+const RATES={usd:0.006201,cop:21.51,src:'fallback 20 jun 2026'};
+function y2d(yen){const v=yen*RATES.usd;return '$'+(v<10?v.toFixed(1):Math.round(v).toLocaleString());}
+function y2cop(yen){return '$'+Math.round(yen*RATES.cop).toLocaleString('es-CO');}
+function usdTip(yen){return y2d(yen)+' USD · '+y2cop(yen)+' COP';}
+function fmtFxBanner(){const u=Math.round(1/RATES.usd);document.getElementById('fx-banner').innerHTML=`💱 1 USD = ¥${u} · ¥1 = ${RATES.cop.toFixed(1)} COP <span class="text-kuro/35">(${RATES.src})</span>`;const n=document.getElementById('costs-fx-note');if(n)n.innerHTML=`Tasa en vivo (${RATES.src}). Pasa el cursor por los montos para ver USD + COP.`;}
+async function loadRates(){try{const c=new AbortController();setTimeout(()=>c.abort(),5000);const r=await fetch('https://open.er-api.com/v6/latest/JPY',{signal:c.signal});const j=await r.json();if(j&&j.rates&&j.rates.USD&&j.rates.COP){RATES.usd=j.rates.USD;RATES.cop=j.rates.COP;RATES.src='en vivo · '+(j.time_last_update_utc||'hoy').replace(' 00:00:01 +0000','');}}catch(e){RATES.src='sin conexión · '+RATES.src;}renderAll();}
+function gmapsPt(lat,lng){return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;}
+function gmapsRoute(acts){const p=acts.filter(a=>a.lat).map(a=>`${a.lat},${a.lng}`);if(p.length<2)return p.length?`https://www.google.com/maps/search/?api=1&query=${p[0]}`:'#';const o=p[0],d=p[p.length-1],w=p.slice(1,-1).join('|');return `https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}`+(w?`&waypoints=${encodeURIComponent(w)}`:'')+'&travelmode=transit';}
+function wikiLink(t){return 'https://en.wikipedia.org/wiki/'+t;}
+function ytLink(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' historia documental');}
+
+const IMG='https://upload.wikimedia.org/wikipedia/commons/thumb/';
+// DAYS V4 — joint:true marca días con el grupo AdeS (mismo ciudad)
+const DAYS=[
+{day:1,date:"Oct 27",dow:"Lun",week:"w1",title:"Llegada y Neón",loc:"Tokio·Shinjuku",lodge:"Shinjuku",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:30,contempl:25,joint:false,
+am:"Llegada. Ta-Q-Bin maletas. Check-in.",pm:"Suica digital. Aclimatación.",night:"Omoide Yokocho + Kabukicho.",food:"Yakitori · Ramen",transport:"Narita Express",costT:3250,costF:3000,
+img:IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
+acts:[{n:"Omoide Yokocho",lat:35.6936,lng:139.6995,t:"local",roi:4},{n:"Kabukicho",lat:35.6955,lng:139.7027,t:"night",roi:4,w:"Kabukichō"}]},
+
+{day:2,date:"Oct 28",dow:"Mar",week:"w1",title:"Tradición, Otaku y Sumo",loc:"Tokio·Asakusa→Akihabara",lodge:"Shinjuku",effort:3,luggage:false,laundry:false,transitMin:80,bufferP:20,contempl:25,joint:false,
+am:"Senso-ji + Nakamise. Sumo con traje inflable (reservar).",pm:"Akihabara: Super Potato, arcades.",night:"Ameyoko izakayas.",food:"Melon pan · Sushi",transport:"Metro",costT:5600,costF:3500,
+img:IMG+"4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg",
+acts:[{n:"Templo Senso-ji",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Sumo inflable (Ryogoku)",lat:35.6967,lng:139.7933,t:"pop",roi:5,w:"Ryōgoku"},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"}]},
+
+{day:3,date:"Oct 29",dow:"Mié",week:"w1",title:"Montaña Sagrada de Nikko",loc:"Nikko (excursión)",lodge:"Shinjuku",effort:4,luggage:false,laundry:false,transitMin:300,bufferP:10,contempl:40,joint:false,
+am:"Tobu Express a Nikko. Toshogu (UNESCO).",pm:"Lago Chuzenji + Cascada Kegon, momiji.",night:"Regreso a Tokio.",food:"Yuba · Dango",transport:"Tobu Nikko Pass",costT:4780,costF:2500,
+img:IMG+"2/26/200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg/960px-200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg",
+acts:[{n:"Nikko Toshogu",lat:36.7580,lng:139.5989,t:"tradition",roi:5,w:"Nikkō_Tōshō-gū"},{n:"Lago Chuzenji",lat:36.7300,lng:139.4900,t:"nature",roi:4,w:"Lake_Chūzenji"},{n:"Cascada Kegon",lat:36.7390,lng:139.5030,t:"nature",roi:4,w:"Kegon_Falls"}]},
+
+{day:4,date:"Oct 30",dow:"Jue",week:"w1",title:"Arte Digital + Bienvenida AdeS",loc:"Tokio·Azabudai",lodge:"Shinjuku",effort:2,luggage:false,laundry:false,transitMin:60,bufferP:20,contempl:25,joint:true,jointText:"🤝 AdeS llega hoy. teamLab Borderless juntos + cena de bienvenida en Asakusa/Omoide Yokocho.",
+am:"teamLab Borderless (Azabudai). Reservar.",pm:"Shimokitazawa vintage.",night:"🤝 Cena de bienvenida con AdeS.",food:"Curry · Izakaya grupal",transport:"Metro",costT:600,costF:3800,
+img:IMG+"c/c1/Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg/960px-Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg",
+acts:[{n:"teamLab Borderless (Azabudai)",lat:35.6595,lng:139.7290,t:"pop",roi:5},{n:"Shimokitazawa",lat:35.6613,lng:139.6680,t:"local",roi:4}]},
+
+{day:5,date:"Oct 31",dow:"Vie",week:"w1",title:"Halloween en Tokio 🎃",loc:"Tokio·Shibuya/Ikebukuro",lodge:"Shinjuku",effort:3,luggage:false,laundry:true,transitMin:60,bufferP:20,contempl:20,joint:true,jointText:"🎃 Halloween en Shibuya/Ikebukuro disfrazados, todo el combo (5 + AdeS) junto.",
+am:"Harajuku, Takeshita, Meiji Jingu.",pm:"Shibuya Sky al atardecer.",night:"🎃 Halloween callejero con AdeS.",food:"Crepes · Street food",transport:"Yamanote",costT:600,costF:3500,
+img:IMG+"8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg",
+acts:[{n:"Meiji Jingu",lat:35.6764,lng:139.6993,t:"tradition",roi:5,w:"Meiji_Shrine"},{n:"Shibuya / Hachiko",lat:35.6590,lng:139.7006,t:"pop",roi:5,w:"Shibuya_Crossing"},{n:"Halloween Ikebukuro",lat:35.7289,lng:139.7100,t:"night",roi:4}]},
+
+{day:6,date:"Nov 1",dow:"Sáb",week:"w1",title:"Gran Buda y el Mar",loc:"Tokio→Kamakura→Enoshima",lodge:"Shinjuku",effort:4,luggage:false,laundry:false,transitMin:180,bufferP:15,contempl:40,joint:true,jointText:"Excursión a Kamakura juntos (Gran Buda + playa) o split libre; punto de encuentro nocturno en Tokio.",
+am:"Tren a Kamakura: Hasedera, Daibutsu.",pm:"Enoden a Enoshima, atardecer.",night:"Regreso a Tokio.",food:"Shirasu-don",transport:"Freepass",costT:1640,costF:3000,
+img:IMG+"c/cf/230128_Kamakura_Daibutsu_Japan04s3.jpg/960px-230128_Kamakura_Daibutsu_Japan04s3.jpg",
+acts:[{n:"Daibutsu (Kotoku-in)",lat:35.3169,lng:139.5358,t:"tradition",roi:5,w:"Kōtoku-in"},{n:"Hasedera",lat:35.3127,lng:139.5331,t:"tradition",roi:4,w:"Hase-dera_(Kamakura)"},{n:"Enoshima",lat:35.2990,lng:139.4800,t:"nature",roi:4,w:"Enoshima"}]},
+
+{day:7,date:"Nov 2",dow:"Dom",week:"w1",title:"Drift y Karaoke",loc:"Tokio·Odaiba/Shinjuku",lodge:"Shinjuku (última n.)",effort:2,luggage:false,laundry:false,transitMin:60,bufferP:25,contempl:25,joint:true,jointText:"🏎️ Tokyo Drift (copiloto si no hay licencia válida) + 🎤 karaoke nomihodai grupal con AdeS.",
+am:"Mañana libre / Odaiba.",pm:"Preparar salida a Fuji (Ta-Q-Bin a Kioto).",night:"🏎️ Tokyo Drift + 🎤 karaoke con AdeS.",food:"Karaoke nomihodai",transport:"Metro",costT:600,costF:3500,
+img:IMG+"8/8b/Meiji_Jingu_2023-3.jpg/960px-Meiji_Jingu_2023-3.jpg",
+acts:[{n:"Tokyo Drift · Rainbow Bridge",lat:35.6365,lng:139.7634,t:"night",roi:5},{n:"Odaiba",lat:35.6300,lng:139.7796,t:"pop",roi:3,w:"Odaiba"},{n:"Karaoke Shinjuku",lat:35.6940,lng:139.7005,t:"night",roi:4}]},
+
+{day:8,date:"Nov 3",dow:"Lun",week:"w2",title:"Monte Fuji con AdeS",loc:"Kawaguchiko·Monte Fuji",lodge:"Ryokan Kawaguchiko",effort:2,luggage:true,laundry:false,transitMin:150,bufferP:20,contempl:55,joint:true,jointText:"♨️ Ryokan con onsen y kaiseki frente al Fuji, todos juntos. Chureito al amanecer al día siguiente.",
+am:"Bus Shinjuku→Kawaguchiko. Bicis por el lago.",pm:"Momiji Kairo. Check-in ryokan.",night:"🤝 Onsen + kaiseki con AdeS.",food:"Hoto · Kaiseki",transport:"Bus Fujikyuko",costT:1900,costF:1500,
+img:IMG+"1/18/KawaguchiKo.jpg/960px-KawaguchiKo.jpg",
+acts:[{n:"Lago Kawaguchi",lat:35.5170,lng:138.7530,t:"nature",roi:5,w:"Lake_Kawaguchi"},{n:"Monte Fuji (vista)",lat:35.3606,lng:138.7274,t:"nature",roi:5,w:"Mount_Fuji"},{n:"Onsen ryokan",lat:35.5018,lng:138.7660,t:"onsen",roi:5}]},
+
+{day:9,date:"Nov 4",dow:"Mar",week:"w2",title:"Sendero Feudal Nakasendo",loc:"Fuji→Nakasendo→Takayama",lodge:"Takayama",effort:5,luggage:true,laundry:false,transitMin:300,bufferP:10,contempl:45,joint:false,
+am:"Chureito al amanecer. Tren a Matsumoto (castillo, foto).",pm:"Caminata Magome→Tsumago (~3h).",night:"Bus a Takayama.",food:"Goheimochi · Soba",transport:"Tren+buses",costT:9000,costF:2500,
+img:IMG+"5/50/1_tsumago_juku_2024.jpg/960px-1_tsumago_juku_2024.jpg",
+acts:[{n:"Pagoda Chureito",lat:35.4951,lng:138.8009,t:"tradition",roi:5,w:"Arakurayama_Sengen_Park"},{n:"Magome-juku",lat:35.5278,lng:137.5667,t:"local",roi:5,w:"Magome-juku"},{n:"Tsumago-juku",lat:35.5775,lng:137.5950,t:"local",roi:5,w:"Tsumago-juku"}]},
+
+{day:10,date:"Nov 5",dow:"Mié",week:"w2",title:"Aldea de Cuento",loc:"Takayama→Shirakawa-go",lodge:"Takayama",effort:3,luggage:false,laundry:false,transitMin:180,bufferP:20,contempl:50,joint:false,
+am:"Mercado Miyagawa, Sanmachi Suji.",pm:"Bus Shirakawa-go: casas Gassho (UNESCO).",night:"Cena Hida beef.",food:"Hida beef · Sake",transport:"Nohi Bus r/t",costT:4600,costF:4000,
+img:IMG+"e/e6/Ogi_Shirakawa-g%C5%8D%2C_Gifu%2C_Japan.jpg/960px-Ogi_Shirakawa-g%C5%8D%2C_Gifu%2C_Japan.jpg",
+acts:[{n:"Sanmachi Suji (Takayama)",lat:36.1400,lng:137.2570,t:"local",roi:4},{n:"Shirakawa-go",lat:36.2580,lng:136.9060,t:"tradition",roi:5,w:"Shirakawa-gō"}]},
+
+{day:11,date:"Nov 6",dow:"Jue",week:"w2",title:"Ghibli → Kioto (reencuentro)",loc:"Takayama→Ghibli→Kioto",lodge:"Kioto",effort:4,luggage:true,laundry:false,transitMin:300,bufferP:10,contempl:35,joint:true,jointText:"Llegada a Kioto donde está AdeS. Cena de reencuentro junto al río en Pontocho.",
+am:"Tren Hida a Nagoya. Ghibli Park (tickets con meses).",pm:"Shinkansen Nagoya→Kioto.",night:"🤝 Cena Pontocho con AdeS.",food:"Bento Ghibli · Yudofu",transport:"Hida+Linimo+Shinkansen",costT:11000,costF:3500,
+img:IMG+"4/48/Linimo_train_advertising_Ghibli_Park_at_Yakusa_Station.jpg/960px-Linimo_train_advertising_Ghibli_Park_at_Yakusa_Station.jpg",
+acts:[{n:"Ghibli Park",lat:35.1820,lng:137.0790,t:"pop",roi:5,w:"Ghibli_Park"},{n:"Pontocho (Kioto)",lat:35.0050,lng:135.7707,t:"local",roi:5}]},
+
+{day:12,date:"Nov 7",dow:"Vie",week:"w2",title:"Toriis, Bambú y Oro",loc:"Kioto·Fushimi/Arashiyama",lodge:"Kioto",effort:4,luggage:false,laundry:false,transitMin:100,bufferP:15,contempl:35,joint:true,jointText:"Fushimi Inari + bambú de Arashiyama con kimono alquilado y foto grupal con AdeS.",
+am:"Fushimi Inari temprano (toriis).",pm:"Bambú Arashiyama, Tenryu-ji, Kinkaku-ji.",night:"Gion buscando maikos.",food:"Matcha · Okonomiyaki",transport:"JR+bus",costT:1000,costF:4000,joint:true,
+img:IMG+"0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/960px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg",
+acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Bambú de Arashiyama",lat:35.0170,lng:135.6717,t:"nature",roi:5,w:"Arashiyama"},{n:"Kinkaku-ji",lat:35.0394,lng:135.7292,t:"tradition",roi:5,w:"Kinkaku-ji"}]},
+
+{day:13,date:"Nov 8",dow:"Sáb",week:"w2",title:"Venados de Nara 🦌",loc:"Kioto→Nara",lodge:"Kioto",effort:3,luggage:false,laundry:false,transitMin:120,bufferP:20,contempl:45,joint:true,jointText:"🦌 Nara juntos: galletas a los venados, Todai-ji y picnic en el parque con AdeS.",
+am:"JR Nara Line a Nara.",pm:"Todai-ji, venados Sika, Kasuga-Taisha.",night:"Regreso a Kioto. Craft beer.",food:"Kakinoha-zushi",transport:"JR Nara Line",costT:1400,costF:3500,
+img:IMG+"2/2f/T%C5%8Ddai-ji_Kon-d%C5%8D.jpg/960px-T%C5%8Ddai-ji_Kon-d%C5%8D.jpg",
+acts:[{n:"Parque de Nara (venados)",lat:34.6851,lng:135.8430,t:"nature",roi:5,w:"Nara_Park"},{n:"Templo Todai-ji",lat:34.6890,lng:135.8398,t:"tradition",roi:5,w:"Tōdai-ji"},{n:"Kasuga-Taisha",lat:34.6817,lng:135.8483,t:"tradition",roi:4,w:"Kasuga-taisha"}]},
+
+{day:14,date:"Nov 9",dow:"Dom",week:"w3",title:"Neones de Osaka",loc:"Kioto→Osaka",lodge:"Osaka Namba",effort:2,luggage:true,laundry:false,transitMin:90,bufferP:20,contempl:30,joint:true,jointText:"🐙 Food crawl en Dotonbori con AdeS: takoyaki, okonomiyaki y neón.",
+am:"Traslado a Osaka. Check-in Namba.",pm:"Castillo Osaka, Shinsekai.",night:"🤝 Dotonbori con AdeS.",food:"Takoyaki · Kushikatsu",transport:"JR+metro",costT:880,costF:4500,
+img:IMG+"4/47/Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg/960px-Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg",
+acts:[{n:"Castillo de Osaka",lat:34.6873,lng:135.5259,t:"history",roi:5,w:"Osaka_Castle"},{n:"Dotonbori",lat:34.6687,lng:135.5010,t:"pop",roi:5,w:"Dōtonbori"},{n:"Shinsekai",lat:34.6524,lng:135.5063,t:"local",roi:4,w:"Shinsekai"}]},
+
+{day:15,date:"Nov 10",dow:"Lun",week:"w3",title:"USJ con AdeS 🎢",loc:"Osaka·USJ",lodge:"Osaka",effort:5,luggage:false,laundry:true,transitMin:60,bufferP:10,contempl:15,joint:true,jointText:"🎢 Universal Studios Japan TODOS juntos (Super Nintendo World, Harry Potter). Coincide con el día comodín de AdeS.",
+am:"USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Cena Namba.",food:"Parque · Butterbeer",transport:"JR Yumesaki",costT:400,costF:3000,
+img:IMG+"b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg/960px-Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg",
+acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5,w:"Universal_Studios_Japan"},{n:"Super Nintendo World",lat:34.6660,lng:135.4310,t:"pop",roi:5}]},
+
+{day:16,date:"Nov 11",dow:"Mar",week:"w3",title:"Termas sin Tabú",loc:"Kinosaki Onsen",lodge:"Ryokan Kinosaki",effort:1,luggage:true,laundry:false,transitMin:180,bufferP:30,contempl:65,joint:false,
+am:"Ltd Express a Kinosaki. 7 onsens públicos.",pm:"Recorrido baños en yukata (tattoo-friendly).",night:"Kaiseki cangrejo de nieve.",food:"Cangrejo kaiseki",transport:"Ltd Express",costT:10560,costF:10000,
+img:IMG+"3/35/Kinosaki_Onsen_by_day.jpg/960px-Kinosaki_Onsen_by_day.jpg",
+acts:[{n:"Kinosaki Onsen (7 baños)",lat:35.6258,lng:134.8097,t:"onsen",roi:5,w:"Kinosaki_Onsen"}]},
+
+{day:17,date:"Nov 12",dow:"Mié",week:"w3",title:"Retiro Budista Koyasan",loc:"Koyasan·Monte Koya",lodge:"Shukubo Koyasan",effort:2,luggage:true,laundry:false,transitMin:240,bufferP:20,contempl:65,joint:false,
+am:"Kinosaki→Osaka→Nankai+funicular.",pm:"Okunoin: cementerio entre cedros.",night:"Shojin ryori. Paseo nocturno con faroles.",food:"Shojin Ryori",transport:"Nankai+funicular",costT:6000,costF:0,
+img:IMG+"a/ad/Gobyoubasi.jpg/960px-Gobyoubasi.jpg",
+acts:[{n:"Okunoin (Koyasan)",lat:34.2150,lng:135.5910,t:"tradition",roi:5,w:"Okunoin"},{n:"Monte Koya",lat:34.2130,lng:135.5830,t:"tradition",roi:5,w:"Mount_Kōya"}]},
+
+{day:18,date:"Nov 13",dow:"Jue",week:"w3",title:"Vuelta a Tokio (reencuentro)",loc:"Koyasan→Tokio",lodge:"Tokio Shinjuku",effort:2,luggage:true,laundry:false,transitMin:330,bufferP:15,contempl:30,joint:true,jointText:"Ambos grupos regresan a Tokio hoy. Reencuentro nocturno en Golden Gai.",
+am:"Ceremonia fuego amanecer. Descenso.",pm:"Shinkansen Osaka→Tokio. Check-in.",night:"🤝 Golden Gai con AdeS.",food:"Ramen Shinjuku",transport:"Nankai+Shinkansen",costT:16000,costF:3500,
+img:IMG+"5/58/Tokyo_Tower_2023.jpg/960px-Tokyo_Tower_2023.jpg",
+acts:[{n:"Golden Gai",lat:35.6940,lng:139.7045,t:"night",roi:5,w:"Golden_Gai"}]},
+
+{day:19,date:"Nov 14",dow:"Vie",week:"w4",title:"Tokio Flexible",loc:"Tokio·Libre",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:35,joint:true,jointText:"Día flexible; barrios a elección. Encuentro para cenar con AdeS.",
+am:"Shinjuku Gyoen, mirador del Ayuntamiento.",pm:"Barrios a elección.",night:"🤝 Cena con AdeS.",food:"Local",transport:"Metro",costT:600,costF:3500,
+img:IMG+"9/9d/Shinjuku_Gyoen_National_Garden_-_sakura_3.JPG/960px-Shinjuku_Gyoen_National_Garden_-_sakura_3.JPG",
+acts:[{n:"Shinjuku Gyoen",lat:35.6852,lng:139.7100,t:"nature",roi:5,w:"Shinjuku_Gyo-en"},{n:"Mirador Ayuntamiento",lat:35.6896,lng:139.6917,t:"pop",roi:4}]},
+
+{day:20,date:"Nov 15",dow:"Sáb",week:"w4",title:"Akihabara y Compras",loc:"Tokio·Akihabara/Ginza",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:30,contempl:30,joint:true,jointText:"Compras y Akihabara (2ª pasada) juntos con AdeS.",
+am:"Akihabara a fondo.",pm:"Ginza, Don Quijote souvenirs.",night:"Cena grupal.",food:"Souvenirs · Sushi",transport:"Metro",costT:600,costF:3500,
+img:IMG+"6/60/Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png/960px-Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png",
+acts:[{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:4,w:"Akihabara"},{n:"Ginza",lat:35.6717,lng:139.7650,t:"pop",roi:3}]},
+
+{day:21,date:"Nov 16",dow:"Dom",week:"w4",title:"Favoritos a Repetir",loc:"Tokio·Libre",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:40,joint:true,jointText:"Último full day de AdeS: repetir barrios favoritos juntos.",
+am:"Repetir favoritos.",pm:"teamLab/compras a elección.",night:"Noche tranquila.",food:"Libre",transport:"Metro",costT:600,costF:3500,
+img:IMG+"8/8d/G2_Street_20090626_2.jpg/960px-G2_Street_20090626_2.jpg",
+acts:[{n:"Golden Gai",lat:35.6940,lng:139.7045,t:"night",roi:4,w:"Golden_Gai"},{n:"Shibuya",lat:35.6590,lng:139.7006,t:"pop",roi:4,w:"Shibuya_Crossing"}]},
+
+{day:22,date:"Nov 17",dow:"Lun",week:"w4",title:"Cena de Despedida 🍶",loc:"Tokio·Libre",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:40,joint:true,jointText:"🍶 Cena de despedida wagyu/omakase — última noche de AdeS en Japón.",
+am:"Mañana libre.",pm:"Tsukiji exterior, compras finales.",night:"🤝 Despedida wagyu/omakase con AdeS.",food:"Wagyu A5 / Omakase",transport:"Metro",costT:600,costF:10000,
+img:IMG+"5/5b/Ginza-WAKO_at_night.jpg/960px-Ginza-WAKO_at_night.jpg",
+acts:[{n:"Tsukiji (exterior)",lat:35.6655,lng:139.7707,t:"food",roi:4,w:"Tsukiji"},{n:"Ginza (omakase)",lat:35.6717,lng:139.7650,t:"food",roi:5}]},
+
+{day:23,date:"Nov 18",dow:"Mar",week:"w4",title:"Tokio a Nuestro Ritmo",loc:"Tokio·Libre",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:40,contempl:40,joint:false,
+am:"AdeS vuela a casa. Día propio.",pm:"Barrios pendientes (Shimokita, Nakameguro).",night:"Izakaya.",food:"Local",transport:"Metro",costT:600,costF:3500,
+img:IMG+"8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg",
+acts:[{n:"Nakameguro",lat:35.6438,lng:139.6987,t:"local",roi:4},{n:"Shibuya",lat:35.6590,lng:139.7006,t:"pop",roi:3,w:"Shibuya_Crossing"}]},
+
+{day:24,date:"Nov 19",dow:"Mié",week:"w4",title:"Últimos Antojos",loc:"Tokio·Libre",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:45,contempl:45,joint:false,
+am:"Compras de último minuto.",pm:"Café, parques.",night:"Cena tranquila.",food:"Ramen final",transport:"Metro",costT:600,costF:4000,
+img:IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
+acts:[{n:"Shimokitazawa",lat:35.6613,lng:139.6680,t:"local",roi:4},{n:"Kabukicho",lat:35.6955,lng:139.7027,t:"night",roi:3,w:"Kabukichō"}]},
+
+{day:25,date:"Nov 20",dow:"Jue",week:"w4",title:"Sayonara 日本",loc:"Tokio→Aeropuerto",lodge:"—",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:50,contempl:40,joint:false,
+am:"Empacar. Últimos paseos.",pm:"Narita Express al aeropuerto.",night:"Vuelo.",food:"Último ramen",transport:"Narita Express",costT:3250,costF:2000,
+img:IMG+"7/7d/All_haneda.jpg/960px-All_haneda.jpg",
+acts:[{n:"Aeropuerto (Narita/Haneda)",lat:35.7720,lng:140.3929,t:"transit",roi:1}]},
+];
+
+const TYPE_LABELS={tradition:'⛩️ Tradición',history:'🏯 Historia',nature:'🍁 Naturaleza',pop:'🎮 Pop',local:'🏮 Local',food:'🍱 Gastro',onsen:'♨️ Onsen',night:'🌙 Noche',transit:'🚆 Tránsito'};
+const CLASSIC=['tradition','history','pop'], LOCALC=['local','food','nature','onsen','night'];
+const EFFORT_LABELS=['','😌 Relax','🚶 Suave','🏃 Moderado','🥾 Intenso','🔥 Máximo'];
+const EFFORT_COLORS=['','#1A6B4A','#2471A3','#D4740E','#C0392B','#922B21'];
+function mainActs(d){return (d.acts||[]).filter(a=>a.t!=='transit');}
+
+function renderWeek(wk){
+    const el=document.getElementById(wk);
+    const meta={w1:{t:'Semana 1 · Tokio & Kanto',d:'27 oct – 2 nov. Llegada, Nikko, y bienvenida a AdeS (30 oct).'},
+        w2:{t:'Semana 2 · Fuji, Alpes & Kioto',d:'3 – 8 nov. Fuji con AdeS, Nakasendo/Shirakawa propios, reencuentro en Kioto y Nara.'},
+        w3:{t:'Semana 3 · Kansai & Montañas',d:'9 – 14 nov. Osaka + USJ con AdeS, Kinosaki/Koyasan propios, vuelta a Tokio.'},
+        w4:{t:'Semana 4 · Tokio Final',d:'15 – 20 nov. Recta final con AdeS y despedida.'}}[wk];
+    let html=`<div class="mb-8"><h2 class="font-jp text-2xl md:text-3xl font-black mb-1">${meta.t}</h2><p class="text-sm text-kuro/60">${meta.d}</p></div>`;
+    DAYS.filter(d=>d.week===wk).forEach(d=>{
+        const ef=d.effort,dens=mainActs(d).length;
+        const tagTypes=[...new Set(d.acts.map(a=>a.t).filter(t=>t!=='transit'))];
+        const tagHtml=tagTypes.slice(0,3).map(t=>`<span class="tag tag-${t}">${TYPE_LABELS[t]}</span>`).join(' ');
+        const jb=d.joint?`<span class="joint-badge">🤝 Con AdeS</span>`:'';
+        const lb=d.laundry?`<span class="laundry-badge">🧺</span>`:'';
+        const lug=d.luggage?`<span class="luggage-badge">🧳</span>`:'';
+        const actsHtml=d.acts.map(a=>{const isT=a.t==='transit';const hist=a.w?` <a class="hist-link" title="Wikipedia" href="${wikiLink(a.w)}" target="_blank">📖</a><a class="hist-link" title="YouTube" href="${ytLink(a.n)}" target="_blank">🎬</a>`:'';
+            return `<li class="flex items-start gap-2 py-1 ${isT?'opacity-60':''}"><span class="text-xs mt-0.5">${isT?'🚆':'📍'}</span><span class="text-sm text-kuro/80 flex-1">${a.n}${!isT?` <a class="gps-link" href="${gmapsPt(a.lat,a.lng)}" target="_blank">GPS↗</a>`:''}${hist}</span><span class="tag tag-${a.t} shrink-0">${(TYPE_LABELS[a.t]||a.t).split(' ')[0]}</span></li>`;}).join('');
+        const jointBox=d.joint?`<div class="bg-midori/10 border border-midori/30 rounded-lg p-3 mb-2"><p class="text-sm text-midori font-bold">${d.jointText}</p></div>`:'';
+        html+=`<div class="day-card bg-white border ${d.joint?'border-midori/40':'border-haiiro'} rounded-xl mb-3 hover:shadow-md transition-shadow">
+            <div class="cursor-pointer select-none" onclick="this.parentElement.classList.toggle('open')">
+                <img class="day-hero" loading="lazy" src="${d.img}" alt="${d.title}">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="shrink-0 text-center"><div class="w-11 h-11 rounded-lg ${d.joint?'bg-midori/15 text-midori':'bg-aka/10 text-aka'} font-bold flex items-center justify-center text-sm">D${d.day}</div><p class="text-[10px] text-kuro/40 mt-0.5 font-bold">${d.dow} ${d.date}</p></div>
+                        <div class="min-w-0"><div class="flex flex-wrap items-center gap-2"><h3 class="font-bold text-sm md:text-base">${d.title}</h3>${jb}${lug}${lb}</div>
+                        <p class="text-xs text-kuro/50">📍 ${d.loc}</p>
+                        <div class="flex items-center gap-2 mt-1"><div class="effort-bar"><div class="effort-fill" style="width:${ef*20}%;background:${EFFORT_COLORS[ef]}"></div></div><span class="text-[10px] text-kuro/50">${EFFORT_LABELS[ef]} · ${dens} act</span></div></div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 ml-2"><div class="hidden sm:flex gap-1">${tagHtml}</div><span class="chevron text-kuro/30 text-xs">▼</span></div>
+                </div>
+            </div>
+            <div class="day-detail border-t border-haiiro"><div class="p-4">
+                ${jointBox}
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌅 Mañana</p><p class="text-sm text-kuro/80">${d.am}</p></div>
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">☀️ Tarde</p><p class="text-sm text-kuro/80">${d.pm}</p></div>
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌙 Noche</p><p class="text-sm text-kuro/80">${d.night}</p></div>
+                        <p class="text-xs font-bold text-kuro/40 uppercase mt-2 mb-1">📍 Lugares · GPS · 📖🎬</p><ul class="divide-y divide-haiiro/60">${actsHtml}</ul>
+                        <a href="${gmapsRoute(d.acts)}" target="_blank" class="inline-block mt-2 bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🧭 Recorrido del día</a>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🚆 Transporte · <span class="tooltip-usd text-kin" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.transport} · ${d.transitMin} min</p></div>
+                        <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-aka uppercase mb-1">🍱 Comida · <span class="tooltip-usd" data-usd="${usdTip(d.costF)}">¥${d.costF.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.food}</p></div>
+                        <div class="bg-washi rounded-lg p-3 border border-haiiro grid grid-cols-2 gap-2 text-xs"><div><span class="text-kuro/40">Densidad</span><p class="font-bold ${dens>=2&&dens<=3?'text-midori':'text-aka'}">${dens} act</p></div><div><span class="text-kuro/40">Buffer</span><p class="font-bold ${d.bufferP>=15?'text-midori':'text-aka'}">${d.bufferP}%</p></div><div><span class="text-kuro/40">Contempl.</span><p class="font-bold">${d.contempl}%</p></div><div><span class="text-kuro/40">Hospedaje</span><p class="font-bold">🏨 ${d.lodge}</p></div></div>
+                    </div>
+                </div>
+            </div></div>
+        </div>`;
+    });
+    el.innerHTML=html;
+}
+
+function renderJoint(){
+    const j=DAYS.filter(d=>d.joint);
+    document.getElementById('joint-list').innerHTML=
+        `<div class="bg-midori text-white rounded-xl p-4 mb-3"><p class="text-2xl font-black">${j.length} días juntos</p><p class="text-xs text-white/70">de los 21 días que AdeS está en Japón</p></div>`+
+        j.map(d=>`<div class="bg-white border border-midori/30 rounded-xl p-4 flex gap-3"><div class="shrink-0 text-center"><div class="w-11 h-11 rounded-lg bg-midori/15 text-midori font-bold flex items-center justify-center text-sm">D${d.day}</div><p class="text-[10px] text-kuro/40 mt-0.5 font-bold">${d.date}</p></div><div><h3 class="font-bold text-sm mb-1">${d.title} · <span class="text-kuro/50 font-normal">${d.loc}</span></h3><p class="text-sm text-kuro/70">${d.jointText}</p></div></div>`).join('');
+}
+
+const TRANSPORT_LINES=[["Narita→Shinjuku","N'EX",3250],["Nikko r/t","Tobu",4780],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Bus",1900],["Fuji→Matsumoto→Nakasendo→Takayama","Tren+bus",9000],["Takayama→Shirakawa r/t","Nohi",4600],["Takayama→Nagoya→Kioto","Hida+Shinkansen",11000],["Kioto↔Nara","JR",1400],["Kioto→Osaka","JR",580],["Osaka→USJ","JR",400],["Osaka→Kinosaki r/t","Ltd Exp",10560],["Kinosaki→Koyasan","Tren+funicular",6000],["Koyasan→Tokio","Nankai+Shinkansen",16000],["Metro/buses 25d","Suica",15000],["Tokio→Narita","N'EX",3250]];
+const ACT_LINES=[["teamLab Borderless",3800],["Sumo inflable",5000],["🏎️ Tokyo Drift (copiloto)",18000],["Ghibli Park",3500],["USJ + Express",20600],["Templos Kioto/Nara",4000],["Kinosaki onsen (incl. ryokan)",0],["Koyasan (incl. shukubo)",0],["Karaoke (2 noches)",5000]];
+function costRows(lines){let t=0,h='';lines.forEach(([n,...r])=>{const c=r.length===2?r[1]:r[0],tp=r.length===2?r[0]:null;t+=c;h+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${n}${tp?` <span class="text-kuro/35">(${tp})</span>`:''}</span><span class="tooltip-usd" data-usd="${usdTip(c)}">¥${c.toLocaleString()}</span></div>`;});return{h,t};}
+function renderCosts(){
+    const tr=costRows(TRANSPORT_LINES),ac=costRows(ACT_LINES);
+    document.getElementById('cost-transport').innerHTML=tr.h+`<div class="flex justify-between py-1 font-bold text-aka"><span>Total transporte</span><span class="tooltip-usd" data-usd="${usdTip(tr.t)}">¥${tr.t.toLocaleString()}</span></div>`;
+    document.getElementById('cost-activities').innerHTML=ac.h+`<div class="flex justify-between py-1 font-bold text-aka"><span>Total actividades</span><span class="tooltip-usd" data-usd="${usdTip(ac.t)}">¥${ac.t.toLocaleString()}</span></div>`;
+    const foodY=DAYS.reduce((s,d)=>s+d.costF,0), lodgeUSD=680, souvUSD=150;
+    const grandUSD=Math.round((tr.t+ac.t+foodY)*RATES.usd)+lodgeUSD+souvUSD;
+    document.getElementById('cost-grand').innerHTML=
+        [['Transporte',Math.round(tr.t*RATES.usd)],['Actividades',Math.round(ac.t*RATES.usd)],['Alimentación 25d',Math.round(foodY*RATES.usd)],['Hospedaje (5 pers., ~)',lodgeUSD],['Souvenirs',souvUSD]]
+        .map(([n,v])=>`<div class="flex justify-between"><span>${n}</span><span class="text-kin font-bold">$${v.toLocaleString()}</span></div>`).join('')+
+        `<div class="flex justify-between border-t border-white/20 pt-2 mt-2 text-lg"><span class="font-bold">TOTAL</span><span class="text-kin font-black">$${grandUSD.toLocaleString()} · ${y2cop(grandUSD/RATES.usd)} COP</span></div>`;
+    const burn=Math.round(DAYS.reduce((s,d)=>s+d.costT+d.costF,0)/25);
+    document.getElementById('burn-rate').textContent=`¥${burn.toLocaleString()} (${y2d(burn)})`;
+}
+
+function fmtPct(x){return Math.round(x)+'%';}
+function metricCard(e,t,v,c,bar,d){return `<div class="bg-white border border-haiiro rounded-xl p-5"><div class="flex items-baseline justify-between"><h3 class="font-bold text-sm">${e} ${t}</h3><span class="font-black text-lg" style="color:${c}">${v}</span></div><div class="meter mt-2"><div class="anim-bar" style="width:${Math.min(bar,100)}%;background:${c}"></div></div><p class="text-xs text-kuro/55 mt-2">${d}</p></div>`;}
+function renderMetrics(){
+    const n=DAYS.length;
+    const dens=DAYS.map(d=>mainActs(d).length),avgD=dens.reduce((a,b)=>a+b,0)/n,okD=dens.filter(x=>x>=2&&x<=3).length;
+    const tT=DAYS.reduce((s,d)=>s+d.transitMin,0),tPct=tT/(n*840)*100;
+    const avgB=DAYS.reduce((s,d)=>s+d.bufferP,0)/n;
+    const burn=Math.round(DAYS.reduce((s,d)=>s+d.costT+d.costF,0)/n);
+    let rs=0,rn=0;DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(a.t!=='transit'){rs+=a.roi;rn++;}}));const avgR=rs/rn;
+    const joints=DAYS.filter(d=>d.joint).length;
+    let cl=0,lo=0;DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(CLASSIC.includes(a.t))cl++;else if(LOCALC.includes(a.t))lo++;}));const loPct=lo/(cl+lo)*100;
+    const avgE=DAYS.reduce((s,d)=>s+d.effort,0)/n,hard=DAYS.filter(d=>d.effort>=4).length;
+    const avgC=DAYS.reduce((s,d)=>s+d.contempl,0)/n;
+    document.getElementById('metrics-grid').innerHTML=[
+        metricCard('🤝','Días con AdeS',joints+'/25','#1A6B4A',joints/25*100,`${joints} días en la misma ciudad que el grupo AdeS (el plan v3 lograba 6).`),
+        metricCard('🎯','Densidad/día',avgD.toFixed(1),avgD<=3?'#1A6B4A':'#C0392B',avgD/5*100,`Ideal 2–3. ${okD}/${n} días en rango.`),
+        metricCard('🚆','Tránsito vs destino',fmtPct(tPct),tPct<=20?'#1A6B4A':'#C5982A',tPct,`${Math.round(tT/60)} h en transporte. Picos: Nakasendo (N4), Ghibli (N6), vuelta (N13).`),
+        metricCard('🛋️','Buffer',fmtPct(avgB),avgB>=15?'#1A6B4A':'#C5982A',avgB*2.5,`Promedio ${fmtPct(avgB)}. Cola en Tokio (N18–20) muy holgada para descansar.`),
+        metricCard('💴','Burn rate diario',`¥${burn.toLocaleString()}`,'#C5982A',burn/20000*100,`Transporte + comida por día ≈ ${usdTip(burn)} (sin hospedaje).`),
+        metricCard('❤️','ROI emocional',avgR.toFixed(1)+'/5',avgR>=4?'#1A6B4A':'#C5982A',avgR/5*100,`Picos: Fuji, Fushimi, Shirakawa, Koyasan, USJ.`),
+        metricCard('⚖️','Clásico vs local',fmtPct(loPct)+' local',loPct>=35?'#1A6B4A':'#C5982A',loPct,`Buen balance entre imperdibles y barrio/naturaleza.`),
+        metricCard('🥾','Exigencia física',avgE.toFixed(1)+'/5',avgE<=3.5?'#1A6B4A':'#C0392B',avgE/5*100,`${hard} días intensos (N4 Nakasendo, N10 USJ).`),
+        metricCard('🧘','Contemplación',fmtPct(avgC),avgC>=35?'#1A6B4A':'#C5982A',avgC,`Alto en Fuji, Kinosaki, Koyasan y cola de Tokio.`),
+    ].join('');
+    document.getElementById('metrics-day-table').innerHTML=DAYS.map(d=>`<tr class="border-b border-haiiro/50"><td class="py-2 font-bold">D${d.day} <span class="text-kuro/40 font-normal">${d.date}</span></td><td class="${mainActs(d).length>=2&&mainActs(d).length<=3?'text-midori':'text-aka'} font-bold">${mainActs(d).length}</td><td>${d.bufferP}%</td><td>${d.transitMin}m</td><td>${(EFFORT_LABELS[d.effort]||'').split(' ')[1]||''}</td><td>${d.joint?'🤝':''}</td><td>¥${(d.costT+d.costF).toLocaleString()}</td></tr>`).join('');
+}
+
+// ===== OVERLAP (V4 vs AdeS) — lógica en trip-data.js =====
+let adesOffset=0;
+function setOffset(v){if(v==='best')adesOffset=bestOffset(V4_CITY,7).off;else if(v==='reset')adesOffset=0;else adesOffset=Math.max(-9,Math.min(9,adesOffset+v));renderOverlap();}
+function renderOverlap(){
+    const off=adesOffset,data=overlapRows(V4_CITY,off);
+    const m=data.filter(r=>r.cls==='sup-match').length,nn=data.filter(r=>r.cls==='sup-near').length;
+    document.getElementById('overlap-table').innerHTML=data.map(r=>`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td><td class="px-2">${r.v3}</td><td class="px-2 text-kuro/60">${r.ad}</td><td class="px-2"><span class="sup-cell ${r.cls}">${r.label}</span></td></tr>`).join('');
+    document.getElementById('ov-matches').textContent=overlapStats(V4_CITY,0).m;
+    const best=bestOffset(V4_CITY,7),base=overlapStats(V4_CITY,0);
+    const offTxt=off===0?'sin desfase':(off>0?`AdeS empieza ${off} día(s) DESPUÉS`:`AdeS empieza ${-off} día(s) ANTES`);
+    document.getElementById('overlap-opt').innerHTML=`<div class="bg-white border border-haiiro rounded-xl p-4"><div class="flex items-center gap-2 flex-wrap"><span class="font-bold text-sm">🎚️ Optimizador de desfase</span><button onclick="setOffset(-1)" class="bg-haiiro/60 px-2 py-1 rounded text-sm font-bold hover:bg-haiiro">−1 día</button><span class="text-sm px-1"><b>${off>0?'+':''}${off}</b> · ${offTxt}</span><button onclick="setOffset(1)" class="bg-haiiro/60 px-2 py-1 rounded text-sm font-bold hover:bg-haiiro">+1 día</button><button onclick="setOffset('reset')" class="text-xs text-aka underline ml-1">Reset</button><span class="ml-auto text-xs text-kuro/60">Con este desfase: <b class="text-midori">${m}</b> encuentros · <b class="text-kin">${nn}</b> cercanías</span></div><p class="text-xs text-kuro/60 mt-2">💡 Mejor desfase ±7: <b>${best.off>0?'+':''}${best.off}</b> → <b>${best.m}</b> encuentros (hoy: ${base.m}). <button onclick="setOffset('best')" class="text-aka underline font-bold">Aplicar mejor</button></p><p class="text-[10px] text-kuro/40 mt-1">V4 ya está optimizado: el mejor desfase es 0, no hay que mover nada.</p></div>`;
+    document.getElementById('overlap-windows').innerHTML=
+        `<div class="bg-midori text-white rounded-xl p-4"><p class="text-3xl font-black">${m}</p><p class="text-xs text-white/70">días de encuentro directo</p></div>`+
+        `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
+        [['🟢 Tokio · 30 oct – 2 nov','4 días al llegar AdeS: teamLab, Halloween, Kamakura, Drift+karaoke.'],['🟢 Fuji · 3 nov','Ryokan/onsen juntos.'],['🟢 Kioto+Nara+Osaka · 6–10 nov','5 días: Pontocho, kimono, venados, Dotonbori, USJ.'],['🟢 Tokio · 13–17 nov','5 días en la recta final + despedida wagyu.']]
+        .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+}
+
+// ===== MAP =====
+const BASES=[{lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–7, D18–25"},{lat:35.5018,lng:138.7660,name:"Kawaguchiko",d:"D8"},{lat:36.1461,lng:137.2524,name:"Takayama",d:"D9–10"},{lat:35.0116,lng:135.7681,name:"Kioto",d:"D11–13"},{lat:34.6687,lng:135.5032,name:"Osaka",d:"D14–15"},{lat:35.6282,lng:134.8127,name:"Kinosaki",d:"D16"},{lat:34.2130,lng:135.5830,name:"Koyasan",d:"D17"}];
+const EXC=[{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},{lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli"},{lat:34.685,lng:135.843,n:"Nara"},{lat:34.665,lng:135.432,n:"USJ"}];
+const ROUTE_SEQ=[[35.6895,139.6917],[36.75,139.598],[35.6895,139.6917],[35.319,139.547],[35.6895,139.6917],[35.5018,138.7660],[35.527,137.568],[36.1461,137.2524],[36.258,136.906],[36.1461,137.2524],[35.176,136.907],[35.0116,135.7681],[34.685,135.843],[34.6687,135.5032],[34.665,135.432],[35.6282,134.8127],[34.2130,135.5830],[35.6895,139.6917]];
+let map,animLine,animMarker;
+function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.8,137],6);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OSM © CARTO',maxZoom:18}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
+function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
+
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderJoint();renderCosts();renderMetrics();renderOverlap();}
+renderAll(); loadRates();
+document.querySelectorAll('.week-tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.getElementById(tab.dataset.week).classList.add('visible');window.scrollTo({top:200,behavior:'smooth'});}));
+let mapReady=false;
+document.getElementById('map-toggle').addEventListener('click',()=>{const c=document.getElementById('map-container');c.classList.toggle('open');document.getElementById('map-chevron').style.transform=c.classList.contains('open')?'rotate(180deg)':'';if(!mapReady){setTimeout(initMap,200);mapReady=true;}});
+document.getElementById('replay-btn').addEventListener('click',()=>{if(mapReady)animatePath();});
+</script>
+</body>
+</html>

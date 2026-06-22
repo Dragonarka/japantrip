@@ -22,6 +22,16 @@ const ADES_CITY={
  "Nov 14":"Tokio","Nov 15":"Tokio","Nov 16":"Tokio","Nov 17":"Tokio","Nov 18":"viaje","Nov 19":"Medellín",
 };
 
+// Plan V4 (25 días): re-secuencia del plan v3 para coincidir con AdeS.
+// Conserva todos los must-do de v3 pero alinea ciudad+fecha con AdeS al máximo.
+const V4_CITY=[
+ ["Oct 27","Tokio"],["Oct 28","Tokio"],["Oct 29","Nikko"],["Oct 30","Tokio"],["Oct 31","Tokio"],
+ ["Nov 1","Tokio"],["Nov 2","Tokio"],["Nov 3","Fuji"],["Nov 4","Takayama"],["Nov 5","Takayama/Shirakawa"],
+ ["Nov 6","Kioto"],["Nov 7","Kioto"],["Nov 8","Nara"],["Nov 9","Osaka"],["Nov 10","Osaka"],
+ ["Nov 11","Kinosaki"],["Nov 12","Koyasan"],["Nov 13","Tokio"],["Nov 14","Tokio"],["Nov 15","Tokio"],
+ ["Nov 16","Tokio"],["Nov 17","Tokio"],["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
+];
+
 // Ciudades "misma región Kansai" (cercanía ≤ ~1 h)
 const KANSAI=["Kioto","Osaka","Nara","Fuji","Kobe"];
 
@@ -45,16 +55,16 @@ Object.keys(ADES_CITY).forEach(dt=>{ ADES_BY_IDX[dIdx(dt)]=ADES_CITY[dt]; });
 function adesOn(date,offset){ return ADES_BY_IDX[dIdx(date)-(offset||0)]; }
 function isMatch(v3,ad){ if(!ad||ad==='—'||ad==='viaje'||ad==='Medellín')return false; return normCity(ad)===normCity(v3)||(normCity(ad)==='Fuji'&&v3==='Kawaguchiko'); }
 function isNear(v3,ad){ if(!ad||ad==='—'||ad==='viaje'||ad==='Medellín')return false; return KANSAI.includes(normCity(ad))&&['Kioto','Osaka','Nara'].includes(normCity(v3)); }
-// Filas de la matriz para un desfase dado
-function overlapRows(offset){
-    return V3_CITY.map(([date,v3])=>{
+// Filas de la matriz para un plan (V3_CITY o V4_CITY) y un desfase de AdeS dado
+function overlapRows(planArr,offset){
+    return planArr.map(([date,city])=>{
         const ad=adesOn(date,offset)||'—';
         let cls='sup-none',label='—';
-        if(isMatch(v3,ad)){cls='sup-match';label='✓ Encuentro';}
-        else if(isNear(v3,ad)){cls='sup-near';label='≈ Cercanía';}
-        return {date,v3,ad,cls,label};
+        if(isMatch(city,ad)){cls='sup-match';label='✓ Encuentro';}
+        else if(isNear(city,ad)){cls='sup-near';label='≈ Cercanía';}
+        return {date,v3:city,ad,cls,label};
     });
 }
-function overlapStats(offset){ let m=0,n=0; overlapRows(offset).forEach(r=>{ if(r.cls==='sup-match')m++; else if(r.cls==='sup-near')n++; }); return {m,n}; }
+function overlapStats(planArr,offset){ let m=0,n=0; overlapRows(planArr,offset).forEach(r=>{ if(r.cls==='sup-match')m++; else if(r.cls==='sup-near')n++; }); return {m,n}; }
 // Mejor desfase en ±range días (prioriza encuentros, luego cercanías)
-function bestOffset(range){ range=range||7; let best={off:0,m:-1,n:-1}; for(let o=-range;o<=range;o++){ const s=overlapStats(o); if(s.m>best.m||(s.m===best.m&&s.n>best.n)) best={off:o,m:s.m,n:s.n}; } return best; }
+function bestOffset(planArr,range){ range=range||7; let best={off:0,m:-1,n:-1}; for(let o=-range;o<=range;o++){ const s=overlapStats(planArr,o); if(s.m>best.m||(s.m===best.m&&s.n>best.n)) best={off:o,m:s.m,n:s.n}; } return best; }
