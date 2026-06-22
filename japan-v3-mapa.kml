@@ -74,10 +74,11 @@
     <Placemark><name>Kinkaku-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7292,35.0394,0</coordinates></Point></Placemark>
     <Placemark><name>Pontocho (cena)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7707,35.005,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 13 · Nov 8 · Kioto·Fushimi Inari→Uji</name>
+  <Folder><name>Día 13 · Nov 8 · Kioto·Fushimi → Nara</name>
     <Placemark><name>Fushimi Inari Taisha</name><styleUrl>#base</styleUrl><Point><coordinates>135.7727,34.9671,0</coordinates></Point></Placemark>
-    <Placemark><name>Byodo-in (Uji)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8076,34.8893,0</coordinates></Point></Placemark>
-    <Placemark><name>Ceremonia del té (Uji)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.807,34.891,0</coordinates></Point></Placemark>
+    <Placemark><name>Parque de Nara y venados Sika</name><styleUrl>#poi</styleUrl><Point><coordinates>135.843,34.6851,0</coordinates></Point></Placemark>
+    <Placemark><name>Templo Todai-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8398,34.689,0</coordinates></Point></Placemark>
+    <Placemark><name>Santuario Kasuga-Taisha</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8483,34.6817,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 14 · Nov 9 · Kioto·Kurama→Kibune</name>
     <Placemark><name>Kurama-dera</name><styleUrl>#base</styleUrl><Point><coordinates>135.77,35.1167,0</coordinates></Point></Placemark>

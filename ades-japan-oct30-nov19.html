@@ -195,6 +195,7 @@
 <section class="section" id="overlap">
     <h2 class="font-jp text-2xl font-black mb-2">🔀 Superposición: AdeS vs Plan v3 (otro grupo)</h2>
     <p class="text-xs text-kuro/50 mb-5">Cada fila es una fecha. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad (encuentro)</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región (cercanía)</span>.</p>
+    <div id="overlap-opt" class="mb-4"></div>
     <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
     <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto mb-6">
         <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro">
@@ -601,29 +602,36 @@ function renderMetrics(){
 }
 
 // ============ OVERLAP (AdeS vs v3) ============
-function renderOverlap(){   // datos compartidos en trip-data.js
-    let rows='',matches=0,nears=0;
-    V3_CITY.forEach(([date,v3])=>{
-        const ad=ADES_CITY[date]||"—";
-        let cls='sup-none',label='—';
-        if(ad!=="—"&&ad!=="viaje"&&ad!=="Medellín"){
-            if(normCity(ad)===normCity(v3)||(normCity(ad)==="Fuji"&&v3==="Kawaguchiko")){cls='sup-match';label='✓ Encuentro';matches++;}
-            else if(KANSAI.includes(normCity(ad))&&["Kioto","Osaka","Nara"].includes(normCity(v3))){cls='sup-near';label='≈ Cercanía';nears++;}
-        }
-        rows+=`<tr class="border-b border-haiiro/50">
-            <td class="py-2 pr-3 font-bold whitespace-nowrap">${date}</td>
-            <td class="px-2">${ad}</td>
-            <td class="px-2 text-kuro/60">${v3}</td>
-            <td class="px-2"><span class="sup-cell ${cls}">${label}</span></td>
-        </tr>`;
-    });
-    document.getElementById('overlap-table').innerHTML=rows;
-
-    const wins=OVERLAP_WINDOWS;
+let adesOffset=0;
+function setOffset(v){ if(v==='best')adesOffset=bestOffset(7).off; else if(v==='reset')adesOffset=0; else adesOffset=Math.max(-9,Math.min(9,adesOffset+v)); renderOverlap(); }
+function renderOverlap(){   // datos + lógica compartidos en trip-data.js
+    const off=adesOffset, data=overlapRows(off);
+    const matches=data.filter(r=>r.cls==='sup-match').length, nears=data.filter(r=>r.cls==='sup-near').length;
+    document.getElementById('overlap-table').innerHTML=data.map(r=>`<tr class="border-b border-haiiro/50">
+            <td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td>
+            <td class="px-2">${r.ad}</td>
+            <td class="px-2 text-kuro/60">${r.v3}</td>
+            <td class="px-2"><span class="sup-cell ${r.cls}">${r.label}</span></td>
+        </tr>`).join('');
+    const best=bestOffset(7), base=overlapStats(0);
+    const offTxt= off===0?'sin desfase':(off>0?`AdeS empieza ${off} día(s) DESPUÉS`:`AdeS empieza ${-off} día(s) ANTES`);
+    document.getElementById('overlap-opt').innerHTML=`
+      <div class="bg-white border border-haiiro rounded-xl p-4">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-bold text-sm">🎚️ Optimizador de desfase</span>
+          <button onclick="setOffset(-1)" class="bg-haiiro/60 px-2 py-1 rounded text-sm font-bold hover:bg-haiiro">−1 día</button>
+          <span class="text-sm px-1"><b>${off>0?'+':''}${off}</b> · ${offTxt}</span>
+          <button onclick="setOffset(1)" class="bg-haiiro/60 px-2 py-1 rounded text-sm font-bold hover:bg-haiiro">+1 día</button>
+          <button onclick="setOffset('reset')" class="text-xs text-aka underline ml-1">Reset</button>
+          <span class="ml-auto text-xs text-kuro/60">Con este desfase: <b class="text-midori">${matches}</b> encuentros · <b class="text-kin">${nears}</b> cercanías</span>
+        </div>
+        <p class="text-xs text-kuro/60 mt-2">💡 Mejor desfase en ±7 días: <b>${best.off>0?'+':''}${best.off}</b> → <b>${best.m}</b> encuentros, ${best.n} cercanías (hoy, sin desfase: ${base.m}/${base.n}). <button onclick="setOffset('best')" class="text-aka underline font-bold">Aplicar mejor</button></p>
+        <p class="text-[10px] text-kuro/40 mt-1">Explora qué pasaría si este grupo (AdeS) corriera todas sus fechas; no modifica el itinerario real.</p>
+      </div>`;
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${matches}</p><p class="text-xs text-white/60">días de encuentro directo (misma ciudad)</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nears}</p><p class="text-xs text-white/60">días de cercanía regional (Kansai)</p></div>`+
-        wins.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+        OVERLAP_WINDOWS.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
 }
 
 // ============ ROUTE LINKS ============

@@ -249,6 +249,7 @@
 <section class="section" id="overlap">
     <h2 class="font-jp text-2xl font-black mb-2">🔀 Superposición: este plan (v3) vs Plan AdeS</h2>
     <p class="text-xs text-kuro/50 mb-5">Cada fila es una fecha. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad (encuentro)</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región (cercanía)</span>.</p>
+    <div id="overlap-opt" class="mb-4"></div>
     <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
     <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto mb-6">
         <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro">
@@ -412,9 +413,9 @@ acts:[{n:"Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomiz
 am:"Bosque Bambú (madrugar). Tenryu-ji.",pm:"Kinkaku-ji al atardecer.",night:"Cena Pontocho junto al río.",food:"Okonomiyaki · Yudofu",transport:"JR Sagano+bus",costT:700,costF:4000,
 acts:[{n:"Bosque de Bambú Arashiyama",lat:35.0170,lng:135.6717,t:"nature",roi:5,w:"Arashiyama"},{n:"Tenryu-ji",lat:35.0159,lng:135.6738,t:"tradition",roi:4,w:"Tenryū-ji"},{n:"Kinkaku-ji",lat:35.0394,lng:135.7292,t:"tradition",roi:5,w:"Kinkaku-ji"},{n:"Pontocho (cena)",lat:35.0050,lng:135.7707,t:"local",roi:5}]},
 
-{day:13,date:"Nov 8",week:"w3",title:"Mil Toriis y Té",loc:"Kioto·Fushimi Inari→Uji",tags:["tradition"],mustDo:false,lodge:"Kioto",effort:4,luggage:false,laundry:true,transitMin:90,bufferP:15,contempl:35,
-am:"Fushimi Inari temprano. Subir montaña toriis.",pm:"Tren Uji: Byodo-in, ceremonia del té.",night:"Craft beer Kawaramachi.",food:"Parfait matcha · Soba de té",transport:"JR Nara Line",costT:500,costF:3500,
-acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Byodo-in (Uji)",lat:34.8893,lng:135.8076,t:"tradition",roi:4,w:"Byōdō-in"},{n:"Ceremonia del té (Uji)",lat:34.8910,lng:135.8070,t:"local",roi:4}]},
+{day:13,date:"Nov 8",week:"w3",title:"Mil Toriis y Venados de Nara",loc:"Kioto·Fushimi → Nara",tags:["tradition","nature"],mustDo:"Encuentro con grupo AdeS",lodge:"Kioto",effort:4,luggage:false,laundry:true,transitMin:120,bufferP:15,contempl:35,
+am:"Fushimi Inari muy temprano (subir los toriis antes del gentío).",pm:"JR Nara Line a Nara (mismo día que AdeS): Todai-ji, venados Sika, Kasuga-Taisha. 🤝 Punto de encuentro con el otro grupo.",night:"Regreso a Kioto. Craft beer en Kawaramachi.",food:"Parfait matcha · Kakinoha-zushi (Nara)",transport:"JR Nara Line",costT:1200,costF:3500,
+acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Parque de Nara y venados Sika",lat:34.6851,lng:135.8430,t:"nature",roi:5,w:"Nara_Park"},{n:"Templo Todai-ji",lat:34.6890,lng:135.8398,t:"tradition",roi:5,w:"Tōdai-ji"},{n:"Santuario Kasuga-Taisha",lat:34.6817,lng:135.8483,t:"tradition",roi:4,w:"Kasuga-taisha"}]},
 
 {day:14,date:"Nov 9",week:"w3",title:"Kioto Oculto",loc:"Kioto·Kurama→Kibune",tags:["nature","adventure"],mustDo:false,lodge:"Kioto",effort:4,luggage:false,laundry:false,transitMin:90,bufferP:20,contempl:55,
 am:"Eizan a Kurama. Senderismo→Kibune.",pm:"Onsen natural Kurama. Musgo, arces.",night:"Preparar para Osaka.",food:"Kawadoko (río) · Shojin ryori",transport:"Eizan train",costT:800,costF:3500,
@@ -661,23 +662,31 @@ function renderMetrics(){
 }
 
 // ============ OVERLAP (v3 vs AdeS) — datos en trip-data.js ============
+let adesOffset=0;
+function setOffset(v){ if(v==='best')adesOffset=bestOffset(7).off; else if(v==='reset')adesOffset=0; else adesOffset=Math.max(-9,Math.min(9,adesOffset+v)); renderOverlap(); }
 function renderOverlap(){
-    let rows='',matches=0,nears=0;
-    V3_CITY.forEach(([date,v3])=>{
-        const ad=ADES_CITY[date]||"—";
-        let cls='sup-none',label='—';
-        if(ad!=="—"&&ad!=="viaje"&&ad!=="Medellín"){
-            if(normCity(ad)===normCity(v3)||(normCity(ad)==="Fuji"&&v3==="Kawaguchiko")){cls='sup-match';label='✓ Encuentro';matches++;}
-            else if(KANSAI.includes(normCity(ad))&&["Kioto","Osaka","Nara"].includes(normCity(v3))){cls='sup-near';label='≈ Cercanía';nears++;}
-        }
-        rows+=`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${date}</td><td class="px-2">${v3}</td><td class="px-2 text-kuro/60">${ad}</td><td class="px-2"><span class="sup-cell ${cls}">${label}</span></td></tr>`;
-    });
-    document.getElementById('overlap-table').innerHTML=rows;
-    const wins=OVERLAP_WINDOWS;
+    const off=adesOffset, data=overlapRows(off);
+    const matches=data.filter(r=>r.cls==='sup-match').length, nears=data.filter(r=>r.cls==='sup-near').length;
+    document.getElementById('overlap-table').innerHTML=data.map(r=>`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td><td class="px-2">${r.v3}</td><td class="px-2 text-kuro/60">${r.ad}</td><td class="px-2"><span class="sup-cell ${r.cls}">${r.label}</span></td></tr>`).join('');
+    const best=bestOffset(7), base=overlapStats(0);
+    const offTxt= off===0?'sin desfase':(off>0?`AdeS empieza ${off} día(s) DESPUÉS`:`AdeS empieza ${-off} día(s) ANTES`);
+    document.getElementById('overlap-opt').innerHTML=`
+      <div class="bg-white border border-haiiro rounded-xl p-4">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-bold text-sm">🎚️ Optimizador de desfase</span>
+          <button onclick="setOffset(-1)" class="bg-haiiro/60 px-2 py-1 rounded text-sm font-bold hover:bg-haiiro">−1 día</button>
+          <span class="text-sm px-1"><b>${off>0?'+':''}${off}</b> · ${offTxt}</span>
+          <button onclick="setOffset(1)" class="bg-haiiro/60 px-2 py-1 rounded text-sm font-bold hover:bg-haiiro">+1 día</button>
+          <button onclick="setOffset('reset')" class="text-xs text-aka underline ml-1">Reset</button>
+          <span class="ml-auto text-xs text-kuro/60">Con este desfase: <b class="text-midori">${matches}</b> encuentros · <b class="text-kin">${nears}</b> cercanías</span>
+        </div>
+        <p class="text-xs text-kuro/60 mt-2">💡 Mejor desfase en ±7 días: <b>${best.off>0?'+':''}${best.off}</b> → <b>${best.m}</b> encuentros, ${best.n} cercanías (hoy, sin desfase: ${base.m}/${base.n}). <button onclick="setOffset('best')" class="text-aka underline font-bold">Aplicar mejor</button></p>
+        <p class="text-[10px] text-kuro/40 mt-1">Explora qué pasaría si el grupo AdeS corriera todas sus fechas; no modifica el itinerario real.</p>
+      </div>`;
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${matches}</p><p class="text-xs text-white/60">días de encuentro directo (misma ciudad)</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nears}</p><p class="text-xs text-white/60">días de cercanía regional (Kansai)</p></div>`+
-        wins.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+        OVERLAP_WINDOWS.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
 }
 
 // ============ CRITIQUE ============
@@ -783,7 +792,7 @@ const BASES=[
 ];
 const EXC=[{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},
  {lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli Park"},{lat:36.238,lng:137.972,n:"Matsumoto"},
- {lat:34.690,lng:135.1955,n:"Kobe"}];
+ {lat:34.690,lng:135.1955,n:"Kobe"},{lat:34.685,lng:135.843,n:"Nara"}];
 let map,animLine,animMarker;
 function initMap(){
     map=L.map('route-map',{scrollWheelZoom:false}).setView([35.5,136.5],6);
