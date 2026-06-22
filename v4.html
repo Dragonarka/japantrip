@@ -639,9 +639,18 @@ function toggleDay(trigger,day){
         else setTimeout(()=>dayMaps[day].invalidateSize(),260);
     }
 }
+// Mantiene solo el clúster intra-ciudad (más denso); en empate prefiere el destino (último)
+function intraCity(pts){
+    if(pts.length<=1)return pts;
+    const R=20; let best=null,bestN=-1,bestIdx=-1;
+    pts.forEach((p,idx)=>{const set=pts.filter(q=>hav(p,q)<=R);
+        if(set.length>bestN||(set.length===bestN&&idx>bestIdx)){bestN=set.length;best=set;bestIdx=idx;}});
+    return best;
+}
 function initDayMap(day){
     const d=DAYS.find(x=>x.day===day); if(!d)return;
-    const pts=(d.acts||[]).filter(a=>a.lat&&a.t!=='transit'); if(!pts.length)return;
+    const all=(d.acts||[]).filter(a=>a.lat&&a.t!=='transit'); if(!all.length)return;
+    const pts=intraCity(all);
     const el=document.getElementById('minimap-'+day); if(!el||dayMaps[day])return;
     const m=L.map(el,{scrollWheelZoom:false,attributionControl:false});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(m);
