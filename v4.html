@@ -84,6 +84,7 @@
         <button class="week-tab" data-week="w4">S4·Tokio final</button>
         <button class="week-tab" data-week="joint">🤝 Interacciones</button>
         <button class="week-tab" data-week="lodging">🛏️ Hospedaje</button>
+        <button class="week-tab" data-week="connect">🚆 Conectividad</button>
         <button class="week-tab" data-week="costs">💰 Costos</button>
         <button class="week-tab" data-week="metrics">📊 Indicadores</button>
         <button class="week-tab" data-week="overlap">🔀 Superposición</button>
@@ -136,6 +137,11 @@
             </div>
         </div>
     </div>
+    <div class="grid md:grid-cols-3 gap-4 mt-6">
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🍁 Clima & Momiji</h3><p class="text-xs text-kuro/70">8–20 °C. Momiji: Nikko/Fuji (fin oct), Kioto/Kanto (med nov). Capas + chaqueta ligera.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">📶 Conectividad</h3><p class="text-xs text-kuro/70">Pocket Wi-Fi compartido para los 5 + IC card (Suica/ICOCA). Detalles y trayectos en la pestaña <b>🚆 Conectividad</b>.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🧳 Equipaje ligero</h3><p class="text-xs text-kuro/70">Takkyubin para enviar maletas entre bases (Fuji→Kioto, Osaka→Tokio) y moverse sin peso los días de traslado.</p></div>
+    </div>
 </section>
 
 <section class="section" id="w1"></section>
@@ -153,6 +159,23 @@
     <h2 class="font-jp text-2xl font-black mb-2">🛏️ Hospedaje óptimo · mínimo desplazamiento</h2>
     <p class="text-xs text-kuro/50 mb-4">Para cada base, el sistema analiza las coordenadas de tus actividades de esos días y calcula el <b>barrio más céntrico</b> (menor distancia media a todo lo que harás). Los botones abren búsquedas <b>en vivo para 5 huéspedes en tus fechas reales</b> — comparas precio tú mismo y eliges lo más económico (Airbnb entero suele ganar para 5). No hay precios fijos aquí: las cifras son rangos típicos por persona/noche.</p>
     <div id="lodging-list" class="space-y-4"></div>
+</section>
+
+<section class="section" id="connect">
+    <h2 class="font-jp text-2xl font-black mb-2">🚆 Conectividad & Logística</h2>
+    <p class="text-xs text-kuro/50 mb-4">Cómo te mueves entre bases y los esenciales para un grupo de 5. Cada trayecto tiene su enlace de ruta en Google Maps.</p>
+    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto mb-6">
+        <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Trayecto</th><th class="px-2">Modo</th><th class="px-2">Tiempo</th><th class="px-2">Costo aprox.</th><th class="px-2">Ruta</th></tr></thead><tbody id="legs-table"></tbody></table>
+    </div>
+    <h3 class="font-jp text-lg font-bold mb-3">Esenciales de conectividad</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">📶 Internet (grupo de 5)</h4><p class="text-xs text-kuro/70">1–2 <b>Pocket Wi-Fi</b> compartidos (~¥600–900/día c/u; mejor relación para varios) + 1–2 <b>eSIM</b> (Ubigi/Airalo, $15–30) de respaldo. Recoger el router en el aeropuerto.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🎫 Tarjeta IC</h4><p class="text-xs text-kuro/70"><b>Suica/PASMO</b> (Kanto) o <b>ICOCA</b> (Kansai) sirven en todo Japón para metro/bus/konbini. En iPhone va dentro de Apple Wallet (recarga con tarjeta).</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🧳 Takkyubin (maletas)</h4><p class="text-xs text-kuro/70">Envía maletas entre bases (Fuji→Kioto, Osaka→Tokio) con Yamato, ~¥2.000/maleta, llegan al día siguiente. Viaja ligero los días de traslado largo (D9, D11, D13).</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🚄 Trenes y pases</h4><p class="text-xs text-kuro/70"><b>SmartEX</b> para Shinkansen; reserva asiento en JR Hida y Ltd Express. Evalúa <b>Kansai-WIDE</b> (Kinosaki) y JR Pass 7d solo si conviene para Koyasan→Tokio.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🔌 Energía</h4><p class="text-xs text-kuro/70">Enchufe <b>tipo A</b> (igual que Colombia), 100 V. Máx 2 power banks por persona en el avión; lleva una regleta para cargar 5 teléfonos en el Airbnb.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🗺️ Apps</h4><p class="text-xs text-kuro/70">Google Maps (descarga offline de cada ciudad), Japan Travel by NAVITIME (rutas de tren), Google Translate (cámara), Splitwise (gastos del grupo).</p></div>
+    </div>
 </section>
 
 <section class="section" id="costs">
@@ -206,6 +229,54 @@ function wikiLink(t){return 'https://en.wikipedia.org/wiki/'+t;}
 function ytLink(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' historia documental');}
 
 const IMG='https://upload.wikimedia.org/wikipedia/commons/thumb/';
+// Imágenes por POI (para galería "La zona"). URLs Wikimedia verificadas.
+const POI_IMG={
+ "Kabukicho":IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
+ "Templo Senso-ji":IMG+"4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg",
+ "Sumo inflable (Ryogoku)":IMG+"c/c2/Ryogoku_Great_Sumo_Hall.jpg/500px-Ryogoku_Great_Sumo_Hall.jpg",
+ "Akihabara":IMG+"6/60/Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png/960px-Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png",
+ "Nikko Toshogu":IMG+"2/26/200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg/960px-200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg",
+ "Lago Chuzenji":IMG+"8/8a/Mount_nantai_and_lake_chuzenji.jpg/330px-Mount_nantai_and_lake_chuzenji.jpg",
+ "Cascada Kegon":IMG+"8/8a/Lake_chuzenji_and_kegon_waterfall.jpg/330px-Lake_chuzenji_and_kegon_waterfall.jpg",
+ "Meiji Jingu":IMG+"8/8b/Meiji_Jingu_2023-3.jpg/960px-Meiji_Jingu_2023-3.jpg",
+ "Shibuya / Hachiko":IMG+"8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg",
+ "Shibuya":IMG+"8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg",
+ "Daibutsu (Kotoku-in)":IMG+"c/cf/230128_Kamakura_Daibutsu_Japan04s3.jpg/960px-230128_Kamakura_Daibutsu_Japan04s3.jpg",
+ "Hasedera":IMG+"0/0b/HasederaKannondo20120716.jpg/330px-HasederaKannondo20120716.jpg",
+ "Enoshima":IMG+"8/83/EnoshimaAeralPhoto1988JP14.jpg/330px-EnoshimaAeralPhoto1988JP14.jpg",
+ "Tokyo Drift · Rainbow Bridge":IMG+"c/c1/Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg/960px-Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg",
+ "Lago Kawaguchi":IMG+"1/18/KawaguchiKo.jpg/960px-KawaguchiKo.jpg",
+ "Pagoda Chureito":IMG+"6/66/Chuurei-tou_Fujiyoshida_17025277650_c59733d6ba_o.jpg/960px-Chuurei-tou_Fujiyoshida_17025277650_c59733d6ba_o.jpg",
+ "Magome-juku":IMG+"d/dc/1_magome_juku_2024.jpg/330px-1_magome_juku_2024.jpg",
+ "Tsumago-juku":IMG+"5/50/1_tsumago_juku_2024.jpg/960px-1_tsumago_juku_2024.jpg",
+ "Shirakawa-go":IMG+"e/e6/Ogi_Shirakawa-g%C5%8D%2C_Gifu%2C_Japan.jpg/960px-Ogi_Shirakawa-g%C5%8D%2C_Gifu%2C_Japan.jpg",
+ "Ghibli Park":IMG+"4/48/Linimo_train_advertising_Ghibli_Park_at_Yakusa_Station.jpg/960px-Linimo_train_advertising_Ghibli_Park_at_Yakusa_Station.jpg",
+ "Pontocho (Kioto)":IMG+"6/68/Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg/330px-Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg",
+ "Fushimi Inari Taisha":IMG+"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
+ "Bambú de Arashiyama":IMG+"d/de/Arashiyama_013.jpg/330px-Arashiyama_013.jpg",
+ "Kinkaku-ji":IMG+"0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/960px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg",
+ "Templo Todai-ji":IMG+"2/2f/T%C5%8Ddai-ji_Kon-d%C5%8D.jpg/960px-T%C5%8Ddai-ji_Kon-d%C5%8D.jpg",
+ "Parque de Nara (venados)":IMG+"2/2f/T%C5%8Ddai-ji_Kon-d%C5%8D.jpg/960px-T%C5%8Ddai-ji_Kon-d%C5%8D.jpg",
+ "Kasuga-Taisha":IMG+"0/0d/Kasuga-taisha11bs3200.jpg/330px-Kasuga-taisha11bs3200.jpg",
+ "Castillo de Osaka":IMG+"c/ca/Osaka_Castle_03bs3200.jpg/960px-Osaka_Castle_03bs3200.jpg",
+ "Dotonbori":IMG+"4/47/Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg/960px-Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg",
+ "Shinsekai":IMG+"9/95/Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg/330px-Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg",
+ "Universal Studios Japan":IMG+"b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg/960px-Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg",
+ "Kinosaki Onsen (7 baños)":IMG+"3/35/Kinosaki_Onsen_by_day.jpg/960px-Kinosaki_Onsen_by_day.jpg",
+ "Okunoin (Koyasan)":IMG+"a/ad/Gobyoubasi.jpg/960px-Gobyoubasi.jpg",
+ "Golden Gai":IMG+"8/8d/G2_Street_20090626_2.jpg/960px-G2_Street_20090626_2.jpg",
+ "Shinjuku Gyoen":IMG+"9/9d/Shinjuku_Gyoen_National_Garden_-_sakura_3.JPG/960px-Shinjuku_Gyoen_National_Garden_-_sakura_3.JPG",
+ "Ginza":IMG+"5/5b/Ginza-WAKO_at_night.jpg/960px-Ginza-WAKO_at_night.jpg",
+ "Ginza (omakase)":IMG+"5/5b/Ginza-WAKO_at_night.jpg/960px-Ginza-WAKO_at_night.jpg",
+ "Tsukiji (exterior)":IMG+"2/21/Tsukiji_2015.jpg/330px-Tsukiji_2015.jpg",
+ "Harajuku y Omotesando":IMG+"b/bd/JRE-Harajuku-Station-07.jpg/330px-JRE-Harajuku-Station-07.jpg",
+};
+function galleryHtml(d){
+    const urls=[d.img];(d.acts||[]).forEach(a=>{const u=POI_IMG[a.n];if(u&&!urls.includes(u))urls.push(u);});
+    const g=urls.slice(0,5);
+    if(g.length<2)return '';
+    return `<div class="mb-3"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">📸 La zona (${g.length})</p><div class="flex gap-2 overflow-x-auto pb-1">${g.map(u=>`<a href="${u}" target="_blank"><img loading="lazy" src="${u}" class="h-24 w-36 object-cover rounded-lg border border-haiiro shrink-0"></a>`).join('')}</div></div>`;
+}
 // DAYS V4 — joint:true marca días con el grupo AdeS (mismo ciudad)
 const DAYS=[
 {day:1,date:"Oct 27",dow:"Lun",week:"w1",title:"Llegada y Neón",loc:"Tokio·Shinjuku",lodge:"Shinjuku",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:30,contempl:25,joint:false,
@@ -372,6 +443,7 @@ function renderWeek(wk){
             </div>
             <div class="day-detail border-t border-haiiro"><div class="p-4">
                 ${jointBox}
+                ${galleryHtml(d)}
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="space-y-2">
                         <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌅 Mañana</p><p class="text-sm text-kuro/80">${d.am}</p></div>
@@ -521,6 +593,30 @@ function renderLodging(){
     }).join('');
 }
 
+// ===== CONECTIVIDAD (trayectos entre bases) =====
+const LEGS=[
+ {f:'Aeropuerto',t:'Tokio (Shinjuku)',m:"Narita Express / Keisei",d:'60–90 min',y:3250,a:[35.7720,140.3929],b:[35.6896,139.7006]},
+ {f:'Tokio',t:'Nikko (ida/vuelta)',m:'Tobu Ltd Express',d:'~2 h c/u',y:4780,a:[35.6896,139.7006],b:[36.7580,139.5989]},
+ {f:'Tokio',t:'Kamakura / Enoshima',m:'JR + Enoden',d:'~1 h',y:1640,a:[35.6896,139.7006],b:[35.3169,139.5358]},
+ {f:'Tokio',t:'Kawaguchiko (Fuji)',m:'Bus expreso Fujikyu',d:'~1 h 45',y:1900,a:[35.6896,139.7006],b:[35.5018,138.7660]},
+ {f:'Fuji',t:'Takayama (vía Matsumoto + Nakasendo)',m:'Tren + bus (día completo)',d:'~6–7 h con paradas',y:9000,a:[35.5018,138.7660],b:[36.1461,137.2524]},
+ {f:'Takayama',t:'Shirakawa-go (ida/vuelta)',m:'Nohi Bus',d:'~50 min c/u',y:4600,a:[36.1461,137.2524],b:[36.2580,136.9060]},
+ {f:'Takayama',t:'Kioto (vía Nagoya/Ghibli)',m:'JR Hida + Shinkansen',d:'~4 h (+Ghibli)',y:11000,a:[36.1461,137.2524],b:[35.0116,135.7681]},
+ {f:'Kioto',t:'Nara (ida/vuelta)',m:'JR Nara Line',d:'~45 min c/u',y:1400,a:[35.0116,135.7681],b:[34.6851,135.8430]},
+ {f:'Kioto',t:'Osaka (Namba)',m:'JR / Keihan',d:'~30–45 min',y:580,a:[35.0116,135.7681],b:[34.6660,135.5020]},
+ {f:'Osaka',t:'USJ (ida/vuelta)',m:'JR Yumesaki',d:'~15 min c/u',y:400,a:[34.6660,135.5020],b:[34.6654,135.4323]},
+ {f:'Osaka',t:'Kinosaki Onsen',m:'Ltd Express Kounotori',d:'~2 h 40',y:5300,a:[34.6660,135.5020],b:[35.6258,134.8097]},
+ {f:'Kinosaki',t:'Koyasan (vía Osaka)',m:'Tren + Nankai + funicular',d:'~4–5 h',y:6000,a:[35.6258,134.8097],b:[34.2130,135.5830]},
+ {f:'Koyasan',t:'Tokio (Shinjuku)',m:'Nankai + Shinkansen',d:'~4 h',y:16000,a:[34.2130,135.5830],b:[35.6896,139.7006]},
+ {f:'Tokio',t:'Aeropuerto',m:'Narita Express',d:'~60 min',y:3250,a:[35.6896,139.7006],b:[35.7720,140.3929]},
+];
+function renderConnectivity(){
+    document.getElementById('legs-table').innerHTML=LEGS.map(L=>{
+        const dir=`https://www.google.com/maps/dir/?api=1&origin=${L.a[0]},${L.a[1]}&destination=${L.b[0]},${L.b[1]}&travelmode=transit`;
+        return `<tr class="border-b border-haiiro/50"><td class="py-2 pr-3"><b>${L.f}</b> → ${L.t}</td><td class="px-2 text-kuro/70">${L.m}</td><td class="px-2 whitespace-nowrap">${L.d}</td><td class="px-2 whitespace-nowrap"><span class="tooltip-usd text-kin font-bold" data-usd="${usdTip(L.y)}">¥${L.y.toLocaleString()}</span></td><td class="px-2"><a href="${dir}" target="_blank" class="text-aka underline">ruta↗</a></td></tr>`;
+    }).join('');
+}
+
 // ===== MAP =====
 const BASES=[{lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–7, D18–25"},{lat:35.5018,lng:138.7660,name:"Kawaguchiko",d:"D8"},{lat:36.1461,lng:137.2524,name:"Takayama",d:"D9–10"},{lat:35.0116,lng:135.7681,name:"Kioto",d:"D11–13"},{lat:34.6687,lng:135.5032,name:"Osaka",d:"D14–15"},{lat:35.6282,lng:134.8127,name:"Kinosaki",d:"D16"},{lat:34.2130,lng:135.5830,name:"Koyasan",d:"D17"}];
 const EXC=[{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},{lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli"},{lat:34.685,lng:135.843,n:"Nara"},{lat:34.665,lng:135.432,n:"USJ"}];
@@ -529,7 +625,7 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.8,137],6);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OSM © CARTO',maxZoom:18}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderJoint();renderLodging();renderCosts();renderMetrics();renderOverlap();}
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderJoint();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();}
 renderAll(); loadRates();
 document.querySelectorAll('.week-tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.getElementById(tab.dataset.week).classList.add('visible');window.scrollTo({top:200,behavior:'smooth'});}));
 let mapReady=false;
