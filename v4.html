@@ -56,6 +56,11 @@
         .hist-link{text-decoration:none;font-size:.7rem;margin-left:4px}
         .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}.meter>div{height:100%;border-radius:5px}
         #fx-banner{font-size:.7rem}
+        .minimap{height:200px;border-radius:10px;margin-top:6px;position:relative;z-index:0}
+        .gthumb{cursor:zoom-in;transition:transform .15s}.gthumb:hover{transform:scale(1.03)}
+        #lightbox{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out;padding:20px}
+        #lightbox.open{display:flex}
+        #lightbox img{max-width:95%;max-height:90%;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
         .sup-cell{font-size:.7rem;padding:6px 8px;border-radius:6px;text-align:center;font-weight:600;display:inline-block}
         .sup-match{background:#1A6B4A;color:#fff}.sup-near{background:#C5982A;color:#fff}.sup-none{background:#F1EEE8;color:#999}
         @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}}
@@ -214,6 +219,8 @@
 </main>
 <footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan V4 · 27 Oct – 20 Nov 2026 · 5 viajeros · Estimado — verificar horarios y reservas. <a href="index.html" class="underline">v3</a> · <a href="ades-japan-oct30-nov19.html" class="underline">AdeS</a></footer>
 
+<div id="lightbox" onclick="closeLightbox()"><button onclick="closeLightbox()" style="position:absolute;top:16px;right:22px;color:#fff;font-size:30px;background:none;border:none;cursor:pointer">✕</button><img id="lightbox-img" src="" alt=""></div>
+
 <script src="trip-data.js"></script>
 <script>
 // ===== FX en vivo =====
@@ -275,7 +282,7 @@ function galleryHtml(d){
     const urls=[d.img];(d.acts||[]).forEach(a=>{const u=POI_IMG[a.n];if(u&&!urls.includes(u))urls.push(u);});
     const g=urls.slice(0,5);
     if(g.length<2)return '';
-    return `<div class="mb-3"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">📸 La zona (${g.length})</p><div class="flex gap-2 overflow-x-auto pb-1">${g.map(u=>`<a href="${u}" target="_blank"><img loading="lazy" src="${u}" class="h-24 w-36 object-cover rounded-lg border border-haiiro shrink-0"></a>`).join('')}</div></div>`;
+    return `<div class="mb-3"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">📸 La zona (${g.length}) · clic para ampliar</p><div class="flex gap-2 overflow-x-auto pb-1">${g.map(u=>`<img loading="lazy" src="${u}" onclick="openLightbox('${u}')" class="gthumb h-24 w-36 object-cover rounded-lg border border-haiiro shrink-0">`).join('')}</div></div>`;
 }
 // DAYS V4 — joint:true marca días con el grupo AdeS (mismo ciudad)
 const DAYS=[
@@ -419,7 +426,7 @@ function renderWeek(wk){
         w4:{t:'Semana 4 · Tokio Final',d:'15 – 20 nov. Recta final con AdeS y despedida.'}}[wk];
     let html=`<div class="mb-8"><h2 class="font-jp text-2xl md:text-3xl font-black mb-1">${meta.t}</h2><p class="text-sm text-kuro/60">${meta.d}</p></div>`;
     DAYS.filter(d=>d.week===wk).forEach(d=>{
-        const ef=d.effort,dens=mainActs(d).length;
+        const ef=d.effort,dens=mainActs(d).length,hasPts=mainActs(d).filter(a=>a.lat).length>0;
         const tagTypes=[...new Set(d.acts.map(a=>a.t).filter(t=>t!=='transit'))];
         const tagHtml=tagTypes.slice(0,3).map(t=>`<span class="tag tag-${t}">${TYPE_LABELS[t]}</span>`).join(' ');
         const jb=d.joint?`<span class="joint-badge">🤝 Con AdeS</span>`:'';
@@ -429,7 +436,7 @@ function renderWeek(wk){
             return `<li class="flex items-start gap-2 py-1 ${isT?'opacity-60':''}"><span class="text-xs mt-0.5">${isT?'🚆':'📍'}</span><span class="text-sm text-kuro/80 flex-1">${a.n}${!isT?` <a class="gps-link" href="${gmapsPt(a.lat,a.lng)}" target="_blank">GPS↗</a>`:''}${hist}</span><span class="tag tag-${a.t} shrink-0">${(TYPE_LABELS[a.t]||a.t).split(' ')[0]}</span></li>`;}).join('');
         const jointBox=d.joint?`<div class="bg-midori/10 border border-midori/30 rounded-lg p-3 mb-2"><p class="text-sm text-midori font-bold">${d.jointText}</p></div>`:'';
         html+=`<div class="day-card bg-white border ${d.joint?'border-midori/40':'border-haiiro'} rounded-xl mb-3 hover:shadow-md transition-shadow">
-            <div class="cursor-pointer select-none" onclick="this.parentElement.classList.toggle('open')">
+            <div class="cursor-pointer select-none" onclick="toggleDay(this,${d.day})">
                 <img class="day-hero" loading="lazy" src="${d.img}" alt="${d.title}">
                 <div class="flex items-center justify-between p-4">
                     <div class="flex items-center gap-3 min-w-0">
@@ -451,6 +458,7 @@ function renderWeek(wk){
                         <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌙 Noche</p><p class="text-sm text-kuro/80">${d.night}</p></div>
                         <p class="text-xs font-bold text-kuro/40 uppercase mt-2 mb-1">📍 Lugares · GPS · 📖🎬</p><ul class="divide-y divide-haiiro/60">${actsHtml}</ul>
                         <a href="${gmapsRoute(d.acts)}" target="_blank" class="inline-block mt-2 bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🧭 Recorrido del día</a>
+                        ${hasPts?`<div class="mt-3"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">🗺️ Mapa del día</p><div id="minimap-${d.day}" class="minimap"></div></div>`:''}
                     </div>
                     <div class="space-y-3">
                         <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🚆 Transporte · <span class="tooltip-usd text-kin" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.transport} · ${d.transitMin} min</p></div>
@@ -615,6 +623,35 @@ function renderConnectivity(){
         const dir=`https://www.google.com/maps/dir/?api=1&origin=${L.a[0]},${L.a[1]}&destination=${L.b[0]},${L.b[1]}&travelmode=transit`;
         return `<tr class="border-b border-haiiro/50"><td class="py-2 pr-3"><b>${L.f}</b> → ${L.t}</td><td class="px-2 text-kuro/70">${L.m}</td><td class="px-2 whitespace-nowrap">${L.d}</td><td class="px-2 whitespace-nowrap"><span class="tooltip-usd text-kin font-bold" data-usd="${usdTip(L.y)}">¥${L.y.toLocaleString()}</span></td><td class="px-2"><a href="${dir}" target="_blank" class="text-aka underline">ruta↗</a></td></tr>`;
     }).join('');
+}
+
+// ===== LIGHTBOX =====
+function openLightbox(u){const lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=u;lb.classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+// ===== MINI-MAPA POR DÍA (lazy) =====
+const dayMaps={};
+function toggleDay(trigger,day){
+    const card=trigger.parentElement; card.classList.toggle('open');
+    if(card.classList.contains('open')){
+        if(!dayMaps[day]) setTimeout(()=>initDayMap(day),260);
+        else setTimeout(()=>dayMaps[day].invalidateSize(),260);
+    }
+}
+function initDayMap(day){
+    const d=DAYS.find(x=>x.day===day); if(!d)return;
+    const pts=(d.acts||[]).filter(a=>a.lat&&a.t!=='transit'); if(!pts.length)return;
+    const el=document.getElementById('minimap-'+day); if(!el||dayMaps[day])return;
+    const m=L.map(el,{scrollWheelZoom:false,attributionControl:false});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(m);
+    const ll=[];
+    pts.forEach((p,i)=>{ ll.push([p.lat,p.lng]);
+        L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:`<div style="background:#C0392B;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)">${i+1}</div>`,iconSize:[22,22],iconAnchor:[11,11]})}).bindPopup(`${i+1}. ${p.n}`).addTo(m); });
+    if(ll.length>1){ L.polyline(ll,{color:'#C0392B',weight:2,opacity:.55,dashArray:'4,6'}).addTo(m); m.fitBounds(ll,{padding:[28,28]}); }
+    else m.setView(ll[0],14);
+    dayMaps[day]=m;
+    setTimeout(()=>m.invalidateSize(),120);
 }
 
 // ===== MAP =====
