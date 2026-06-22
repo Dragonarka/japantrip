@@ -83,6 +83,7 @@
         <button class="week-tab" data-week="w3">S3·Kansai/Montañas</button>
         <button class="week-tab" data-week="w4">S4·Tokio final</button>
         <button class="week-tab" data-week="joint">🤝 Interacciones</button>
+        <button class="week-tab" data-week="lodging">🛏️ Hospedaje</button>
         <button class="week-tab" data-week="costs">💰 Costos</button>
         <button class="week-tab" data-week="metrics">📊 Indicadores</button>
         <button class="week-tab" data-week="overlap">🔀 Superposición</button>
@@ -146,6 +147,12 @@
     <h2 class="font-jp text-2xl font-black mb-2">🤝 Interacciones con el grupo AdeS</h2>
     <p class="text-xs text-kuro/50 mb-6">Días en que ambos grupos están en la misma ciudad y pueden hacer cosas juntos.</p>
     <div id="joint-list" class="space-y-3"></div>
+</section>
+
+<section class="section" id="lodging">
+    <h2 class="font-jp text-2xl font-black mb-2">🛏️ Hospedaje óptimo · mínimo desplazamiento</h2>
+    <p class="text-xs text-kuro/50 mb-4">Para cada base, el sistema analiza las coordenadas de tus actividades de esos días y calcula el <b>barrio más céntrico</b> (menor distancia media a todo lo que harás). Los botones abren búsquedas <b>en vivo para 5 huéspedes en tus fechas reales</b> — comparas precio tú mismo y eliges lo más económico (Airbnb entero suele ganar para 5). No hay precios fijos aquí: las cifras son rangos típicos por persona/noche.</p>
+    <div id="lodging-list" class="space-y-4"></div>
 </section>
 
 <section class="section" id="costs">
@@ -454,6 +461,66 @@ function renderOverlap(){
         .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
 }
 
+// ===== HOSPEDAJE ÓPTIMO (mínimo desplazamiento) =====
+const LODGING=[
+ {city:'Tokio · 1ª etapa',nights:7,checkin:'2026-10-27',checkout:'2026-11-03',area:'Shinjuku, Tokyo',adults:5,poiDays:[1,2,4,5,7],
+  candidates:[{n:'Shinjuku',lat:35.690,lng:139.700},{n:'Ueno / Asakusa',lat:35.710,lng:139.785},{n:'Tokyo / Nihonbashi',lat:35.681,lng:139.767},{n:'Shibuya',lat:35.659,lng:139.701}],
+  pp:'5.000–9.000',type:'Airbnb entero (2–3 hab) suele ser lo más barato para 5; alternativa: 2 habitaciones triples en business hotel. Excluye los day-trips a Nikko/Kamakura del cálculo.'},
+ {city:'Fujikawaguchiko',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,
+  fixed:{n:'Orilla este del Lago Kawaguchi',lat:35.5018,lng:138.7660},pp:'18.000–35.000',type:'Ryokan con onsen + kaiseki y vista al Fuji (el lujo del viaje). Reservar directo / Rakuten Travel / Booking.'},
+ {city:'Takayama',nights:2,checkin:'2026-11-04',checkout:'2026-11-06',area:'Takayama Station, Gifu',adults:5,
+  fixed:{n:'Cerca de la estación / Sanmachi',lat:36.1408,lng:137.2530},pp:'6.000–12.000',type:'Base para Nakasendo y Shirakawa-go (excursiones). Guesthouse u hotel local cerca de la estación de buses.'},
+ {city:'Kioto',nights:3,checkin:'2026-11-06',checkout:'2026-11-09',area:'Kawaramachi, Kyoto',adults:5,poiDays:[12],
+  candidates:[{n:'Kawaramachi / Centro',lat:35.004,lng:135.768},{n:'Estación de Kioto',lat:34.986,lng:135.759},{n:'Gion / Higashiyama',lat:35.003,lng:135.778}],
+  pp:'8.000–16.000',type:'Machiya o Airbnb entero para 5; central para Gion/Pontocho a pie y trenes a Fushimi/Arashiyama/Nara. (Nara es day-trip, no cuenta en el cálculo.)'},
+ {city:'Osaka',nights:2,checkin:'2026-11-09',checkout:'2026-11-11',area:'Namba, Osaka',adults:5,poiDays:[14],
+  candidates:[{n:'Namba',lat:34.666,lng:135.502},{n:'Umeda',lat:34.702,lng:135.496},{n:'Tennoji',lat:34.646,lng:135.513}],
+  pp:'7.000–14.000',type:'Namba: Dotonbori a pie, JR directo a USJ, Nankai al aeropuerto. Airbnb u hotel local.'},
+ {city:'Kinosaki Onsen',nights:1,checkin:'2026-11-11',checkout:'2026-11-12',area:'Kinosaki Onsen, Toyooka',adults:5,
+  fixed:{n:'Pueblo de onsen',lat:35.6258,lng:134.8097},pp:'18.000–30.000',type:'Ryokan en el pueblo (yukata + 7 baños públicos + cangrejo). Tattoo-friendly.'},
+ {city:'Koyasan',nights:1,checkin:'2026-11-12',checkout:'2026-11-13',area:'Koyasan, Wakayama',adults:5,
+  fixed:{n:'Templos centrales (Okunoin)',lat:34.2130,lng:135.5830},pp:'10.000–18.000',type:'Shukubo (alojamiento en templo) con shojin ryori incluida. Reservar con anticipación.'},
+ {city:'Tokio · recta final',nights:7,checkin:'2026-11-13',checkout:'2026-11-20',area:'Shinjuku, Tokyo',adults:5,poiDays:[19,20,21,22,23,24],
+  candidates:[{n:'Shinjuku',lat:35.690,lng:139.700},{n:'Ueno / Asakusa',lat:35.710,lng:139.785},{n:'Shibuya',lat:35.659,lng:139.701},{n:'Tokyo / Ginza',lat:35.675,lng:139.765}],
+  pp:'5.000–9.000',type:'Misma lógica que la 1ª etapa; conviene quedar cerca de AdeS para la recta final juntos.'},
+];
+function hav(a,b){const R=6371,dLa=(b.lat-a.lat)*Math.PI/180,dLn=(b.lng-a.lng)*Math.PI/180,la1=a.lat*Math.PI/180,la2=b.lat*Math.PI/180;const x=Math.sin(dLa/2)**2+Math.cos(la1)*Math.cos(la2)*Math.sin(dLn/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+function poisOf(days){const r=[];DAYS.forEach(d=>{if(days.includes(d.day))(d.acts||[]).forEach(a=>{if(a.lat&&a.t!=='transit')r.push(a);});});return r;}
+function rankHubs(pois,cands){return cands.map(c=>({c,km:pois.reduce((s,p)=>s+hav(c,p),0)/pois.length})).sort((a,b)=>a.km-b.km);}
+function lodgingLinks(area,coord,ci,co,ad){const a=encodeURIComponent(area);return{
+  booking:`https://www.booking.com/searchresults.html?ss=${a}&checkin=${ci}&checkout=${co}&group_adults=${ad}&no_rooms=2`,
+  airbnb:`https://www.airbnb.com/s/${a}/homes?checkin=${ci}&checkout=${co}&adults=${ad}`,
+  gmap:`https://www.google.com/maps/search/hoteles/@${coord.lat},${coord.lng},15z`};}
+function renderLodging(){
+    document.getElementById('lodging-list').innerHTML=LODGING.map(L=>{
+        let best, recoHtml='';
+        if(L.candidates){
+            const pois=poisOf(L.poiDays), ranked=rankHubs(pois,L.candidates);
+            best=ranked[0];
+            recoHtml=`<p class="text-sm mt-1">📍 Barrio recomendado: <b class="text-midori">${best.c.n}</b> · distancia media a ${pois.length} actividades: <b>${best.km.toFixed(1)} km</b></p>
+              <p class="text-xs text-kuro/50 mt-1">Alternativas: ${ranked.slice(1).map(r=>`${r.c.n} (${r.km.toFixed(1)} km)`).join(' · ')}</p>`;
+            best={n:best.c.n,lat:best.c.lat,lng:best.c.lng};
+        } else { best=L.fixed; recoHtml=`<p class="text-sm mt-1">📍 Zona: <b class="text-midori">${best.n}</b> <span class="text-xs text-kuro/50">(tipo de alojamiento fijo)</span></p>`; }
+        const [lo,hi]=L.pp.replace(/\./g,'').split('–').map(Number);
+        const gLo=lo*5*L.nights, gHi=hi*5*L.nights;
+        const lk=lodgingLinks(L.area,best,L.checkin,L.checkout,L.adults);
+        return `<div class="bg-white border border-haiiro rounded-xl p-5">
+            <div class="flex justify-between items-baseline flex-wrap gap-2">
+                <h3 class="font-jp font-bold text-lg">${L.city}</h3>
+                <span class="text-xs text-kuro/50">${L.nights} noche(s) · ${L.checkin} → ${L.checkout} · 5 huéspedes</span>
+            </div>
+            ${recoHtml}
+            <p class="text-sm mt-2 text-kuro/70">${L.type}</p>
+            <p class="text-sm mt-2">💴 ≈ <b>¥${L.pp}</b> /persona/noche · tramo (5 pers., ${L.nights}n): <span class="tooltip-usd font-bold text-kin" data-usd="${usdTip(gLo)} – ${usdTip(gHi)}">¥${gLo.toLocaleString()}–${gHi.toLocaleString()}</span></p>
+            <div class="flex gap-2 mt-3 flex-wrap">
+                <a href="${lk.airbnb}" target="_blank" class="bg-aka text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-aka/80">🏠 Airbnb (5 huésp.)</a>
+                <a href="${lk.booking}" target="_blank" class="bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🏨 Booking (2 hab.)</a>
+                <a href="${lk.gmap}" target="_blank" class="bg-haiiro/70 text-kuro text-xs font-bold px-3 py-2 rounded-lg hover:bg-haiiro">🗺️ Hoteles en el mapa</a>
+            </div>
+        </div>`;
+    }).join('');
+}
+
 // ===== MAP =====
 const BASES=[{lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–7, D18–25"},{lat:35.5018,lng:138.7660,name:"Kawaguchiko",d:"D8"},{lat:36.1461,lng:137.2524,name:"Takayama",d:"D9–10"},{lat:35.0116,lng:135.7681,name:"Kioto",d:"D11–13"},{lat:34.6687,lng:135.5032,name:"Osaka",d:"D14–15"},{lat:35.6282,lng:134.8127,name:"Kinosaki",d:"D16"},{lat:34.2130,lng:135.5830,name:"Koyasan",d:"D17"}];
 const EXC=[{lat:36.75,lng:139.598,n:"Nikko"},{lat:35.319,lng:139.547,n:"Kamakura"},{lat:36.258,lng:136.906,n:"Shirakawa-go"},{lat:35.527,lng:137.568,n:"Nakasendo"},{lat:35.176,lng:136.907,n:"Ghibli"},{lat:34.685,lng:135.843,n:"Nara"},{lat:34.665,lng:135.432,n:"USJ"}];
@@ -462,7 +529,7 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.8,137],6);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OSM © CARTO',maxZoom:18}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderJoint();renderCosts();renderMetrics();renderOverlap();}
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderJoint();renderLodging();renderCosts();renderMetrics();renderOverlap();}
 renderAll(); loadRates();
 document.querySelectorAll('.week-tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.getElementById(tab.dataset.week).classList.add('visible');window.scrollTo({top:200,behavior:'smooth'});}));
 let mapReady=false;
