@@ -32,6 +32,16 @@ const V4_CITY=[
  ["Nov 16","Tokio"],["Nov 17","Tokio"],["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
 ];
 
+// Plan V5 (23 días, 29 oct–20 nov): viaje inmersivo propio (5 amigos).
+// Llega 29 oct noche; Fuji, Nagano (monos), Kioto, Osaka, Hiroshima, Fukuoka, Tokio final.
+const V5_CITY=[
+ ["Oct 29","Tokio"],["Oct 30","Tokio"],["Oct 31","Tokio"],["Nov 1","Tokio"],["Nov 2","Tokio"],
+ ["Nov 3","Fuji"],["Nov 4","Nagano"],["Nov 5","Kioto"],["Nov 6","Kioto"],["Nov 7","Kioto"],
+ ["Nov 8","Kioto"],["Nov 9","Osaka"],["Nov 10","Osaka"],["Nov 11","Hiroshima"],["Nov 12","Fukuoka"],
+ ["Nov 13","Fukuoka"],["Nov 14","Tokio"],["Nov 15","Tokio"],["Nov 16","Tokio"],["Nov 17","Tokio"],
+ ["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
+];
+
 // Ciudades "misma región Kansai" (cercanía ≤ ~1 h)
 const KANSAI=["Kioto","Osaka","Nara","Fuji","Kobe"];
 
