@@ -8,7 +8,7 @@
   <Style id="route"><LineStyle><color>ff2d39c0</color><width>3</width></LineStyle></Style>
   <Folder><name>Ruta (ciudades base)</name>
     <Placemark><name>Recorrido V6</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>
-      139.6917,35.6895,0 138.766,35.5018,0 138.415,36.74,0 135.502,34.666,0 130.4203,33.5902,0
+      139.6917,35.6895,0 138.766,35.5018,0 138.415,36.74,0 135.502,34.666,0
     </coordinates></LineString></Placemark>
   </Folder>
   <Folder><name>Día 1 · Oct 29 · Tokio·Shinjuku</name>
@@ -77,15 +77,17 @@
     <Placemark><name>Bar de cachetadas (Shinsekai)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6524,0</coordinates></Point></Placemark>
     <Placemark><name>Batalla de baile (Dotonbori)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 15 · Nov 12 · Osaka→Fukuoka</name>
-    <Placemark><name>Ramen Hakata + Canal City</name><styleUrl>#base</styleUrl><Point><coordinates>130.411,33.5897,0</coordinates></Point></Placemark>
-    <Placemark><name>Fukuoka (Hakata) de noche</name><styleUrl>#poi</styleUrl><Point><coordinates>130.4203,33.5902,0</coordinates></Point></Placemark>
+  <Folder><name>Día 15 · Nov 12 · Osaka·Centro/Bahía</name>
+    <Placemark><name>Castillo de Osaka</name><styleUrl>#base</styleUrl><Point><coordinates>135.5259,34.6873,0</coordinates></Point></Placemark>
+    <Placemark><name>Acuario Kaiyukan</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4289,34.6545,0</coordinates></Point></Placemark>
+    <Placemark><name>Abeno Harukas (mirador)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5135,34.6458,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 16 · Nov 13 · Fukuoka</name>
-    <Placemark><name>Dazaifu Tenmangu (sellos)</name><styleUrl>#base</styleUrl><Point><coordinates>130.535,33.5215,0</coordinates></Point></Placemark>
-    <Placemark><name>Gran Sumo de Kyushu (opcional)</name><styleUrl>#poi</styleUrl><Point><coordinates>130.409,33.6075,0</coordinates></Point></Placemark>
+  <Folder><name>Día 16 · Nov 13 · Osaka·Namba/Shinsaibashi</name>
+    <Placemark><name>Shinsaibashi &amp; Amerikamura</name><styleUrl>#base</styleUrl><Point><coordinates>135.501,34.6723,0</coordinates></Point></Placemark>
+    <Placemark><name>Spa World (onsen)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6492,0</coordinates></Point></Placemark>
+    <Placemark><name>Dotonbori</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 17 · Nov 14 · Fukuoka→Tokio 🤝</name>
+  <Folder><name>Día 17 · Nov 14 · Osaka→Tokio 🤝</name>
     <Placemark><name>Golden Gai</name><styleUrl>#base</styleUrl><Point><coordinates>139.7045,35.694,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 18 · Nov 15 · Tokio·Harajuku 🤝</name>

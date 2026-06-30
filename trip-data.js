@@ -47,8 +47,8 @@ const V5_CITY=[
 const V6_CITY=[
  ["Oct 29","Tokio"],["Oct 30","Tokio"],["Oct 31","Tokio"],["Nov 1","Tokio"],["Nov 2","Tokio"],
  ["Nov 3","Fuji"],["Nov 4","Nagano"],["Nov 5","Osaka"],["Nov 6","Kioto"],["Nov 7","Osaka"],
- ["Nov 8","Kioto"],["Nov 9","Osaka"],["Nov 10","Osaka"],["Nov 11","Osaka"],["Nov 12","Fukuoka"],
- ["Nov 13","Fukuoka"],["Nov 14","Tokio"],["Nov 15","Tokio"],["Nov 16","Tokio"],["Nov 17","Tokio"],
+ ["Nov 8","Kioto"],["Nov 9","Osaka"],["Nov 10","Osaka"],["Nov 11","Osaka"],["Nov 12","Osaka"],
+ ["Nov 13","Osaka"],["Nov 14","Tokio"],["Nov 15","Tokio"],["Nov 16","Tokio"],["Nov 17","Tokio"],
  ["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
 ];
 
