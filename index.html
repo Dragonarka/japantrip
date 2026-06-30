@@ -806,15 +806,28 @@ function fly3dTo(s,dur){if(!cesiumViewer)return;cesiumViewer.camera.flyTo({desti
 function stopTour(){tourTimers.forEach(t=>clearTimeout(t));tourTimers=[];}
 function flyTour(){if(!cesiumViewer)return;stopTour();let t=0;TOUR3D.forEach((s,i)=>{tourTimers.push(setTimeout(()=>fly3dTo(s,2),t));t+=2600;});}
 function resetJapan(){if(!cesiumViewer)return;stopTour();cesiumViewer.camera.flyTo({destination:Cesium.Cartesian3.fromDegrees(136.5,35.5,1700000),orientation:{heading:0,pitch:Cesium.Math.toRadians(-75),roll:0},duration:2});}
+function webglOK(){try{const c=document.createElement('canvas');const o={failIfMajorPerformanceCaveat:false};return !!(window.WebGLRenderingContext&&(c.getContext('webgl',o)||c.getContext('experimental-webgl',o)||c.getContext('webgl2',o)));}catch(e){return false;}}
+function cesiumFallback(extra){
+    const el=document.getElementById('cesium');
+    if(el)el.innerHTML='<div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 25%,#16324f,#0b1622)">'
+      +'<p style="font-size:42px;margin-bottom:6px">🌏</p>'
+      +'<p style="color:#fff;font-weight:700;font-size:15px;margin-bottom:6px">El globo 3D en la página necesita WebGL</p>'
+      +'<p style="color:#cbd5e1;font-size:13px;max-width:440px;margin-bottom:16px">'+(extra||'')+' La forma más precisa de ver el viaje en 3D es el <b>tour KMZ</b> en Google Earth (edificios fotorrealistas y vuelo día a día).</p>'
+      +'<a href="japan-v6-tour.kmz" download style="background:#1A6B4A;color:#fff;font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;font-size:14px">⬇ Descargar Tour KMZ (Google Earth)</a>'
+      +'<p style="color:#7c93ac;font-size:11px;margin-top:12px">¿Sale en blanco/negro? En Chrome: chrome://settings/system → activa “Usar aceleración por hardware” y reinicia. O prueba en Safari.</p></div>';
+    const st=document.getElementById('cesium-status'); if(st)st.textContent='';
+}
 function initCesium(){
     if(cesiumViewer)return; const st=document.getElementById('cesium-status');
-    if(typeof Cesium==='undefined'){if(st)st.textContent='⚠️ No se pudo cargar CesiumJS (¿sin conexión?). Usa el tour KMZ en Google Earth.';return;}
+    if(typeof Cesium==='undefined'){cesiumFallback('No se pudo cargar CesiumJS (¿sin conexión?).');return;}
+    if(!webglOK()){cesiumFallback('Tu navegador/equipo tiene WebGL desactivado o sin aceleración.');return;}
     try{
         cesiumViewer=new Cesium.Viewer('cesium',{
             imageryProvider:new Cesium.OpenStreetMapImageryProvider({url:'https://a.tile.openstreetmap.org/'}),
             baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,
             navigationHelpButton:false,animation:false,timeline:false,fullscreenButton:false,
-            infoBox:true,selectionIndicator:true
+            infoBox:true,selectionIndicator:true,
+            contextOptions:{webgl:{failIfMajorPerformanceCaveat:false,powerPreference:'default'}}
         });
         cesiumViewer.scene.globe.enableLighting=false;
         // ruta + paradas
@@ -830,7 +843,7 @@ function initCesium(){
         document.getElementById('city3d-btns').innerHTML=TOUR3D.filter(s=>!/final/.test(s.n)).map((s,i)=>`<button class="city3d-btn" data-i="${i}">${s.n}</button>`).join('');
         document.querySelectorAll('#city3d-btns .city3d-btn').forEach(b=>b.addEventListener('click',()=>{stopTour();fly3dTo(TOUR3D[+b.dataset.i],1.6);}));
         if(st)st.textContent='Globo OSM (sin coste). Para 3D fotorrealista usa el tour KMZ ↑ en Google Earth.';
-    }catch(e){if(st)st.textContent='⚠️ Tu navegador bloqueó WebGL/3D. Prueba en Chrome/Safari de escritorio o usa el tour KMZ.';cesiumViewer=null;}
+    }catch(e){cesiumFallback('Tu navegador bloqueó la vista 3D ('+(e&&e.message?String(e.message).slice(0,60):'WebGL')+').');cesiumViewer=null;}
 }
 const fly3dBtn=document.getElementById('fly3d');if(fly3dBtn)fly3dBtn.addEventListener('click',()=>{if(!cesiumViewer)initCesium();flyTour();});
 const reset3dBtn=document.getElementById('reset3d');if(reset3dBtn)reset3dBtn.addEventListener('click',resetJapan);
