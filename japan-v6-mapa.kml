@@ -55,18 +55,19 @@
     <Placemark><name>Ceremonia del té + kimono</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7788,35.0036,0</coordinates></Point></Placemark>
     <Placemark><name>Gion y Yasaka</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7755,35.0036,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 10 · Nov 7 · Osaka→Himeji→Kobe (daytrip)</name>
+  <Folder><name>Día 10 · Nov 7 · Osaka→Himeji (daytrip)</name>
     <Placemark><name>Castillo de Himeji</name><styleUrl>#base</styleUrl><Point><coordinates>134.6939,34.8394,0</coordinates></Point></Placemark>
-    <Placemark><name>Kobe (puerto y wagyu)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.188,34.6851,0</coordinates></Point></Placemark>
+    <Placemark><name>Jardín Koko-en</name><styleUrl>#poi</styleUrl><Point><coordinates>134.6896,34.8378,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 11 · Nov 8 · Osaka→Kioto (daytrip) 🎂</name>
     <Placemark><name>Bambú de Arashiyama</name><styleUrl>#base</styleUrl><Point><coordinates>135.6717,35.017,0</coordinates></Point></Placemark>
     <Placemark><name>Kinkaku-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7292,35.0394,0</coordinates></Point></Placemark>
     <Placemark><name>🎂 Cena con maiko (Gion)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.775,35.0037,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 12 · Nov 9 · Osaka→Hiroshima (daytrip largo)</name>
-    <Placemark><name>Memorial de la Paz (Hiroshima)</name><styleUrl>#base</styleUrl><Point><coordinates>132.4536,34.3955,0</coordinates></Point></Placemark>
-    <Placemark><name>Isla Miyajima (Itsukushima)</name><styleUrl>#poi</styleUrl><Point><coordinates>132.3197,34.2959,0</coordinates></Point></Placemark>
+  <Folder><name>Día 12 · Nov 9 · Osaka→Kobe (daytrip)</name>
+    <Placemark><name>Kobe (puerto y wagyu)</name><styleUrl>#base</styleUrl><Point><coordinates>135.188,34.6851,0</coordinates></Point></Placemark>
+    <Placemark><name>Nankinmachi (barrio chino)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.1882,34.6889,0</coordinates></Point></Placemark>
+    <Placemark><name>Kitano-cho</name><styleUrl>#poi</styleUrl><Point><coordinates>135.1885,34.7008,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 13 · Nov 10 · Osaka·USJ 🤝</name>
     <Placemark><name>Universal Studios Japan</name><styleUrl>#base</styleUrl><Point><coordinates>135.4323,34.6654,0</coordinates></Point></Placemark>

@@ -1,46 +1,16 @@
 // ============================================================
 // Datos + lógica de superposición — fuente ÚNICA cargada por
-// index.html (plan v3) y ades-japan-oct30-nov19.html (plan AdeS).
+// index.html (plan V6) y ades-japan-oct30-nov19.html (plan AdeS).
 // Editar aquí actualiza la pestaña Superposición de AMBAS páginas.
 // ============================================================
 
-// Plan v3 (25 días): fecha "Mon D" → ciudad base de ese día
-// Nov 8: el v3 hace Fushimi Inari + Nara (swap para coincidir con AdeS en Nara).
-const V3_CITY=[
- ["Oct 27","Tokio"],["Oct 28","Tokio"],["Oct 29","Tokio"],["Oct 30","Tokio"],["Oct 31","Nikko"],
- ["Nov 1","Kawaguchiko"],["Nov 2","Tokio"],["Nov 3","Takayama"],["Nov 4","Takayama/Shirakawa"],["Nov 5","Kioto"],
- ["Nov 6","Kioto"],["Nov 7","Kioto"],["Nov 8","Nara"],["Nov 9","Kioto"],["Nov 10","Kioto"],
- ["Nov 11","Osaka"],["Nov 12","Osaka"],["Nov 13","Osaka"],["Nov 14","Osaka"],["Nov 15","Kobe"],
- ["Nov 16","Kinosaki"],["Nov 17","Koyasan"],["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
-];
-
-// Plan AdeS (21 días): fecha "Mon D" → ciudad base de ese día
+// Plan AdeS (21 días): fecha "Mon D" → ciudad base de ese día (itinerario real del otro grupo)
 const ADES_CITY={
  "Oct 30":"Tokio","Oct 31":"Tokio","Nov 1":"Tokio","Nov 2":"Tokio","Nov 3":"Fuji/Kawaguchiko",
  "Nov 4":"Kioto","Nov 5":"Kioto","Nov 6":"Kioto","Nov 7":"Kioto","Nov 8":"Nara→Osaka",
  "Nov 9":"Osaka","Nov 10":"Osaka","Nov 11":"Hiroshima","Nov 12":"Kanazawa","Nov 13":"Tokio (bus)",
  "Nov 14":"Tokio","Nov 15":"Tokio","Nov 16":"Tokio","Nov 17":"Tokio","Nov 18":"viaje","Nov 19":"Medellín",
 };
-
-// Plan V4 (25 días): re-secuencia del plan v3 para coincidir con AdeS.
-// Conserva todos los must-do de v3 pero alinea ciudad+fecha con AdeS al máximo.
-const V4_CITY=[
- ["Oct 27","Tokio"],["Oct 28","Tokio"],["Oct 29","Nikko"],["Oct 30","Tokio"],["Oct 31","Tokio"],
- ["Nov 1","Tokio"],["Nov 2","Tokio"],["Nov 3","Fuji"],["Nov 4","Takayama"],["Nov 5","Takayama/Shirakawa"],
- ["Nov 6","Kioto"],["Nov 7","Kioto"],["Nov 8","Nara"],["Nov 9","Osaka"],["Nov 10","Osaka"],
- ["Nov 11","Kinosaki"],["Nov 12","Koyasan"],["Nov 13","Tokio"],["Nov 14","Tokio"],["Nov 15","Tokio"],
- ["Nov 16","Tokio"],["Nov 17","Tokio"],["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
-];
-
-// Plan V5 (23 días, 29 oct–20 nov): viaje inmersivo propio (5 amigos).
-// Llega 29 oct noche; Fuji, Nagano (monos), Kioto, Osaka, Hiroshima, Fukuoka, Tokio final.
-const V5_CITY=[
- ["Oct 29","Tokio"],["Oct 30","Tokio"],["Oct 31","Tokio"],["Nov 1","Tokio"],["Nov 2","Tokio"],
- ["Nov 3","Fuji"],["Nov 4","Nagano"],["Nov 5","Kioto"],["Nov 6","Kioto"],["Nov 7","Kioto"],
- ["Nov 8","Kioto"],["Nov 9","Osaka"],["Nov 10","Osaka"],["Nov 11","Hiroshima"],["Nov 12","Fukuoka"],
- ["Nov 13","Fukuoka"],["Nov 14","Tokio"],["Nov 15","Tokio"],["Nov 16","Tokio"],["Nov 17","Tokio"],
- ["Nov 18","Tokio"],["Nov 19","Tokio"],["Nov 20","Tokio"],
-];
 
 // Plan V6 (23 días, 29 oct–20 nov): versión DEFINITIVA con Osaka como base/hub.
 // Ciudad = lugar principal del día (en daytrips a Kioto se marca Kioto para el encuentro real con AdeS).
