@@ -77,9 +77,7 @@
     <p class="text-xs text-kuro/50 mt-3 relative">Tokio · Fuji · Kioto · Nara · Osaka · Hiroshima · Kanazawa</p>
     <p id="fx-banner" class="text-kuro/55 mt-3 relative">Cargando tasas de cambio…</p>
     <div class="mt-4 relative flex gap-2 justify-center flex-wrap">
-        <a href="index.html" class="inline-block bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition">↔ Plan v3 (otro grupo)</a>
-        <a href="v4.html" class="inline-block bg-midori text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-midori/80 transition">★ Plan V4 (sincronizado con nosotros)</a>
-        <a href="v5.html" class="inline-block bg-aka text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-aka/80 transition">★ Plan V5 (inmersivo)</a>
+        <a href="index.html" class="inline-block bg-aka text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-aka/80 transition">★ Plan V6 (nuestro plan · Osaka hub)</a>
     </div>
 </header>
 
@@ -197,13 +195,13 @@
 
 <!-- ==================== OVERLAP ==================== -->
 <section class="section" id="overlap">
-    <h2 class="font-jp text-2xl font-black mb-2">🔀 Superposición: AdeS vs Plan v3 (otro grupo)</h2>
+    <h2 class="font-jp text-2xl font-black mb-2">🔀 Superposición: AdeS vs Plan V6 (otro grupo)</h2>
     <p class="text-xs text-kuro/50 mb-5">Cada fila es una fecha. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad (encuentro)</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región (cercanía)</span>.</p>
     <div id="overlap-opt" class="mb-4"></div>
     <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
     <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto mb-6">
         <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro">
-            <th class="py-2 pr-3">Fecha</th><th class="px-2">AdeS</th><th class="px-2">v3</th><th class="px-2">Coincidencia</th>
+            <th class="py-2 pr-3">Fecha</th><th class="px-2">AdeS</th><th class="px-2">V6</th><th class="px-2">Coincidencia</th>
         </tr></thead><tbody id="overlap-table"></tbody></table>
     </div>
     <div class="bg-sumi text-white rounded-xl p-6">
@@ -250,7 +248,7 @@
 
 </main>
 
-<footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan AdeS · 30 Oct – 19 Nov 2026 · Coordenadas, imágenes y costos son estimados — verificar horarios y reservas. <a href="index.html" class="underline">Plan v3 (otro grupo)</a></footer>
+<footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan AdeS · 30 Oct – 19 Nov 2026 · Coordenadas, imágenes y costos son estimados — verificar horarios y reservas. <a href="index.html" class="underline">Plan V6 (otro grupo)</a></footer>
 
 <script src="trip-data.js"></script>
 <script>
@@ -607,9 +605,9 @@ function renderMetrics(){
 
 // ============ OVERLAP (AdeS vs v3) ============
 let adesOffset=0;
-function setOffset(v){ if(v==='best')adesOffset=bestOffset(V3_CITY,7).off; else if(v==='reset')adesOffset=0; else adesOffset=Math.max(-9,Math.min(9,adesOffset+v)); renderOverlap(); }
+function setOffset(v){ if(v==='best')adesOffset=bestOffset(V6_CITY,7).off; else if(v==='reset')adesOffset=0; else adesOffset=Math.max(-9,Math.min(9,adesOffset+v)); renderOverlap(); }
 function renderOverlap(){   // datos + lógica compartidos en trip-data.js
-    const off=adesOffset, data=overlapRows(V3_CITY,off);
+    const off=adesOffset, data=overlapRows(V6_CITY,off);
     const matches=data.filter(r=>r.cls==='sup-match').length, nears=data.filter(r=>r.cls==='sup-near').length;
     document.getElementById('overlap-table').innerHTML=data.map(r=>`<tr class="border-b border-haiiro/50">
             <td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td>
@@ -617,7 +615,7 @@ function renderOverlap(){   // datos + lógica compartidos en trip-data.js
             <td class="px-2 text-kuro/60">${r.v3}</td>
             <td class="px-2"><span class="sup-cell ${r.cls}">${r.label}</span></td>
         </tr>`).join('');
-    const best=bestOffset(V3_CITY,7), base=overlapStats(V3_CITY,0);
+    const best=bestOffset(V6_CITY,7), base=overlapStats(V6_CITY,0);
     const offTxt= off===0?'sin desfase':(off>0?`AdeS empieza ${off} día(s) DESPUÉS`:`AdeS empieza ${-off} día(s) ANTES`);
     document.getElementById('overlap-opt').innerHTML=`
       <div class="bg-white border border-haiiro rounded-xl p-4">

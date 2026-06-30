@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <name>Japón V5 · inmersivo · 29 Oct – 20 Nov 2026</name>
-  <description>Plan V5 (5 amigos). Importar en Google My Maps: Crear mapa → Importar.</description>
+  <name>Japón V6 · Osaka Hub · 29 Oct – 20 Nov 2026</name>
+  <description>Plan V6 (5 amigos). Importar en Google My Maps: Crear mapa → Importar.</description>
   <Style id="base"><IconStyle><color>ff2d39c0</color><scale>1.2</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
   <Style id="poi"><IconStyle><color>ff0e74d4</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href></Icon></IconStyle></Style>
   <Style id="route"><LineStyle><color>ff2d39c0</color><width>3</width></LineStyle></Style>
   <Folder><name>Ruta (ciudades base)</name>
-    <Placemark><name>Recorrido V5</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>
-      139.6917,35.6895,0 138.766,35.5018,0 138.415,36.74,0 135.7681,35.0116,0 135.5032,34.6687,0 132.4536,34.3955,0 130.4203,33.5902,0
+    <Placemark><name>Recorrido V6</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>
+      139.6917,35.6895,0 138.766,35.5018,0 138.415,36.74,0 135.502,34.666,0 130.4203,33.5902,0
     </coordinates></LineString></Placemark>
   </Folder>
   <Folder><name>Día 1 · Oct 29 · Tokio·Shinjuku</name>
@@ -44,37 +44,40 @@
     <Placemark><name>Monos de nieve (Jigokudani)</name><styleUrl>#poi</styleUrl><Point><coordinates>138.462,36.733,0</coordinates></Point></Placemark>
     <Placemark><name>Pueblo onsen Yudanaka/Shibu</name><styleUrl>#poi</styleUrl><Point><coordinates>138.415,36.74,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 8 · Nov 5 · Yudanaka→Kioto 🤝</name>
+  <Folder><name>Día 8 · Nov 5 · Nagano→Osaka·Namba</name>
+    <Placemark><name>Mercado Kuromon</name><styleUrl>#base</styleUrl><Point><coordinates>135.5063,34.6657,0</coordinates></Point></Placemark>
+    <Placemark><name>Umeda Sky Building</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4897,34.7052,0</coordinates></Point></Placemark>
+    <Placemark><name>Dotonbori</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
+  </Folder>
+  <Folder><name>Día 9 · Nov 6 · Osaka→Kioto (daytrip) 🤝</name>
     <Placemark><name>Fushimi Inari Taisha</name><styleUrl>#base</styleUrl><Point><coordinates>135.7727,34.9671,0</coordinates></Point></Placemark>
     <Placemark><name>Templo Kiyomizu-dera</name><styleUrl>#poi</styleUrl><Point><coordinates>135.785,34.9949,0</coordinates></Point></Placemark>
+    <Placemark><name>Ceremonia del té + kimono</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7788,35.0036,0</coordinates></Point></Placemark>
     <Placemark><name>Gion y Yasaka</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7755,35.0036,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 9 · Nov 6 · Kioto·Arashiyama 🤝</name>
+  <Folder><name>Día 10 · Nov 7 · Osaka→Himeji→Kobe (daytrip)</name>
+    <Placemark><name>Castillo de Himeji</name><styleUrl>#base</styleUrl><Point><coordinates>134.6939,34.8394,0</coordinates></Point></Placemark>
+    <Placemark><name>Kobe (puerto y wagyu)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.188,34.6851,0</coordinates></Point></Placemark>
+  </Folder>
+  <Folder><name>Día 11 · Nov 8 · Osaka→Kioto (daytrip) 🎂</name>
     <Placemark><name>Bambú de Arashiyama</name><styleUrl>#base</styleUrl><Point><coordinates>135.6717,35.017,0</coordinates></Point></Placemark>
     <Placemark><name>Kinkaku-ji</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7292,35.0394,0</coordinates></Point></Placemark>
-    <Placemark><name>Ceremonia del té + kimono</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7788,35.0036,0</coordinates></Point></Placemark>
-  </Folder>
-  <Folder><name>Día 10 · Nov 7 · Kioto·Centro 🤝</name>
-    <Placemark><name>Nishiki Market</name><styleUrl>#base</styleUrl><Point><coordinates>135.7649,35.005,0</coordinates></Point></Placemark>
-    <Placemark><name>Pontocho (cena)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7707,35.005,0</coordinates></Point></Placemark>
-  </Folder>
-  <Folder><name>Día 11 · Nov 8 · Kioto·Gion/Fushimi 🎂</name>
-    <Placemark><name>Cata de sake (Fushimi)</name><styleUrl>#base</styleUrl><Point><coordinates>135.761,34.932,0</coordinates></Point></Placemark>
     <Placemark><name>🎂 Cena con maiko (Gion)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.775,35.0037,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 12 · Nov 9 · Kioto→Osaka 🤝</name>
-    <Placemark><name>Castillo de Osaka</name><styleUrl>#base</styleUrl><Point><coordinates>135.5259,34.6873,0</coordinates></Point></Placemark>
-    <Placemark><name>Dotonbori</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
-    <Placemark><name>Shinsekai</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6524,0</coordinates></Point></Placemark>
+  <Folder><name>Día 12 · Nov 9 · Osaka→Hiroshima (daytrip largo)</name>
+    <Placemark><name>Memorial de la Paz (Hiroshima)</name><styleUrl>#base</styleUrl><Point><coordinates>132.4536,34.3955,0</coordinates></Point></Placemark>
+    <Placemark><name>Isla Miyajima (Itsukushima)</name><styleUrl>#poi</styleUrl><Point><coordinates>132.3197,34.2959,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 13 · Nov 10 · Osaka·USJ 🤝</name>
     <Placemark><name>Universal Studios Japan</name><styleUrl>#base</styleUrl><Point><coordinates>135.4323,34.6654,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 14 · Nov 11 · Osaka→Hiroshima 🤝</name>
-    <Placemark><name>Memorial de la Paz (Hiroshima)</name><styleUrl>#base</styleUrl><Point><coordinates>132.4536,34.3955,0</coordinates></Point></Placemark>
-    <Placemark><name>Isla Miyajima (Itsukushima)</name><styleUrl>#poi</styleUrl><Point><coordinates>132.3197,34.2959,0</coordinates></Point></Placemark>
+  <Folder><name>Día 14 · Nov 11 · Osaka·Namba/Shinsekai</name>
+    <Placemark><name>Clase de cocina japonesa</name><styleUrl>#base</styleUrl><Point><coordinates>135.502,34.666,0</coordinates></Point></Placemark>
+    <Placemark><name>Sumo + chanko nabe</name><styleUrl>#poi</styleUrl><Point><coordinates>135.505,34.666,0</coordinates></Point></Placemark>
+    <Placemark><name>Bar de cachetadas (Shinsekai)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6524,0</coordinates></Point></Placemark>
+    <Placemark><name>Batalla de baile (Dotonbori)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 15 · Nov 12 · Hiroshima→Fukuoka</name>
+  <Folder><name>Día 15 · Nov 12 · Osaka→Fukuoka</name>
     <Placemark><name>Ramen Hakata + Canal City</name><styleUrl>#base</styleUrl><Point><coordinates>130.411,33.5897,0</coordinates></Point></Placemark>
     <Placemark><name>Fukuoka (Hakata) de noche</name><styleUrl>#poi</styleUrl><Point><coordinates>130.4203,33.5902,0</coordinates></Point></Placemark>
   </Folder>
