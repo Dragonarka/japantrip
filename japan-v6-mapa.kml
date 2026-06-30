@@ -55,9 +55,10 @@
     <Placemark><name>Ceremonia del té + kimono</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7788,35.0036,0</coordinates></Point></Placemark>
     <Placemark><name>Gion y Yasaka</name><styleUrl>#poi</styleUrl><Point><coordinates>135.7755,35.0036,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 10 · Nov 7 · Osaka→Himeji (daytrip)</name>
+  <Folder><name>Día 10 · Nov 7 · Osaka→Himeji + Amerikamura</name>
     <Placemark><name>Castillo de Himeji</name><styleUrl>#base</styleUrl><Point><coordinates>134.6939,34.8394,0</coordinates></Point></Placemark>
     <Placemark><name>Jardín Koko-en</name><styleUrl>#poi</styleUrl><Point><coordinates>134.6896,34.8378,0</coordinates></Point></Placemark>
+    <Placemark><name>Batalla de baile (Amerikamura/Ponte Plaza)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4983,34.6716,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 11 · Nov 8 · Osaka→Kioto (daytrip) 🎂</name>
     <Placemark><name>Bambú de Arashiyama</name><styleUrl>#base</styleUrl><Point><coordinates>135.6717,35.017,0</coordinates></Point></Placemark>
@@ -76,17 +77,17 @@
     <Placemark><name>Clase de cocina japonesa</name><styleUrl>#base</styleUrl><Point><coordinates>135.502,34.666,0</coordinates></Point></Placemark>
     <Placemark><name>Sumo + chanko nabe</name><styleUrl>#poi</styleUrl><Point><coordinates>135.505,34.666,0</coordinates></Point></Placemark>
     <Placemark><name>Bar de cachetadas (Shinsekai)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6524,0</coordinates></Point></Placemark>
-    <Placemark><name>Batalla de baile (Dotonbori)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
+    <Placemark><name>Kushikatsu crawl (Shinsekai)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6524,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 15 · Nov 12 · Osaka·Centro/Bahía</name>
     <Placemark><name>Castillo de Osaka</name><styleUrl>#base</styleUrl><Point><coordinates>135.5259,34.6873,0</coordinates></Point></Placemark>
     <Placemark><name>Acuario Kaiyukan</name><styleUrl>#poi</styleUrl><Point><coordinates>135.4289,34.6545,0</coordinates></Point></Placemark>
     <Placemark><name>Abeno Harukas (mirador)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5135,34.6458,0</coordinates></Point></Placemark>
   </Folder>
-  <Folder><name>Día 16 · Nov 13 · Osaka·Namba/Shinsaibashi</name>
-    <Placemark><name>Shinsaibashi &amp; Amerikamura</name><styleUrl>#base</styleUrl><Point><coordinates>135.501,34.6723,0</coordinates></Point></Placemark>
+  <Folder><name>Día 16 · Nov 13 · Osaka→Uji (daytrip)</name>
+    <Placemark><name>Byōdō-in (Uji)</name><styleUrl>#base</styleUrl><Point><coordinates>135.8076,34.8896,0</coordinates></Point></Placemark>
+    <Placemark><name>Uji (matcha)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.8072,34.8914,0</coordinates></Point></Placemark>
     <Placemark><name>Spa World (onsen)</name><styleUrl>#poi</styleUrl><Point><coordinates>135.5063,34.6492,0</coordinates></Point></Placemark>
-    <Placemark><name>Dotonbori</name><styleUrl>#poi</styleUrl><Point><coordinates>135.501,34.6687,0</coordinates></Point></Placemark>
   </Folder>
   <Folder><name>Día 17 · Nov 14 · Osaka→Tokio 🤝</name>
     <Placemark><name>Golden Gai</name><styleUrl>#base</styleUrl><Point><coordinates>139.7045,35.694,0</coordinates></Point></Placemark>

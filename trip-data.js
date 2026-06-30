@@ -12,6 +12,14 @@ const ADES_CITY={
  "Nov 14":"Tokio","Nov 15":"Tokio","Nov 16":"Tokio","Nov 17":"Tokio","Nov 18":"viaje","Nov 19":"Medellín",
 };
 
+// Seguimiento AdeS: fecha → qué hacen ese día (itinerario real del otro grupo, para coordinar encuentros)
+const ADES_ACT={
+ "Oct 30":"Asakusa, Ueno · templos y skyline","Oct 31":"Yanaka + Halloween (Ikebukuro)","Nov 1":"Palacio Imperial + Akihabara","Nov 2":"Tsukiji + Odaiba (bahía y torres)","Nov 3":"Fuji: lagos y onsen",
+ "Nov 4":"Pagoda Chureito → Kioto","Nov 5":"Arashiyama (bambú) + Kinkaku-ji","Nov 6":"Higashiyama y Gion","Nov 7":"Fushimi Inari (mil toriis)","Nov 8":"Venados de Nara → Osaka",
+ "Nov 9":"Osaka clásico (castillo, Dotonbori)","Nov 10":"Día comodín en Osaka","Nov 11":"Hiroshima + Miyajima (noche allá)","Nov 12":"Hiroshima → Kanazawa (jardines)","Nov 13":"Barrio samurái Kanazawa → Tokio (bus)",
+ "Nov 14":"Tokio: jardín y miradores","Nov 15":"Meiji, Harajuku y Shibuya","Nov 16":"Día libre + teamLab","Nov 17":"Despedida gastronómica","Nov 18":"Vuelos Tokio→casa","Nov 19":"Medellín",
+};
+
 // Plan V6 (23 días, 29 oct–20 nov): versión DEFINITIVA con Osaka como base/hub.
 // Ciudad = lugar principal del día (en daytrips a Kioto se marca Kioto para el encuentro real con AdeS).
 const V6_CITY=[
