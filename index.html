@@ -86,7 +86,8 @@
         #cesium .cesium-widget-credits{display:none!important}
         .city3d-btn{font-size:.7rem;font-weight:700;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #E8E4DC;cursor:pointer;transition:all .15s}
         .city3d-btn:hover{background:#1A1A1A;color:#fff}
-        @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}#cesium{height:380px}}
+        @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}#cesium{height:380px}
+            .navbtn{padding:9px 10px;font-size:.74rem}.subtab{padding:7px 9px;font-size:.68rem}.itin-subbar .max-w-5xl{padding-top:2px;padding-bottom:2px}}
     </style>
 </head>
 <body class="min-h-screen">
@@ -893,8 +894,11 @@ document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('
     if(isItin){const it=document.getElementById('navtop-itin'); if(it)it.classList.add('active');}
     document.querySelectorAll('.navgroup').forEach(g=>g.classList.remove('open'));
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
-    document.getElementById(tab.dataset.week).classList.add('visible');
-    window.scrollTo({top:200,behavior:'smooth'});
+    const sec=document.getElementById(tab.dataset.week); sec.classList.add('visible');
+    // scroll para que la sección quede justo debajo del nav+sub-barra fijos (altura real, cualquier pantalla)
+    const nav=document.querySelector('nav');
+    const y=sec.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-24;
+    window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
     if(tab.dataset.week==='vista3d')setTimeout(initCesium,200);
 }));
 // abrir/cerrar grupos (touch); en desktop también abren por hover
