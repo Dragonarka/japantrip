@@ -50,6 +50,12 @@
         .navmenu .week-tab{display:block;width:100%;text-align:left;padding:10px 12px;font-size:.8rem;color:#444;border-bottom:none;border-radius:8px}
         .navmenu .week-tab:hover{background:#F3ECD8;color:#1A1A1A}
         .navmenu .week-tab.active{background:rgba(192,57,43,.10);color:#C0392B}
+        /* sub-barra de itinerario (S1–S4) */
+        .itin-subbar{display:none;border-top:1px solid #E8E4DC;background:rgba(250,247,240,.97)}
+        .itin-subbar.show{display:block;animation:fadeUp .25s ease}
+        .subtab{cursor:pointer;padding:8px 12px;font-size:.72rem;font-weight:700;color:#777;background:none;border:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+        .subtab:hover{color:#1A1A1A}
+        .subtab.active{color:#C0392B;border-color:#C0392B}
         .section{display:none}
         .section.visible{display:block;animation:fadeUp .4s ease forwards}
         @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -101,7 +107,7 @@
     <div class="max-w-5xl mx-auto flex flex-wrap items-center gap-1 px-2 py-1">
         <button class="navbtn active" data-week="overview">Resumen</button>
         <div class="navgroup">
-            <button class="navbtn navtop" type="button">🗓️ Itinerario ▾</button>
+            <button class="navbtn navtop" id="navtop-itin" type="button">🗓️ Itinerario ▾</button>
             <div class="navmenu">
                 <button class="week-tab" data-week="w1">S1 · Tokio</button>
                 <button class="week-tab" data-week="w2">S2 · Fuji & Monos</button>
@@ -131,6 +137,15 @@
                 <button class="week-tab" data-week="metrics">📊 Indicadores</button>
                 <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
             </div>
+        </div>
+    </div>
+    <div id="subnav-itin" class="itin-subbar">
+        <div class="max-w-5xl mx-auto flex items-center gap-1 px-2 overflow-x-auto" style="scrollbar-width:none">
+            <span class="text-[11px] text-kuro/40 font-bold self-center pr-1 whitespace-nowrap">🗓️ Semana:</span>
+            <button class="subtab" data-week="w1">S1 · Tokio</button>
+            <button class="subtab" data-week="w2">S2 · Fuji & Monos</button>
+            <button class="subtab" data-week="w3">S3 · Osaka Hub ⭐</button>
+            <button class="subtab" data-week="w4">S4 · Tokio final</button>
         </div>
     </div>
 </nav>
@@ -871,6 +886,11 @@ document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('
     tab.classList.add('active');
     document.querySelectorAll('.navtop').forEach(b=>b.classList.remove('active'));
     const menu=tab.closest('.navmenu'); if(menu){const top=menu.parentElement.querySelector('.navtop'); if(top)top.classList.add('active');}
+    // sub-barra de itinerario (S1–S4)
+    const isItin=['w1','w2','w3','w4'].includes(tab.dataset.week);
+    document.getElementById('subnav-itin').classList.toggle('show',isItin);
+    document.querySelectorAll('.subtab').forEach(s=>s.classList.toggle('active',s.dataset.week===tab.dataset.week));
+    if(isItin){const it=document.getElementById('navtop-itin'); if(it)it.classList.add('active');}
     document.querySelectorAll('.navgroup').forEach(g=>g.classList.remove('open'));
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
     document.getElementById(tab.dataset.week).classList.add('visible');
