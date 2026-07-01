@@ -40,6 +40,16 @@
         .week-tab{cursor:pointer;padding:10px 14px;font-size:.75rem;font-weight:600;border-bottom:2px solid transparent;transition:all .2s;color:#888;white-space:nowrap}
         .week-tab:hover{color:#1A1A1A}
         .week-tab.active{color:#C0392B;border-color:#C0392B}
+        /* nav agrupado con menús */
+        .navbtn{cursor:pointer;padding:12px 14px;font-size:.8rem;font-weight:700;color:#555;background:none;border:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;border-radius:8px 8px 0 0}
+        .navbtn:hover{color:#1A1A1A;background:rgba(0,0,0,.04)}
+        .navbtn.active{color:#C0392B;border-color:#C0392B}
+        .navgroup{position:relative}
+        .navmenu{display:none;position:absolute;top:100%;left:0;min-width:220px;background:#fff;border:1px solid #E8E4DC;border-radius:0 12px 12px 12px;box-shadow:0 10px 28px rgba(0,0,0,.13);z-index:60;flex-direction:column;padding:6px}
+        .navgroup:hover .navmenu,.navgroup.open .navmenu{display:flex}
+        .navmenu .week-tab{display:block;width:100%;text-align:left;padding:10px 12px;font-size:.8rem;color:#444;border-bottom:none;border-radius:8px}
+        .navmenu .week-tab:hover{background:#F3ECD8;color:#1A1A1A}
+        .navmenu .week-tab.active{background:rgba(192,57,43,.10);color:#C0392B}
         .section{display:none}
         .section.visible{display:block;animation:fadeUp .4s ease forwards}
         @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -88,20 +98,40 @@
 </header>
 
 <nav class="sticky top-0 z-40 bg-washi/95 backdrop-blur-sm border-b border-haiiro">
-    <div class="max-w-5xl mx-auto flex overflow-x-auto" style="scrollbar-width:none">
-        <button class="week-tab active" data-week="overview">Resumen</button>
-        <button class="week-tab" data-week="w1">S1·Tokio</button>
-        <button class="week-tab" data-week="w2">S2·Fuji/Monos</button>
-        <button class="week-tab" data-week="w3">S3·Osaka Hub ⭐</button>
-        <button class="week-tab" data-week="w4">S4·Tokio final</button>
-        <button class="week-tab" data-week="vista3d">🌏 3D</button>
-        <button class="week-tab" data-week="experiencias">🎌 Experiencias</button>
-        <button class="week-tab" data-week="planb">🎲 Plan B & Must-do</button>
-        <button class="week-tab" data-week="lodging">🛏️ Hospedaje</button>
-        <button class="week-tab" data-week="connect">🚆 Conectividad</button>
-        <button class="week-tab" data-week="costs">💰 Costos</button>
-        <button class="week-tab" data-week="metrics">📊 Indicadores</button>
-        <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center gap-1 px-2 py-1">
+        <button class="navbtn active" data-week="overview">Resumen</button>
+        <div class="navgroup">
+            <button class="navbtn navtop" type="button">🗓️ Itinerario ▾</button>
+            <div class="navmenu">
+                <button class="week-tab" data-week="w1">S1 · Tokio</button>
+                <button class="week-tab" data-week="w2">S2 · Fuji & Monos</button>
+                <button class="week-tab" data-week="w3">S3 · Osaka Hub ⭐</button>
+                <button class="week-tab" data-week="w4">S4 · Tokio final</button>
+            </div>
+        </div>
+        <div class="navgroup">
+            <button class="navbtn navtop" type="button">✨ Planear ▾</button>
+            <div class="navmenu">
+                <button class="week-tab" data-week="experiencias">🎌 Experiencias</button>
+                <button class="week-tab" data-week="planb">🎲 Plan B & Must-do</button>
+                <button class="week-tab" data-week="vista3d">🌏 Vista 3D</button>
+            </div>
+        </div>
+        <div class="navgroup">
+            <button class="navbtn navtop" type="button">🛏️ Logística ▾</button>
+            <div class="navmenu">
+                <button class="week-tab" data-week="lodging">🛏️ Hospedaje</button>
+                <button class="week-tab" data-week="connect">🚆 Conectividad</button>
+                <button class="week-tab" data-week="costs">💰 Costos</button>
+            </div>
+        </div>
+        <div class="navgroup">
+            <button class="navbtn navtop" type="button">📊 Análisis ▾</button>
+            <div class="navmenu">
+                <button class="week-tab" data-week="metrics">📊 Indicadores</button>
+                <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -835,7 +865,26 @@ function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.r
 
 function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();}
 renderAll(); loadRates();
-document.querySelectorAll('.week-tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.getElementById(tab.dataset.week).classList.add('visible');window.scrollTo({top:200,behavior:'smooth'});if(tab.dataset.week==='vista3d')setTimeout(initCesium,200);}));
+document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('click',e=>{
+    e.stopPropagation();
+    document.querySelectorAll('nav [data-week]').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.navtop').forEach(b=>b.classList.remove('active'));
+    const menu=tab.closest('.navmenu'); if(menu){const top=menu.parentElement.querySelector('.navtop'); if(top)top.classList.add('active');}
+    document.querySelectorAll('.navgroup').forEach(g=>g.classList.remove('open'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+    document.getElementById(tab.dataset.week).classList.add('visible');
+    window.scrollTo({top:200,behavior:'smooth'});
+    if(tab.dataset.week==='vista3d')setTimeout(initCesium,200);
+}));
+// abrir/cerrar grupos (touch); en desktop también abren por hover
+document.querySelectorAll('.navtop').forEach(b=>b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const g=b.parentElement, wasOpen=g.classList.contains('open');
+    document.querySelectorAll('.navgroup').forEach(x=>x.classList.remove('open'));
+    if(!wasOpen)g.classList.add('open');
+}));
+document.addEventListener('click',()=>document.querySelectorAll('.navgroup').forEach(x=>x.classList.remove('open')));
 let mapReady=false;
 document.getElementById('map-toggle').addEventListener('click',()=>{const c=document.getElementById('map-container');c.classList.toggle('open');document.getElementById('map-chevron').style.transform=c.classList.contains('open')?'rotate(180deg)':'';if(!mapReady){setTimeout(initMap,200);mapReady=true;}});
 document.getElementById('replay-btn').addEventListener('click',()=>{if(mapReady)animatePath();});
