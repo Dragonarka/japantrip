@@ -11,8 +11,6 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.95.0/Build/Cesium/Widgets/widgets.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/cesium@1.95.0/Build/Cesium/Cesium.js"></script>
     <style>
         *{box-sizing:border-box;margin:0;padding:0}
         body{font-family:'DM Sans',sans-serif;background:#FAF7F0;color:#1A1A1A}
@@ -82,11 +80,7 @@
         #lightbox img{max-width:95%;max-height:90%;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
         .sup-cell{font-size:.7rem;padding:6px 8px;border-radius:6px;text-align:center;font-weight:600;display:inline-block}
         .sup-match{background:#1A6B4A;color:#fff}.sup-near{background:#C5982A;color:#fff}.sup-none{background:#F1EEE8;color:#999}
-        #cesium{height:520px;width:100%;border-radius:12px;overflow:hidden;background:#0b1622}
-        #cesium .cesium-widget-credits{display:none!important}
-        .city3d-btn{font-size:.7rem;font-weight:700;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid #E8E4DC;cursor:pointer;transition:all .15s}
-        .city3d-btn:hover{background:#1A1A1A;color:#fff}
-        @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}#cesium{height:380px}
+        @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}
             .navbtn{padding:9px 10px;font-size:.74rem}.subtab{padding:7px 9px;font-size:.68rem}.itin-subbar .max-w-5xl{padding-top:2px;padding-bottom:2px}}
     </style>
 </head>
@@ -100,7 +94,6 @@
     <p id="fx-banner" class="text-kuro/55 mt-4 relative">Cargando tasas de cambio…</p>
     <div class="mt-4 relative flex gap-2 justify-center flex-wrap">
         <a href="ades-japan-oct30-nov19.html" class="inline-block bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition">🤝 Plan AdeS (otro grupo)</a>
-        <a href="japan-v6-tour.kmz" download class="inline-block bg-midori text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-midori/80 transition">🌏 Tour 3D (Google Earth)</a>
     </div>
 </header>
 
@@ -121,7 +114,6 @@
             <div class="navmenu">
                 <button class="week-tab" data-week="experiencias">🎌 Experiencias</button>
                 <button class="week-tab" data-week="planb">🎲 Plan B & Must-do</button>
-                <button class="week-tab" data-week="vista3d">🌏 Vista 3D</button>
             </div>
         </div>
         <div class="navgroup">
@@ -159,8 +151,7 @@
         <div id="route-map"></div>
         <div class="bg-white border border-haiiro rounded-b-xl p-3 flex flex-wrap gap-4 text-xs text-kuro/70">
             <span>🔴 Ciudades base</span><span>⚫ Excursiones</span>
-            <a href="japan-v6-mapa.kml" download class="ml-auto bg-sumi text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-kuro">⬇ KML (My Maps)</a>
-            <button id="replay-btn" class="bg-aka text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-aka/80">▶ Replay</button>
+            <button id="replay-btn" class="ml-auto bg-aka text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-aka/80">▶ Replay</button>
         </div>
     </div>
 </div>
@@ -219,22 +210,6 @@
 <section class="section" id="w2"></section>
 <section class="section" id="w3"></section>
 <section class="section" id="w4"></section>
-
-<section class="section" id="vista3d">
-    <h2 class="font-jp text-2xl font-black mb-2">🌏 Vista 3D del viaje</h2>
-    <p class="text-xs text-kuro/50 mb-4">Globo 3D con cada parada y la ruta real. Pulsa <b>▶ Volar el viaje</b> para sobrevolar las bases en orden, o salta a una ciudad. Para el detalle <b>fotorrealista</b> (edificios 3D reales) descarga el <b>tour KMZ</b> y ábrelo en Google Earth.</p>
-    <div class="flex flex-wrap gap-2 mb-3 items-center">
-        <button id="fly3d" class="bg-aka text-white text-sm font-bold px-4 py-2 rounded-full hover:bg-aka/80">▶ Volar el viaje</button>
-        <button id="reset3d" class="city3d-btn">🌐 Vista Japón</button>
-        <span id="city3d-btns" class="flex flex-wrap gap-2"></span>
-        <a href="japan-v6-tour.kmz" download class="ml-auto bg-midori text-white text-sm font-bold px-4 py-2 rounded-full hover:bg-midori/80">⬇ Tour KMZ (Google Earth · 3D fotorrealista)</a>
-    </div>
-    <div id="cesium"></div>
-    <p id="cesium-status" class="text-xs text-kuro/40 mt-2"></p>
-    <div class="bg-white border border-haiiro rounded-xl p-4 mt-4 text-xs text-kuro/70">
-        <b>¿Cómo ver el 3D más preciso?</b> El globo de aquí usa mapas OpenStreetMap (sin coste, sin cuenta) y es ideal para entender distancias y ruta. Para volar entre <b>edificios 3D fotorrealistas</b> (castillo de Osaka, torres, Fuji con relieve real): descarga el <b>tour KMZ</b> ↑ y ábrelo en <a class="text-aka underline" href="https://earth.google.com/web/" target="_blank">Google Earth (web o app)</a> → reproduce el tour para un recorrido día a día. Requiere WebGL; si el globo sale en negro, prueba en Chrome/Safari de escritorio.
-    </div>
-</section>
 
 <section class="section" id="planb">
     <h2 class="font-jp text-2xl font-black mb-2">🎲 Plan B & Must-do</h2>
@@ -339,11 +314,7 @@
 <section class="section" id="metrics">
     <h2 class="font-jp text-2xl font-black mb-2">📊 Indicadores</h2>
     <p class="text-xs text-kuro/50 mb-4">Sobre los 23 días. Verde = saludable · ámbar = vigilar · rojo = ajustar.</p>
-    <div class="bg-midori/10 border border-midori/30 rounded-xl p-5 mb-6">
-        <h3 class="font-jp font-bold text-midori mb-2">✅ Diagnóstico: plan equilibrado y relajado — todos los indicadores en verde</h3>
-        <p class="text-sm text-kuro/75">Con Osaka como base fija, los números mejoraron mucho frente a versiones anteriores: <b>tránsito ~13%</b> del tiempo (muy bajo), <b>densidad 2,4 act/día</b> y <b>buffer 27%</b> (ritmo holgado, sin agotarse), <b>ROI emocional 4,5/5</b> (altísimo) y <b>47% de actividades locales</b> (buen balance imperdibles/barrio). Solo <b>3 días intensos</b> (monos, traslado a Osaka, USJ).</p>
-        <p class="text-xs text-kuro/55 mt-2"><b>Único punto a vigilar:</b> la densidad es algo baja (plan deliberadamente tranquilo). Si quieres exprimir más, hay margen para sumar 1 actividad en los días más suaves (D16 Uji, D19 Tokio libre) sin romper el equilibrio. <b>No hay nada en rojo.</b></p>
-    </div>
+    <div id="metrics-diagnosis" class="bg-midori/10 border border-midori/30 rounded-xl p-5 mb-6"></div>
     <div id="metrics-grid" class="grid md:grid-cols-2 gap-4 mb-8"></div>
     <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
         <table class="w-full text-xs"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2">Día</th><th>Densidad</th><th>Buffer</th><th>Tránsito</th><th>Esfuerzo</th><th>🤝</th><th>Burn</th></tr></thead><tbody id="metrics-day-table"></tbody></table>
@@ -720,19 +691,31 @@ function renderMetrics(){
     let rs=0,rn=0;DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(a.t!=='transit'){rs+=a.roi;rn++;}}));const avgR=rs/rn;
     const joints=DAYS.filter(d=>d.joint).length;
     let cl=0,lo=0;DAYS.forEach(d=>(d.acts||[]).forEach(a=>{if(CLASSIC.includes(a.t))cl++;else if(LOCALC.includes(a.t))lo++;}));const loPct=lo/(cl+lo)*100;
-    const avgE=DAYS.reduce((s,d)=>s+d.effort,0)/n,hard=DAYS.filter(d=>d.effort>=4).length;
+    const avgE=DAYS.reduce((s,d)=>s+d.effort,0)/n,hardDays=DAYS.filter(d=>d.effort>=4),hard=hardDays.length;
     const avgC=DAYS.reduce((s,d)=>s+d.contempl,0)/n;
+    // Diagnóstico auto-calculado (nunca queda desactualizado)
+    const warn=[];
+    if(tPct>22)warn.push('tránsito alto');
+    if(avgB<15)warn.push('poco buffer');
+    if(avgR<4)warn.push('ROI bajo');
+    if(avgE>3.5)warn.push('exigencia alta');
+    if(avgD>3)warn.push('densidad alta');
+    const hardTxt=hardDays.map(d=>`${d.title.split(':')[0].split('&')[0].trim()} (${d.date})`).join(', ');
+    document.getElementById('metrics-diagnosis').innerHTML=
+        `<h3 class="font-jp font-bold text-midori mb-2">${warn.length?'⚠️ Diagnóstico: vigilar '+warn.join(', '):'✅ Diagnóstico: plan equilibrado — todos los indicadores en verde'}</h3>
+        <p class="text-sm text-kuro/75">Con Osaka como base fija: <b>tránsito ${fmtPct(tPct)}</b> del tiempo, <b>densidad ${avgD.toFixed(1)} act/día</b>, <b>buffer ${fmtPct(avgB)}</b>, <b>ROI emocional ${avgR.toFixed(1)}/5</b>, <b>${fmtPct(loPct)} de actividades locales</b> y <b>${EXP.length} experiencias</b>. ${hard} día(s) intensos: ${hardTxt}.</p>
+        <p class="text-xs text-kuro/55 mt-2">La densidad baja es deliberada (ritmo relajado); hay margen para sumar 1 actividad en los días suaves sin romper el equilibrio.</p>`;
     document.getElementById('metrics-grid').innerHTML=[
-        metricCard('🎌','Experiencias inmersivas',String(EXP.length),'#C0392B',100,`Hacer > ver: samurái, ninja, té, monos, cocina, cachetadas, baile, sumo+chanko, 2 cumpleaños, sellos. Ver pestaña 🎌.`),
+        metricCard('🎌','Experiencias inmersivas',String(EXP.length),'#C0392B',100,`Hacer > ver: samurái, ninja, drift, té, monos, Arima, cocina, cachetadas, baile, sumo+chanko, 2 cumpleaños, sellos. Ver pestaña 🎌.`),
         metricCard('🤝','Días con AdeS (bonus)',joints+'/'+n,'#1A6B4A',joints/n*100,`${joints} días en la misma ciudad que el grupo AdeS, sin que sea el eje del plan.`),
-        metricCard('🎯','Densidad/día',avgD.toFixed(1),avgD<=3?'#1A6B4A':'#C0392B',avgD/5*100,`Ideal 2–3. ${okD}/${n} días en rango. Bajó al quitar Nara/Ghibli.`),
-        metricCard('🚆','Tránsito vs destino',fmtPct(tPct),tPct<=22?'#1A6B4A':'#C5982A',tPct,`${Math.round(tT/60)} h en transporte. Picos: monos (N4) y Yudanaka→Osaka (N5); el regreso a Tokio (N14). Con base fija en Osaka, los daytrips (Kioto/Himeji/Kobe) son ida/vuelta cortos y sin maletas.`),
+        metricCard('🎯','Densidad/día',avgD.toFixed(1),avgD<=3?'#1A6B4A':'#C0392B',avgD/5*100,`Ideal 2–3. ${okD}/${n} días en rango. Ritmo deliberadamente relajado.`),
+        metricCard('🚆','Tránsito vs destino',fmtPct(tPct),tPct<=22?'#1A6B4A':'#C5982A',tPct,`${Math.round(tT/60)} h en transporte. Picos: monos (4 nov), Yudanaka→Osaka (5 nov) y regreso a Tokio (14 nov). Los daytrips desde Osaka son ida/vuelta cortos y sin maletas.`),
         metricCard('🛋️','Buffer',fmtPct(avgB),avgB>=15?'#1A6B4A':'#C5982A',avgB*2.5,`Promedio ${fmtPct(avgB)}. Con base fija en Osaka, los daytrips vuelven sin prisa; cola de Tokio holgada al final.`),
         metricCard('💴','Burn rate diario',`¥${burn.toLocaleString()}`,'#C5982A',burn/20000*100,`Transporte + comida por día ≈ ${usdTip(burn)} (sin hospedaje).`),
-        metricCard('❤️','ROI emocional',avgR.toFixed(1)+'/5',avgR>=4?'#1A6B4A':'#C5982A',avgR/5*100,`Picos: monos, Fuji, Fushimi, té/kimono, cumpleaños, USJ.`),
-        metricCard('⚖️','Clásico vs local',fmtPct(loPct)+' local',loPct>=35?'#1A6B4A':'#C5982A',loPct,`Buen balance entre imperdibles y experiencias de barrio/naturaleza.`),
-        metricCard('🥾','Exigencia física',avgE.toFixed(1)+'/5',avgE<=3.5?'#1A6B4A':'#C0392B',avgE/5*100,`${hard} días intensos (N4 monos, N5 traslado a Osaka, N13 USJ). El resto, moderado y con base fija.`),
-        metricCard('🧘','Contemplación',fmtPct(avgC),avgC>=35?'#1A6B4A':'#C5982A',avgC,`Alto en Fuji, Yudanaka, té, cumpleaños y cola de Tokio.`),
+        metricCard('❤️','ROI emocional',avgR.toFixed(1)+'/5',avgR>=4?'#1A6B4A':'#C5982A',avgR/5*100,`Picos: monos, Fuji, Fushimi, drift, té/kimono, cumpleaños, USJ.`),
+        metricCard('⚖️','Clásico vs local',fmtPct(loPct)+' local',loPct>=35?'#1A6B4A':'#C5982A',loPct,`Buen balance entre imperdibles y experiencias de barrio/naturaleza/onsen.`),
+        metricCard('🥾','Exigencia física',avgE.toFixed(1)+'/5',avgE<=3.5?'#1A6B4A':'#C0392B',avgE/5*100,`${hard} día(s) intensos: ${hardTxt}. El resto, moderado y con base fija.`),
+        metricCard('🧘','Contemplación',fmtPct(avgC),avgC>=35?'#1A6B4A':'#C5982A',avgC,`Alto en Fuji, Yudanaka, Arima, té, Uji, cumpleaños y cola de Tokio.`),
     ].join('');
     document.getElementById('metrics-day-table').innerHTML=DAYS.map(d=>`<tr class="border-b border-haiiro/50"><td class="py-2 font-bold">D${d.day} <span class="text-kuro/40 font-normal">${d.date}</span></td><td class="${mainActs(d).length>=2&&mainActs(d).length<=3?'text-midori':'text-aka'} font-bold">${mainActs(d).length}</td><td>${d.bufferP}%</td><td>${d.transitMin}m</td><td>${(EFFORT_LABELS[d.effort]||'').split(' ')[1]||''}</td><td>${d.bday?'🎂':(d.joint?'🤝':'')}</td><td>¥${(d.costT+d.costF).toLocaleString()}</td></tr>`).join('');
 }
@@ -906,7 +889,6 @@ document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('
     const nav=document.querySelector('nav');
     const y=sec.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-24;
     window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
-    if(tab.dataset.week==='vista3d')setTimeout(initCesium,200);
 }));
 // abrir/cerrar grupos (touch); en desktop también abren por hover
 document.querySelectorAll('.navtop').forEach(b=>b.addEventListener('click',e=>{
@@ -920,63 +902,6 @@ let mapReady=false;
 document.getElementById('map-toggle').addEventListener('click',()=>{const c=document.getElementById('map-container');c.classList.toggle('open');document.getElementById('map-chevron').style.transform=c.classList.contains('open')?'rotate(180deg)':'';if(!mapReady){setTimeout(initMap,200);mapReady=true;}});
 document.getElementById('replay-btn').addEventListener('click',()=>{if(mapReady)animatePath();});
 
-// ===== VISTA 3D (CesiumJS, sin token: imágenes OpenStreetMap) =====
-const TOUR3D=[
- {n:"Tokio",lng:139.6917,lat:35.6895,h:9000},{n:"Kamakura",lng:139.547,lat:35.319,h:6000},
- {n:"Fuji",lng:138.7274,lat:35.3606,h:11000},{n:"Matsumoto",lng:137.9690,lat:36.2384,h:6000},
- {n:"Monos (Jigokudani)",lng:138.4620,lat:36.7330,h:5000},{n:"Yudanaka",lng:138.4150,lat:36.7400,h:5000},
- {n:"⭐ Osaka (HUB)",lng:135.5020,lat:34.6660,h:9000},{n:"Kioto",lng:135.7681,lat:35.0116,h:8000},
- {n:"Himeji",lng:134.6939,lat:34.8394,h:5000},{n:"Kobe",lng:135.1880,lat:34.6851,h:6000},
- {n:"Arima Onsen",lng:135.2478,lat:34.7963,h:4500},
- {n:"Uji",lng:135.8076,lat:34.8896,h:4000},{n:"USJ",lng:135.4323,lat:34.6654,h:4000},{n:"Osaka castillo/bahía",lng:135.5259,lat:34.6873,h:6000},
- {n:"Torre de Tokio",lng:139.7454,lat:35.6586,h:4000},{n:"Tokio (final)",lng:139.6917,lat:35.6895,h:9000},
-];
-let cesiumViewer=null,tourTimers=[];
-function fly3dTo(s,dur){if(!cesiumViewer)return;cesiumViewer.camera.flyTo({destination:Cesium.Cartesian3.fromDegrees(s.lng,s.lat-0.05,s.h||7000),orientation:{heading:0,pitch:Cesium.Math.toRadians(-40),roll:0},duration:dur==null?2:dur});}
-function stopTour(){tourTimers.forEach(t=>clearTimeout(t));tourTimers=[];}
-function flyTour(){if(!cesiumViewer)return;stopTour();let t=0;TOUR3D.forEach((s,i)=>{tourTimers.push(setTimeout(()=>fly3dTo(s,2),t));t+=2600;});}
-function resetJapan(){if(!cesiumViewer)return;stopTour();cesiumViewer.camera.flyTo({destination:Cesium.Cartesian3.fromDegrees(136.5,35.5,1700000),orientation:{heading:0,pitch:Cesium.Math.toRadians(-75),roll:0},duration:2});}
-function webglOK(){try{const c=document.createElement('canvas');const o={failIfMajorPerformanceCaveat:false};return !!(window.WebGLRenderingContext&&(c.getContext('webgl',o)||c.getContext('experimental-webgl',o)||c.getContext('webgl2',o)));}catch(e){return false;}}
-function cesiumFallback(extra){
-    const el=document.getElementById('cesium');
-    if(el)el.innerHTML='<div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 25%,#16324f,#0b1622)">'
-      +'<p style="font-size:42px;margin-bottom:6px">🌏</p>'
-      +'<p style="color:#fff;font-weight:700;font-size:15px;margin-bottom:6px">El globo 3D en la página necesita WebGL</p>'
-      +'<p style="color:#cbd5e1;font-size:13px;max-width:440px;margin-bottom:16px">'+(extra||'')+' La forma más precisa de ver el viaje en 3D es el <b>tour KMZ</b> en Google Earth (edificios fotorrealistas y vuelo día a día).</p>'
-      +'<a href="japan-v6-tour.kmz" download style="background:#1A6B4A;color:#fff;font-weight:700;padding:11px 20px;border-radius:999px;text-decoration:none;font-size:14px">⬇ Descargar Tour KMZ (Google Earth)</a>'
-      +'<p style="color:#7c93ac;font-size:11px;margin-top:12px">¿Sale en blanco/negro? En Chrome: chrome://settings/system → activa “Usar aceleración por hardware” y reinicia. O prueba en Safari.</p></div>';
-    const st=document.getElementById('cesium-status'); if(st)st.textContent='';
-}
-function initCesium(){
-    if(cesiumViewer)return; const st=document.getElementById('cesium-status');
-    if(typeof Cesium==='undefined'){cesiumFallback('No se pudo cargar CesiumJS (¿sin conexión?).');return;}
-    if(!webglOK()){cesiumFallback('Tu navegador/equipo tiene WebGL desactivado o sin aceleración.');return;}
-    try{
-        cesiumViewer=new Cesium.Viewer('cesium',{
-            imageryProvider:new Cesium.OpenStreetMapImageryProvider({url:'https://a.tile.openstreetmap.org/'}),
-            baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,
-            navigationHelpButton:false,animation:false,timeline:false,fullscreenButton:false,
-            infoBox:true,selectionIndicator:true,
-            contextOptions:{webgl:{failIfMajorPerformanceCaveat:false,powerPreference:'default'}}
-        });
-        cesiumViewer.scene.globe.enableLighting=false;
-        // ruta + paradas
-        const seq=[];BASES.forEach(b=>seq.push(b.lng,b.lat));
-        cesiumViewer.entities.add({polyline:{positions:Cesium.Cartesian3.fromDegreesArray(seq),width:3,material:Cesium.Color.fromCssColorString('#C0392B').withAlpha(.85),clampToGround:true}});
-        const add=(p,color,size)=>cesiumViewer.entities.add({position:Cesium.Cartesian3.fromDegrees(p.lng,p.lat),
-            point:{pixelSize:size,color:Cesium.Color.fromCssColorString(color),outlineColor:Cesium.Color.WHITE,outlineWidth:2,disableDepthTestDistance:Number.POSITIVE_INFINITY},
-            label:{text:(p.name||p.n),font:'600 13px DM Sans',fillColor:Cesium.Color.WHITE,showBackground:true,backgroundColor:Cesium.Color.fromCssColorString('#1A1A1A').withAlpha(.75),pixelOffset:new Cesium.Cartesian2(0,-18),scale:.85,disableDepthTestDistance:Number.POSITIVE_INFINITY,scaleByDistance:new Cesium.NearFarScalar(2.0e5,1.0,3.0e6,0.5)}});
-        BASES.forEach(b=>add(b,'#C0392B',14));
-        EXC.forEach(p=>add(p,'#2D2D2D',9));
-        resetJapan();
-        // botones por ciudad
-        document.getElementById('city3d-btns').innerHTML=TOUR3D.filter(s=>!/final/.test(s.n)).map((s,i)=>`<button class="city3d-btn" data-i="${i}">${s.n}</button>`).join('');
-        document.querySelectorAll('#city3d-btns .city3d-btn').forEach(b=>b.addEventListener('click',()=>{stopTour();fly3dTo(TOUR3D[+b.dataset.i],1.6);}));
-        if(st)st.textContent='Globo OSM (sin coste). Para 3D fotorrealista usa el tour KMZ ↑ en Google Earth.';
-    }catch(e){cesiumFallback('Tu navegador bloqueó la vista 3D ('+(e&&e.message?String(e.message).slice(0,60):'WebGL')+').');cesiumViewer=null;}
-}
-const fly3dBtn=document.getElementById('fly3d');if(fly3dBtn)fly3dBtn.addEventListener('click',()=>{if(!cesiumViewer)initCesium();flyTour();});
-const reset3dBtn=document.getElementById('reset3d');if(reset3dBtn)reset3dBtn.addEventListener('click',resetJapan);
 </script>
 </body>
 </html>
