@@ -75,6 +75,13 @@
         #fx-banner{font-size:.7rem}
         .minimap{height:200px;border-radius:10px;margin-top:6px;position:relative;z-index:0}
         .gthumb{cursor:zoom-in;transition:transform .15s}.gthumb:hover{transform:scale(1.03)}
+        #zonemodal{display:none;position:fixed;inset:0;z-index:10001;background:rgba(26,26,26,.55);align-items:flex-end;justify-content:center;padding:0}
+        #zonemodal.open{display:flex}
+        .zm-card{background:#FAF7F0;width:100%;max-width:680px;max-height:86vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:22px 20px 30px;box-shadow:0 -12px 40px rgba(0,0,0,.3)}
+        @media(min-width:640px){#zonemodal{align-items:center;padding:24px}.zm-card{border-radius:18px;padding:26px}}
+        .zm-zone{border:1px solid #E8E4DC;border-radius:12px;padding:14px;margin-bottom:10px;background:#fff}
+        .zm-zone.pick{border-color:#1A6B4A;border-width:2px;background:rgba(26,107,74,.05)}
+        .zm-tag{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#1A6B4A;color:#fff;margin-left:6px;vertical-align:middle}
         #lightbox{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out;padding:20px}
         #lightbox.open{display:flex}
         #lightbox img{max-width:95%;max-height:90%;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
@@ -335,6 +342,18 @@
 <footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan V6 · Osaka Hub · 29 Oct – 20 Nov 2026 · 5 amigos · Estimado — verificar fechas, tickets y reservas. <a href="ades-japan-oct30-nov19.html" class="underline">Plan AdeS</a></footer>
 
 <div id="lightbox" onclick="closeLightbox()"><button onclick="closeLightbox()" style="position:absolute;top:16px;right:22px;color:#fff;font-size:30px;background:none;border:none;cursor:pointer">✕</button><img id="lightbox-img" src="" alt=""></div>
+
+<div id="zonemodal" onclick="if(event.target===this)closeZoneGuide()">
+    <div class="zm-card">
+        <div class="flex items-start justify-between gap-3 mb-1">
+            <h3 id="zm-title" class="font-jp text-xl font-black"></h3>
+            <button onclick="closeZoneGuide()" class="text-kuro/40 text-2xl leading-none hover:text-kuro shrink-0">✕</button>
+        </div>
+        <p id="zm-intro" class="text-xs text-kuro/55 mb-4"></p>
+        <div id="zm-zones"></div>
+        <p id="zm-sources" class="text-[10px] text-kuro/35 mt-3"></p>
+    </div>
+</div>
 
 <script src="trip-data.js"></script>
 <script>
@@ -748,21 +767,21 @@ function renderOverlap(){
 
 // ===== HOSPEDAJE ÓPTIMO =====
 const LODGING=[
- {city:'Tokio · 1ª etapa',nights:5,checkin:'2026-10-29',checkout:'2026-11-03',area:'Shinjuku, Tokyo',adults:5,poiDays:[2,3,4],
+ {city:'Tokio · 1ª etapa',zg:'tokio1',nights:5,checkin:'2026-10-29',checkout:'2026-11-03',area:'Shinjuku, Tokyo',adults:5,poiDays:[2,3,4],
   candidates:[{n:'Shinjuku',lat:35.690,lng:139.700},{n:'Ueno / Asakusa',lat:35.710,lng:139.785},{n:'Shibuya',lat:35.659,lng:139.701},{n:'Tokyo / Nihonbashi',lat:35.681,lng:139.767}],
   pp:'5.000–9.000',local:'Gemas: Omoide Yokocho y Golden Gai (Shinjuku), Shimokitazawa vintage, Nakameguro, baños sentō de barrio.',
   type:'Airbnb entero (2–3 hab) para 5; central para metro, samurái/ninja y salida a Fuji. Day-trips (Kamakura) excluidos del cálculo.'},
- {city:'Fuji · ryokan',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,
+ {city:'Fuji · ryokan',zg:'fuji',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,
   fixed:{n:'Orilla del Lago Kawaguchi',lat:35.5018,lng:138.7660},pp:'18.000–32.000',local:'Gemas: Onsen con vista al Fuji, paseo en bici por el lago, Oishi Park.',
   type:'Ryokan con onsen + kaiseki (el lujo del viaje). Rakuten Travel / Booking / directo.'},
- {city:'Nagano · Yudanaka',nights:1,checkin:'2026-11-04',checkout:'2026-11-05',area:'Yudanaka Onsen, Nagano',adults:5,
+ {city:'Nagano · Yudanaka',zg:'nagano',nights:1,checkin:'2026-11-04',checkout:'2026-11-05',area:'Yudanaka Onsen, Nagano',adults:5,
   fixed:{n:'Yudanaka / Shibu Onsen',lat:36.7400,lng:138.4150},pp:'9.000–16.000',local:'Gemas: 9 baños públicos de Shibu Onsen (en yukata), pueblo histórico, base de los monos.',
   type:'Ryokan en el pueblo onsen, a minutos de Jigokudani. Reservar pronto (pocas plazas).'},
- {city:'⭐ Osaka (HUB · 9 noches)',nights:9,checkin:'2026-11-05',checkout:'2026-11-14',area:'Namba, Osaka',adults:5,poiDays:[8,13,14,15,16],
+ {city:'⭐ Osaka (HUB · 9 noches)',zg:'osaka',nights:9,checkin:'2026-11-05',checkout:'2026-11-14',area:'Namba, Osaka',adults:5,poiDays:[8,13,14,15,16],
   candidates:[{n:'Namba',lat:34.666,lng:135.502},{n:'Shinsaibashi',lat:34.674,lng:135.501},{n:'Umeda',lat:34.702,lng:135.496},{n:'Tennoji',lat:34.646,lng:135.513}],
   pp:'7.000–14.000',local:'Gemas: Ura-Namba izakayas, Shinsekai/Kushikatsu, Den-Den Town, mercado Kuromon, Umeda Sky, Spa World. Es la base de TODOS los daytrips (Kioto, Himeji, Kobe, Uji, USJ): elige cerca de una estación con líneas Midosuji + JR.',
   type:'Airbnb entero (2–3 hab) para 5, UNA sola reserva de 9 noches = mucho más barato/persona y cero mudanzas en todo Kansai. Namba/Shinsaibashi: Dotonbori a pie, JR a USJ/Kobe y Shinkansen a Himeji desde Shin-Osaka (10 min).'},
- {city:'Tokio · recta final',nights:6,checkin:'2026-11-14',checkout:'2026-11-20',area:'Shinjuku, Tokyo',adults:5,poiDays:[18,19,20,21,22],
+ {city:'Tokio · recta final',zg:'tokio2',nights:6,checkin:'2026-11-14',checkout:'2026-11-20',area:'Shinjuku, Tokyo',adults:5,poiDays:[18,19,20,21,22],
   candidates:[{n:'Shinjuku',lat:35.690,lng:139.700},{n:'Shibuya',lat:35.659,lng:139.701},{n:'Ueno / Asakusa',lat:35.710,lng:139.785},{n:'Tokyo / Ginza',lat:35.675,lng:139.765}],
   pp:'5.000–9.000',local:'Gemas: repetir favoritos, Tsukiji exterior, Ginza, Akihabara, barrios de cafés (Kiyosumi, Nakameguro).',
   type:'Misma lógica que la 1ª etapa; cerca de AdeS para la recta final y de Haneda para el regreso.'},
@@ -797,6 +816,7 @@ function renderLodging(){
             <p class="text-sm mt-1 text-kuro/70">${L.type}</p>
             <p class="text-sm mt-2">💴 ≈ <b>¥${L.pp}</b> /persona/noche · tramo (5 pers., ${L.nights}n): <span class="tooltip-usd font-bold text-kin" data-usd="${usdTip(gLo)} – ${usdTip(gHi)}">¥${gLo.toLocaleString()}–${gHi.toLocaleString()}</span></p>
             <div class="flex gap-2 mt-3 flex-wrap">
+                <button onclick="openZoneGuide('${L.zg}')" class="bg-midori text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-midori/80">🏘️ ¿En qué barrio quedarse?</button>
                 <a href="${lk.airbnb}" target="_blank" class="bg-aka text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-aka/80">🏠 Airbnb (5 huésp.)</a>
                 <a href="${lk.booking}" target="_blank" class="bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🏨 Booking (2 hab.)</a>
                 <a href="${lk.gmap}" target="_blank" class="bg-haiiro/70 text-kuro text-xs font-bold px-3 py-2 rounded-lg hover:bg-haiiro">🗺️ Hoteles en el mapa</a>
@@ -829,6 +849,58 @@ function renderConnectivity(){
         return `<tr class="border-b border-haiiro/50"><td class="py-2 pr-3"><b>${L.f}</b> → ${L.t}</td><td class="px-2 text-kuro/70">${L.m}</td><td class="px-2 whitespace-nowrap">${L.d}</td><td class="px-2 whitespace-nowrap"><span class="tooltip-usd text-kin font-bold" data-usd="${usdTip(L.y)}">¥${L.y.toLocaleString()}</span></td><td class="px-2"><a href="${dir}" target="_blank" class="text-aka underline">ruta↗</a></td></tr>`;
     }).join('');
 }
+
+// ===== GUÍA DE BARRIOS (modal por base) =====
+const ZONE_GUIDE={
+ tokio1:{t:'Tokio · 1ª etapa (5 noches)',intro:'Ancla logística: el bus a Fuji sale de Busta Shinjuku, la clase samurái es en Shinjuku y llegan de noche. Ranking según guías (Lonely Planet, Time Out, Truly Tokyo).',
+  zones:[
+   {n:'Shinjuku',vibe:'El \'todo a la vez\': neón, izakayas y la mayor estación del mundo.',why:'Busta Shinjuku en la puerta (bus a Kawaguchiko sin arrastrar maletas); Omoide Yokocho y Golden Gai para izakaya-hopping; tren directo a Kamakura; la clase samurái al lado; fácil llegar de madrugada desde el aeropuerto.',ideal:'quieren salir cada noche sin depender del último tren (ustedes).',warn:'Kabukicho es zona red-light — segura pero con jaladores: NUNCA seguir a un tout a un bar. Duerman en el lado oeste/sur de la estación para menos ruido.',pick:true},
+   {n:'Shibuya',vibe:'Epicentro joven: el cruce, música y bares hasta el amanecer.',why:'Zona cero de Halloween; nightlife en Dogenzaka y Nonbei Yokocho; a 10 min de Shinjuku para el bus a Fuji.',ideal:'la prioridad absoluta es la noche de Halloween.',warn:'Desde 2024 hay prohibición de beber en la calle y en Halloween cierran venta de alcohol y \'cancelan\' la fiesta callejera — la celebración real es en bares/clubs con entrada. De lo más caro por noche.'},
+   {n:'Ikebukuro',vibe:'El Shinjuku \'de andar por casa\': mismo músculo de transporte, precios menores.',why:'Yamanote a 3 paradas de Shinjuku, izakayas y ramen baratos, apartamentos más amplios para 5.',ideal:'quieren ahorrar en cama para gastarlo en comida y experiencias.',warn:'Menos \'wow\' turístico; su zona norte también tiene un pequeño distrito rojo.'},
+   {n:'Shimokitazawa',vibe:'Bohemio de vinilos, ropa vintage y bares diminutos.',why:'El Tokio local que Time Out y Cheapo adoran; Odakyu directo a Shinjuku (7 min).',ideal:'una noche de bares alternativos — mejor como visita que como base (poca oferta para 5).'},
+  ],src:'Lonely Planet · Time Out · Tokyo Weekender (reglas Halloween Shibuya 2024-25)'},
+ osaka:{t:'Osaka · base 9 noches',intro:'El dilema clásico: Namba = noche y comida / Umeda = daytrips. La línea Midosuji los une en 8 min, así que ninguno bloquea nada.',
+  zones:[
+   {n:'Namba / Ura-Namba (Minami)',vibe:'El corazón kuidaore: comer hasta caerse, Dotonbori, callejones de farolillos.',why:'Dotonbori, Kuromon, Amerikamura y Hozenji Yokocho a pie. Ura-Namba (al este de la estación) es el circuito de tachinomi e izakayas de 6 puestos donde beben los locales — la escena exacta del grupo. Midosuji a Umeda/Shin-Osaka, Nankai al aeropuerto, JR a USJ. Vivo hasta las 2-3am.',ideal:'este grupo — es la recomendación nº1 casi unánime para street food + noche.',warn:'El núcleo de Dotonbori es ruidoso y muy turístico: duerman en el borde (Ura-Namba, Nipponbashi, Shinsaibashi sur), no encima del canal.',pick:true},
+   {n:'Umeda / Kita',vibe:'La central del transporte: rascacielos arriba, yokochos de salarymen abajo.',why:'Con daytrips diarios es imbatible: Hankyu a Kioto, JR directo a Kobe/Himeji, un salto a Shin-Osaka, loop a USJ. De noche: callejones bajo las vías y Nakazakicho (cafés/bares alternativos) al lado.',ideal:'pesa más ahorrar 20-30 min cada mañana que salir cada noche.',warn:'Ambiente más corporativo; la noche es de oficinistas.'},
+   {n:'Shinsaibashi / Amerikamura',vibe:'El punto medio: compras de día, skaters y bares jóvenes de noche.',why:'A 10 min a pie de Dotonbori pero más respirable; Amerikamura es la escena joven/streetwear (y el spot de la batalla de baile). Midosuji en la puerta.',ideal:'quieren Namba sin dormir en Namba.'},
+   {n:'Fukushima',vibe:'La joya secreta: un barrio entero de izakayas casi sin turistas.',why:'Las guías locales lo señalan como LA zona de comer/beber con locales; 1 parada del JR Loop desde Osaka Station y de camino a USJ.',ideal:'foodies que quieren cero postureo.',warn:'Tennoji/Shinsekai (barato y retro) es genial para UNA noche de kushikatsu pero como base linda con Nishinari, de ambiente duro de noche.'},
+  ],src:'The Wanderbug · Navitime (guía Ura-Namba) · Kansai Scene'},
+ tokio2:{t:'Tokio · recta final (6 noches)',intro:'Las guías recomiendan explícitamente la estrategia \'otra cara de la ciudad\': si la 1ª etapa fue el OESTE (Shinjuku), esta debería ser el ESTE (shitamachi, el Tokio viejo) o el centro.',
+  zones:[
+   {n:'Ueno / Asakusa (lado este)',vibe:'El Tokio de posguerra: mercados, templos, izakayas bajo las vías.',why:'Cambio total de facetas: Ameyoko, bares bajo las vías de Ueno, Hoppy Street, Yanaka y Kuramae (el sub-barrio café/artesanía de moda). Akihabara a 2 paradas, Ginza directo. As logístico: Keisei Skyliner Ueno→Narita en 40 min para la salida. La mejor relación calidad-precio para 5.',ideal:'ver un Japón distinto al de la primera etapa con ojos nuevos.',warn:'Asakusa se vacía ~20h — la noche se hace en Hoppy Street o Ueno; para clubs toca cruzar la ciudad. Si salen por Haneda, pierde su ventaja de aeropuerto.',pick:true},
+   {n:'Ginza / Tokyo Station',vibe:'El escaparate elegante: flagships, sushi de nivel y orden absoluto.',why:'Compras a pie (Ginza), Akihabara a 4 min, Torre de Tokio cerca, Narita Express y monorraíl a Haneda en la puerta. Ideal para la cena de cumpleaños de nivel.',ideal:'final de viaje \'premium\' con la logística de salida perfecta.',warn:'De noche es zona muerta (todo cierra ~20-21h) y cara. Compensar con Yurakucho gado-shita (izakayas bajo las vías), que sí es su rollo.'},
+   {n:'Shibuya (repetir oeste)',vibe:'Solo si manda la logística.',why:'Recogida del tour JDM en la puerta, Harajuku andando, karaoke infinito.',ideal:'comodidad pura para el drift y Meiji Jingu.',warn:'Repiten la faceta ya vista y pagan el precio más alto de la ciudad.'},
+   {n:'Nakameguro / Ebisu',vibe:'El Tokio adulto y cool: canal, coctelería, restaurantes de barrio excelentes.',why:'Final relajado y gastronómico; Yamanote en Ebisu.',ideal:'cerrar el viaje en modo tranquilo.',warn:'Peor para Akihabara y para salir a Narita.'},
+  ],src:'Truly Tokyo (Where to Stay 2026) · Go Ask A Local'},
+ fuji:{t:'Kawaguchiko · Fuji (1 noche)',intro:'Una sola noche llegando en bus desde Shinjuku. La decisión es: ¿la noche ES el plan (rotenburo + kaiseki) o solo es una parada?',
+  zones:[
+   {n:'Orilla norte del lago',vibe:'Los ryokan clásicos con rotenburo mirando al Fuji sobre el agua — la postal.',why:'japan-guide: la selección de ryokan de categoría con vistas directas está en la orilla norte. La cena kaiseki va incluida, así que no importa que no haya restaurantes cerca.',ideal:'la noche ES el plan (su caso: onsen + kaiseki es el lujo del viaje).',warn:'Bus/taxi desde la estación; todo cierra temprano — es noche de baño y cena, no de salir.',pick:true},
+   {n:'Zona de la estación / orilla este',vibe:'Práctico y andable: llegan y salen en bus sin traslados.',why:'Restaurantes, konbinis y la terminal de buses a pie; hay ryokan junto al lago a 10 min andando con vistas al Fuji.',ideal:'mandan el bus y la simplicidad para una sola noche.'},
+  ],src:'japan-guide (Fuji Five Lakes)'},
+ nagano:{t:'Yudanaka / Shibu Onsen (1 noche)',intro:'La noche antes de los monos de nieve. Aquí las guías tienen un ganador claro.',
+  zones:[
+   {n:'Shibu Onsen (casco antiguo)',vibe:'Pueblo empedrado de 1.300 años: farolillos, yukata y geta por la calle.',why:'Los 9 baños públicos (meguri) SOLO se abren con la llave que dan los ryokan de Shibu al hacer check-in — el paseo en yukata de baño en baño solo existe durmiendo aquí. Sendero al parque de los monos a 25 min a pie.',ideal:'la experiencia onsen-pueblo completa (su caso).',warn:'Bus/taxi de 10 min desde la estación; cenen kaiseki en el ryokan (poquísima oferta nocturna).',pick:true},
+   {n:'Yudanaka (zona estación)',vibe:'Solo por logística y presupuesto.',why:'Llegan con el tren Nagaden y están a pie de andén; más alojamiento y más barato.',ideal:'presupuesto apretado.',warn:'Las guías coinciden: le falta el encanto de Shibu y quedan FUERA de la experiencia de las 9 llaves.'},
+  ],src:'Where and Wander (guía Shibu Onsen) · Snow Monkey Resorts'},
+};
+function openZoneGuide(key){
+    const g=ZONE_GUIDE[key]; if(!g)return;
+    document.getElementById('zm-title').textContent='🏘️ '+g.t;
+    document.getElementById('zm-intro').textContent=g.intro;
+    document.getElementById('zm-zones').innerHTML=g.zones.map((z,i)=>`<div class="zm-zone${z.pick?' pick':''}">
+        <p class="font-bold text-sm">${i+1}. ${z.n}${z.pick?'<span class="zm-tag">✓ nuestra elección</span>':''}</p>
+        <p class="text-xs text-kuro/50 italic mt-0.5">${z.vibe}</p>
+        <p class="text-xs text-kuro/75 mt-1.5">${z.why}</p>
+        <p class="text-xs text-midori mt-1"><b>Ideal si:</b> ${z.ideal}</p>
+        ${z.warn?`<p class="text-xs text-aka/80 mt-1">⚠️ ${z.warn}</p>`:''}
+    </div>`).join('');
+    document.getElementById('zm-sources').textContent='Basado en guías: '+g.src;
+    document.getElementById('zonemodal').classList.add('open');
+    document.body.style.overflow='hidden';
+}
+function closeZoneGuide(){document.getElementById('zonemodal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZoneGuide();});
 
 // ===== LIGHTBOX =====
 function openLightbox(u){const lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=u;lb.classList.add('open');}
