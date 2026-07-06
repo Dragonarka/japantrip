@@ -73,7 +73,8 @@
         .hist-link{text-decoration:none;font-size:.7rem;margin-left:4px}
         .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}.meter>div{height:100%;border-radius:5px}
         #fx-banner{font-size:.7rem}
-        .minimap{height:200px;border-radius:10px;margin-top:6px;position:relative;z-index:0}
+        .minimap{height:360px;border-radius:12px;margin-top:6px;position:relative;z-index:0}
+        @media(max-width:640px){.minimap{height:260px}}
         .gthumb{cursor:zoom-in;transition:transform .15s}.gthumb:hover{transform:scale(1.03)}
         #zonemodal{display:none;position:fixed;inset:0;z-index:10001;background:rgba(26,26,26,.55);align-items:flex-end;justify-content:center;padding:0}
         #zonemodal.open{display:flex}
@@ -365,7 +366,13 @@ function usdTip(yen){return y2d(yen)+' USD · '+y2cop(yen)+' COP';}
 function fmtFxBanner(){const u=Math.round(1/RATES.usd);document.getElementById('fx-banner').innerHTML=`💱 1 USD = ¥${u} · ¥1 = ${RATES.cop.toFixed(1)} COP <span class="text-kuro/35">(${RATES.src})</span>`;const n=document.getElementById('costs-fx-note');if(n)n.innerHTML=`Tasa en vivo (${RATES.src}). Pasa el cursor por los montos para ver USD + COP.`;}
 async function loadRates(){try{const c=new AbortController();setTimeout(()=>c.abort(),5000);const r=await fetch('https://open.er-api.com/v6/latest/JPY',{signal:c.signal});const j=await r.json();if(j&&j.rates&&j.rates.USD&&j.rates.COP){RATES.usd=j.rates.USD;RATES.cop=j.rates.COP;RATES.src='en vivo · '+(j.time_last_update_utc||'hoy').replace(' 00:00:01 +0000','');}}catch(e){RATES.src='sin conexión · '+RATES.src;}renderAll();}
 function gmapsPt(lat,lng){return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;}
-function gmapsRoute(acts){const p=acts.filter(a=>a.lat).map(a=>`${a.lat},${a.lng}`);if(p.length<2)return p.length?`https://www.google.com/maps/search/?api=1&query=${p[0]}`:'#';const o=p[0],d=p[p.length-1],w=p.slice(1,-1).join('|');return `https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}`+(w?`&waypoints=${encodeURIComponent(w)}`:'')+'&travelmode=transit';}
+function gmapsRoute(acts,dayNum){
+    const p=acts.filter(a=>a.lat).map(a=>`${a.lat},${a.lng}`);
+    const h=dayNum?wakeHub(dayNum):null; if(h)p.unshift(`${h.lat},${h.lng}`);
+    if(p.length<2)return p.length?`https://www.google.com/maps/search/?api=1&query=${p[0]}`:'#';
+    const o=p[0],d=p[p.length-1],w=p.slice(1,-1).join('|');
+    return `https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}`+(w?`&waypoints=${encodeURIComponent(w)}`:'')+'&travelmode=transit';
+}
 function wikiLink(t){return 'https://en.wikipedia.org/wiki/'+t;}
 function ytLink(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' historia documental');}
 
@@ -435,7 +442,7 @@ function galleryHtml(d){
     const urls=[d.img];(d.acts||[]).forEach(a=>{const u=POI_IMG[a.n];if(u&&!urls.includes(u))urls.push(u);});
     const g=urls.slice(0,5);
     if(g.length<2)return '';
-    return `<div class="mb-3"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">📸 La zona (${g.length}) · clic para ampliar</p><div class="flex gap-2 overflow-x-auto pb-1">${g.map(u=>`<img loading="lazy" src="${u}" onclick="openLightbox('${u}')" class="gthumb h-24 w-36 object-cover rounded-lg border border-haiiro shrink-0">`).join('')}</div></div>`;
+    return `<div class="mb-4"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1.5">📸 La zona (${g.length}) · clic para ampliar</p><div class="flex gap-2.5 overflow-x-auto pb-1">${g.map(u=>`<img loading="lazy" src="${u}" onclick="openLightbox('${u}')" class="gthumb h-32 w-48 md:h-36 md:w-56 object-cover rounded-xl border border-haiiro shrink-0">`).join('')}</div></div>`;
 }
 
 // ===== DAYS V5 (23 días, 29 oct–20 nov) · joint=mismo ciudad que AdeS · bday=cumpleaños · stamps=hilo de sellos
@@ -595,21 +602,23 @@ function renderWeek(wk){
                     <div class="flex items-center gap-2 shrink-0 ml-2"><div class="hidden sm:flex gap-1">${tagHtml}</div><span class="chevron text-kuro/30 text-xs">▼</span></div>
                 </div>
             </div>
-            <div class="day-detail border-t border-haiiro"><div class="p-4">
+            <div class="day-detail border-t border-haiiro"><div class="p-4 md:p-6">
                 ${jointBox}
                 ${galleryHtml(d)}
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="space-y-2">
-                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌅 Mañana</p><p class="text-sm text-kuro/80">${d.am}</p></div>
-                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">☀️ Tarde</p><p class="text-sm text-kuro/80">${d.pm}</p></div>
-                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌙 Noche</p><p class="text-sm text-kuro/80">${d.night}</p></div>
-                        <p class="text-xs font-bold text-kuro/40 uppercase mt-2 mb-1">📍 Lugares · GPS · 📖🎬</p><ul class="divide-y divide-haiiro/60">${actsHtml}</ul>
-                        <a href="${gmapsRoute(d.acts)}" target="_blank" class="inline-block mt-2 bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🧭 Recorrido del día</a>
-                        ${hasPts?`<div class="mt-3"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider mb-1">🗺️ Mapa del día</p><div id="minimap-${d.day}" class="minimap"></div></div>`:''}
+                ${hasPts?`<div class="mb-5"><div class="flex items-baseline justify-between flex-wrap gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">🗺️ Desplazamientos del día</p><p id="mapinfo-${d.day}" class="text-[11px] text-kuro/50"></p></div><div id="minimap-${d.day}" class="minimap"></div><p class="text-[10px] text-kuro/35 mt-1">🏨 = tu zona-hotel recomendada · línea sólida = recorrido · punteada = regreso</p></div>`:''}
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div class="space-y-3">
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌅 Mañana</p><p class="text-sm md:text-[15px] text-kuro/80 leading-relaxed">${d.am}</p></div>
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">☀️ Tarde</p><p class="text-sm md:text-[15px] text-kuro/80 leading-relaxed">${d.pm}</p></div>
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌙 Noche</p><p class="text-sm md:text-[15px] text-kuro/80 leading-relaxed">${d.night}</p></div>
                     </div>
                     <div class="space-y-3">
-                        <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🚆 Transporte · <span class="tooltip-usd text-kin" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.transport} · ${d.transitMin} min</p></div>
-                        <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-aka uppercase mb-1">🍱 Comida · <span class="tooltip-usd" data-usd="${usdTip(d.costF)}">¥${d.costF.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.food}</p></div>
+                        <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">📍 Lugares · GPS · 📖🎬</p><ul class="divide-y divide-haiiro/60">${actsHtml}</ul>
+                        <a href="${gmapsRoute(d.acts,d.day)}" target="_blank" class="inline-block mt-2 bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🧭 Recorrido en Google Maps (desde el hotel)</a></div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🚆 Transporte · <span class="tooltip-usd text-kin" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.transport} · ${d.transitMin} min</p></div>
+                            <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-aka uppercase mb-1">🍱 Comida · <span class="tooltip-usd" data-usd="${usdTip(d.costF)}">¥${d.costF.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.food}</p></div>
+                        </div>
                         <div class="bg-washi rounded-lg p-3 border border-haiiro grid grid-cols-2 gap-2 text-xs"><div><span class="text-kuro/40">Densidad</span><p class="font-bold ${dens>=2&&dens<=3?'text-midori':'text-aka'}">${dens} act</p></div><div><span class="text-kuro/40">Buffer</span><p class="font-bold ${d.bufferP>=15?'text-midori':'text-aka'}">${d.bufferP}%</p></div><div><span class="text-kuro/40">Contempl.</span><p class="font-bold">${d.contempl}%</p></div><div><span class="text-kuro/40">Hospedaje</span><p class="font-bold">🏨 ${d.lodge}</p></div></div>
                     </div>
                 </div>
@@ -916,25 +925,38 @@ function toggleDay(trigger,day){
         else setTimeout(()=>dayMaps[day].invalidateSize(),260);
     }
 }
-function intraCity(pts){
-    if(pts.length<=1)return pts;
-    const R=20; let best=null,bestN=-1,bestIdx=-1;
-    pts.forEach((p,idx)=>{const set=pts.filter(q=>hav(p,q)<=R);
-        if(set.length>bestN||(set.length===bestN&&idx>bestIdx)){bestN=set.length;best=set;bestIdx=idx;}});
-    return best;
-}
+// Zona-hotel recomendada por tramo (misma lógica que la tarjeta de Hospedaje)
+const SLEEP_STAYS=[[1,5,'tokio1'],[6,6,'fuji'],[7,7,'nagano'],[8,16,'osaka'],[17,22,'tokio2']];
+function hubOf(zg){const Ld=LODGING.find(l=>l.zg===zg); if(!Ld)return null;
+    const h=Ld.candidates?rankHubs(poisOf(Ld.poiDays),Ld.candidates)[0].c:Ld.fixed;
+    return {n:h.n,lat:h.lat,lng:h.lng};}
+function sleepZone(day){const r=SLEEP_STAYS.find(x=>day>=x[0]&&day<=x[1]);return r?r[2]:null;}
+function wakeHub(day){return hubOf(sleepZone(day-1)||sleepZone(day));}   // donde amanecen
+function nightHub(day){return hubOf(sleepZone(day));}                     // donde duermen hoy
 function initDayMap(day){
     const d=DAYS.find(x=>x.day===day); if(!d)return;
-    const all=(d.acts||[]).filter(a=>a.lat&&a.t!=='transit'); if(!all.length)return;
-    const pts=intraCity(all);
+    const pts=(d.acts||[]).filter(a=>a.lat&&a.t!=='transit'); if(!pts.length)return;
     const el=document.getElementById('minimap-'+day); if(!el||dayMaps[day])return;
+    const wake=wakeHub(day), night=nightHub(day);
+    const sameHotel=wake&&night&&Math.abs(wake.lat-night.lat)<.001&&Math.abs(wake.lng-night.lng)<.001;
     const m=L.map(el,{scrollWheelZoom:false,attributionControl:false});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(m);
-    const ll=[];
-    pts.forEach((p,i)=>{ ll.push([p.lat,p.lng]);
-        L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:`<div style="background:#C0392B;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)">${i+1}</div>`,iconSize:[22,22],iconAnchor:[11,11]})}).bindPopup(`${i+1}. ${p.n}`).addTo(m); });
-    if(ll.length>1){ L.polyline(ll,{color:'#C0392B',weight:2,opacity:.55,dashArray:'4,6'}).addTo(m); m.fitBounds(ll,{padding:[28,28]}); }
-    else m.setView(ll[0],14);
+    const hotelIcon=t=>L.divIcon({className:'',html:`<div style="background:#1A6B4A;color:#fff;border-radius:8px;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);padding:0 3px">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]});
+    const all=[];
+    if(wake){all.push([wake.lat,wake.lng]);L.marker([wake.lat,wake.lng],{icon:hotelIcon('🏨')}).bindPopup(`🏨 ${sameHotel?'Tu zona-hotel':'Sales de'}: <b>${wake.n}</b>`).addTo(m);}
+    const ruta=wake?[[wake.lat,wake.lng]]:[];
+    pts.forEach((p,i)=>{ all.push([p.lat,p.lng]); ruta.push([p.lat,p.lng]);
+        L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:`<div style="background:#C0392B;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)">${i+1}</div>`,iconSize:[24,24],iconAnchor:[12,12]})}).bindPopup(`${i+1}. ${p.n}`).addTo(m); });
+    if(ruta.length>1)L.polyline(ruta,{color:'#C0392B',weight:2.5,opacity:.7}).addTo(m);
+    if(night){ if(!sameHotel){all.push([night.lat,night.lng]);L.marker([night.lat,night.lng],{icon:hotelIcon('🏨🌙')}).bindPopup(`🌙 Duermes en: <b>${night.n}</b>`).addTo(m);}
+        L.polyline([[pts[pts.length-1].lat,pts[pts.length-1].lng],[night.lat,night.lng]],{color:'#1A6B4A',weight:2,opacity:.6,dashArray:'5,7'}).addTo(m);
+        if(sameHotel)all.push([night.lat,night.lng]);}
+    if(all.length>1)m.fitBounds(all,{padding:[34,34]}); else m.setView(all[0],14);
+    // resumen: desde dónde + km del día
+    let km=0,path=(wake?[wake]:[]).concat(pts).concat(night?[night]:[]);
+    for(let i=1;i<path.length;i++)km+=hav(path[i-1],path[i]);
+    const info=document.getElementById('mapinfo-'+day);
+    if(info&&wake)info.textContent=`🏨 desde ${wake.n}${!sameHotel&&night?` → duermes en ${night.n}`:''} · ${pts.length} parada(s) · ≈ ${km<10?km.toFixed(1):Math.round(km)} km`;
     dayMaps[day]=m;
     setTimeout(()=>m.invalidateSize(),120);
 }
