@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <style>
-        *{box-sizing:border-box;margin:0;padding:0}
+        /* Tailwind v4 Preflight (@layer base) ya hace box-sizing/margin/padding:0 en *.
+           Un reset sin capa aquí GANARÍA sobre las utilidades v4 y anularía p-*, m-*, space-y-*, etc. */
         body{font-family:'DM Sans',sans-serif;background:#FAF7F0;color:#1A1A1A}
         .font-jp{font-family:'Noto Serif JP',serif}
         body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");background-size:256px;opacity:.4}
