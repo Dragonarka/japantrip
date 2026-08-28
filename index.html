@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Japón V6 · Osaka Hub · 5 amigos · listo para reservar</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config={theme:{extend:{colors:{washi:'#FAF7F0',sumi:'#1A1A1A',aka:'#C0392B',kuro:'#2D2D2D',kin:'#C5982A',haiiro:'#E8E4DC',midori:'#1A6B4A'}}}}
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-washi: #FAF7F0;
+            --color-sumi: #1A1A1A;
+            --color-aka: #C0392B;
+            --color-kuro: #2D2D2D;
+            --color-kin: #C5982A;
+            --color-haiiro: #E8E4DC;
+            --color-midori: #1A6B4A;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <style>
@@ -982,7 +990,7 @@ function initDayMap(day){
     const wake=wakeHub(day), night=nightHub(day);
     const sameHotel=wake&&night&&Math.abs(wake.lat-night.lat)<.001&&Math.abs(wake.lng-night.lng)<.001;
     const m=L.map(el,{scrollWheelZoom:false,attributionControl:false});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(m);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(m);
     const hotelIcon=t=>L.divIcon({className:'',html:`<div style="background:#1A6B4A;color:#fff;border-radius:8px;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);padding:0 3px">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]});
     const all=[];
     if(wake){all.push([wake.lat,wake.lng]);L.marker([wake.lat,wake.lng],{icon:hotelIcon('🏨')}).bindPopup(`🏨 ${sameHotel?'Tu zona-hotel':'Sales de'}: <b>${wake.n}</b>`).addTo(m);}
@@ -1008,7 +1016,7 @@ const BASES=[{lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–5, D17–23"},{lat:3
 const EXC=[{lat:35.319,lng:139.547,n:"Kamakura"},{lat:35.6250,lng:139.2437,n:"Monte Takao (daytrip)"},{lat:36.2384,lng:137.9690,n:"Matsumoto"},{lat:36.7330,lng:138.4620,n:"Jigokudani (monos)"},{lat:35.0116,lng:135.7681,n:"Kioto (daytrip)"},{lat:34.8394,lng:134.6939,n:"Himeji (daytrip)"},{lat:34.6851,lng:135.1880,n:"Kobe (daytrip)"},{lat:34.7963,lng:135.2478,n:"Arima Onsen"},{lat:34.8896,lng:135.8076,n:"Uji (daytrip)"},{lat:35.1180,lng:135.7710,n:"Kurama/Kibune (daytrip)"},{lat:34.6654,lng:135.4323,n:"USJ"}];
 const ROUTE_SEQ=[[35.6895,139.6917],[35.319,139.547],[35.6895,139.6917],[35.5018,138.7660],[36.2384,137.9690],[36.7330,138.4620],[36.7400,138.4150],[34.6660,135.5020],[35.0116,135.7681],[34.6660,135.5020],[34.8394,134.6939],[34.6851,135.1880],[34.6660,135.5020],[34.6654,135.4323],[34.6660,135.5020],[35.6896,139.7006]];
 let map,animLine,animMarker;
-function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OSM © CARTO',maxZoom:18}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
+function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
 function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();}
