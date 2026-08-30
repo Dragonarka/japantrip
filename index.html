@@ -148,6 +148,7 @@
                 <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
             </div>
         </div>
+        <button class="navbtn" data-week="reels">📱 Reels</button>
     </div>
     <div id="subnav-itin" class="itin-subbar">
         <div class="max-w-5xl mx-auto flex items-center gap-1 px-2 overflow-x-auto" style="scrollbar-width:none">
@@ -351,6 +352,17 @@
     </div>
 </section>
 
+<section class="section" id="reels">
+    <h2 class="font-jp text-2xl font-black mb-2">📱 Reels · propuestas del chat</h2>
+    <p class="text-xs text-kuro/50 mb-5">Cada reel que mandamos al grupo de Instagram, analizado por <b>imagen + audio + texto</b>: qué lugar es, dónde encaja en el viaje, cuánto cuesta y si vale la pena. Ordenados por recomendación (★). <span class="text-kuro/40">Fuente: <span id="reels-generated">—</span>.</span></p>
+    <div id="reels-empty" class="bg-aka/10 border border-aka/30 rounded-xl p-5 text-sm text-kuro/75" hidden>
+        <p class="font-bold mb-1">Todavía no hay reels analizados.</p>
+        <p class="text-xs text-kuro/65">Pega los enlaces de los reels (uno por línea) en <code class="bg-white/60 px-1 rounded">reel-analyzer/reels.txt</code> y corre <code class="bg-white/60 px-1 rounded">python -m src.pipeline --prepare-only</code>. El análisis se vuelca aquí automáticamente (<code class="bg-white/60 px-1 rounded">reels-data.js</code>).</p>
+    </div>
+    <div id="reels-stats" class="flex flex-wrap gap-3 mb-5 text-xs" hidden></div>
+    <div id="reels-groups" class="space-y-8"></div>
+</section>
+
 </main>
 <footer class="border-t border-haiiro py-8 text-center text-xs text-kuro/40">Plan V6 · Osaka Hub · 29 Oct – 20 Nov 2026 · 5 amigos · Estimado — verificar fechas, tickets y reservas. <a href="ades-japan-oct30-nov19.html" class="underline">Plan AdeS</a></footer>
 
@@ -369,6 +381,7 @@
 </div>
 
 <script src="trip-data.js"></script>
+<script src="reels-data.js"></script>
 <script>
 // ===== FX en vivo =====
 const RATES={usd:0.006201,cop:21.51,src:'fallback 20 jun 2026'};
@@ -654,6 +667,7 @@ function renderWeek(wk){
                 ${galleryHtml(d)}
                 ${hasPts?`<div class="mb-5"><div class="flex items-baseline justify-between flex-wrap gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">🗺️ Desplazamientos del día</p><p id="mapinfo-${d.day}" class="text-[11px] text-kuro/50"></p></div><div id="minimap-${d.day}" class="minimap"></div><p class="text-[10px] text-kuro/35 mt-1">🏨 = tu zona-hotel recomendada · línea sólida = recorrido · punteada = regreso</p></div>`:''}
                 ${NEAR[d.day]?`<div class="bg-washi border border-haiiro rounded-lg p-3 mb-4 text-xs text-kuro/65"><b class="text-kuro/45 uppercase text-[10px]">🧭 Si sobra tiempo (cerca)</b> · ${NEAR[d.day]}</div>`:''}
+                ${dayReelsBox(d)}
                 <div class="grid md:grid-cols-2 gap-5">
                     <div class="space-y-3">
                         <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌅 Mañana</p><p class="text-sm md:text-[15px] text-kuro/80 leading-relaxed">${d.am}</p></div>
@@ -822,6 +836,88 @@ function renderOverlap(){
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
         [['🟢 Tokio · 30 oct – 2 nov','Bienvenida, teamLab Planets, Halloween Shibuya, Kamakura juntos.'],['🟢 Fuji · 3 nov','Lago y onsen el mismo día.'],['🟢 Kioto · 6 nov','Nuestro daytrip a Kioto coincide con ellos: templos y Pontocho.'],['🟢 Osaka · 10 nov','AdeS en Osaka (9–10 nov): USJ / Dotonbori juntos.'],['🟢 Tokio · 14–17 nov','Recta final: Shichi-Go-San, compras y despedida.']]
         .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+}
+
+// ===== REELS (propuestas desde el chat de Instagram) — datos en reels-data.js =====
+const RD=(typeof window!=='undefined'&&window.REELS_DATA)?window.REELS_DATA:{count:0,reels:[],by_fit:{}};
+const FIT_LABEL={tokyo:'🗼 Tokio',fuji:'🗻 Fuji / Kawaguchiko',nagano:'🐒 Nagano',kansai:'⛩️ Kansai (varios)',kyoto:'🏯 Kioto',osaka:'🐙 Osaka',nara:'🦌 Nara',other:'🧭 Otros',unknown:'❓ Sin ubicar'};
+const RCAT={food:'🍱 Comida',sight:'📸 Lugar',nature:'🍁 Naturaleza',nightlife:'🌙 Noche',shopping:'🛍️ Compras',experience:'🎌 Experiencia',other:'📍 Otro'};
+function stars(n){n=Math.max(0,Math.min(5,n|0));return '★'.repeat(n)+'☆'.repeat(5-n);}
+function reelThumb(r){
+    if(r.thumb)return `<img loading="lazy" src="${r.thumb}" onclick="openLightbox('${r.thumb}')" class="gthumb w-full h-40 object-cover">`;
+    return `<div class="w-full h-40 bg-haiiro/60 flex items-center justify-center text-3xl">📱</div>`;
+}
+function reelCard(r){
+    const loc=[r.city,r.area].filter(Boolean).join(' · ')||'ubicación ?';
+    const cost=r.est_cost_jpy?`💴 <span class="tooltip-usd text-kin font-bold" data-usd="${usdTip(r.est_cost_jpy)}">¥${(r.est_cost_jpy).toLocaleString()}</span>/pers.`:'💴 <span class="text-midori font-bold">gratis / consumo</span>';
+    const tm=r.time_needed_min?` · ⏱️ ~${r.time_needed_min>=60?(r.time_needed_min/60).toFixed(1).replace('.0','')+' h':r.time_needed_min+' min'}`:'';
+    const local=r.place_name_local?` <span class="font-jp text-kuro/45">${r.place_name_local}</span>`:'';
+    const tags=(r.tags||[]).slice(0,6).map(t=>`<span class="tag tag-local">${t}</span>`).join(' ');
+    const mapsBtn=r.maps_url?`<a href="${r.maps_url}" target="_blank" class="text-aka underline decoration-dotted underline-offset-2">🗺️ Maps</a>`:'';
+    const reelBtn=r.url?`<a href="${r.url}" target="_blank" class="text-aka underline decoration-dotted underline-offset-2">🎬 ver reel</a>`:'';
+    return `<div class="bg-white border border-haiiro rounded-xl overflow-hidden flex flex-col">
+        ${reelThumb(r)}
+        <div class="p-4 flex-1 flex flex-col">
+            <div class="flex items-baseline justify-between gap-2">
+                <h3 class="font-bold text-sm">${r.place_name||'(sin nombre)'}${local}</h3>
+                <span class="text-kin text-xs shrink-0" title="${r.worth_it}/5">${stars(r.worth_it)}</span>
+            </div>
+            <p class="text-[11px] text-kuro/50 mt-0.5">${RCAT[r.category]||'📍'} · ${loc}${tm}</p>
+            <p class="text-xs text-kuro/70 mt-2 flex-1">${r.why||r.vibe||''}</p>
+            ${r.vibe&&r.why?`<p class="text-[11px] text-kuro/45 italic mt-1">“${r.vibe}”</p>`:''}
+            <p class="text-xs mt-2">${cost}</p>
+            ${tags?`<div class="flex flex-wrap gap-1 mt-2">${tags}</div>`:''}
+            <div class="flex gap-3 text-xs mt-3 pt-3 border-t border-haiiro">${mapsBtn}${reelBtn}</div>
+        </div>
+    </div>`;
+}
+function renderReels(){
+    const empty=document.getElementById('reels-empty'),stats=document.getElementById('reels-stats'),groups=document.getElementById('reels-groups');
+    document.getElementById('reels-generated').textContent=(RD.count&&RD.generated)?('chat IG · '+RD.generated):'aún sin generar';
+    if(!RD.count){empty.hidden=false;stats.hidden=true;groups.innerHTML='';return;}
+    empty.hidden=true;stats.hidden=false;
+    const cats={};RD.reels.forEach(r=>cats[r.category]=(cats[r.category]||0)+1);
+    stats.innerHTML=[
+        `<span class="bg-sumi text-white px-3 py-1 rounded-full font-bold">${RD.count} reels</span>`,
+        `<span class="bg-white border border-haiiro px-3 py-1 rounded-full">📍 ${RD.with_coords} ubicados</span>`,
+        `<span class="bg-white border border-haiiro px-3 py-1 rounded-full">★4+ : ${RD.reels.filter(r=>r.worth_it>=4).length}</span>`,
+    ].concat(Object.entries(cats).map(([c,n])=>`<span class="bg-white border border-haiiro px-3 py-1 rounded-full">${RCAT[c]||c} ${n}</span>`)).join('');
+    const order=['tokyo','fuji','nagano','kansai','kyoto','osaka','nara','other','unknown'];
+    const fits=Object.keys(RD.by_fit).sort((a,b)=>(order.indexOf(a)+99*(order.indexOf(a)<0))-(order.indexOf(b)+99*(order.indexOf(b)<0)));
+    groups.innerHTML=fits.map(f=>{
+        const list=RD.by_fit[f].slice().sort((a,b)=>b.worth_it-a.worth_it);
+        return `<div><h3 class="font-jp text-lg font-black mb-1">${FIT_LABEL[f]||f} <span class="text-xs font-normal text-kuro/40">${list.length}</span></h3>
+            <div class="grid md:grid-cols-2 gap-4 mt-3">${list.map(reelCard).join('')}</div></div>`;
+    }).join('');
+}
+function dayFits(d){
+    // solo loc + título: am/pm mencionan ciudades de paso ("vía Tokio") y ensucian el match
+    const c=((d.loc||'')+' '+(d.title||'')).toLowerCase();
+    const f=new Set();
+    if(/tokio|tokyo|kamakura|takao|shibuya|shinjuku|asakusa|harajuku|ginza|odaiba|akihabara/.test(c))f.add('tokyo');
+    if(/kioto|kyoto|arashiyama|fushimi|gion|kurama|kibune|uji|pontocho|kinkaku|higashiyama/.test(c)){f.add('kyoto');f.add('kansai');}
+    if(/osaka|namba|dotonbori|umeda|shinsekai|usj|universal|kuromon|amerikamura/.test(c)){f.add('osaka');f.add('kansai');}
+    if(/nara/.test(c)){f.add('nara');f.add('kansai');}
+    if(/kobe|himeji|arima/.test(c))f.add('kansai');
+    if(/fuji|kawaguchiko/.test(c))f.add('fuji');
+    if(/nagano|yudanaka|matsumoto|jigokudani|shibu/.test(c))f.add('nagano');
+    return f;
+}
+function dayReelsBox(d){
+    if(!RD.count)return '';
+    const fits=dayFits(d);
+    const hits=RD.reels.filter(r=>fits.has(r.trip_fit)).sort((a,b)=>b.worth_it-a.worth_it);
+    if(!hits.length)return '';
+    const rows=hits.slice(0,5).map(r=>{
+        const cost=r.est_cost_jpy?` · ¥${r.est_cost_jpy.toLocaleString()}`:'';
+        const link=r.url?` <a href="${r.url}" target="_blank" class="text-aka">🎬</a>`:'';
+        const map=r.maps_url?` <a href="${r.maps_url}" target="_blank" class="text-aka">🗺️</a>`:'';
+        return `<li class="py-0.5"><span class="text-kin">${stars(r.worth_it)}</span> <b>${r.place_name||'?'}</b> <span class="text-kuro/45">${RCAT[r.category]||''}${cost}</span>${link}${map}<br><span class="text-kuro/55">${r.why||r.vibe||''}</span></li>`;
+    }).join('');
+    const more=hits.length>5?` <button onclick="document.querySelector('nav [data-week=&quot;reels&quot;]').click()" class="text-aka underline">+${hits.length-5} más en 📱 Reels</button>`:'';
+    return `<div class="bg-aka/5 border border-aka/25 rounded-lg p-3 mb-4 text-xs text-kuro/70">
+        <b class="text-aka/80 uppercase text-[10px]">📱 Propuestas desde reels para esta zona</b>${more}
+        <ul class="mt-1 divide-y divide-haiiro/60">${rows}</ul></div>`;
 }
 
 // ===== HOSPEDAJE ÓPTIMO =====
@@ -1020,7 +1116,7 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();}
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();}
 renderAll(); loadRates();
 document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('click',e=>{
     e.stopPropagation();
