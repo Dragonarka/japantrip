@@ -661,7 +661,7 @@ function renderWeek(wk){
                 ${jointBox}
                 ${galleryHtml(d)}
                 ${hasPts?`<div class="mb-5"><div class="flex items-baseline justify-between flex-wrap gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">🗺️ Desplazamientos del día</p><p id="mapinfo-${d.day}" class="text-[11px] text-kuro/50"></p></div><div id="minimap-${d.day}" class="minimap"></div><p class="text-[10px] text-kuro/35 mt-1">🏨 = tu zona-hotel recomendada · línea sólida = recorrido · punteada = regreso</p></div>`:''}
-                ${NEAR[d.day]?`<div class="bg-washi border border-haiiro rounded-lg p-3 mb-4 text-xs text-kuro/65"><b class="text-kuro/45 uppercase text-[10px]">🧭 Si sobra tiempo (cerca)</b> · ${NEAR[d.day]}</div>`:''}
+                ${NEAR[d.day]?`<p class="text-xs text-kuro/50 mb-4">🧭 <b class="text-kuro/40 uppercase text-[10px]">Si sobra tiempo (cerca)</b> · ${NEAR[d.day]}</p>`:''}
                 ${dayReelsBox(d)}
                 <div class="grid md:grid-cols-2 gap-5">
                     <div class="space-y-3">
@@ -672,11 +672,11 @@ function renderWeek(wk){
                     <div class="space-y-3">
                         <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">📍 Lugares (toca el nombre → Maps) · 📖🎬</p><ul class="divide-y divide-haiiro/60">${actsHtml}</ul>
                         <a href="${gmapsRoute(d.acts,d.day)}" target="_blank" class="inline-block mt-2 bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">🧭 Recorrido en Google Maps (desde el hotel)</a></div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🚆 Transporte · <span class="tooltip-usd text-kin" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.transport} · ${d.transitMin} min</p></div>
-                            <div class="bg-washi rounded-lg p-3 border border-haiiro"><p class="text-xs font-bold text-aka uppercase mb-1">🍱 Comida · <span class="tooltip-usd" data-usd="${usdTip(d.costF)}">¥${d.costF.toLocaleString()}</span></p><p class="text-sm text-kuro/80">${d.food}</p></div>
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 bg-washi rounded-lg px-3 py-2.5 border border-haiiro text-xs text-kuro/70">
+                            <span>🚆 <span class="tooltip-usd text-kin font-bold" data-usd="${usdTip(d.costT)}">¥${d.costT.toLocaleString()}</span> · ${d.transport}</span>
+                            <span>🍱 <span class="tooltip-usd text-kin font-bold" data-usd="${usdTip(d.costF)}">¥${d.costF.toLocaleString()}</span> · ${d.food}</span>
+                            <span>🏨 ${d.lodge}</span>
                         </div>
-                        <div class="bg-washi rounded-lg p-3 border border-haiiro grid grid-cols-2 gap-2 text-xs"><div><span class="text-kuro/40">Densidad</span><p class="font-bold ${dens>=2&&dens<=3?'text-midori':'text-aka'}">${dens} act</p></div><div><span class="text-kuro/40">Buffer</span><p class="font-bold ${d.bufferP>=15?'text-midori':'text-aka'}">${d.bufferP}%</p></div><div><span class="text-kuro/40">Contempl.</span><p class="font-bold">${d.contempl}%</p></div><div><span class="text-kuro/40">Hospedaje</span><p class="font-bold">🏨 ${d.lodge}</p></div></div>
                     </div>
                 </div>
             </div></div>
@@ -911,9 +911,9 @@ function dayReelsBox(d){
         return `<li class="py-0.5"><span class="text-kin">${stars(r.worth_it)}</span> <b>${r.place_name||'?'}</b> <span class="text-kuro/45">${RCAT[r.category]||''}${cost}</span>${link}${map}<br><span class="text-kuro/55">${r.why||r.vibe||''}</span></li>`;
     }).join('');
     const more=hits.length>5?` <button onclick="document.querySelector('nav [data-week=&quot;reels&quot;]').click()" class="text-aka underline">+${hits.length-5} más en 📱 Reels</button>`:'';
-    return `<div class="bg-aka/5 border border-aka/25 rounded-lg p-3 mb-4 text-xs text-kuro/70">
-        <b class="text-aka/80 uppercase text-[10px]">📱 Propuestas desde reels para esta zona</b>${more}
-        <ul class="mt-1 divide-y divide-haiiro/60">${rows}</ul></div>`;
+    return `<div class="mb-4 text-xs text-kuro/60 pl-3 border-l-2 border-aka/20">
+        <b class="text-aka/70 uppercase text-[10px]">📱 Propuestas desde reels para esta zona</b>${more}
+        <ul class="mt-1 divide-y divide-haiiro/40">${rows}</ul></div>`;
 }
 
 // ===== HOSPEDAJE ÓPTIMO =====
