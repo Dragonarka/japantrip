@@ -15,6 +15,12 @@
             --color-kin: #C5982A;
             --color-haiiro: #E8E4DC;
             --color-midori: #1A6B4A;
+            --color-murasaki: #7D3C98;
+            --color-daidai: #D4740E;
+            --color-ao: #2471A3;
+            --color-enji: #A93226;
+            --color-budou: #5B2A6B;
+            --color-cha: #7D6608;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
@@ -32,17 +38,18 @@
         .day-hero{width:100%;height:160px;object-fit:cover;filter:saturate(.92)}
         .chevron{transition:transform .3s}
         .joint-badge{background:linear-gradient(135deg,#1A6B4A,#0E5236);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px;letter-spacing:.05em}
-        .bday-badge{background:linear-gradient(135deg,#C0392B,#7D3C98);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px}
-        .stamp-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#F3ECD8;color:#7D6608;border:1px solid #7D660833}
+        .bday-badge{background:linear-gradient(135deg,var(--color-aka),var(--color-murasaki));color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+        .stamp-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#F3ECD8;color:var(--color-cha);border:1px solid #7D660833}
+        /* Tags: cada color base viene de @theme arriba; border/bg son ese mismo hex con alfa precalculada */
         .tag{padding:2px 10px;border-radius:999px;font-size:.65rem;font-weight:600;border:1px solid}
-        .tag-tradition{color:#C0392B;border-color:#C0392B33;background:#C0392B0D}
-        .tag-history{color:#7D6608;border-color:#7D660833;background:#7D66080D}
-        .tag-nature{color:#1A6B4A;border-color:#1A6B4A33;background:#1A6B4A0D}
-        .tag-pop{color:#D4740E;border-color:#D4740E33;background:#D4740E0D}
-        .tag-local{color:#2471A3;border-color:#2471A333;background:#2471A30D}
-        .tag-food{color:#A93226;border-color:#A9322633;background:#A932260D}
-        .tag-onsen{color:#7D3C98;border-color:#7D3C9833;background:#7D3C980D}
-        .tag-night{color:#5B2A6B;border-color:#5B2A6B33;background:#5B2A6B0D}
+        .tag-tradition{color:var(--color-aka);border-color:#C0392B33;background:#C0392B0D}
+        .tag-history{color:var(--color-cha);border-color:#7D660833;background:#7D66080D}
+        .tag-nature{color:var(--color-midori);border-color:#1A6B4A33;background:#1A6B4A0D}
+        .tag-pop{color:var(--color-daidai);border-color:#D4740E33;background:#D4740E0D}
+        .tag-local{color:var(--color-ao);border-color:#2471A333;background:#2471A30D}
+        .tag-food{color:var(--color-enji);border-color:#A9322633;background:#A932260D}
+        .tag-onsen{color:var(--color-murasaki);border-color:#7D3C9833;background:#7D3C980D}
+        .tag-night{color:var(--color-budou);border-color:#5B2A6B33;background:#5B2A6B0D}
         .tag-transit{color:#777;border-color:#77777733;background:#7777770D}
         .week-tab{cursor:pointer;padding:10px 14px;font-size:.75rem;font-weight:600;border-bottom:2px solid transparent;transition:all .2s;color:#888;white-space:nowrap}
         .week-tab:hover{color:#1A1A1A}
@@ -78,8 +85,8 @@
         .effort-bar{height:6px;border-radius:3px;background:#E8E4DC;overflow:hidden;width:80px}
         .effort-fill{height:100%;border-radius:3px}
         .luggage-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#FDE8E8;color:#C0392B;border:1px solid #C0392B33}
-        .laundry-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#E8F0FE;color:#2471A3;border:1px solid #2471A333}
-        .gps-link{color:#2471A3;text-decoration:none;font-size:.65rem;border-bottom:1px dotted #2471A355}
+        .laundry-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#E8F0FE;color:var(--color-ao);border:1px solid #2471A333}
+        .gps-link{color:var(--color-ao);text-decoration:none;font-size:.65rem;border-bottom:1px dotted #2471A355}
         .hist-link{text-decoration:none;font-size:.7rem;margin-left:4px}
         .meter{height:10px;border-radius:5px;background:#E8E4DC;overflow:hidden}.meter>div{height:100%;border-radius:5px}
         #fx-banner{font-size:.7rem}
@@ -184,7 +191,7 @@
         </div>
     </div>
     <div class="grid md:grid-cols-2 gap-6 mb-6">
-        <div class="bg-white border border-haiiro rounded-xl p-6">
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm">
             <h2 class="font-jp font-bold text-lg mb-3">🎌 Experiencias estrella</h2>
             <div class="space-y-1 text-sm text-kuro/80">
                 <p>🥋 Vestir samurái + entrenamiento ninja/espada (Tokio)</p>
@@ -200,7 +207,7 @@
                 <p>🖊️ Sellos goshuin + eki stamps · 👟 tiendas (Adidas, Pokémon...)</p>
             </div>
         </div>
-        <div class="bg-white border border-haiiro rounded-xl p-6">
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm">
             <h2 class="font-jp font-bold text-lg mb-3">🏨 Bases · 5 amigos · solo 6 mudanzas</h2>
             <p class="text-xs text-kuro/50 mb-3">Para 5: Airbnb entero por base (suele ganar a hoteles). Detalle + barrio óptimo + guía de reserva en <b>🛏️ Hospedaje</b>.</p>
             <div class="space-y-2 text-sm">
@@ -213,9 +220,9 @@
         </div>
     </div>
     <div class="grid md:grid-cols-3 gap-4">
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🍁 Clima & Momiji</h3><p class="text-xs text-kuro/70">8–20 °C. Momiji: Fuji/Nagano (fin oct–inicio nov), Kioto/Kanto (med nov). Capas + chaqueta.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">🖊️ Hilo de sellos</h3><p class="text-xs text-kuro/70">Compra un <b>goshuincho</b> en el primer templo (~¥1.500) y colecciona sellos (¥300–500) + <b>eki stamps</b> gratis en estaciones. Recuerdo barato e inmersivo.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-jp font-bold mb-2">💡 Optimización</h3><p class="text-xs text-kuro/70">Una sola base en Osaka (9 noches), pase regional JR Kansai Area para los daytrips y takkyubin. Ver pestaña <b>💰 Costos</b>.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="text-xs font-bold uppercase tracking-wide text-kuro/40 mb-2">🍁 Clima & Momiji</h3><p class="text-xs text-kuro/70">8–20 °C. Momiji: Fuji/Nagano (fin oct–inicio nov), Kioto/Kanto (med nov). Capas + chaqueta.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="text-xs font-bold uppercase tracking-wide text-kuro/40 mb-2">🖊️ Hilo de sellos</h3><p class="text-xs text-kuro/70">Compra un <b>goshuincho</b> en el primer templo (~¥1.500) y colecciona sellos (¥300–500) + <b>eki stamps</b> gratis en estaciones. Recuerdo barato e inmersivo.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="text-xs font-bold uppercase tracking-wide text-kuro/40 mb-2">💡 Optimización</h3><p class="text-xs text-kuro/70">Una sola base en Osaka (9 noches), pase regional JR Kansai Area para los daytrips y takkyubin. Ver pestaña <b>💰 Costos</b>.</p></div>
     </div>
 </section>
 
@@ -245,7 +252,7 @@
         </div>
     </div>
 
-    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto">
         <h3 class="font-jp text-lg font-bold mb-3">Comodines por clima</h3>
         <table class="w-full text-sm">
             <thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Actividad</th><th class="px-2">Zona</th><th class="px-2">Tipo</th><th class="px-2">Nota / cuándo</th></tr></thead>
@@ -296,17 +303,17 @@
 <section class="section" id="connect">
     <h2 class="font-jp text-2xl font-black mb-2">🚆 Conectividad & Logística</h2>
     <p class="text-xs text-kuro/50 mb-4">Cómo te mueves entre bases (incluye Nagano y los daytrips desde Osaka) y los esenciales para 5. Cada trayecto tiene su ruta en Google Maps.</p>
-    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto mb-6">
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto mb-6">
         <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Trayecto</th><th class="px-2">Modo</th><th class="px-2">Tiempo</th><th class="px-2">Costo aprox.</th><th class="px-2">Ruta</th></tr></thead><tbody id="legs-table"></tbody></table>
     </div>
     <h3 class="font-jp text-lg font-bold mb-3">Esenciales de conectividad</h3>
     <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">📶 Internet (grupo de 5)</h4><p class="text-xs text-kuro/70">1–2 <b>Pocket Wi-Fi</b> compartidos (~¥600–900/día) + 1–2 <b>eSIM</b> de respaldo (Ubigi/Airalo). Recoger router en el aeropuerto.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🎫 Tarjeta IC</h4><p class="text-xs text-kuro/70"><b>Suica/PASMO</b> o <b>ICOCA</b>: metro/bus/konbini en todo Japón. En iPhone va en Apple Wallet.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🧳 Takkyubin (maletas)</h4><p class="text-xs text-kuro/70">Envía maletas Fuji→Osaka (~¥2.000/maleta, llega al día siguiente) para viajar ligero el día de monos (D7). Con base fija en Osaka casi no hay traslados con maletas.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🚄 Regreso a Tokio</h4><p class="text-xs text-kuro/70"><b>Shinkansen Nozomi Osaka→Tokio</b> ~2h30 (~¥14.500). Alternativa: vuelo Itami/Kansai→Haneda ~1h15 (a veces más barato). Reservar con antelación.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🐒 Snow Monkey Pass</h4><p class="text-xs text-kuro/70">Bundle bus + entrada desde Nagano (~¥3.200–5.100). Llevar calzado para ~30 min de sendero hasta el parque.</p></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h4 class="font-bold text-sm mb-1">🗺️ Apps</h4><p class="text-xs text-kuro/70">Google Maps (offline), NAVITIME (trenes), Google Translate (cámara), Splitwise (gastos del grupo).</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h4 class="font-bold text-sm mb-1">📶 Internet (grupo de 5)</h4><p class="text-xs text-kuro/70">1–2 <b>Pocket Wi-Fi</b> compartidos (~¥600–900/día) + 1–2 <b>eSIM</b> de respaldo (Ubigi/Airalo). Recoger router en el aeropuerto.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h4 class="font-bold text-sm mb-1">🎫 Tarjeta IC</h4><p class="text-xs text-kuro/70"><b>Suica/PASMO</b> o <b>ICOCA</b>: metro/bus/konbini en todo Japón. En iPhone va en Apple Wallet.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h4 class="font-bold text-sm mb-1">🧳 Takkyubin (maletas)</h4><p class="text-xs text-kuro/70">Envía maletas Fuji→Osaka (~¥2.000/maleta, llega al día siguiente) para viajar ligero el día de monos (D7). Con base fija en Osaka casi no hay traslados con maletas.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h4 class="font-bold text-sm mb-1">🚄 Regreso a Tokio</h4><p class="text-xs text-kuro/70"><b>Shinkansen Nozomi Osaka→Tokio</b> ~2h30 (~¥14.500). Alternativa: vuelo Itami/Kansai→Haneda ~1h15 (a veces más barato). Reservar con antelación.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h4 class="font-bold text-sm mb-1">🐒 Snow Monkey Pass</h4><p class="text-xs text-kuro/70">Bundle bus + entrada desde Nagano (~¥3.200–5.100). Llevar calzado para ~30 min de sendero hasta el parque.</p></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h4 class="font-bold text-sm mb-1">🗺️ Apps</h4><p class="text-xs text-kuro/70">Google Maps (offline), NAVITIME (trenes), Google Translate (cámara), Splitwise (gastos del grupo).</p></div>
     </div>
 </section>
 
@@ -314,8 +321,8 @@
     <h2 class="font-jp text-2xl font-black mb-2">💰 Costos (por persona)</h2>
     <p class="text-xs text-kuro/50 mb-4" id="costs-fx-note"></p>
     <div class="grid md:grid-cols-2 gap-6 mb-6">
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-bold text-sm mb-3">🚆 Transporte</h3><div class="space-y-1 text-xs" id="cost-transport"></div></div>
-        <div class="bg-white border border-haiiro rounded-xl p-5"><h3 class="font-bold text-sm mb-3">🎟️ Actividades & Experiencias</h3><div class="space-y-1 text-xs" id="cost-activities"></div></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="font-bold text-sm mb-3">🚆 Transporte</h3><div class="space-y-1 text-xs" id="cost-transport"></div></div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="font-bold text-sm mb-3">🎟️ Actividades & Experiencias</h3><div class="space-y-1 text-xs" id="cost-activities"></div></div>
     </div>
     <div class="bg-sumi text-white rounded-xl p-6 mb-6">
         <h3 class="font-jp font-bold text-lg text-kin mb-3">Gran Total por persona (sin vuelo internacional)</h3>
@@ -331,7 +338,7 @@
     <p class="text-xs text-kuro/50 mb-4">Sobre los 23 días. Verde = saludable · ámbar = vigilar · rojo = ajustar.</p>
     <div id="metrics-diagnosis" class="bg-midori/10 border border-midori/30 rounded-xl p-5 mb-6"></div>
     <div id="metrics-grid" class="grid md:grid-cols-2 gap-4 mb-8"></div>
-    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto">
         <table class="w-full text-xs"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2">Día</th><th>Densidad</th><th>Buffer</th><th>Tránsito</th><th>Esfuerzo</th><th>🤝</th><th>Burn</th></tr></thead><tbody id="metrics-day-table"></tbody></table>
     </div>
 </section>
@@ -340,7 +347,7 @@
     <h2 class="font-jp text-2xl font-black mb-2">🤝 Seguimiento de AdeS <span class="text-sm font-normal text-kuro/50">(qué hacen y cuándo nos vemos)</span></h2>
     <p class="text-xs text-kuro/50 mb-5">Itinerario real de <a href="https://sergio0491.github.io/viaje-japon/" target="_blank" class="text-aka underline">AdeS</a> (29 oct–18 nov, Tokio→Fuji→Kioto→Osaka→Kanazawa→Tokio), día a día, para coordinar encuentros. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span> · gris = cada quien por su lado.</p>
     <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
-    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto">
         <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Fecha</th><th class="px-2">¿Juntos?</th><th class="px-2">AdeS — qué hacen</th><th class="px-2">Nosotros (V6)</th></tr></thead><tbody id="overlap-table"></tbody></table>
     </div>
 </section>
@@ -771,11 +778,11 @@ function renderCosts(){
      ['🧳 Takkyubin','Envía maletas Fuji→Osaka (~¥2.000/maleta) para viajar ligero el día de los monos (D7). Con base fija 9 noches en Osaka casi no cargas maletas.'],
      ['🖊️ Contenido casi gratis','Sellos, miradores (Umeda Sky es de pago pero el del Gobierno Metropolitano de Tokio es gratis), santuarios, festivales (Shichi-Go-San, Halloween) y la batalla de baile de Dotonbori llenan días sin gastar.'],
     ];
-    document.getElementById('optimize-list').innerHTML=OPT.map(o=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${o[0]}</p><p class="text-xs text-kuro/65 mt-1">${o[1]}</p></div>`).join('');
+    document.getElementById('optimize-list').innerHTML=OPT.map(o=>`<div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><p class="font-bold text-sm">${o[0]}</p><p class="text-xs text-kuro/65 mt-1">${o[1]}</p></div>`).join('');
 }
 
 function fmtPct(x){return Math.round(x)+'%';}
-function metricCard(e,t,v,c,bar,d){return `<div class="bg-white border border-haiiro rounded-xl p-5"><div class="flex items-baseline justify-between"><h3 class="font-bold text-sm">${e} ${t}</h3><span class="font-black text-lg" style="color:${c}">${v}</span></div><div class="meter mt-2"><div class="anim-bar" style="width:${Math.min(bar,100)}%;background:${c}"></div></div><p class="text-xs text-kuro/55 mt-2">${d}</p></div>`;}
+function metricCard(e,t,v,c,bar,d){return `<div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><div class="flex items-baseline justify-between"><h3 class="font-bold text-sm">${e} ${t}</h3><span class="font-black text-lg" style="color:${c}">${v}</span></div><div class="meter mt-2"><div class="anim-bar" style="width:${Math.min(bar,100)}%;background:${c}"></div></div><p class="text-xs text-kuro/55 mt-2">${d}</p></div>`;}
 function renderMetrics(){
     const n=DAYS.length;
     const dens=DAYS.map(d=>mainActs(d).length),avgD=dens.reduce((a,b)=>a+b,0)/n,okD=dens.filter(x=>x>=2&&x<=3).length;
@@ -831,7 +838,7 @@ function renderOverlap(){
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-midori text-white rounded-xl p-4"><p class="text-3xl font-black">${m}</p><p class="text-xs text-white/70">días en la misma ciudad que AdeS</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
-        OVERLAP_WINDOWS.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+        OVERLAP_WINDOWS.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
 }
 
 // ===== REELS (propuestas desde el chat de Instagram) — datos en reels-data.js =====
@@ -882,7 +889,7 @@ function renderReels(){
     const fits=Object.keys(RD.by_fit).sort((a,b)=>(order.indexOf(a)+99*(order.indexOf(a)<0))-(order.indexOf(b)+99*(order.indexOf(b)<0)));
     groups.innerHTML=fits.map(f=>{
         const list=RD.by_fit[f].slice().sort((a,b)=>b.worth_it-a.worth_it);
-        return `<div><h3 class="font-jp text-lg font-black mb-1">${FIT_LABEL[f]||f} <span class="text-xs font-normal text-kuro/40">${list.length}</span></h3>
+        return `<div><h3 class="font-jp text-lg font-bold mb-1">${FIT_LABEL[f]||f} <span class="text-xs font-normal text-kuro/40">${list.length}</span></h3>
             <div class="grid md:grid-cols-2 gap-4 mt-3">${list.map(reelCard).join('')}</div></div>`;
     }).join('');
 }
@@ -957,7 +964,7 @@ function renderLodging(){
         const [lo,hi]=L.pp.replace(/\./g,'').split('–').map(Number);
         const gLo=lo*5*L.nights, gHi=hi*5*L.nights;
         const lk=lodgingLinks(L.area,best,L.checkin,L.checkout,L.adults);
-        return `<div class="bg-white border border-haiiro rounded-xl p-5">
+        return `<div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm">
             <div class="flex justify-between items-baseline flex-wrap gap-2">
                 <h3 class="font-jp font-bold text-lg">${L.city}</h3>
                 <span class="text-xs text-kuro/50">${L.nights} noche(s) · ${L.checkin} → ${L.checkout} · 5 huéspedes</span>
