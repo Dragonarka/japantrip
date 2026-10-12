@@ -146,7 +146,6 @@
             <div class="navmenu">
                 <button class="week-tab" data-week="metrics">📊 Indicadores</button>
                 <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
-                <button class="week-tab" data-week="overlap-sergio">👥 Seguimiento Sergio</button>
             </div>
         </div>
         <button class="navbtn" data-week="reels">📱 Reels</button>
@@ -346,19 +345,10 @@
 
 <section class="section" id="overlap">
     <h2 class="font-jp text-2xl font-black mb-2">🤝 Seguimiento de AdeS <span class="text-sm font-normal text-kuro/50">(qué hacen y cuándo nos vemos)</span></h2>
-    <p class="text-xs text-kuro/50 mb-5">Itinerario real del otro grupo, día a día, para coordinar encuentros. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span> · gris = cada quien por su lado.</p>
+    <p class="text-xs text-kuro/50 mb-5">Itinerario real de <a href="https://sergio0491.github.io/viaje-japon/" target="_blank" class="text-aka underline">AdeS</a> (29 oct–18 nov, Tokio→Fuji→Kioto→Osaka→Kanazawa→Tokio), día a día, para coordinar encuentros. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span> · gris = cada quien por su lado.</p>
     <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
     <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
         <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Fecha</th><th class="px-2">¿Juntos?</th><th class="px-2">AdeS — qué hacen</th><th class="px-2">Nosotros (V6)</th></tr></thead><tbody id="overlap-table"></tbody></table>
-    </div>
-</section>
-
-<section class="section" id="overlap-sergio">
-    <h2 class="font-jp text-2xl font-black mb-2">👥 Seguimiento de Sergio (Grupo de 8) <span class="text-sm font-normal text-kuro/50">(otro grupo, mismas fechas)</span></h2>
-    <p class="text-xs text-kuro/50 mb-5">Itinerario real de <a href="https://sergio0491.github.io/viaje-japon/" target="_blank" class="text-aka underline">sergio0491.github.io/viaje-japon</a> (29 oct–18 nov, Tokio→Fuji→Kioto→Osaka→Kanazawa→Tokio), día a día. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span> · gris = cada quien por su lado.</p>
-    <div id="overlap-sergio-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
-    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
-        <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Fecha</th><th class="px-2">¿Juntos?</th><th class="px-2">Sergio — qué hacen</th><th class="px-2">Nosotros (V6)</th></tr></thead><tbody id="overlap-sergio-table"></tbody></table>
     </div>
 </section>
 
@@ -576,12 +566,12 @@ am:"Shinkansen Nozomi Osaka→Tokio (~2h30). Check-in en Tokio.",pm:"Compras/fle
 img:IMG+"0/06/Nissan_Skyline_GT-R_R34_V_Spec_II.jpg/960px-Nissan_Skyline_GT-R_R34_V_Spec_II.jpg",
 acts:[{n:"🏎️ Tokyo Drift (JDM ride-along)",lat:35.6595,lng:139.7006,t:"night",roi:5}]},
 
-{day:18,date:"Nov 15",dow:"Dom",week:"w4",title:"Shichi-Go-San, Santuarios & Sumo Show",loc:"Tokio·Harajuku/Shinjuku",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:60,bufferP:20,contempl:35,joint:true,jointText:"🤝 Plan conjunto: AdeS hace Meiji/Harajuku/Shibuya HOY MISMO — Shichi-Go-San en Meiji Jingu juntos por la mañana, tarde de compras compartida en Harajuku y reencuentro nocturno en Golden Gai (el plan de bar-hopping se movió del 14 al 15, por el Tokyo Drift).",
-am:"Meiji Jingu / Yoyogi: Shichi-Go-San, familias en kimono.",pm:"Harajuku, Omotesando.",night:"🤼 RESERVADO 17:30–19:00: Shinjuku Sumo Club (Ōkubo) — show en vivo de luchadores profesionales, charla de historia/cultura, foto y sorteo para subir al ring (~$61/persona). Luego, cena con AdeS + 🤝 Golden Gai (bar-hopping de los dos grupos, bares de 5-8 puestos: nos repartimos y rotamos).",food:"Local",transport:"Yamanote",costT:600,costF:3500,
+{day:18,date:"Nov 15",dow:"Dom",week:"w4",title:"Shichi-Go-San, Santuarios & Sumo Show",loc:"Tokio·Harajuku/Shinjuku",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:60,bufferP:20,contempl:35,joint:false,
+am:"Meiji Jingu / Yoyogi: Shichi-Go-San, familias en kimono.",pm:"Harajuku, Omotesando.",night:"🤼 RESERVADO 17:30–19:00: Shinjuku Sumo Club (Ōkubo) — show en vivo de luchadores profesionales, charla de historia/cultura, foto y sorteo para subir al ring (~$61/persona). Luego, Golden Gai (bar-hopping) — día sin AdeS: hoy están en Tokyo DisneySea todo el día.",food:"Local",transport:"Yamanote",costT:600,costF:3500,
 img:IMG+"a/a8/Shichigosan_boy.jpg/960px-Shichigosan_boy.jpg",
 acts:[{n:"Shichi-Go-San (santuarios)",lat:35.6764,lng:139.6993,t:"tradition",roi:4,w:"Shichi-Go-San"},{n:"Shinjuku Gyoen",lat:35.6852,lng:139.7100,t:"nature",roi:4,w:"Shinjuku_Gyo-en"},{n:"🤼 Sumo Show (Shinjuku/Ōkubo)",lat:35.7013,lng:139.7005,t:"pop",roi:4},{n:"Golden Gai",lat:35.6940,lng:139.7045,t:"night",roi:5,w:"Golden_Gai"}]},
 
-{day:19,date:"Nov 16",dow:"Lun",week:"w4",title:"Torre de Tokio & Azabudai Hills",loc:"Tokio·Azabudai/Shibuya",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:60,bufferP:35,contempl:30,joint:true,jointText:"🤝 Plan conjunto: AdeS tiene día libre — invitarlos a la Torre de Tokio al atardecer (el Tokyo Drift ya se hizo el 14, así que hoy queda más libre para ellos).",
+{day:19,date:"Nov 16",dow:"Lun",week:"w4",title:"Torre de Tokio & Azabudai Hills",loc:"Tokio·Azabudai/Shibuya",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:60,bufferP:35,contempl:30,joint:true,jointText:"🤝 Plan conjunto: HOY (no el 15) es cuando AdeS hace Meiji/Harajuku/Shibuya — proponerles cruzar en Shibuya a media tarde (ellos siguen a Omotesando/Nogi, nosotros seguimos a Azabudai) antes de separarnos para el atardecer en la Torre de Tokio.",
 am:"Mañana tranquila: repetir favoritos y cierre del álbum de sellos 🖊️.",pm:"Azabudai Hills y subir a la 🗼 Torre de Tokio al atardecer (main deck ~¥1.500).",night:"Cena tranquila en Tokio.",food:"Ramen",transport:"Metro",costT:600,costF:3500,
 img:IMG+"5/58/Tokyo_Tower_2023.jpg/960px-Tokyo_Tower_2023.jpg",
 acts:[{n:"Torre de Tokio",lat:35.6586,lng:139.7454,t:"pop",roi:5,w:"Tokyo_Tower"},{n:"Azabudai Hills",lat:35.6604,lng:139.7413,t:"pop",roi:4,w:"Azabudai_Hills"}]},
@@ -848,28 +838,7 @@ function renderOverlap(){
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-midori text-white rounded-xl p-4"><p class="text-3xl font-black">${m}</p><p class="text-xs text-white/70">días en la misma ciudad que AdeS</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
-        [['🟢 Tokio · 30 oct – 2 nov','Bienvenida, teamLab Planets, Halloween Shibuya, Kamakura juntos.'],['🟢 Fuji · 3 nov','Lago y atardecer juntos; cada grupo en su alojamiento.'],['🟢 Kioto · 6 nov','Nuestro daytrip a Kioto coincide con ellos: templos y Pontocho.'],['🟢 Osaka · 9–10 nov','AdeS en Osaka; nosotros en Kurama el 10 (USJ se movió al 12) — posible Dotonbori juntos de noche.'],['🟢 Tokio · 14–17 nov','Recta final: Shichi-Go-San, compras y despedida.']]
-        .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
-}
-
-// ===== SEGUIMIENTO Sergio "Grupo de 8" (V6 vs Sergio) — lógica/datos en trip-data.js =====
-function renderOverlapSergio(){
-    const data=overlapRowsSergio(V6_CITY,0);
-    const m=data.filter(r=>r.cls==='sup-match').length,nn=data.filter(r=>r.cls==='sup-near').length;
-    const ourByDate={};DAYS.forEach(d=>{ourByDate[d.date]=d;});
-    document.getElementById('overlap-sergio-table').innerHTML=data.map(r=>{
-        const act=(typeof SERGIO_ACT!=='undefined'&&SERGIO_ACT[r.date])?SERGIO_ACT[r.date]:null;
-        const hasAd=r.ad&&r.ad!=='—'&&r.ad!=='viaje';
-        const adTxt=act?`<b>${r.ad}</b> · ${act}`:(hasAd?`<b>${r.ad}</b>`:'<span class="text-kuro/35">— (aún no llegan / ya viajan)</span>');
-        const ours=ourByDate[r.date]?ourByDate[r.date].loc:'—';
-        const lbl=r.cls==='sup-none'?'<span class="text-kuro/30">—</span>':`<span class="sup-cell ${r.cls}">${r.label}</span>`;
-        return `<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td><td class="px-2">${lbl}</td><td class="px-2 text-kuro/75">${adTxt}</td><td class="px-2 text-kuro/55">${ours}</td></tr>`;
-    }).join('');
-    document.getElementById('overlap-sergio-windows').innerHTML=
-        `<div class="bg-midori text-white rounded-xl p-4"><p class="text-3xl font-black">${m}</p><p class="text-xs text-white/70">días en la misma ciudad que Sergio</p></div>`+
-        `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
-        (typeof OVERLAP_WINDOWS_SERGIO!=='undefined'?OVERLAP_WINDOWS_SERGIO:[])
-        .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+        OVERLAP_WINDOWS.map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
 }
 
 // ===== REELS (propuestas desde el chat de Instagram) — datos en reels-data.js =====
@@ -1150,7 +1119,7 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderOverlapSergio();renderReels();}
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();}
 renderAll(); loadRates();
 document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('click',e=>{
     e.stopPropagation();
