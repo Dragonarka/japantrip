@@ -146,6 +146,7 @@
             <div class="navmenu">
                 <button class="week-tab" data-week="metrics">📊 Indicadores</button>
                 <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
+                <button class="week-tab" data-week="overlap-sergio">👥 Seguimiento Sergio</button>
             </div>
         </div>
         <button class="navbtn" data-week="reels">📱 Reels</button>
@@ -352,6 +353,15 @@
     </div>
 </section>
 
+<section class="section" id="overlap-sergio">
+    <h2 class="font-jp text-2xl font-black mb-2">👥 Seguimiento de Sergio (Grupo de 8) <span class="text-sm font-normal text-kuro/50">(otro grupo, mismas fechas)</span></h2>
+    <p class="text-xs text-kuro/50 mb-5">Itinerario real de <a href="https://sergio0491.github.io/viaje-japon/" target="_blank" class="text-aka underline">sergio0491.github.io/viaje-japon</a> (29 oct–18 nov, Tokio→Fuji→Kioto→Osaka→Kanazawa→Tokio), día a día. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span> · gris = cada quien por su lado.</p>
+    <div id="overlap-sergio-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
+    <div class="bg-white border border-haiiro rounded-xl p-4 overflow-x-auto">
+        <table class="w-full text-sm"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2 pr-3">Fecha</th><th class="px-2">¿Juntos?</th><th class="px-2">Sergio — qué hacen</th><th class="px-2">Nosotros (V6)</th></tr></thead><tbody id="overlap-sergio-table"></tbody></table>
+    </div>
+</section>
+
 <section class="section" id="reels">
     <h2 class="font-jp text-2xl font-black mb-2">📱 Reels · propuestas del chat</h2>
     <p class="text-xs text-kuro/50 mb-5">Cada reel que mandamos al grupo de Instagram, analizado por <b>imagen + audio + texto</b>: qué lugar es, dónde encaja en el viaje, cuánto cuesta y si vale la pena. Ordenados por recomendación (★). <span class="text-kuro/40">Fuente: <span id="reels-generated">—</span>.</span></p>
@@ -504,13 +514,13 @@ am:"Tren a Kamakura: Gran Buda (Kotoku-in), Hasedera.",pm:"Enoden a Enoshima, at
 img:IMG+"c/cf/230128_Kamakura_Daibutsu_Japan04s3.jpg/960px-230128_Kamakura_Daibutsu_Japan04s3.jpg",
 acts:[{n:"Daibutsu (Kotoku-in)",lat:35.3169,lng:139.5358,t:"tradition",roi:5,w:"Kōtoku-in"},{n:"Hasedera",lat:35.3127,lng:139.5331,t:"tradition",roi:4,w:"Hase-dera_(Kamakura)"},{n:"Enoshima",lat:35.2990,lng:139.4800,t:"nature",roi:4,w:"Enoshima"}]},
 
-{day:6,date:"Nov 3",dow:"Mar",week:"w2",title:"Monte Fuji & Onsen",loc:"Tokio→Kawaguchiko",lodge:"Ryokan Fuji",effort:2,luggage:true,laundry:false,transitMin:150,bufferP:25,contempl:55,joint:true,jointText:"🤝 Plan conjunto: ambos grupos en Kawaguchiko — bicis por el lago y ATARDECER JUNTOS en la orilla norte (foto grupal con el Fuji); cada grupo cena kaiseki en su ryokan.",
-am:"Bus a Kawaguchiko. Bicis por el lago, momiji.",pm:"Check-in ryokan. Vistas al Fuji.",night:"Onsen + kaiseki. (Takkyubin de maletas a Kioto.)",food:"Hoto · Kaiseki",transport:"Bus expreso Fujikyu",costT:1900,costF:1500,
+{day:6,date:"Nov 3",dow:"Mar",week:"w2",title:"Monte Fuji & Onsen",loc:"Tokio→Kawaguchiko",lodge:"Villa Fuji",effort:2,luggage:true,laundry:false,transitMin:150,bufferP:25,contempl:55,joint:true,jointText:"🤝 Plan conjunto: ambos grupos en Kawaguchiko — bicis por el lago y ATARDECER JUNTOS en la orilla norte (foto grupal con el Fuji); AdeS cena kaiseki en su ryokan, nosotros en la villa.",
+am:"🚄 RESERVADO: tren Azusa Shinjuku 07:00 → Ōtsuki 07:56 (asientos reservados, E99391) + trasbordo a la línea Fujikyu hasta Kawaguchiko (llegada ~09:15). Bicis por el lago, momiji.",pm:"Check-in villa (16:00) — plataforma con vista al Fuji y al lago, junto al Parque Ōishi.",night:"Vistas del Fuji y cielo estrellado desde la villa. (Sin kaiseki esta vez — los restaurantes del pueblo cierran temprano, llevar algo de cena. Takkyubin de maletas a Osaka.)",food:"Hoto · cena propia",transport:"Tren Azusa + Fujikyu (reservado)",costT:3600,costF:1500,
 img:IMG+"1/18/KawaguchiKo.jpg/960px-KawaguchiKo.jpg",
 acts:[{n:"Lago Kawaguchi",lat:35.5170,lng:138.7530,t:"nature",roi:5,w:"Lake_Kawaguchi"},{n:"Monte Fuji (vista)",lat:35.3606,lng:138.7274,t:"nature",roi:5,w:"Mount_Fuji"},{n:"Onsen ryokan",lat:35.5018,lng:138.7660,t:"onsen",roi:5}]},
 
 {day:7,date:"Nov 4",dow:"Mié",week:"w2",title:"Monos de Nieve (Nagano)",loc:"Fuji→Matsumoto→Yudanaka",lodge:"Yudanaka onsen",effort:4,luggage:false,laundry:false,transitMin:300,bufferP:10,contempl:50,joint:false,
-am:"Fuji → Matsumoto: castillo negro (foto).",pm:"🐒 Jigokudani: monos de nieve en el onsen natural. Snow Monkey Pass.",night:"Pueblo onsen de Yudanaka/Shibu en yukata.",food:"Soba · Oyaki",transport:"Tren + bus Nagaden",costT:9500,costF:3000,
+am:"Sin reservar desde acá, se compra allá: bus Fujikyu Kawaguchiko→Kōfu (~1h15, sin reserva, pagar al bajar) → tren exprés Azusa Kōfu→Matsumoto (~1h, sacar asiento en taquilla/máquina) — castillo negro (foto) → tren exprés Shinano Matsumoto→Nagano (~50 min, vistas de los Alpes, asiento en taquilla).",pm:"Nagaden hasta Yudanaka (~45 min, comprar allá) + Snow Monkey Pass a Jigokudani (bundle bus+entrada, se consigue en la estación de Nagano): monos de nieve en el onsen natural.",night:"Pueblo onsen de Yudanaka/Shibu en yukata.",food:"Soba · Oyaki",transport:"Bus + Azusa + Shinano + Nagaden (todo in situ)",costT:9500,costF:3000,
 img:IMG+"a/a8/Onsen_with_monkey_Jigokudani_b.jpg/960px-Onsen_with_monkey_Jigokudani_b.jpg",
 acts:[{n:"Castillo Matsumoto",lat:36.2384,lng:137.9690,t:"history",roi:4,w:"Matsumoto_Castle"},{n:"Monos de nieve (Jigokudani)",lat:36.7330,lng:138.4620,t:"nature",roi:5,w:"Jigokudani_Monkey_Park"},{n:"Pueblo onsen Yudanaka/Shibu",lat:36.7400,lng:138.4150,t:"onsen",roi:4}]},
 
@@ -520,7 +530,7 @@ img:IMG+"4/47/Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg/960px-Dotonbor
 acts:[{n:"Mercado Kuromon",lat:34.6657,lng:135.5063,t:"food",roi:4},{n:"Umeda Sky Building",lat:34.7052,lng:135.4897,t:"pop",roi:4,w:"Umeda_Sky_Building"},{n:"Dotonbori",lat:34.6687,lng:135.5010,t:"pop",roi:5,w:"Dōtonbori"}]},
 
 {day:9,date:"Nov 6",dow:"Vie",week:"w3",title:"Daytrip Kioto: Toriis, Té y Kimono",loc:"Osaka→Kioto (daytrip)",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:120,bufferP:20,contempl:45,joint:true,stamps:true,jointText:"🤝 Plan conjunto: AdeS pasa la tarde en Higashiyama/Gion — coincidimos ahí después del té: paseo por Gion y CENA EN PONTOCHO juntos (nuestro último Hankyu sale 23:15).",
-am:"⏰ MADRUGÓN: primer Hankyu desde Umeda 5:00 → Fushimi Inari a las 6:30, antes de las multitudes. Senbon Torii + sellos 🖊️. Luego Kiyomizu-dera y Higashiyama.",pm:"🍵 Ceremonia del té + alquiler de kimono por Gion.",night:"🤝 Gion y cena en Pontocho con AdeS. Regreso a Osaka (último Hankyu 23:15 desde Kawaramachi).",food:"Yudofu · Matcha",transport:"JR/Keihan (daytrip)",costT:1200,costF:4000,
+am:"⏰ MADRUGÓN: primer Hankyu desde Umeda 5:00 → Fushimi Inari a las 6:30, antes de las multitudes. Senbon Torii + sellos 🖊️. Luego Kiyomizu-dera y Higashiyama.",pm:"🍵 RESERVADO 14:00: Ceremonia del té + alquiler de kimono por Gion.",night:"🤝 Gion y cena en Pontocho con AdeS. Regreso a Osaka (último Hankyu 23:15 desde Kawaramachi).",food:"Yudofu · Matcha",transport:"JR/Keihan (daytrip)",costT:1200,costF:4000,
 img:IMG+"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
 acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Templo Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomizu-dera"},{n:"Ceremonia del té + kimono",lat:35.0036,lng:135.7788,t:"tradition",roi:5},{n:"Gion y Yasaka",lat:35.0036,lng:135.7755,t:"tradition",roi:5,w:"Gion"}]},
 
@@ -539,20 +549,20 @@ am:"JR a Kobe (~25 min): Kitano-cho (casas extranjeras) y Nankinmachi (barrio ch
 img:IMG+"7/7a/20190901_Kobe_Port_Tower-1.jpg/960px-20190901_Kobe_Port_Tower-1.jpg",
 acts:[{n:"Kitano-cho",lat:34.7008,lng:135.1885,t:"history",roi:4,w:"Kitano-ch%C5%8D"},{n:"Nankinmachi (barrio chino)",lat:34.6889,lng:135.1882,t:"local",roi:4},{n:"Arima Onsen (Kin no Yu / Gin no Yu)",lat:34.7963,lng:135.2478,t:"onsen",roi:5,w:"Arima_Onsen"},{n:"Kobe (puerto y wagyu)",lat:34.6851,lng:135.1880,t:"food",roi:5,w:"Kobe"}]},
 
-{day:13,date:"Nov 10",dow:"Mar",week:"w3",title:"USJ 🎢",loc:"Osaka·USJ",lodge:"Osaka",effort:5,luggage:false,laundry:false,transitMin:60,bufferP:10,contempl:15,joint:true,jointText:"🎢 Plan conjunto: hoy es su día comodín en Osaka — proponerles USJ juntos y comprar entradas + Express Pass de los 2 grupos a la vez (con antelación).",
-am:"USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Cena en Namba.",food:"Parque · Butterbeer",transport:"JR Yumesaki",costT:400,costF:3000,
-img:IMG+"b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg/960px-Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg",
-acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5,w:"Universal_Studios_Japan"}]},
+{day:13,date:"Nov 10",dow:"Mar",week:"w3",title:"Kurama–Kibune: Caminata Ancestral & Onsen 🥾",loc:"Osaka→Kurama/Kibune (daytrip)",lodge:"Osaka",effort:4,luggage:false,laundry:false,transitMin:180,bufferP:20,contempl:60,joint:true,stamps:true,jointText:"🤝 AdeS tiene su día comodín en Osaka — hoy estamos en Kurama todo el día (el plan original de USJ juntos se movió al 12, cuando ellos ya van camino a Kanazawa), pero se puede proponer cena conjunta en Dotonbori al volver (~20:00).",
+am:"Keihan + tren Eizan a Kurama (~1h20). Kurama-dera: la montaña sagrada del tengu, camino de raíces de cedro (kinone-michi) + sellos 🖊️.",pm:"🥾 Caminata ancestral por el monte Kurama hasta Kibune (~2h de sendero, ~4h con templos): bosque de cedros, momiji de montaña. Santuario Kifune y sus escaleras de faroles rojos.",night:"♨️ Kurama Onsen (rotenburo con vista al bosque; reabrió nov 2024 — confirmar política de tatuajes al llegar). Regreso en el túnel de arces del Eizan iluminado. Posible cena en Dotonbori con AdeS.",food:"Kawadoko · Soba de montaña",transport:"Keihan + Eizan (daytrip)",costT:1900,costF:4000,
+img:IMG+"e/e4/Kurama-dera_sanmon.jpg/960px-Kurama-dera_sanmon.jpg",
+acts:[{n:"Kurama-dera (montaña sagrada)",lat:35.1180,lng:135.7710,t:"tradition",roi:5,w:"Kurama-dera"},{n:"Santuario Kifune (Kibune)",lat:35.1216,lng:135.7628,t:"tradition",roi:5,w:"Kifune_Shrine"},{n:"Kurama Onsen",lat:35.1223,lng:135.7743,t:"onsen",roi:5}]},
 
 {day:14,date:"Nov 11",dow:"Mié",week:"w3",title:"Osaka a Fondo: Cocina, Sumo & Cachetadas",loc:"Osaka·Namba/Shinsekai",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:25,joint:false,
 am:"🍳 Clase de cocina japonesa (ramen/okonomiyaki/sushi) con chef local.",pm:"🤼 Espectáculo de sumo + almuerzo chanko nabe. Shinsekai y Tsutenkaku.",night:"🖐️ Bar de cachetadas (harisen) + crawl de kushikatsu en Shinsekai. ¡Día social! (La batalla de baile va el sábado, ver D10.)",food:"Chanko nabe · Kushikatsu",transport:"Metro Midosuji",costT:600,costF:5000,
 img:IMG+"9/95/Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg/960px-Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg",
 acts:[{n:"Clase de cocina japonesa",lat:34.6660,lng:135.5020,t:"food",roi:5},{n:"Sumo + chanko nabe",lat:34.6660,lng:135.5050,t:"tradition",roi:4,w:"Sumo"},{n:"Bar de cachetadas (Shinsekai)",lat:34.6524,lng:135.5063,t:"night",roi:4},{n:"Kushikatsu crawl (Shinsekai)",lat:34.6524,lng:135.5063,t:"food",roi:4}]},
 
-{day:15,date:"Nov 12",dow:"Jue",week:"w3",title:"Kurama–Kibune: Caminata Ancestral & Onsen 🥾",loc:"Osaka→Kurama/Kibune (daytrip)",lodge:"Osaka",effort:4,luggage:false,laundry:false,transitMin:180,bufferP:20,contempl:60,joint:false,stamps:true,
-am:"Keihan + tren Eizan a Kurama (~1h20). Kurama-dera: la montaña sagrada del tengu, camino de raíces de cedro (kinone-michi) + sellos 🖊️.",pm:"🥾 Caminata ancestral por el monte Kurama hasta Kibune (~2h de sendero, ~4h con templos): bosque de cedros, momiji de montaña. Santuario Kifune y sus escaleras de faroles rojos.",night:"♨️ Kurama Onsen (rotenburo con vista al bosque; reabrió nov 2024 — confirmar política de tatuajes al llegar). Regreso en el túnel de arces del Eizan iluminado. Cena en Osaka.",food:"Kawadoko · Soba de montaña",transport:"Keihan + Eizan (daytrip)",costT:1900,costF:4000,
-img:IMG+"e/e4/Kurama-dera_sanmon.jpg/960px-Kurama-dera_sanmon.jpg",
-acts:[{n:"Kurama-dera (montaña sagrada)",lat:35.1180,lng:135.7710,t:"tradition",roi:5,w:"Kurama-dera"},{n:"Santuario Kifune (Kibune)",lat:35.1216,lng:135.7628,t:"tradition",roi:5,w:"Kifune_Shrine"},{n:"Kurama Onsen",lat:35.1223,lng:135.7743,t:"onsen",roi:5}]},
+{day:15,date:"Nov 12",dow:"Jue",week:"w3",title:"USJ 🎢",loc:"Osaka·USJ",lodge:"Osaka",effort:5,luggage:false,laundry:false,transitMin:60,bufferP:10,contempl:15,joint:false,
+am:"🎟️ RESERVADO (e-ticket). USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Cena en Namba.",food:"Parque · Butterbeer",transport:"JR Yumesaki",costT:400,costF:3000,
+img:IMG+"b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg/960px-Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Universal_Studios_Japan.jpg",
+acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5,w:"Universal_Studios_Japan"}]},
 
 {day:16,date:"Nov 13",dow:"Vie",week:"w3",title:"Uji (Matcha) + Castillo & Spa",loc:"Osaka→Uji + Osaka·Centro",lodge:"Osaka",effort:3,luggage:false,laundry:true,transitMin:110,bufferP:35,contempl:45,joint:false,stamps:true,
 am:"Daytrip a Uji (~40 min): Byōdō-in (el templo del Fénix, el de la moneda de ¥10) + sellos 🖊️. Capital del matcha: cata, calle Omotesando, helado y cha-soba.",pm:"De regreso: Castillo de Osaka — parque, torre y museo (sellos 🖊️).",night:"Onsen urbano (Spa World) y despedida de Kansai en Ura-Namba.",food:"Matcha · Cha-soba · Okonomiyaki",transport:"JR Nara line + metro",costT:1500,costF:4500,
@@ -751,7 +761,7 @@ function renderPlanB(){
     document.getElementById('planb-table').innerHTML=PLANB.map(r=>`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold">${r[0]}</td><td class="px-2 text-kuro/60 whitespace-nowrap">${r[1]}</td><td class="px-2"><span style="color:${tcolor[r[2]]||'#777'};font-weight:700">${r[2]}</span></td><td class="px-2 text-kuro/70">${r[3]}</td></tr>`).join('');
 }
 
-const TRANSPORT_LINES=[["Narita/Haneda→Shinjuku","N'EX",3250],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Bus",1900],["Fuji→Matsumoto→Yudanaka","Tren+bus",6500],["Snow Monkey Pass","Nagaden",3500],["Nagano→Osaka","Shinkansen",13500],["Daytrips Osaka↔Kioto ×2","JR/Keihan",2500],["Daytrip Osaka↔Himeji","Shinkansen/JR",3000],["Daytrip Osaka↔Kobe","JR",820],["Daytrip Osaka↔Uji","JR",1200],["Osaka↔USJ r/t","JR",400],["Osaka→Tokio","Shinkansen",14500],["Metro/IC 23d","ICOCA/Suica",12000],["Tokio→Narita","N'EX",3250]];
+const TRANSPORT_LINES=[["Narita/Haneda→Shinjuku","N'EX",3250],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Tren Azusa+Fujikyu",3600],["Fuji→Matsumoto→Yudanaka","Tren+bus",6500],["Snow Monkey Pass","Nagaden",3500],["Nagano→Osaka","Shinkansen",13500],["Daytrips Osaka↔Kioto ×2","JR/Keihan",2500],["Daytrip Osaka↔Himeji","Shinkansen/JR",3000],["Daytrip Osaka↔Kobe","JR",820],["Daytrip Osaka↔Uji","JR",1200],["Osaka↔USJ r/t","JR",400],["Osaka→Tokio","Shinkansen",14500],["Metro/IC 23d","ICOCA/Suica",12000],["Tokio→Narita","N'EX",3250]];
 const ACT_LINES=[["teamLab Planets",3800],["🥋 Samurái + 🥷 Ninja",14000],["🍵 Ceremonia del té + kimono",5000],["🐒 Snow Monkey (entrada)",800],["🏯 Himeji + 🥩 Kobe wagyu",9000],["🍳 Clase de cocina",7000],["🤼 Sumo + chanko (Osaka)",8000],["🖐️ Cachetadas + 🌆 Umeda Sky",3000],["USJ + Express",20600],["Templos Kioto + Himeji",4500],["🖊️ Goshuincho + sellos",3000],["🎂 Cumpleaños #1 (maiko/sake)",9000],["🎂 Cumpleaños #2 (sushi/wagyu/karaoke)",11000],["🏯 Castillo de Osaka",600],["🥾 Kurama-dera + Kurama Onsen",1600],["♨️ Spa World (onsen)",1500],["🏎️ Tokyo Drift (ride-along, 2 coches/5)",25000],["🗼 Torre de Tokio (main deck)",1500],["🍁 Takao: funicular + onsen",1600],["🎭 Kabuki un acto",1500],["♨️ Arima Onsen (combo 2 baños)",1200]];
 function costRows(lines){let t=0,h='';lines.forEach(([n,...r])=>{const c=r.length===2?r[1]:r[0],tp=r.length===2?r[0]:null;t+=c;h+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${n}${tp?` <span class="text-kuro/35">(${tp})</span>`:''}</span><span class="tooltip-usd" data-usd="${usdTip(c)}">¥${c.toLocaleString()}</span></div>`;});return{h,t};}
 function renderCosts(){
@@ -834,7 +844,27 @@ function renderOverlap(){
     document.getElementById('overlap-windows').innerHTML=
         `<div class="bg-midori text-white rounded-xl p-4"><p class="text-3xl font-black">${m}</p><p class="text-xs text-white/70">días en la misma ciudad que AdeS</p></div>`+
         `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
-        [['🟢 Tokio · 30 oct – 2 nov','Bienvenida, teamLab Planets, Halloween Shibuya, Kamakura juntos.'],['🟢 Fuji · 3 nov','Lago y onsen el mismo día.'],['🟢 Kioto · 6 nov','Nuestro daytrip a Kioto coincide con ellos: templos y Pontocho.'],['🟢 Osaka · 10 nov','AdeS en Osaka (9–10 nov): USJ / Dotonbori juntos.'],['🟢 Tokio · 14–17 nov','Recta final: Shichi-Go-San, compras y despedida.']]
+        [['🟢 Tokio · 30 oct – 2 nov','Bienvenida, teamLab Planets, Halloween Shibuya, Kamakura juntos.'],['🟢 Fuji · 3 nov','Lago y atardecer juntos; cada grupo en su alojamiento.'],['🟢 Kioto · 6 nov','Nuestro daytrip a Kioto coincide con ellos: templos y Pontocho.'],['🟢 Osaka · 9–10 nov','AdeS en Osaka; nosotros en Kurama el 10 (USJ se movió al 12) — posible Dotonbori juntos de noche.'],['🟢 Tokio · 14–17 nov','Recta final: Shichi-Go-San, compras y despedida.']]
+        .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
+}
+
+// ===== SEGUIMIENTO Sergio "Grupo de 8" (V6 vs Sergio) — lógica/datos en trip-data.js =====
+function renderOverlapSergio(){
+    const data=overlapRowsSergio(V6_CITY,0);
+    const m=data.filter(r=>r.cls==='sup-match').length,nn=data.filter(r=>r.cls==='sup-near').length;
+    const ourByDate={};DAYS.forEach(d=>{ourByDate[d.date]=d;});
+    document.getElementById('overlap-sergio-table').innerHTML=data.map(r=>{
+        const act=(typeof SERGIO_ACT!=='undefined'&&SERGIO_ACT[r.date])?SERGIO_ACT[r.date]:null;
+        const hasAd=r.ad&&r.ad!=='—'&&r.ad!=='viaje';
+        const adTxt=act?`<b>${r.ad}</b> · ${act}`:(hasAd?`<b>${r.ad}</b>`:'<span class="text-kuro/35">— (aún no llegan / ya viajan)</span>');
+        const ours=ourByDate[r.date]?ourByDate[r.date].loc:'—';
+        const lbl=r.cls==='sup-none'?'<span class="text-kuro/30">—</span>':`<span class="sup-cell ${r.cls}">${r.label}</span>`;
+        return `<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold whitespace-nowrap">${r.date}</td><td class="px-2">${lbl}</td><td class="px-2 text-kuro/75">${adTxt}</td><td class="px-2 text-kuro/55">${ours}</td></tr>`;
+    }).join('');
+    document.getElementById('overlap-sergio-windows').innerHTML=
+        `<div class="bg-midori text-white rounded-xl p-4"><p class="text-3xl font-black">${m}</p><p class="text-xs text-white/70">días en la misma ciudad que Sergio</p></div>`+
+        `<div class="bg-sumi text-white rounded-xl p-4"><p class="text-3xl font-black text-kin">${nn}</p><p class="text-xs text-white/60">días de cercanía regional</p></div>`+
+        (typeof OVERLAP_WINDOWS_SERGIO!=='undefined'?OVERLAP_WINDOWS_SERGIO:[])
         .map(w=>`<div class="bg-white border border-haiiro rounded-xl p-4"><p class="font-bold text-sm">${w[0]}</p><p class="text-xs text-kuro/60 mt-1">${w[1]}</p></div>`).join('');
 }
 
@@ -926,9 +956,9 @@ const LODGING=[
   candidates:[{n:'Shinjuku',lat:35.690,lng:139.700},{n:'Ueno / Asakusa',lat:35.710,lng:139.785},{n:'Shibuya',lat:35.659,lng:139.701},{n:'Tokyo / Nihonbashi',lat:35.681,lng:139.767}],
   pp:'5.000–9.000',local:'Gemas: Omoide Yokocho y Golden Gai (Shinjuku), Shimokitazawa vintage, Nakameguro, baños sentō de barrio.',
   type:'Airbnb entero (2–3 hab) para 5; central para metro, samurái/ninja y salida a Fuji. Day-trips (Kamakura) excluidos del cálculo.'},
- {city:'Fuji · ryokan',zg:'fuji',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,
-  fixed:{n:'Orilla del Lago Kawaguchi',lat:35.5018,lng:138.7660},pp:'18.000–32.000',local:'Gemas: Onsen con vista al Fuji, paseo en bici por el lago, Oishi Park.',
-  type:'Ryokan con onsen + kaiseki (el lujo del viaje). Rakuten Travel / Booking / directo.'},
+ {city:'Fuji · Villa ✅ reservada',zg:'fuji',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,
+  fixed:{n:'Ōishi, orilla norte del lago',lat:35.5018,lng:138.7660},pp:'reservado (Airbnb HMBFBFE5YP)',local:'Gemas: paseo en bici por el lago, Parque Ōishi, miradores del Fuji.',
+  type:'Villa Airbnb con plataforma de observación y vista al lago/Fuji — sin kaiseki incluido, llevar cena (el pueblo cierra temprano).'},
  {city:'Nagano · Yudanaka',zg:'nagano',nights:1,checkin:'2026-11-04',checkout:'2026-11-05',area:'Yudanaka Onsen, Nagano',adults:5,
   fixed:{n:'Yudanaka / Shibu Onsen',lat:36.7400,lng:138.4150},pp:'9.000–16.000',local:'Gemas: 9 baños públicos de Shibu Onsen (en yukata), pueblo histórico, base de los monos.',
   type:'Ryokan en el pueblo onsen, a minutos de Jigokudani. Reservar pronto (pocas plazas).'},
@@ -1116,7 +1146,7 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();}
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderOverlapSergio();renderReels();}
 renderAll(); loadRates();
 document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('click',e=>{
     e.stopPropagation();
