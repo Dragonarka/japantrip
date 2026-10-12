@@ -37,7 +37,6 @@
         .day-card{overflow:hidden}
         .day-hero{width:100%;height:160px;object-fit:cover;filter:saturate(.92)}
         .chevron{transition:transform .3s}
-        .joint-badge{background:linear-gradient(135deg,#1A6B4A,#0E5236);color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px;letter-spacing:.05em}
         .bday-badge{background:linear-gradient(135deg,var(--color-aka),var(--color-murasaki));color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:999px}
         .stamp-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.6rem;font-weight:700;background:#F3ECD8;color:var(--color-cha);border:1px solid #7D660833}
         /* Tags: cada color base viene de @theme arriba; border/bg son ese mismo hex con alfa precalculada */
@@ -640,7 +639,6 @@ function renderWeek(wk){
         const ef=d.effort,dens=mainActs(d).length,hasPts=mainActs(d).filter(a=>a.lat).length>0;
         const tagTypes=[...new Set(d.acts.map(a=>a.t).filter(t=>t!=='transit'))];
         const tagHtml=tagTypes.slice(0,3).map(t=>`<span class="tag tag-${t}">${TYPE_LABELS[t]}</span>`).join(' ');
-        const jb=d.joint?`<span class="joint-badge">🤝 Con AdeS</span>`:'';
         const bd=d.bday?`<span class="bday-badge">🎂 Cumpleaños</span>`:'';
         const sb=d.stamps?`<span class="stamp-badge">🖊️ Sellos</span>`:'';
         const lb=d.laundry?`<span class="laundry-badge">🧺</span>`:'';
@@ -650,14 +648,19 @@ function renderWeek(wk){
             const star=(!isT&&a.roi>=5)?` <span class="text-[9px] font-bold text-kin border border-kin/40 rounded-full px-1.5 align-middle whitespace-nowrap">SÍ O SÍ</span>`:'';
             return `<li class="flex items-start gap-2 py-1 ${isT?'opacity-60':''}"><span class="text-xs mt-0.5">${isT?'🚆':'📍'}</span><span class="text-sm text-kuro/80 flex-1">${name}${star}${hist}</span><span class="tag tag-${a.t} shrink-0">${(TYPE_LABELS[a.t]||a.t).split(' ')[0]}</span></li>`;}).join('');
         const accent=d.bday?'border-aka/50':(d.joint?'border-midori/40':'border-haiiro');
-        const jointBox=d.joint?`<div class="bg-midori/10 border border-midori/30 rounded-lg p-3 mb-2"><p class="text-sm text-midori font-bold">${d.jointText}</p></div>`:'';
+        const adesToday=(typeof ADES_ACT!=='undefined')?ADES_ACT[d.date]:null;
+        const jointBox=adesToday?`<div class="bg-washi border border-haiiro rounded-lg p-3 mb-2">
+            <p class="text-xs font-bold text-kuro/40 uppercase tracking-wide mb-1">🤝 AdeS ese día</p>
+            <p class="text-sm text-kuro/75">${adesToday}</p>
+            ${d.joint&&d.jointText?`<p class="text-sm text-midori font-bold mt-2 pt-2 border-t border-haiiro">${d.jointText}</p>`:''}
+        </div>`:(d.joint&&d.jointText?`<div class="bg-midori/10 border border-midori/30 rounded-lg p-3 mb-2"><p class="text-sm text-midori font-bold">${d.jointText}</p></div>`:'');
         html+=`<div class="day-card bg-white border ${accent} rounded-xl mb-3 hover:shadow-md transition-shadow">
             <div class="cursor-pointer select-none" onclick="toggleDay(this,${d.day})">
                 <img class="day-hero" loading="lazy" src="${d.img}" alt="${d.title}">
                 <div class="flex items-center justify-between p-4">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="shrink-0 text-center"><div class="w-11 h-11 rounded-lg ${d.bday?'bg-aka/15 text-aka':(d.joint?'bg-midori/15 text-midori':'bg-aka/10 text-aka')} font-bold flex items-center justify-center text-sm">D${d.day}</div><p class="text-[10px] text-kuro/40 mt-0.5 font-bold">${d.dow} ${d.date}</p></div>
-                        <div class="min-w-0"><div class="flex flex-wrap items-center gap-2"><h3 class="font-bold text-sm md:text-base">${d.title}</h3>${bd}${jb}${sb}${lug}${lb}</div>
+                        <div class="min-w-0"><div class="flex flex-wrap items-center gap-2"><h3 class="font-bold text-sm md:text-base">${d.title}</h3>${bd}${sb}${lug}${lb}</div>
                         <p class="text-xs text-kuro/50">📍 ${d.loc}</p>
                         <div class="flex items-center gap-2 mt-1"><div class="effort-bar"><div class="effort-fill" style="width:${ef*20}%;background:${EFFORT_COLORS[ef]}"></div></div><span class="text-[10px] text-kuro/50">${EFFORT_LABELS[ef]} · ${dens} act</span></div></div>
                     </div>
