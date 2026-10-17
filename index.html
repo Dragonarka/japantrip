@@ -124,6 +124,7 @@
 <nav class="sticky top-0 z-40 bg-washi border-b border-haiiro">
     <div class="max-w-5xl mx-auto flex flex-wrap items-center gap-1 px-2 py-1">
         <button class="navbtn active" data-week="overview">Resumen</button>
+        <button class="navbtn" data-week="control">🧠 Control</button>
         <div class="navgroup">
             <button class="navbtn navtop" id="navtop-itin" type="button">🗓️ Itinerario ▾</button>
             <div class="navmenu">
@@ -223,6 +224,36 @@
         <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="text-xs font-bold uppercase tracking-wide text-kuro/40 mb-2">🍁 Clima & Momiji</h3><p class="text-xs text-kuro/70">8–20 °C. Momiji: Fuji/Nagano (fin oct–inicio nov), Kioto/Kanto (med nov). Capas + chaqueta.</p></div>
         <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="text-xs font-bold uppercase tracking-wide text-kuro/40 mb-2">🖊️ Hilo de sellos</h3><p class="text-xs text-kuro/70">Compra un <b>goshuincho</b> en el primer templo (~¥1.500) y colecciona sellos (¥300–500) + <b>eki stamps</b> gratis en estaciones. Recuerdo barato e inmersivo.</p></div>
         <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm"><h3 class="text-xs font-bold uppercase tracking-wide text-kuro/40 mb-2">💡 Optimización</h3><p class="text-xs text-kuro/70">Una sola base en Osaka (9 noches), pase regional JR Kansai Area para los daytrips y takkyubin. Ver pestaña <b>💰 Costos</b>.</p></div>
+    </div>
+</section>
+
+<section class="section" id="control">
+    <div id="control-countdown" class="bg-sumi text-white rounded-xl p-6 mb-6"></div>
+    <div id="control-stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
+    <div id="control-nextday" class="mb-6"></div>
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm">
+            <div class="flex items-baseline justify-between mb-3">
+                <h3 class="font-bold text-sm">✅ Checklist de preparación</h3>
+                <span id="control-progress-label" class="text-xs text-kuro/40"></span>
+            </div>
+            <div class="meter mb-4"><div id="control-progress" class="anim-bar" style="background:#1A6B4A;width:0%"></div></div>
+            <div id="control-checklist" class="space-y-2 text-sm"></div>
+        </div>
+        <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm flex flex-col">
+            <h3 class="font-bold text-sm mb-3">📝 Notas rápidas</h3>
+            <textarea id="control-notes" class="flex-1 w-full min-h-40 text-xs border border-haiiro rounded-lg p-3 focus:outline-aka/40" placeholder="Pendientes, dudas, cosas por confirmar con el grupo..."></textarea>
+            <p class="text-[10px] text-kuro/40 mt-2">Se guarda solo en este navegador (no se comparte con el resto del grupo).</p>
+        </div>
+    </div>
+    <h3 class="font-jp text-lg font-bold mb-3">🧭 Ir directo a</h3>
+    <div class="flex flex-wrap gap-2">
+        <button onclick="document.querySelector('nav [data-week=&quot;lodging&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🛏️ Hospedaje</button>
+        <button onclick="document.querySelector('nav [data-week=&quot;connect&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🚆 Conectividad</button>
+        <button onclick="document.querySelector('nav [data-week=&quot;costs&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">💰 Costos</button>
+        <button onclick="document.querySelector('nav [data-week=&quot;overlap&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🤝 Seguimiento AdeS</button>
+        <button onclick="document.querySelector('nav [data-week=&quot;reels&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">📱 Reels</button>
+        <button onclick="document.querySelector('nav [data-week=&quot;la&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🕺 LA</button>
     </div>
 </section>
 
@@ -814,6 +845,82 @@ function renderPlanB(){
 const TRANSPORT_LINES=[["Narita/Haneda→Shinjuku","N'EX",3250],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Tren Azusa+Fujikyu",3600],["Fuji→Matsumoto→Yudanaka","Tren+bus",6500],["Snow Monkey Pass","Nagaden",3500],["Nagano→Osaka","Shinkansen",13500],["Daytrips Osaka↔Kioto ×2","JR/Keihan",2500],["Daytrip Osaka↔Himeji","Shinkansen/JR",3000],["Daytrip Osaka↔Kobe","JR",820],["Daytrip Osaka↔Uji","JR",1200],["Daytrip Osaka↔Kurama","Keihan+Eizan",1900],["Osaka↔USJ r/t","JR",400],["Osaka→Tokio","Shinkansen",14500],["Metro/IC 23d","ICOCA/Suica",12000],["Tokio→Narita","N'EX",3250]];
 const ACT_LINES=[["teamLab Planets",3800],["🥋 Samurái + 🥷 Ninja",14000],["🍵 Ceremonia del té + kimono",5000],["🐒 Snow Monkey (entrada)",800],["🏯 Himeji + 🥩 Kobe wagyu",9000],["🍳 Clase de cocina",7000],["🤼 Sumo + chanko (Osaka)",8000],["🖐️ Cachetadas + 🌆 Umeda Sky",3000],["USJ + Express",20600],["Templos Kioto + Himeji",4500],["🖊️ Goshuincho + sellos",3000],["🎂 Cumpleaños #1 (maiko/sake)",9000],["🎂 Cumpleaños #2 (sushi/wagyu/karaoke)",11000],["🏯 Castillo de Osaka",600],["🥾 Kurama-dera + Kurama Onsen",1600],["♨️ Spa World (onsen)",1500],["🏎️ Tokyo Drift (ride-along, 2 coches/5)",25000],["🗼 Torre de Tokio (main deck)",1500],["🍁 Takao: funicular + onsen",1600],["🎭 Kabuki un acto",1500],["♨️ Arima Onsen (combo 2 baños)",1200],["🎨 teamLab Biovortex (Kioto)",4800],["🤼 Sumo Show (Shinjuku)",9800]];
 function costRows(lines){let t=0,h='';lines.forEach(([n,...r])=>{const c=r.length===2?r[1]:r[0],tp=r.length===2?r[0]:null;t+=c;h+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${n}${tp?` <span class="text-kuro/35">(${tp})</span>`:''}</span><span class="tooltip-usd" data-usd="${usdTip(c)}">¥${c.toLocaleString()}</span></div>`;});return{h,t};}
+// ===== CENTRO DE CONTROL =====
+const TRIP_LA_DEPART='2026-10-23';
+const CHECKLIST_ITEMS=[
+ ['flights','✈️ Vuelos internacionales reservados (LAX↔NRT/HND, ida y vuelta)'],
+ ['la-flights','🛫 Vuelo Medellín→LA y LAX↔SMF (Sacramento) resueltos'],
+ ['lodging','🏨 Los 5 hospedajes de Japón reservados'],
+ ['connectivity','📶 Pocket WiFi / eSIM pedidos'],
+ ['jrpass','🎫 JR Kansai Area Pass / pases regionales comprados'],
+ ['bank','💳 Banco avisado del uso en el extranjero'],
+ ['apps','📱 Apps descargadas (Maps offline, NAVITIME, Translate, Splitwise)'],
+ ['insurance','🛡️ Seguro de viaje comprado'],
+ ['cash','💴 Yenes cambiados / tarjeta IC cargada'],
+ ['dance','🕺 Clases de Millennium Dance Complex confirmadas'],
+];
+function ctrlLoad(k){ try{return JSON.parse(localStorage.getItem('jtControl_'+k)||'null');}catch(e){return null;} }
+function ctrlSave(k,v){ try{localStorage.setItem('jtControl_'+k,JSON.stringify(v));}catch(e){} }
+function daysUntil(iso){ const now=new Date(); now.setHours(0,0,0,0); const t=new Date(iso+'T00:00:00'); return Math.round((t-now)/86400000); }
+function grandTotalUSD(){
+    const tr=costRows(TRANSPORT_LINES),ac=costRows(ACT_LINES);
+    const foodY=DAYS.reduce((s,d)=>s+d.costF,0), lodgeUSD=720, souvUSD=200;
+    return Math.round((tr.t+ac.t+foodY)*RATES.usd)+lodgeUSD+souvUSD;
+}
+function renderControl(){
+    const tripStart=LODGING[0].checkin, tripEnd=LODGING[LODGING.length-1].checkout;
+    const dLA=daysUntil(TRIP_LA_DEPART), dJP=daysUntil(tripStart), dEnd=daysUntil(tripEnd);
+    let phase,phaseLabel;
+    if(dLA>0){phase='pre';phaseLabel=`Faltan <b class="text-kin">${dLA}</b> días para volar a LA`;}
+    else if(dJP>0){phase='la';phaseLabel=`En LA · faltan <b class="text-kin">${dJP}</b> días para Japón`;}
+    else if(dEnd>0){phase='jp';phaseLabel=`En Japón · quedan <b class="text-kin">${dEnd}</b> días de viaje`;}
+    else {phase='done';phaseLabel='Viaje terminado — ¡esperamos que la hayas pasado increíble! 🎉';}
+    document.getElementById('control-countdown').innerHTML=`
+        <h2 class="font-jp font-bold text-xl text-kin mb-2">🧠 Centro de Control</h2>
+        <p class="text-base text-white/90">${phaseLabel}</p>
+        <div class="grid grid-cols-3 gap-3 mt-4 text-center text-xs">
+            <div class="bg-white/10 rounded-lg p-3"><p class="text-xl font-black text-kin">${Math.max(dLA,0)}</p><p class="text-white/60">días → LA (23 oct)</p></div>
+            <div class="bg-white/10 rounded-lg p-3"><p class="text-xl font-black text-kin">${Math.max(dJP,0)}</p><p class="text-white/60">días → Japón (29 oct)</p></div>
+            <div class="bg-white/10 rounded-lg p-3"><p class="text-xl font-black text-kin">${Math.max(dEnd,0)}</p><p class="text-white/60">días → fin del viaje (20 nov)</p></div>
+        </div>`;
+    const joints=overlapRows(V6_CITY,0).filter(r=>r.cls==='sup-match').length;
+    document.getElementById('control-stats').innerHTML=[
+        ['💰','Total/persona','$'+grandTotalUSD().toLocaleString()],
+        ['🎌','Experiencias',String(EXP.length)],
+        ['🤝','Días con AdeS',String(joints)],
+        ['📱','Reels analizados',String(RD.count||0)],
+    ].map(([e,t,v])=>`<div class="bg-white border border-haiiro rounded-xl p-4 shadow-sm text-center"><p class="text-xl">${e}</p><p class="text-lg font-black text-aka">${v}</p><p class="text-[10px] text-kuro/50 uppercase">${t}</p></div>`).join('');
+    const today=new Date(); today.setHours(0,0,0,0);
+    const next=phase==='done'?null:DAYS.find(d=>new Date(d.date+', 2026')>=today);
+    const nd=document.getElementById('control-nextday');
+    nd.innerHTML=next?`<div class="bg-aka/10 border border-aka/30 rounded-xl p-5">
+        <p class="text-xs font-bold uppercase text-aka/70 mb-1">${phase==='jp'?'📅 Hoy / próximo en el plan':'📅 Primer día del plan'}</p>
+        <h3 class="font-jp font-bold text-lg">D${next.day} · ${next.date} — ${next.title}</h3>
+        <p class="text-xs text-kuro/60 mt-1">📍 ${next.loc}</p>
+        <p class="text-sm text-kuro/75 mt-2">${next.pm||next.am||''}</p>
+    </div>`:'';
+    document.getElementById('control-checklist').innerHTML=CHECKLIST_ITEMS.map(([k,label])=>{
+        const checked=ctrlLoad(k);
+        return `<label class="flex items-start gap-2 cursor-pointer"><input type="checkbox" data-k="${k}" ${checked?'checked':''} class="ctrl-check mt-0.5"><span class="${checked?'line-through text-kuro/40':''}">${label}</span></label>`;
+    }).join('');
+    document.querySelectorAll('.ctrl-check').forEach(cb=>cb.addEventListener('change',e=>{
+        ctrlSave(e.target.dataset.k,e.target.checked);
+        const span=e.target.nextElementSibling;
+        span.classList.toggle('line-through',e.target.checked);
+        span.classList.toggle('text-kuro/40',e.target.checked);
+        updateControlProgress();
+    }));
+    updateControlProgress();
+    const notes=document.getElementById('control-notes');
+    notes.value=ctrlLoad('notes')||'';
+    notes.oninput=e=>ctrlSave('notes',e.target.value);
+}
+function updateControlProgress(){
+    const done=CHECKLIST_ITEMS.filter(([k])=>ctrlLoad(k)).length,n=CHECKLIST_ITEMS.length;
+    document.getElementById('control-progress').style.width=(done/n*100)+'%';
+    document.getElementById('control-progress-label').textContent=`${done}/${n} lista`;
+}
+
 function renderCosts(){
     const tr=costRows(TRANSPORT_LINES),ac=costRows(ACT_LINES);
     document.getElementById('cost-transport').innerHTML=tr.h+`<div class="flex justify-between py-1 font-bold text-aka"><span>Total transporte</span><span class="tooltip-usd" data-usd="${usdTip(tr.t)}">¥${tr.t.toLocaleString()}</span></div>`;
@@ -1175,7 +1282,7 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();}
+function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();renderControl();}
 renderAll(); loadRates();
 document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('click',e=>{
     e.stopPropagation();
