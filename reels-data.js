@@ -337,6 +337,36 @@ window.REELS_DATA = {
    "transcript_excerpt": "Too much. Oh, that's fresh. There's eels under the table. It's 24 hours on the side. Shall we try it? This is safe. Okay, I'll take this one. Oh, it's actually pretty good. There it is. All right, I've got this. We've got this. Whoa. I've dropped it like it's hard. Drop it like it's hard. Drop it like it's hard. Perfe…"
   },
   {
+   "id": "DelB0SRn0ok",
+   "url": "https://www.instagram.com/p/DelB0SRn0ok/",
+   "uploader": null,
+   "thumb": null,
+   "place_name": "Nabana no Sato - Illumination 2026-27",
+   "place_name_local": "なばなの里",
+   "category": "sight",
+   "city": "Kuwana (Mie)",
+   "area": "Nagashima, Kuwana, Mie",
+   "lat": 35.0696,
+   "lng": 136.6847,
+   "est_cost_jpy": 3000,
+   "time_needed_min": 240,
+   "worth_it": 4,
+   "why": "Una de las mejores illuminations de Japón (17 oct 2026 - 31 may 2027, 10am-9/10pm), con bus directo desde Nagoya (Meitetsu Bus Center, ¥1.200 c/trayecto). Revisé las 7 fotos del carrusel (la primera pasada solo había visto 2): la pieza central es una montaña de luces con forma de Monte Fuji, muy fotogénica, que justifica subir el puntaje. El problema sigue siendo el mismo: Nagoya/Mie no está en la ruta V6 (hub Osaka) — solo tendría sentido si se agrega un desvío a Nagoya o coincide con el grupo AdeS (que sí pasa por Nagoya el 11 nov camino a Kanazawa).",
+   "vibe": "carrusel de 7 fotos: túnel de luces dorado, arco de luces azul, y la pieza central — una 'montaña' con forma de Fuji cubierta de LEDs que cambia de paleta (azul, arcoíris, rojo fuego) entre fotos",
+   "maps_query": "Nabana no Sato Nagashima Kuwana Mie",
+   "maps_url": "https://www.google.com/maps/search/?api=1&query=35.0696,136.6847",
+   "trip_fit": "other",
+   "tags": [
+    "illumination",
+    "nagoya",
+    "mie",
+    "invierno",
+    "desvio-necesario"
+   ],
+   "caption_excerpt": "",
+   "transcript_excerpt": ""
+  },
+  {
    "id": "DY45zLeOV9_",
    "url": "https://www.instagram.com/reel/DY45zLeOV9_/",
    "uploader": "Matsurilifejapon",
@@ -1405,36 +1435,6 @@ window.REELS_DATA = {
     "lejos"
    ],
    "caption_excerpt": "Cuando vimos fotos de este lugar, supimos que teníamos que conocerlo 🤍\n\nEl Kumano Kodo y las Nachi Falls no suelen estar en el itinerario de los que viajan a Japón por primera vez, pero nosotros igual quisimos ir. Se llega en unas 4 horas de tren desde Kioto u Osaka y, para nosotros, re valió la pena 🥹.\n\nNos encontram…",
-   "transcript_excerpt": ""
-  },
-  {
-   "id": "DelB0SRn0ok",
-   "url": "https://www.instagram.com/p/DelB0SRn0ok/",
-   "uploader": null,
-   "thumb": null,
-   "place_name": "Nabana no Sato - Illumination 2026-27",
-   "place_name_local": "なばなの里",
-   "category": "sight",
-   "city": "Kuwana (Mie)",
-   "area": "Nagashima, Kuwana, Mie",
-   "lat": 35.0696,
-   "lng": 136.6847,
-   "est_cost_jpy": 3000,
-   "time_needed_min": 240,
-   "worth_it": 3,
-   "why": "Una de las mejores illuminations de Japón (17 oct 2026 - 31 may 2027, 10am-9/10pm), con bus directo desde Nagoya (Meitetsu Bus Center, ¥1.200 c/trayecto). El problema: Nagoya/Mie no está en la ruta V6 (hub Osaka) — solo tendría sentido si se agrega un desvío a Nagoya o coincide con el grupo AdeS (que sí pasa por Nagoya el 11 nov camino a Kanazawa).",
-   "vibe": "jardín iluminado masivo, luces LED tipo túnel, ambiente invernal festivo",
-   "maps_query": "Nabana no Sato Nagashima Kuwana Mie",
-   "maps_url": "https://www.google.com/maps/search/?api=1&query=35.0696,136.6847",
-   "trip_fit": "other",
-   "tags": [
-    "illumination",
-    "nagoya",
-    "mie",
-    "invierno",
-    "desvio-necesario"
-   ],
-   "caption_excerpt": "",
    "transcript_excerpt": ""
   },
   {
@@ -7472,6 +7472,36 @@ window.REELS_DATA = {
   ],
   "other": [
    {
+    "id": "DelB0SRn0ok",
+    "url": "https://www.instagram.com/p/DelB0SRn0ok/",
+    "uploader": null,
+    "thumb": null,
+    "place_name": "Nabana no Sato - Illumination 2026-27",
+    "place_name_local": "なばなの里",
+    "category": "sight",
+    "city": "Kuwana (Mie)",
+    "area": "Nagashima, Kuwana, Mie",
+    "lat": 35.0696,
+    "lng": 136.6847,
+    "est_cost_jpy": 3000,
+    "time_needed_min": 240,
+    "worth_it": 4,
+    "why": "Una de las mejores illuminations de Japón (17 oct 2026 - 31 may 2027, 10am-9/10pm), con bus directo desde Nagoya (Meitetsu Bus Center, ¥1.200 c/trayecto). Revisé las 7 fotos del carrusel (la primera pasada solo había visto 2): la pieza central es una montaña de luces con forma de Monte Fuji, muy fotogénica, que justifica subir el puntaje. El problema sigue siendo el mismo: Nagoya/Mie no está en la ruta V6 (hub Osaka) — solo tendría sentido si se agrega un desvío a Nagoya o coincide con el grupo AdeS (que sí pasa por Nagoya el 11 nov camino a Kanazawa).",
+    "vibe": "carrusel de 7 fotos: túnel de luces dorado, arco de luces azul, y la pieza central — una 'montaña' con forma de Fuji cubierta de LEDs que cambia de paleta (azul, arcoíris, rojo fuego) entre fotos",
+    "maps_query": "Nabana no Sato Nagashima Kuwana Mie",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=35.0696,136.6847",
+    "trip_fit": "other",
+    "tags": [
+     "illumination",
+     "nagoya",
+     "mie",
+     "invierno",
+     "desvio-necesario"
+    ],
+    "caption_excerpt": "",
+    "transcript_excerpt": ""
+   },
+   {
     "id": "DYPNAPTqp4K",
     "url": "https://www.instagram.com/reel/DYPNAPTqp4K/",
     "uploader": "Arika and Kieran | Couple Travel 🌏",
@@ -7557,36 +7587,6 @@ window.REELS_DATA = {
      "lejos"
     ],
     "caption_excerpt": "Cuando vimos fotos de este lugar, supimos que teníamos que conocerlo 🤍\n\nEl Kumano Kodo y las Nachi Falls no suelen estar en el itinerario de los que viajan a Japón por primera vez, pero nosotros igual quisimos ir. Se llega en unas 4 horas de tren desde Kioto u Osaka y, para nosotros, re valió la pena 🥹.\n\nNos encontram…",
-    "transcript_excerpt": ""
-   },
-   {
-    "id": "DelB0SRn0ok",
-    "url": "https://www.instagram.com/p/DelB0SRn0ok/",
-    "uploader": null,
-    "thumb": null,
-    "place_name": "Nabana no Sato - Illumination 2026-27",
-    "place_name_local": "なばなの里",
-    "category": "sight",
-    "city": "Kuwana (Mie)",
-    "area": "Nagashima, Kuwana, Mie",
-    "lat": 35.0696,
-    "lng": 136.6847,
-    "est_cost_jpy": 3000,
-    "time_needed_min": 240,
-    "worth_it": 3,
-    "why": "Una de las mejores illuminations de Japón (17 oct 2026 - 31 may 2027, 10am-9/10pm), con bus directo desde Nagoya (Meitetsu Bus Center, ¥1.200 c/trayecto). El problema: Nagoya/Mie no está en la ruta V6 (hub Osaka) — solo tendría sentido si se agrega un desvío a Nagoya o coincide con el grupo AdeS (que sí pasa por Nagoya el 11 nov camino a Kanazawa).",
-    "vibe": "jardín iluminado masivo, luces LED tipo túnel, ambiente invernal festivo",
-    "maps_query": "Nabana no Sato Nagashima Kuwana Mie",
-    "maps_url": "https://www.google.com/maps/search/?api=1&query=35.0696,136.6847",
-    "trip_fit": "other",
-    "tags": [
-     "illumination",
-     "nagoya",
-     "mie",
-     "invierno",
-     "desvio-necesario"
-    ],
-    "caption_excerpt": "",
     "transcript_excerpt": ""
    },
    {
