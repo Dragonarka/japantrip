@@ -133,8 +133,7 @@
                 <button class="week-tab" data-week="w3">S3 · Osaka Hub ⭐</button>
                 <button class="week-tab" data-week="w4">S4 · Tokio final</button>
                 <div class="navmenu-divider">Planear</div>
-                <button class="week-tab" data-week="experiencias">🎌 Experiencias</button>
-                <button class="week-tab" data-week="planb">🎲 Plan B & Must-do</button>
+                <button class="week-tab" data-week="planb">🎌 Experiencias & Plan B</button>
             </div>
         </div>
         <div class="navgroup">
@@ -144,8 +143,7 @@
                 <button class="week-tab" data-week="connect">🚆 Conectividad</button>
                 <button class="week-tab" data-week="costs">💰 Costos</button>
                 <div class="navmenu-divider">Datos</div>
-                <button class="week-tab" data-week="metrics">📊 Indicadores</button>
-                <button class="week-tab" data-week="overlap">🤝 Seguimiento AdeS</button>
+                <button class="week-tab" data-week="metrics">📊 Datos & Seguimiento</button>
             </div>
         </div>
         <button class="navbtn" data-week="la">🕺 LA</button>
@@ -251,7 +249,7 @@
         <button onclick="document.querySelector('nav [data-week=&quot;lodging&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🛏️ Hospedaje</button>
         <button onclick="document.querySelector('nav [data-week=&quot;connect&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🚆 Conectividad</button>
         <button onclick="document.querySelector('nav [data-week=&quot;costs&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">💰 Costos</button>
-        <button onclick="document.querySelector('nav [data-week=&quot;overlap&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🤝 Seguimiento AdeS</button>
+        <button onclick="document.querySelector('nav [data-week=&quot;metrics&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🤝 Seguimiento AdeS</button>
         <button onclick="document.querySelector('nav [data-week=&quot;reels&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">📱 Reels</button>
         <button onclick="document.querySelector('nav [data-week=&quot;la&quot;]').click()" class="bg-washi border border-haiiro px-3 py-2 rounded-full text-xs font-bold hover:bg-haiiro">🕺 LA</button>
     </div>
@@ -263,12 +261,18 @@
 <section class="section" id="w4"></section>
 
 <section class="section" id="planb">
-    <h2 class="font-jp text-2xl font-black mb-2">🎲 Plan B & Must-do</h2>
+    <h2 class="font-jp text-2xl font-black mb-2">🎌 Experiencias & Plan B</h2>
+
+    <h3 class="font-jp text-lg font-bold mb-2">🎌 Experiencias inmersivas</h3>
+    <p class="text-xs text-kuro/50 mb-6">El alma de V6: hacer, no solo ver. Costos aprox/persona (¥ + USD/COP al pasar el cursor). Reservar las marcadas con anticipación.</p>
+    <div id="exp-list" class="grid md:grid-cols-2 gap-4 mb-10"></div>
+
+    <h3 class="font-jp text-lg font-bold mb-2">🎲 Plan B & Must-do</h3>
     <p class="text-xs text-kuro/50 mb-5">Actividades de reserva según el clima (☀️ por fuera / 🌧️ por dentro) y los <b>must-do</b> que detectamos investigando y que conviene tener en el radar. Nada de esto reemplaza el itinerario — son comodines.</p>
 
-    <div class="bg-sumi text-white rounded-xl p-5 mb-6">
-        <h3 class="font-jp font-bold text-lg text-kin mb-3">🔎 Must-do que estábamos dejando pasar (investigado)</h3>
-        <div class="grid md:grid-cols-2 gap-x-6 gap-y-3 text-sm text-white/85">
+    <details class="bg-sumi text-white rounded-xl p-5 mb-6">
+        <summary class="font-jp font-bold text-lg text-kin cursor-pointer select-none">🔎 Must-do que estábamos dejando pasar (investigado)</summary>
+        <div class="grid md:grid-cols-2 gap-x-6 gap-y-3 text-sm text-white/85 mt-3">
             <div><p class="font-bold text-white">🍁 Momiji Corridor de Kawaguchiko</p><p class="text-xs text-white/70">El túnel de arces con el Fuji detrás + festival nocturno (1–medio nov). <b>Ya encaja</b> en nuestro día de Fuji (D6, 3 nov), aunque el pico de color es ~10–20 nov.</p></div>
             <div><p class="font-bold text-white">🍁 Minoo Park + cascada + tempura de arce</p><p class="text-xs text-white/70">Daytrip de otoño barato desde Osaka (~25 min). <b>Gran comodín</b> para un día suave de mediados de nov. (Ver tabla abajo.)</p></div>
             <div><p class="font-bold text-white">🚄 Shinkansen + ekiben</p><p class="text-xs text-white/70">Rito de iniciación: <b>ya lo hacemos</b> en el regreso Osaka→Tokio (D17). Compra un bento de estación y bebida para el viaje.</p></div>
@@ -281,7 +285,7 @@
         <div class="mt-3 pt-3 border-t border-white/15 text-xs text-white/65">
             <p>⚠️ <b>Ojo con fechas:</b> el <b>momiji de Kioto</b> pica ~18 nov–dic (ya estaremos en Tokio); la <b>Kobe Luminarie</b> se movió a <b>enero 2027</b> (NO estará en nuestro viaje); el ginkgo dorado de Tokio (Icho Namiki) empieza ~23 nov (justo después de irnos).</p>
         </div>
-    </div>
+    </details>
 
     <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto">
         <h3 class="font-jp text-lg font-bold mb-3">Comodines por clima</h3>
@@ -293,18 +297,12 @@
     </div>
 </section>
 
-<section class="section" id="experiencias">
-    <h2 class="font-jp text-2xl font-black mb-2">🎌 Experiencias inmersivas</h2>
-    <p class="text-xs text-kuro/50 mb-6">El alma de V6: hacer, no solo ver. Costos aprox/persona (¥ + USD/COP al pasar el cursor). Reservar las marcadas con anticipación.</p>
-    <div id="exp-list" class="grid md:grid-cols-2 gap-4"></div>
-</section>
-
 <section class="section" id="lodging">
     <h2 class="font-jp text-2xl font-black mb-2">🛏️ Hospedaje óptimo · mínimo desplazamiento</h2>
     <p class="text-xs text-kuro/50 mb-4">Para cada base se calcula el <b>barrio más céntrico</b> (menor distancia media a tus actividades), con <b>gemas locales</b> de la zona y búsquedas <b>en vivo para 5 huéspedes en tus fechas</b>. Airbnb entero suele ser lo más barato para 5; los rangos son típicos por persona/noche.</p>
-    <div class="bg-sumi text-white rounded-xl p-5 mb-5">
-        <h3 class="font-jp font-bold text-lg text-kin mb-2">📖 Guía rápida para reservar (5 personas)</h3>
-        <div class="grid md:grid-cols-2 gap-4 text-sm text-white/85">
+    <details class="bg-sumi text-white rounded-xl p-5 mb-5">
+        <summary class="font-jp font-bold text-lg text-kin cursor-pointer select-none">📖 Guía rápida para reservar (5 personas)</summary>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-white/85 mt-3">
             <div>
                 <p class="font-bold text-kin mb-1">¿Dónde buscar?</p>
                 <ul class="space-y-1 text-xs list-disc list-inside text-white/80">
@@ -327,7 +325,7 @@
             </div>
         </div>
         <p class="text-[11px] text-white/45 mt-3">Los botones de abajo abren cada sitio ya filtrado con tus fechas y 5 huéspedes. Precios estimados; verifica disponibilidad real.</p>
-    </div>
+    </details>
     <div id="lodging-list" class="space-y-4"></div>
 </section>
 
@@ -365,17 +363,17 @@
 </section>
 
 <section class="section" id="metrics">
-    <h2 class="font-jp text-2xl font-black mb-2">📊 Indicadores</h2>
+    <h2 class="font-jp text-2xl font-black mb-2">📊 Datos & Seguimiento</h2>
+
+    <h3 class="font-jp text-lg font-bold mb-2">📊 Indicadores</h3>
     <p class="text-xs text-kuro/50 mb-4">Sobre los 23 días. Verde = saludable · ámbar = vigilar · rojo = ajustar.</p>
     <div id="metrics-diagnosis" class="bg-midori/10 border border-midori/30 rounded-xl p-5 mb-6"></div>
     <div id="metrics-grid" class="grid md:grid-cols-2 gap-4 mb-8"></div>
-    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto">
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto mb-10">
         <table class="w-full text-xs"><thead><tr class="text-left text-kuro/50 border-b border-haiiro"><th class="py-2">Día</th><th>Densidad</th><th>Buffer</th><th>Tránsito</th><th>Esfuerzo</th><th>🤝</th><th>Burn</th></tr></thead><tbody id="metrics-day-table"></tbody></table>
     </div>
-</section>
 
-<section class="section" id="overlap">
-    <h2 class="font-jp text-2xl font-black mb-2">🤝 Seguimiento de AdeS <span class="text-sm font-normal text-kuro/50">(qué hacen y cuándo nos vemos)</span></h2>
+    <h3 class="font-jp text-lg font-bold mb-2">🤝 Seguimiento de AdeS <span class="text-sm font-normal text-kuro/50">(qué hacen y cuándo nos vemos)</span></h3>
     <p class="text-xs text-kuro/50 mb-5">Itinerario real de <a href="https://sergio0491.github.io/viaje-japon/" target="_blank" class="text-aka underline">AdeS</a> (29 oct–18 nov, Tokio→Fuji→Kioto→Osaka→Kanazawa→Tokio), día a día, para coordinar encuentros. <span class="sup-match px-2 py-0.5 rounded">verde = misma ciudad</span> · <span class="sup-near px-2 py-0.5 rounded">ámbar = misma región</span> · gris = cada quien por su lado.</p>
     <div id="overlap-windows" class="grid md:grid-cols-2 gap-4 mb-6"></div>
     <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm overflow-x-auto">
@@ -1037,21 +1035,24 @@ function reelCard(r){
         </div>
     </div>`;
 }
+let reelsShowAll=false;
 function renderReels(){
     const empty=document.getElementById('reels-empty'),stats=document.getElementById('reels-stats'),groups=document.getElementById('reels-groups');
     document.getElementById('reels-generated').textContent=(RD.count&&RD.generated)?('chat IG · '+RD.generated):'aún sin generar';
     if(!RD.count){empty.hidden=false;stats.hidden=true;groups.innerHTML='';return;}
     empty.hidden=true;stats.hidden=false;
     const cats={};RD.reels.forEach(r=>cats[r.category]=(cats[r.category]||0)+1);
+    const top=RD.reels.filter(r=>r.worth_it>=4).length;
+    const shown=reelsShowAll?RD.reels:RD.reels.filter(r=>r.worth_it>=4);
     stats.innerHTML=[
-        `<span class="bg-sumi text-white px-3 py-1 rounded-full font-bold">${RD.count} reels</span>`,
+        `<button onclick="reelsShowAll=!reelsShowAll;renderReels()" class="bg-sumi text-white px-3 py-1 rounded-full font-bold hover:bg-kuro">${reelsShowAll?`✓ Viendo los ${RD.count} — ver solo ★4+`:`★ Solo lo mejor (${top}) — ver los ${RD.count}`}</button>`,
         `<span class="bg-white border border-haiiro px-3 py-1 rounded-full">📍 ${RD.with_coords} ubicados</span>`,
-        `<span class="bg-white border border-haiiro px-3 py-1 rounded-full">★4+ : ${RD.reels.filter(r=>r.worth_it>=4).length}</span>`,
     ].concat(Object.entries(cats).map(([c,n])=>`<span class="bg-white border border-haiiro px-3 py-1 rounded-full">${RCAT[c]||c} ${n}</span>`)).join('');
     const order=['tokyo','fuji','nagano','kansai','kyoto','osaka','nara','other','unknown'];
-    const fits=Object.keys(RD.by_fit).sort((a,b)=>(order.indexOf(a)+99*(order.indexOf(a)<0))-(order.indexOf(b)+99*(order.indexOf(b)<0)));
+    const byFit={};shown.forEach(r=>{(byFit[r.trip_fit]=byFit[r.trip_fit]||[]).push(r);});
+    const fits=Object.keys(byFit).sort((a,b)=>(order.indexOf(a)+99*(order.indexOf(a)<0))-(order.indexOf(b)+99*(order.indexOf(b)<0)));
     groups.innerHTML=fits.map(f=>{
-        const list=RD.by_fit[f].slice().sort((a,b)=>b.worth_it-a.worth_it);
+        const list=byFit[f].slice().sort((a,b)=>b.worth_it-a.worth_it);
         return `<div><h3 class="font-jp text-lg font-bold mb-1">${FIT_LABEL[f]||f} <span class="text-xs font-normal text-kuro/40">${list.length}</span></h3>
             <div class="grid md:grid-cols-2 gap-4 mt-3">${list.map(reelCard).join('')}</div></div>`;
     }).join('');
