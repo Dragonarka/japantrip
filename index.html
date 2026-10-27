@@ -162,6 +162,7 @@
                 <button class="week-tab" data-week="metrics">📊 Datos & Seguimiento</button>
             </div>
         </div>
+        <button class="navbtn" data-week="sim">🎮 Simulación</button>
         <button class="navbtn" data-week="la">🕺 LA</button>
     </div>
     <div id="subnav-itin" class="itin-subbar">
@@ -487,6 +488,15 @@
     </div>
 </section>
 
+<section class="section" id="sim">
+    <div class="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+        <h2 class="font-jp text-2xl font-black">🎮 Simulación del viaje</h2>
+        <a id="sim-full" href="sim/" target="_blank" class="text-xs font-bold text-aka underline">Abrir en pantalla completa ↗</a>
+    </div>
+    <p class="text-xs text-kuro/50 mb-3">Un samurái estilo Lego hace el plan con reloj: trenes con su línea, dirección y salida, actividades y los 🧭 ratos libres para explorar. Corre solo y pasa al día siguiente. Lee la misma agenda que la app.</p>
+    <iframe id="sim-frame" title="Simulación 3D del viaje" class="w-full rounded-xl border border-haiiro bg-sumi" style="height:78vh;min-height:480px" allow="fullscreen"></iframe>
+</section>
+
 <section class="section" id="la">
     <h2 class="font-jp text-2xl font-black mb-2">🕺 LA · Studio City (23–27 oct)</h2>
     <p class="text-xs text-kuro/50 mb-5">Escala individual antes de Japón (Vegas descartado por costo). Llegada LAX vie 23, 10:30pm. Salida LAX mar 27, 10:00am (Zipair a Narita) — <b>estar en el aeropuerto 7:30–8:00am</b>. Hotel ya reservado (zona Studio City/NoHo, a tiro de Uber corto de Millennium Dance Complex).</p>
@@ -569,6 +579,7 @@
 
 <script src="trip-data.js"></script>
 <script src="alarms-data.js"></script>
+<script src="schedule-data.js"></script>
 <!-- Reels ocultos: para volver a mostrarlos, cargar reels-data.js aquí y restaurar el botón 📱 Reels del nav. -->
 <script>
 // ===== FX en vivo =====
@@ -821,6 +832,30 @@ const EFFORT_LABELS=['','😌 Relax','🚶 Suave','🏃 Moderado','🥾 Intenso'
 const EFFORT_COLORS=['','#1A6B4A','#2471A3','#D4740E','#C0392B','#922B21'];
 function mainActs(d){return (d.acts||[]).filter(a=>a.t!=='transit');}
 
+// ===== AGENDA HORA POR HORA (datos en schedule-data.js) =====
+const hhmm=t=>{const [h,m]=t.split(':').map(Number);return `${String(h%24).padStart(2,'0')}:${String(m).padStart(2,'0')}`;};
+function agendaItems(d){
+    const day=(typeof SCHEDULE!=='undefined')?SCHEDULE[d.day]:null; if(!day)return [];
+    return day.segs.map(s=>{
+        if(s.k==='move')return {s:hhmm(s.s),e:hhmm(s.e),icon:'🚆',t:`${PLACES[s.from].n} → ${PLACES[s.to].n}`,
+            sub:s.steps.map(([l,dir,off,exit])=>`${LINES[l].code} ${LINES[l].mode==='walk'?'a pie':'dir. '+dir} → ${off}${exit?' ('+exit+')':''}`).join(' · ')};
+        return {s:hhmm(s.s),e:hhmm(s.e),icon:{act:'📍',free:'🧭',sleep:'😴'}[s.k],t:s.k==='free'?s.t:s.t,sub:s.p&&s.k!=='sleep'?PLACES[s.p].n:''};
+    });
+}
+function agendaHtml(d){
+    const items=agendaItems(d); if(!items.length)return '';
+    return `<details class="mb-4 bg-washi border border-haiiro rounded-lg px-3 py-2"><summary class="cursor-pointer text-xs font-bold text-kuro/60">🕒 Agenda hora por hora (${items.length} bloques) · <a href="#" onclick="event.preventDefault();openSim(${d.day})" class="text-aka">🎮 ver este día en la simulación</a></summary>
+        <ul class="mt-2 space-y-1">${items.map(i=>`<li class="flex gap-2 text-xs"><span class="shrink-0 w-24 font-bold text-kuro/60 tabular-nums">${i.s}–${i.e}</span><span>${i.icon} <b class="text-kuro/80">${i.t}</b>${i.sub?`<br><span class="text-kuro/50">${i.sub}</span>`:''}</span></li>`).join('')}</ul></details>`;
+}
+let simDay=null;
+function openSim(day){
+    if(day!==undefined&&day!==null){simDay=day;document.querySelector('nav [data-week="sim"]').click();return;}
+    const f=document.getElementById('sim-frame'), url='sim/'+(simDay!==null?`?day=${simDay}`:'');
+    document.getElementById('sim-full').href=url;
+    if(!f.src||simDay!==null)f.src=url;
+    simDay=null;
+}
+
 function renderWeek(wk){
     const el=document.getElementById(wk);
     const meta={w1:{t:'Semana 1 · Tokio',d:'28 oct – 2 nov. Llego el 28 a Nakano; el grupo el 30 a las 20:00 (vuelo retrasado). Techno, paracaidismo, luces de Showa Kinen, Halloween, samurái/ninja, Kamakura.'},
@@ -866,6 +901,7 @@ function renderWeek(wk){
                 ${hasPts?`<div class="mb-5"><div class="flex items-baseline justify-between flex-wrap gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">🗺️ Desplazamientos del día</p><p id="mapinfo-${d.day}" class="text-[11px] text-kuro/50"></p></div><div id="minimap-${d.day}" class="minimap"></div><p class="text-[10px] text-kuro/35 mt-1">🏨 = tu zona-hotel recomendada · línea sólida = recorrido · punteada = regreso</p></div>`:''}
                 ${NEAR[d.day]?`<p class="text-xs text-kuro/50 mb-4">🧭 <b class="text-kuro/40 uppercase text-[10px]">Si sobra tiempo (cerca)</b> · ${NEAR[d.day]}</p>`:''}
                 ${dayReelsBox(d)}
+                ${agendaHtml(d)}
                 <div class="grid md:grid-cols-2 gap-5">
                     <div class="space-y-3">
                         <div><p class="text-xs font-bold text-kuro/40 uppercase mb-1">🌅 Mañana</p><p class="text-sm md:text-[15px] text-kuro/80 leading-relaxed">${d.am}</p></div>
@@ -1018,6 +1054,7 @@ function planJSON(){
             manana:strip(d.am),tarde:strip(d.pm),noche:strip(d.night),comida:d.food,transporte:d.transport,
             costo_transporte_jpy:d.costT,costo_comida_jpy:d.costF,cumpleanos:!!d.bday,con_AdeS:d.jointText||null,
             AdeS_ese_dia:(typeof ADES_ACT!=='undefined'&&ADES_ACT[d.date])||null,si_sobra_tiempo:NEAR[d.day]||null,
+            agenda:agendaItems(d).map(i=>`${i.s}–${i.e} ${i.icon} ${i.t}${i.sub?' — '+i.sub:''}`),
             lugares:(d.acts||[]).map(a=>({nombre:a.n,tipo:a.t,lat:a.lat,lng:a.lng,maps:a.lat?gmapsPt(a.lat,a.lng):null})),
             ruta_maps:gmapsRoute(d.acts,d.day)})),
         hospedaje:LODGING.map(L=>({ciudad:L.city,checkin:L.checkin,checkout:L.checkout,horario:L.hours,noches:L.nights,zona:L.fixed?L.fixed.n:L.area,direccion:L.area,estado:L.pp,tipo:L.type})),
@@ -1472,6 +1509,7 @@ document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('
     document.querySelectorAll('.navgroup').forEach(g=>g.classList.remove('open'));
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
     const sec=document.getElementById(tab.dataset.week); sec.classList.add('visible');
+    if(tab.dataset.week==='sim')openSim();
     // scroll para que la sección quede justo debajo del nav+sub-barra fijos (altura real, cualquier pantalla)
     const nav=document.querySelector('nav');
     const y=sec.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-24;
