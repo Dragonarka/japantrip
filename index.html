@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#C0392B">
+    <link rel="apple-touch-icon" href="icons/icon-180.png">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Japón 2026">
     <title>Japón V6 · Osaka Hub · 5 amigos · listo para reservar</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
@@ -102,6 +109,8 @@
         #lightbox{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out;padding:20px}
         #lightbox.open{display:flex}
         #lightbox img{max-width:95%;max-height:90%;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+        .maps-chip{display:flex;flex-direction:column;gap:1px;padding:8px 10px;border:1px solid #E8E4DC;border-radius:10px;background:#FAF7F0;font-size:.8rem;font-weight:600;color:#2D2D2D;text-decoration:none}
+        .maps-chip:hover{border-color:#C0392B;color:#C0392B}
         .sup-cell{font-size:.7rem;padding:6px 8px;border-radius:6px;text-align:center;font-weight:600;display:inline-block}
         .sup-match{background:#1A6B4A;color:#fff}.sup-near{background:#C5982A;color:#fff}.sup-none{background:#F1EEE8;color:#999}
         @media(max-width:640px){.week-tab{font-size:.65rem;padding:8px 6px}#route-map{height:300px}.day-hero{height:130px}
@@ -118,6 +127,14 @@
     <p id="fx-banner" class="text-kuro/55 mt-4 relative">Cargando tasas de cambio…</p>
     <div class="mt-4 relative flex gap-2 justify-center flex-wrap">
         <a href="ades-japan-oct30-nov19.html" class="inline-block bg-sumi text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-kuro transition">🤝 Plan AdeS (otro grupo)</a>
+        <a href="tatiana.html" class="inline-block bg-white border border-haiiro text-kuro text-xs font-bold px-4 py-2 rounded-full hover:bg-haiiro transition">🐋 Acuario + luces (plan de Tati)</a>
+        <button id="install-btn" type="button" class="inline-block bg-aka text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-aka/80 transition">📲 Instalar en el teléfono</button>
+    </div>
+    <div id="install-help" class="hidden relative max-w-md mx-auto mt-4 bg-white border border-haiiro rounded-xl p-4 text-left text-sm text-kuro/80 shadow-sm">
+        <p class="font-bold mb-2">📲 Tener el plan como app (funciona sin señal)</p>
+        <p class="mb-1"><b>iPhone (Safari):</b> botón Compartir <span class="text-kuro/50">(el cuadrado con flecha)</span> → <b>Agregar a pantalla de inicio</b>.</p>
+        <p class="mb-1"><b>Android (Chrome):</b> menú ⋮ → <b>Instalar app</b> o <b>Agregar a la pantalla principal</b>.</p>
+        <p class="text-xs text-kuro/50 mt-2">Abre el plan una vez con internet: las páginas y fotos que ya viste quedan guardadas para usarlas sin conexión.</p>
     </div>
 </header>
 
@@ -201,7 +218,9 @@
                 <p>🎭 Kabuki de un acto en Kabuki-za (Ginza)</p>
                 <p>🖐️ Bar de cachetadas · 🕺 batalla de baile · 🍳 clase de cocina (Osaka)</p>
                 <p>🤼 Sumo + chanko nabe · 🌆 Umeda Sky · 🦀 mercado Kuromon (Osaka)</p>
-                <p>🎮 teamLab <b>Planets</b> · 🎃 Halloween en Shibuya</p>
+                <p>🎮 teamLab <b>Planets</b> · 🎃 Halloween (Ikebukuro o Shibuya — en debate)</p>
+                <p>🐋 Acuario Kaiyukan · 🏮 noches de luces (Showa Kinen, Senso-ji, Kōdai-ji, Midosuji, Roppongi, Marunouchi) · Nabana (opción)</p>
+                <p>🚄 Ruta del norte Nagano → Kanazawa → Osaka</p>
                 <p>🎂 Cumpleaños #1 en Kioto (8 nov) y #2 en Tokio (18 nov)</p>
                 <p>🖊️ Sellos goshuin + eki stamps · 👟 tiendas (Adidas, Pokémon...)</p>
             </div>
@@ -210,12 +229,43 @@
             <h2 class="font-jp font-bold text-lg mb-3">🏨 Bases · 5 amigos · solo 6 mudanzas</h2>
             <p class="text-xs text-kuro/50 mb-3">Para 5: Airbnb entero por base (suele ganar a hoteles). Detalle + barrio óptimo + guía de reserva en <b>🛏️ Hospedaje</b>.</p>
             <div class="space-y-2 text-sm">
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Nakano · solo yo ✅ <span class="text-xs text-kuro/50">— 1 n (28 oct)</span></p><p class="text-xs text-kuro/60">Llego antes que el grupo: habitación de Yuai ホーム, lavandería y Nakano Broadway.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio <span class="text-xs text-kuro/50">— 5 n (29 oct–2 nov)</span> 🤝</p><p class="text-xs text-kuro/60">Llegada noche, cultura, samurái/ninja, Halloween Shibuya, Kamakura.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Fuji · ryokan <span class="text-xs text-kuro/50">— 1 n (3 nov)</span> 🤝</p><p class="text-xs text-kuro/60">Onsen + kaiseki, momiji del lago.</p></div>
-                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Nagano · Yudanaka <span class="text-xs text-kuro/50">— 1 n (4 nov)</span></p><p class="text-xs text-kuro/60">Pueblo onsen, base de los monos de nieve.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Nagano · Yudanaka ✅ <span class="text-xs text-kuro/50">— 1 n (4 nov)</span></p><p class="text-xs text-kuro/60">Hotel reservado en Yamanouchi, base de los monos de nieve. Las maletas van directo a Osaka por Yamato.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3" style="border-left-color:#C0392B;border-left-width:5px"><p class="font-bold text-aka">⭐ Osaka (HUB) <span class="text-xs text-kuro/50">— 9 n (5–13 nov)</span> 🤝</p><p class="text-xs text-kuro/60">Base de daytrips: Kioto ×2, Himeji, Kobe+Arima ♨️, Kurama 🥾, Uji, USJ. + Osaka a fondo (castillo, sumo+chanko) y cumpleaños #1.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio final <span class="text-xs text-kuro/50">— 6 n (14–19 nov)</span> 🤝</p><p class="text-xs text-kuro/60">Shinkansen desde Osaka, Shichi-Go-San, Torre de Tokio + Tokyo Drift 🏎️, compras, cumpleaños #2. Salida 20 nov.</p></div>
             </div>
+        </div>
+    </div>
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm mb-6">
+        <h2 class="font-jp font-bold text-lg mb-1">🔎 Buscar cerca de mí en Google Maps</h2>
+        <p class="text-xs text-kuro/50 mb-3">Abre Maps buscando en japonés, que es como aparecen los lugares allá. En el teléfono busca alrededor de donde estés.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%82%A4%E3%83%B3%E3%83%A9%E3%83%B3%E3%83%89%E3%83%AA%E3%83%BC" target="_blank" rel="noopener" class="maps-chip"><span>🧺 Lavandería</span><span class="font-jp text-[10px] text-kuro/40">コインランドリー</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%83%96%E3%83%B3%E9%8A%80%E8%A1%8C%20ATM" target="_blank" rel="noopener" class="maps-chip"><span>🏧 Cajero (7-Eleven)</span><span class="font-jp text-[10px] text-kuro/40">セブン銀行 ATM</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%82%A4%E3%83%B3%E3%83%AD%E3%83%83%E3%82%AB%E3%83%BC" target="_blank" rel="noopener" class="maps-chip"><span>🧳 Lockers</span><span class="font-jp text-[10px] text-kuro/40">コインロッカー</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%A4%E3%83%9E%E3%83%88%E9%81%8B%E8%BC%B8" target="_blank" rel="noopener" class="maps-chip"><span>📦 Enviar maletas (Yamato)</span><span class="font-jp text-[10px] text-kuro/40">ヤマト運輸</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%A1%E6%9B%BF%E6%89%80" target="_blank" rel="noopener" class="maps-chip"><span>💴 Casa de cambio</span><span class="font-jp text-[10px] text-kuro/40">両替所</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%89%E3%83%A9%E3%83%83%E3%82%B0%E3%82%B9%E3%83%88%E3%82%A2" target="_blank" rel="noopener" class="maps-chip"><span>💊 Farmacia</span><span class="font-jp text-[10px] text-kuro/40">ドラッグストア</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E9%8A%AD%E6%B9%AF" target="_blank" rel="noopener" class="maps-chip"><span>♨️ Baño público (sentō)</span><span class="font-jp text-[10px] text-kuro/40">銭湯</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E6%B8%A9%E6%B3%89" target="_blank" rel="noopener" class="maps-chip"><span>♨️ Onsen</span><span class="font-jp text-[10px] text-kuro/40">温泉</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3" target="_blank" rel="noopener" class="maps-chip"><span>🍜 Ramen</span><span class="font-jp text-[10px] text-kuro/40">ラーメン</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8" target="_blank" rel="noopener" class="maps-chip"><span>🍣 Sushi de banda</span><span class="font-jp text-[10px] text-kuro/40">回転寿司</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%B1%85%E9%85%92%E5%B1%8B" target="_blank" rel="noopener" class="maps-chip"><span>🏮 Izakaya</span><span class="font-jp text-[10px] text-kuro/40">居酒屋</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%B2%E3%82%AB%E3%83%84" target="_blank" rel="noopener" class="maps-chip"><span>🍢 Kushikatsu</span><span class="font-jp text-[10px] text-kuro/40">串カツ</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%96%AB%E8%8C%B6%E5%BA%97" target="_blank" rel="noopener" class="maps-chip"><span>☕ Café retro (kissaten)</span><span class="font-jp text-[10px] text-kuro/40">喫茶店</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%92%8C%E8%8F%93%E5%AD%90" target="_blank" rel="noopener" class="maps-chip"><span>🍡 Dulces japoneses</span><span class="font-jp text-[10px] text-kuro/40">和菓子</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86" target="_blank" rel="noopener" class="maps-chip"><span>🛒 Don Quijote</span><span class="font-jp text-[10px] text-kuro/40">ドン・キホーテ</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=100%E5%86%86%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97" target="_blank" rel="noopener" class="maps-chip"><span>💯 Tienda de ¥100</span><span class="font-jp text-[10px] text-kuro/40">100円ショップ</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AC%E3%83%81%E3%83%A3%E3%82%AC%E3%83%81%E3%83%A3" target="_blank" rel="noopener" class="maps-chip"><span>🎰 Gashapon</span><span class="font-jp text-[10px] text-kuro/40">ガチャガチャ</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" rel="noopener" class="maps-chip"><span>🎮 Arcade</span><span class="font-jp text-[10px] text-kuro/40">ゲームセンター</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%A9%E3%82%AA%E3%82%B1" target="_blank" rel="noopener" class="maps-chip"><span>🎤 Karaoke</span><span class="font-jp text-[10px] text-kuro/40">カラオケ</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%A4%E3%83%AB%E3%83%9F%E3%83%8D%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3" target="_blank" rel="noopener" class="maps-chip"><span>✨ Iluminaciones</span><span class="font-jp text-[10px] text-kuro/40">イルミネーション</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E7%84%A1%E6%96%99%E5%B1%95%E6%9C%9B%E5%8F%B0" target="_blank" rel="noopener" class="maps-chip"><span>🌃 Mirador gratis</span><span class="font-jp text-[10px] text-kuro/40">無料展望台</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E6%9C%B1%E5%8D%B0" target="_blank" rel="noopener" class="maps-chip"><span>🖊️ Sello goshuin</span><span class="font-jp text-[10px] text-kuro/40">御朱印</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%88%E3%82%A4%E3%83%AC" target="_blank" rel="noopener" class="maps-chip"><span>🚻 Baños</span><span class="font-jp text-[10px] text-kuro/40">トイレ</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8B" target="_blank" rel="noopener" class="maps-chip"><span>🏪 Konbini</span><span class="font-jp text-[10px] text-kuro/40">コンビニ</span></a>
         </div>
     </div>
     <div class="grid md:grid-cols-3 gap-4">
@@ -562,20 +612,25 @@ function galleryHtml(d){
 
 // ===== DAYS V5 (23 días, 29 oct–20 nov) · joint=mismo ciudad que AdeS · bday=cumpleaños · stamps=hilo de sellos
 const DAYS=[
-{day:1,date:"Oct 29",dow:"Jue",week:"w1",title:"Llegada Nocturna",loc:"Tokio·Shinjuku",lodge:"Tokio",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:40,contempl:30,joint:false,
-am:"—",pm:"Llegada ~20:00 a Narita/Haneda. Tren a Shinjuku, check-in.",night:"Ramen ligero + primer paseo por Omoide Yokocho.",food:"Ramen · konbini",transport:"Narita Express / Keisei",costT:3250,costF:2000,
+{day:0,date:"Oct 28",dow:"Mié",week:"w1",title:"✈️ Llego antes · Nakano + Lavandería",loc:"Narita→Tokio·Nakano (solo yo)",lodge:"Nakano · Yuai ホーム",effort:1,luggage:true,laundry:true,transitMin:110,bufferP:40,contempl:30,joint:false,
+am:"—",pm:"✈️ Aterrizo en Narita ~14:00 (solo yo; el grupo llega mañana). En el aeropuerto, antes de salir: 💳 Suica (en Apple Wallet o la Welcome Suica física) cargada con ~¥5.000, efectivo en un cajero 7-Eleven y activar la eSIM. Narita Express a Shinjuku (~80 min) + JR Chuo una parada a Nakano. Check-in en la habitación de Yuai ホーム.",night:"🧺 Lavar la ropa: preguntarle al anfitrión si hay lavadora; si no, buscar コインランドリー en Maps (lavar+secar ~¥800–1.200, ~80 min). Mientras lava: Nakano Broadway (manga, figuras, Mandarake; cierra ~20:00). Cena en los callejones de izakayas detrás de la estación. Dormir temprano por el jet lag.",food:"Izakaya de barrio · konbini",transport:"Narita Express + JR Chuo",costT:3450,costF:2000,
 img:IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
-acts:[{n:"Omoide Yokocho",lat:35.6936,lng:139.6995,t:"local",roi:4}]},
+acts:[{n:"Nakano Broadway",lat:35.7087,lng:139.6657,t:"pop",roi:4,w:"Nakano_Broadway"},{n:"🧺 Lavandería (buscar コインランドリー en Maps)",t:"local",roi:3}]},
+
+{day:1,date:"Oct 29",dow:"Jue",week:"w1",title:"Llega el grupo · mi día libre + luces de Showa Kinen 🏮",loc:"Tokio·Nakano/Setagaya/Tachikawa→Shinjuku",lodge:"Tokio",effort:2,luggage:true,laundry:false,transitMin:150,bufferP:30,contempl:40,joint:false,
+am:"🙋 Yo (ya en Tokio): check-out en Nakano y maleta a un locker de Shinjuku. Gōtoku-ji (el templo de los cientos de gatitos maneki-neko) → tranvía Setagaya a Sangenjaya (mirador GRATIS de Carrot Tower, piso 26).",pm:"Almuerzo y vintage en Shimokitazawa. 🏮 16:30 Showa Kinen Park · Autumn Night Walk (abre justo hoy): avenida de ~100 ginkgos amarillos iluminados, canal y jardín japonés (hoy sin cobro extra). JR Chuo directo desde Shinjuku (~30 min).",night:"👥 El grupo aterriza ~20:00 en Narita/Haneda y va a Shinjuku. ~21:30 nos encontramos en Shinjuku: ramen ligero + primer paseo por Omoide Yokocho.",food:"Shimokitazawa · Ramen · konbini",transport:"Odakyu + tranvía Setagaya + JR Chuo (yo) · N'EX (grupo)",costT:3250,costF:2500,
+img:IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
+acts:[{n:"Gōtoku-ji (maneki-neko)",lat:35.6488,lng:139.6474,t:"tradition",roi:4,w:"Gōtoku-ji"},{n:"Shimokitazawa",lat:35.6616,lng:139.6680,t:"local",roi:4,w:"Shimokitazawa"},{n:"🏮 Showa Kinen Park · Autumn Night Walk",lat:35.7060,lng:139.4010,t:"night",roi:5,w:"Showa_Kinen_Park"},{n:"Omoide Yokocho",lat:35.6936,lng:139.6995,t:"local",roi:4}]},
 
 {day:2,date:"Oct 30",dow:"Vie",week:"w1",title:"Asakusa, Otaku y Sellos",loc:"Tokio·Asakusa→Akihabara",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:20,contempl:30,joint:true,stamps:true,jointText:"🤝 Plan conjunto: AdeS también hace Asakusa hoy — Senso-ji y Nakamise JUNTOS por la mañana + cena de bienvenida de los dos grupos en un izakaya de Asakusa.",
-am:"Senso-ji + Nakamise. Compra el goshuincho y primer sello 🖊️. 🗼 Tokyo Skytree (10 min caminando) — o el truco de la pestaña Reels: vistas gratis desde Tokyo Solamachi sin pagar el observatorio.",pm:"Akihabara: Super Potato, arcades, eki stamps en estaciones.",night:"🤝 Cena de bienvenida con AdeS.",food:"Melon pan · Izakaya grupal",transport:"Metro",costT:600,costF:3500,
+am:"Senso-ji + Nakamise. Compra el goshuincho y primer sello 🖊️.",pm:"Akihabara: Super Potato, arcades, eki stamps en estaciones. 🗼 16:00 Tokyo Skytree (hora fijada): atardecer ~16:50, se ve la ciudad encenderse.",night:"🏮 Asakusa Culture & Lights: proyecciones GRATIS en el Hondo y la puerta Hozomon de Senso-ji (18:00–21:30, solo 30 oct–3 nov, por los 1.400 años del templo) + 🤝 cena de bienvenida con AdeS en un izakaya de Asakusa.",food:"Melon pan · Izakaya grupal",transport:"Metro",costT:600,costF:3500,
 img:IMG+"4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg",
-acts:[{n:"Templo Senso-ji",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Tokyo Skytree",lat:35.7101,lng:139.8107,t:"pop",roi:4,w:"Tokyo_Skytree"},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"}]},
+acts:[{n:"Templo Senso-ji",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"},{n:"Tokyo Skytree (16:00)",lat:35.7101,lng:139.8107,t:"pop",roi:4,w:"Tokyo_Skytree"},{n:"🏮 Proyecciones en Senso-ji",lat:35.7146,lng:139.7966,t:"night",roi:5}]},
 
-{day:3,date:"Oct 31",dow:"Sáb",week:"w1",title:"teamLab Planets + Halloween Shibuya 🎃",loc:"Tokio·Toyosu/Shibuya",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:25,joint:true,jointText:"🎃 Plan conjunto: AdeS tiene Halloween en Ikebukuro — proponerles converger en Shibuya: disfraces + bar/club juntos (desde 2024 no se puede beber en la calle; la fiesta real es en locales).",
-am:"teamLab Planets (Toyosu) — caminar entre agua y luz. Reservar.",pm:"Shibuya: Hachiko, Shibuya Sky al atardecer.",night:"🎃 Halloween callejero en Shibuya con AdeS.",food:"Crepes · Street food",transport:"Yurikamome + Yamanote",costT:700,costF:3500,
+{day:3,date:"Oct 31",dow:"Sáb",week:"w1",title:"teamLab Planets + Halloween 🎃 (Ikebukuro o Shibuya — en debate)",loc:"Tokio·Toyosu/Ikebukuro",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:25,joint:true,jointText:"🗳️ EN DEBATE: Shibuya el 31 se llena muchísimo y tiene restricciones (prohibido beber en la calle, cierres de calles y salidas de estación). AdeS va a Ikebukuro (Sunshine City), con el mismo ambiente de cosplay y menos gente. Propuesta: la tarde en Ikebukuro con ellos y, si hay ganas, pasar por Shibuya temprano solo a mirar.",
+am:"teamLab Planets (Toyosu) — caminar entre agua y luz. Reservar.",pm:"🎃 Ikebukuro Halloween Cosplay Festival (31 oct, 10–18 h): desfile de cosplay por Sunshine 60-dori y la calle Animate + Gashapon Department Store (3.000+ máquinas). AdeS está ahí de 13:00 a 17:00.",night:"Opción A: cena e izakaya en Ikebukuro con AdeS. Opción B: pasar por Shibuya temprano (Hachiko, el cruce de noche) antes de que cierren calles; la fiesta real es en bares y clubs, no en la calle.",food:"Crepes · Street food",transport:"Yurikamome + Yamanote",costT:900,costF:3500,
 img:IMG+"6/69/At_teamLab_Planets_%2848277793276%29.jpg/960px-At_teamLab_Planets_%2848277793276%29.jpg",
-acts:[{n:"teamLab Planets",lat:35.6478,lng:139.7906,t:"pop",roi:5},{n:"teamLab Planets (Toyosu)",lat:35.6470,lng:139.7900,t:"pop",roi:5},{n:"Halloween en Shibuya",lat:35.6595,lng:139.7006,t:"night",roi:5,w:"Shibuya_Crossing"}]},
+acts:[{n:"teamLab Planets (Toyosu)",lat:35.6478,lng:139.7906,t:"pop",roi:5},{n:"🎃 Halloween en Ikebukuro (Sunshine City)",lat:35.7295,lng:139.7190,t:"night",roi:5},{n:"Gashapon Department Store",lat:35.7290,lng:139.7185,t:"pop",roi:4},{n:"Shibuya (opcional, temprano)",lat:35.6595,lng:139.7006,t:"night",roi:3,w:"Shibuya_Crossing"}]},
 
 {day:4,date:"Nov 1",dow:"Dom",week:"w1",title:"Samurái, Ninja y Tiendas",loc:"Tokio·Shinjuku/Harajuku",lodge:"Tokio",effort:3,luggage:false,laundry:true,transitMin:60,bufferP:20,contempl:30,joint:true,jointText:"🤝 Plan conjunto: invitarlos a la clase samurái/ninja (reservar cupos de los dos grupos a la vez) — ellos están en Akihabara; si no, izakayas de Shinjuku por la noche.",
 am:"🥋 Vestir de samurái + entrenamiento ninja/espada (experiencia con instructor).",pm:"Meiji Jingu, Harajuku/Takeshita. 👟 Adidas Brand Flagship, Onitsuka Tiger, Pokémon Center.",night:"Izakaya en Shinjuku.",food:"Ramen · Izakaya",transport:"Metro",costT:600,costF:3500,
@@ -588,24 +643,24 @@ img:IMG+"c/cf/230128_Kamakura_Daibutsu_Japan04s3.jpg/960px-230128_Kamakura_Daibu
 acts:[{n:"Daibutsu (Kotoku-in)",lat:35.3169,lng:139.5358,t:"tradition",roi:5,w:"Kōtoku-in"},{n:"Hasedera",lat:35.3127,lng:139.5331,t:"tradition",roi:4,w:"Hase-dera_(Kamakura)"},{n:"Enoshima",lat:35.2990,lng:139.4800,t:"nature",roi:4,w:"Enoshima"}]},
 
 {day:6,date:"Nov 3",dow:"Mar",week:"w2",title:"Monte Fuji & Onsen",loc:"Tokio→Kawaguchiko",lodge:"Villa Fuji",effort:2,luggage:true,laundry:false,transitMin:150,bufferP:25,contempl:55,joint:true,jointText:"🤝 Plan conjunto: ambos grupos en Kawaguchiko — bicis por el lago y ATARDECER JUNTOS en la orilla norte (foto grupal con el Fuji); AdeS cena kaiseki en su ryokan, nosotros en la villa.",
-am:"🚄 RESERVADO: tren Azusa Shinjuku 07:00 → Ōtsuki 07:56 (asientos reservados, E99391) + trasbordo a la línea Fujikyu hasta Kawaguchiko (llegada ~09:15). Bicis por el lago, momiji.",pm:"Check-in villa (16:00) — plataforma con vista al Fuji y al lago, junto al Parque Ōishi.",night:"Vistas del Fuji y cielo estrellado desde la villa. (Sin kaiseki esta vez — los restaurantes del pueblo cierran temprano, llevar algo de cena. Takkyubin de maletas a Osaka.)",food:"Hoto · cena propia",transport:"Tren Azusa + Fujikyu (reservado)",costT:3600,costF:1500,
+am:"🚄 RESERVADO: tren Azusa Shinjuku 07:00 → Ōtsuki 07:56 (asientos reservados, E99391) + trasbordo a la línea Fujikyu hasta Kawaguchiko (llegada ~09:15). Bicis por el lago, momiji.",pm:"Check-in villa (16:00) — plataforma con vista al Fuji y al lago, junto al Parque Ōishi.",night:"Vistas del Fuji y cielo estrellado desde la villa. (Sin kaiseki esta vez — los restaurantes del pueblo cierran temprano, llevar algo de cena.) 🧳 Esta noche: armar la mochila para 2 noches y dejar la maleta lista para mandarla a Osaka mañana temprano (ver D7).",food:"Hoto · cena propia",transport:"Tren Azusa + Fujikyu (reservado)",costT:3600,costF:1500,
 img:IMG+"1/18/KawaguchiKo.jpg/960px-KawaguchiKo.jpg",
 acts:[{n:"Lago Kawaguchi",lat:35.5170,lng:138.7530,t:"nature",roi:5,w:"Lake_Kawaguchi"},{n:"Monte Fuji (vista)",lat:35.3606,lng:138.7274,t:"nature",roi:5,w:"Mount_Fuji"},{n:"Onsen ryokan",lat:35.5018,lng:138.7660,t:"onsen",roi:5}]},
 
-{day:7,date:"Nov 4",dow:"Mié",week:"w2",title:"Monos de Nieve (Nagano)",loc:"Fuji→Matsumoto→Yudanaka",lodge:"Yudanaka onsen",effort:4,luggage:false,laundry:false,transitMin:300,bufferP:10,contempl:50,joint:false,
-am:"Sin reservar desde acá, se compra allá: bus Fujikyu Kawaguchiko→Kōfu (~1h15, sin reserva, pagar al bajar) → tren exprés Azusa Kōfu→Matsumoto (~1h, sacar asiento en taquilla/máquina) — castillo negro (foto) → tren exprés Shinano Matsumoto→Nagano (~50 min, vistas de los Alpes, asiento en taquilla).",pm:"Nagaden hasta Yudanaka (~45 min, comprar allá) + Snow Monkey Pass a Jigokudani (bundle bus+entrada, se consigue en la estación de Nagano): monos de nieve en el onsen natural.",night:"Pueblo onsen de Yudanaka/Shibu en yukata.",food:"Soba · Oyaki",transport:"Bus + Azusa + Shinano + Nagaden (todo in situ)",costT:9500,costF:3000,
-img:IMG+"a/a8/Onsen_with_monkey_Jigokudani_b.jpg/960px-Onsen_with_monkey_Jigokudani_b.jpg",
-acts:[{n:"Castillo Matsumoto",lat:36.2384,lng:137.9690,t:"history",roi:4,w:"Matsumoto_Castle"},{n:"Monos de nieve (Jigokudani)",lat:36.7330,lng:138.4620,t:"nature",roi:5,w:"Jigokudani_Monkey_Park"},{n:"Pueblo onsen Yudanaka/Shibu",lat:36.7400,lng:138.4150,t:"onsen",roi:4}]},
+{day:7,date:"Nov 4",dow:"Mié",week:"w2",title:"Ruta de los Alpes: Fuji → Matsumoto → Yudanaka ♨️",loc:"Fuji→Kōfu→Matsumoto→Nagano→Yudanaka",lodge:"Yudanaka · hotel ✅ reservado",effort:3,luggage:true,laundry:false,transitMin:330,bufferP:20,contempl:50,joint:false,
+am:"🧳 08:00 Maletas por Yamato TA-Q-BIN directo al Airbnb de Osaka (desde un konbini o el centro Yamato de Kawaguchiko; se paga al enviar, ~¥2.500–3.000 por maleta). Poner fecha de entrega 5 nov, franja 19–21 h, y avisarle al anfitrión de Osaka. Seguimos solo con mochila. 08:40 bus Fujikyu Kawaguchiko→Kōfu (~1h15, sin reserva, pagar al bajar) → tren exprés Azusa Kōfu→Matsumoto (~1h; sentarse a la derecha para ver los Alpes del Sur y los viñedos).",pm:"Castillo de Matsumoto (el castillo negro) + almuerzo de soba. ~13:30 tren exprés Shinano Matsumoto→Nagano (~50 min; pasa por Obasute, una de las tres grandes vistas desde un tren en Japón). Opcional: Zenkō-ji (15 min de la estación). Nagaden expreso «Snow Monkey» a Yudanaka (~45 min) → check-in ~16:30.",night:"♨️ Disfrutar el hotel + 🏮 paseo nocturno por Shibu Onsen en yukata: calle de piedra con faroles y 9 baños públicos (sotoyu).",food:"Soba de Shinshu · Oyaki",transport:"Bus + Azusa + Shinano + Nagaden (todo in situ) · Yamato",costT:9500,costF:3000,
+img:IMG+"e/e3/Matsumoto_Castle_Keep_Tower.jpg/960px-Matsumoto_Castle_Keep_Tower.jpg",
+acts:[{n:"Castillo Matsumoto",lat:36.2384,lng:137.9690,t:"history",roi:4,w:"Matsumoto_Castle"},{n:"Zenkō-ji (opcional)",lat:36.6614,lng:138.1874,t:"tradition",roi:3,w:"Zenkō-ji"},{n:"Hotel en Yamanouchi (PCR6+PWF)",lat:36.7418,lng:138.4123,t:"onsen",roi:4},{n:"🏮 Shibu Onsen de noche",lat:36.7343,lng:138.4254,t:"night",roi:5}]},
 
-{day:8,date:"Nov 5",dow:"Jue",week:"w3",title:"⭐ Llegada a Osaka (base)",loc:"Nagano→Osaka·Namba",lodge:"Osaka",effort:3,luggage:true,laundry:false,transitMin:300,bufferP:20,contempl:25,joint:false,
-am:"Tren Nagano→Osaka (vía Tokio/Nagoya). Check-in en Namba — esta es la base 7 noches, ya no movemos maletas.",pm:"Mercado Kuromon (snacks), Den-Den Town. Atardecer en el Umeda Sky Building (mirador flotante).",night:"🐙 Dotonbori: takoyaki, okonomiyaki y neón.",food:"Takoyaki · Kushikatsu",transport:"Shinkansen",costT:13500,costF:4000,
-img:IMG+"4/47/Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg/960px-Dotonbori%2C_Osaka%2C_at_night%2C_November_2016.jpg",
-acts:[{n:"Mercado Kuromon",lat:34.6657,lng:135.5063,t:"food",roi:4},{n:"Umeda Sky Building",lat:34.7052,lng:135.4897,t:"pop",roi:4,w:"Umeda_Sky_Building"},{n:"Dotonbori",lat:34.6687,lng:135.5010,t:"pop",roi:5,w:"Dōtonbori"}]},
+{day:8,date:"Nov 5",dow:"Jue",week:"w3",title:"🐒 Monos de Nieve + Ruta del Norte (Kanazawa) → ⭐ Osaka",loc:"Yudanaka→Nagano→Kanazawa→Tsuruga→Osaka·Namba",lodge:"Osaka",effort:4,luggage:false,laundry:false,transitMin:330,bufferP:15,contempl:45,joint:false,
+am:"🥾 08:15 bus a Kanbayashi Onsen + sendero por el bosque hasta Jigokudani (~30–40 min de ida; ~2 h en total con la visita): monos de nieve en el onsen natural (en noviembre abre de 9:00 a 16:00). Temprano hay menos gente. ~10:45 de vuelta, check-out y Nagaden a Nagano.",pm:"🚄 Hokuriku Shinkansen Nagano→Kanazawa (~1h05–1h30; montañas y luego el mar de Japón). Parada en Kanazawa (~2,5 h; mochilas en los lockers de la estación, foto en la puerta Tsuzumi-mon): almuerzo de mariscos en el mercado Ōmichō + paseo por Higashi Chaya (barrio de casas de té). ~16:30 Shinkansen Kanazawa→Tsuruga (~50 min) + Thunderbird Tsuruga→Osaka (~1h20; bordea el lago Biwa).",night:"~19:30 check-in en Namba (las maletas de Yamato llegan entre las 19 y las 21 h). 🏮 Midosuji Illumination (avenida iluminada, desde el 3 nov) + 🐙 Dotonbori: takoyaki, okonomiyaki y neón.",food:"Mariscos de Ōmichō · Takoyaki",transport:"Bus + Nagaden + Hokuriku Shinkansen + Thunderbird",costT:19500,costF:4500,
+img:IMG+"a/a8/Onsen_with_monkey_Jigokudani_b.jpg/960px-Onsen_with_monkey_Jigokudani_b.jpg",
+acts:[{n:"Monos de nieve (Jigokudani)",lat:36.7330,lng:138.4620,t:"nature",roi:5,w:"Jigokudani_Monkey_Park"},{n:"Mercado Ōmichō (Kanazawa)",lat:36.5713,lng:136.6566,t:"food",roi:5,w:"Ōmichō_Market"},{n:"Higashi Chaya (Kanazawa)",lat:36.5725,lng:136.6668,t:"history",roi:5,w:"Higashi_Chaya_District"},{n:"🏮 Midosuji Illumination",lat:34.6800,lng:135.5010,t:"night",roi:4},{n:"Dotonbori",lat:34.6687,lng:135.5010,t:"pop",roi:5,w:"Dōtonbori"}]},
 
 {day:9,date:"Nov 6",dow:"Vie",week:"w3",title:"Daytrip Kioto: Toriis, Té y Kimono",loc:"Osaka→Kioto (daytrip)",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:120,bufferP:20,contempl:45,joint:true,stamps:true,jointText:"🤝 Plan conjunto: AdeS pasa la tarde en Higashiyama/Gion — coincidimos ahí después del té: paseo por Gion y CENA EN PONTOCHO juntos (nuestro último Hankyu sale 23:15).",
-am:"⏰ MADRUGÓN: primer Hankyu desde Umeda 5:00 → Fushimi Inari a las 6:30, antes de las multitudes. Senbon Torii + sellos 🖊️. Luego Kiyomizu-dera y Higashiyama.",pm:"🍵 RESERVADO 14:00: Ceremonia del té + alquiler de kimono por Gion.",night:"🤝 Gion y cena en Pontocho con AdeS. Regreso a Osaka (último Hankyu 23:15 desde Kawaramachi).",food:"Yudofu · Matcha",transport:"JR/Keihan (daytrip)",costT:1200,costF:4000,
+am:"⏰ MADRUGÓN: primer Hankyu desde Umeda 5:00 → Fushimi Inari a las 6:30, antes de las multitudes. Senbon Torii + sellos 🖊️. Luego Kiyomizu-dera y Higashiyama.",pm:"🍵 RESERVADO 14:00: Ceremonia del té + alquiler de kimono por Gion.",night:"🏮 Kōdai-ji light-up (desde las 17:00, ~¥800, a 10 min a pie de Gion): bambú y jardín zen iluminados, todavía con el kimono puesto. Luego 🤝 Gion y cena en Pontocho con AdeS. Regreso a Osaka (último Hankyu 23:15 desde Kawaramachi).",food:"Yudofu · Matcha",transport:"JR/Keihan (daytrip)",costT:1200,costF:4000,
 img:IMG+"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
-acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Templo Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomizu-dera"},{n:"Ceremonia del té + kimono",lat:35.0036,lng:135.7788,t:"tradition",roi:5},{n:"Gion y Yasaka",lat:35.0036,lng:135.7755,t:"tradition",roi:5,w:"Gion"}]},
+acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Templo Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomizu-dera"},{n:"Ceremonia del té + kimono",lat:35.0036,lng:135.7788,t:"tradition",roi:5},{n:"Gion y Yasaka",lat:35.0036,lng:135.7755,t:"tradition",roi:5,w:"Gion"},{n:"🏮 Kōdai-ji iluminado",lat:35.0006,lng:135.7808,t:"night",roi:5,w:"Kōdai-ji"}]},
 
 {day:10,date:"Nov 7",dow:"Sáb",week:"w3",title:"Himeji + 🕺 Noche de Baile (sábado)",loc:"Osaka→Himeji + Amerikamura",lodge:"Osaka",effort:3,luggage:false,laundry:true,transitMin:120,bufferP:20,contempl:35,joint:false,stamps:true,
 am:"Shinkansen a Himeji (~30–60 min): el castillo blanco, el más bello y mejor conservado de Japón (UNESCO) + sellos 🖊️.",pm:"Jardín Koko-en junto al castillo; regreso a Osaka.",night:"🕺 ¡Noche de baile! Sábado = máximo ambiente: bailarines en Amerikamura (Triangle Park) y battles en OCAT Ponte Plaza (junto a Namba, techado).",food:"Anago-don · Street food",transport:"Shinkansen/JR (daytrip)",costT:3000,costF:4000,
@@ -627,10 +682,10 @@ am:"Keihan + tren Eizan a Kurama (~1h20). Kurama-dera: la montaña sagrada del t
 img:IMG+"e/e4/Kurama-dera_sanmon.jpg/960px-Kurama-dera_sanmon.jpg",
 acts:[{n:"Kurama-dera (montaña sagrada)",lat:35.1180,lng:135.7710,t:"tradition",roi:5,w:"Kurama-dera"},{n:"Santuario Kifune (Kibune)",lat:35.1216,lng:135.7628,t:"tradition",roi:5,w:"Kifune_Shrine"},{n:"Kurama Onsen",lat:35.1223,lng:135.7743,t:"onsen",roi:5}]},
 
-{day:14,date:"Nov 11",dow:"Mié",week:"w3",title:"Osaka a Fondo: Cocina, Sumo & Cachetadas",loc:"Osaka·Namba/Shinsekai",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:25,joint:false,
-am:"🍳 Clase de cocina japonesa (ramen/okonomiyaki/sushi) con chef local.",pm:"🤼 Espectáculo de sumo + almuerzo chanko nabe. Shinsekai y Tsutenkaku.",night:"🖐️ Bar de cachetadas (harisen) + crawl de kushikatsu en Shinsekai. ¡Día social! (La batalla de baile va el sábado, ver D10.)",food:"Chanko nabe · Kushikatsu",transport:"Metro Midosuji",costT:600,costF:5000,
+{day:14,date:"Nov 11",dow:"Mié",week:"w3",title:"Osaka a Fondo: Cocina, Sumo, Acuario 🐋 & Cachetadas",loc:"Osaka·Namba/Tempozan/Shinsekai",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:25,joint:false,
+am:"🍳 Clase de cocina japonesa (ramen/okonomiyaki/sushi) con chef local.",pm:"🤼 Espectáculo de sumo + almuerzo chanko nabe. 🐋 ~15:00 Acuario Kaiyukan (~2 h; el tiburón ballena del tanque del Pacífico; e-ticket con hora, ~¥2.700–3.200) + 🎡 noria de Tempozan al atardecer (~17:00).",night:"Metro a Shinsekai, con la Tsutenkaku iluminada: 🖐️ bar de cachetadas (harisen) + crawl de kushikatsu. ¡Día social! (La batalla de baile va el sábado, ver D10.)",food:"Chanko nabe · Kushikatsu",transport:"Metro Midosuji + Chuo",costT:900,costF:5000,
 img:IMG+"9/95/Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg/960px-Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg",
-acts:[{n:"Clase de cocina japonesa",lat:34.6660,lng:135.5020,t:"food",roi:5},{n:"Sumo + chanko nabe",lat:34.6660,lng:135.5050,t:"tradition",roi:4,w:"Sumo"},{n:"Bar de cachetadas (Shinsekai)",lat:34.6524,lng:135.5063,t:"night",roi:4},{n:"Kushikatsu crawl (Shinsekai)",lat:34.6524,lng:135.5063,t:"food",roi:4}]},
+acts:[{n:"Clase de cocina japonesa",lat:34.6660,lng:135.5020,t:"food",roi:5},{n:"Sumo + chanko nabe",lat:34.6660,lng:135.5050,t:"tradition",roi:4,w:"Sumo"},{n:"🐋 Acuario Kaiyukan",lat:34.6545,lng:135.4290,t:"nature",roi:5,w:"Osaka_Aquarium_Kaiyukan"},{n:"🎡 Noria de Tempozan",lat:34.6563,lng:135.4313,t:"pop",roi:4},{n:"Bar de cachetadas (Shinsekai)",lat:34.6524,lng:135.5063,t:"night",roi:4},{n:"Kushikatsu crawl (Shinsekai)",lat:34.6524,lng:135.5063,t:"food",roi:4}]},
 
 {day:15,date:"Nov 12",dow:"Jue",week:"w3",title:"USJ 🎢",loc:"Osaka·USJ",lodge:"Osaka",effort:5,luggage:false,laundry:false,transitMin:60,bufferP:10,contempl:15,joint:false,
 am:"🎟️ RESERVADO (e-ticket). USJ apertura. Super Nintendo World.",pm:"Harry Potter, Flying Dinosaur.",night:"Cena en Namba.",food:"Parque · Butterbeer",transport:"JR Yumesaki",costT:400,costF:3000,
@@ -638,14 +693,14 @@ img:IMG+"b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Univer
 acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5,w:"Universal_Studios_Japan"}]},
 
 {day:16,date:"Nov 13",dow:"Vie",week:"w3",title:"Uji (Matcha) + teamLab Biovortex + Spa",loc:"Osaka→Uji→Kioto Estación + Osaka·Spa",lodge:"Osaka",effort:3,luggage:false,laundry:true,transitMin:120,bufferP:30,contempl:40,joint:false,stamps:true,
-am:"Daytrip a Uji (~40 min, sale de Kioto Estación): Byōdō-in (el templo del Fénix, el de la moneda de ¥10) + sellos 🖊️. Capital del matcha: cata, calle Omotesando, helado y cha-soba.",pm:"De regreso, parada en Kioto Estación: 🎨 RESERVAR 14:00–14:30: teamLab Biovortex (~1h, a 8 min a pie de la estación).",night:"Onsen urbano (Spa World) y despedida de Kansai en Ura-Namba.",food:"Matcha · Cha-soba · Okonomiyaki",transport:"JR Nara line + metro",costT:1500,costF:4500,
+am:"Daytrip a Uji (~40 min, sale de Kioto Estación): Byōdō-in (el templo del Fénix, el de la moneda de ¥10) + sellos 🖊️. Capital del matcha: cata, calle Omotesando, helado y cha-soba.",pm:"De regreso, parada en Kioto Estación: 🎨 RESERVAR 14:00–14:30: teamLab Biovortex (~1h, a 8 min a pie de la estación).",night:"Elige: ♨️ Spa World y despedida de Kansai en Ura-Namba — o 🏮 OPCIÓN Nabana no Sato: después de teamLab, Shinkansen Kioto→Nagoya (35 min) + bus a Nabana (~30 min). Luces desde ~17:00 (túnel de luces y la montaña-Fuji de LEDs; ~¥2.500 con vale de ¥1.000 adentro) y vuelta en Kintetsu Nagoya→Osaka-Namba (~2 h), llegando ~22:30. Son ~¥10.000 extra de trenes.",food:"Matcha · Cha-soba · Okonomiyaki",transport:"JR Nara line + metro",costT:1500,costF:4500,
 img:IMG+"6/69/Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg/960px-Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg",
-acts:[{n:"Byōdō-in (Uji)",lat:34.8896,lng:135.8076,t:"tradition",roi:5,w:"By%C5%8Dd%C5%8D-in"},{n:"Uji (matcha)",lat:34.8914,lng:135.8072,t:"food",roi:5},{n:"teamLab Biovortex (Kioto)",lat:34.9875,lng:135.7595,t:"pop",roi:5},{n:"Spa World (onsen)",lat:34.6492,lng:135.5063,t:"onsen",roi:4}]},
+acts:[{n:"Byōdō-in (Uji)",lat:34.8896,lng:135.8076,t:"tradition",roi:5,w:"By%C5%8Dd%C5%8D-in"},{n:"Uji (matcha)",lat:34.8914,lng:135.8072,t:"food",roi:5},{n:"teamLab Biovortex (Kioto)",lat:34.9875,lng:135.7595,t:"pop",roi:5},{n:"Spa World (onsen)",lat:34.6492,lng:135.5063,t:"onsen",roi:4},{n:"🏮 Nabana no Sato (opción)",lat:35.0696,lng:136.6847,t:"night",roi:5}]},
 
-{day:17,date:"Nov 14",dow:"Sáb",week:"w4",title:"Osaka → Tokio + 🏎️ Tokyo Drift",loc:"Osaka→Tokio",lodge:"Tokio",effort:3,luggage:true,laundry:false,transitMin:170,bufferP:15,contempl:20,joint:false,
-am:"Shinkansen Nozomi Osaka→Tokio (~2h30). Check-in en Tokio.",pm:"Compras/flex en Shinjuku; dejar listo todo para el pickup de las 19:00 en Shibuya.",night:"🏎️ TOKYO DRIFT ✅ RESERVADO (sáb 14 nov): tour nocturno de copiloto en JDM reales (Skyline R34, RX-7, S15) 19:00–22:00 — Rainbow Bridge, Daikoku PA y la Torre de Tokio iluminada. Sábado puede llevar recargo de fin de semana, confirmar con el operador. 2 coches para 5.",food:"Ramen Shinjuku · Konbini post-drift",transport:"Shinkansen Nozomi + pickup Shibuya",costT:14500,costF:3500,
+{day:17,date:"Nov 14",dow:"Sáb",week:"w4",title:"Osaka → Tokio + 🏎️ Rápido y Furioso (16:00)",loc:"Osaka→Tokio·Shinonome",lodge:"Tokio",effort:3,luggage:true,laundry:false,transitMin:200,bufferP:15,contempl:20,joint:false,
+am:"Shinkansen Nozomi Osaka→Tokio temprano (salir ~09:00, ~2h30). Check-in en Tokio y dejar las maletas.",pm:"🏎️ 16:00 PUNTO DE ENCUENTRO: frente a <a class='gps-link' href='https://www.google.com/maps/search/?api=1&query=RICOLAND%20TOKYO%20BAY%202-7-12%20Shinonome%20Koto%20Tokyo' target='_blank'>RICOLAND TOKYO BAY</a> (tienda de motos, 2-7-12 Shinonome, Koto-ku; estación Shinonome de la línea Rinkai). Llegar 15:45.",night:"🏎️ TOKYO DRIFT ✅ RESERVADO (sáb 14 nov): tour en JDM reales (Skyline R34, RX-7, S15) por la Wangan, Rainbow Bridge, Daikoku PA y la Torre de Tokio iluminada. Confirmar con el operador la hora de regreso y si el sábado lleva recargo. 2 coches para 5.",food:"Ekiben en el Shinkansen · Konbini post-drift",transport:"Shinkansen Nozomi + línea Rinkai",costT:14800,costF:3500,
 img:IMG+"0/06/Nissan_Skyline_GT-R_R34_V_Spec_II.jpg/960px-Nissan_Skyline_GT-R_R34_V_Spec_II.jpg",
-acts:[{n:"🏎️ Tokyo Drift (JDM ride-along)",lat:35.6595,lng:139.7006,t:"night",roi:5}]},
+acts:[{n:"🏎️ Encuentro: Ricoland Tokyo Bay (Shinonome)",t:"night",roi:5},{n:"Daikoku PA",lat:35.4628,lng:139.6797,t:"night",roi:5,w:"Daikoku_Parking_Area"}]},
 
 {day:18,date:"Nov 15",dow:"Dom",week:"w4",title:"Shichi-Go-San, Santuarios & Sumo Show",loc:"Tokio·Harajuku/Shinjuku",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:60,bufferP:20,contempl:35,joint:false,
 am:"Meiji Jingu / Yoyogi: Shichi-Go-San, familias en kimono.",pm:"Harajuku, Omotesando.",night:"🤼 RESERVADO 17:30–19:00: Shinjuku Sumo Club (Ōkubo) — show en vivo de luchadores profesionales, charla de historia/cultura, foto y sorteo para subir al ring (~$61/persona). Luego, Golden Gai (bar-hopping) — día sin AdeS: hoy están en Tokyo DisneySea todo el día.",food:"Local",transport:"Yamanote",costT:600,costF:3500,
@@ -653,14 +708,14 @@ img:IMG+"a/a8/Shichigosan_boy.jpg/960px-Shichigosan_boy.jpg",
 acts:[{n:"Shichi-Go-San (santuarios)",lat:35.6764,lng:139.6993,t:"tradition",roi:4,w:"Shichi-Go-San"},{n:"Shinjuku Gyoen",lat:35.6852,lng:139.7100,t:"nature",roi:4,w:"Shinjuku_Gyo-en"},{n:"🤼 Sumo Show (Shinjuku/Ōkubo)",lat:35.7013,lng:139.7005,t:"pop",roi:4},{n:"Golden Gai",lat:35.6940,lng:139.7045,t:"night",roi:5,w:"Golden_Gai"}]},
 
 {day:19,date:"Nov 16",dow:"Lun",week:"w4",title:"Torre de Tokio & Azabudai Hills",loc:"Tokio·Azabudai/Shibuya",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:60,bufferP:35,contempl:30,joint:true,jointText:"🤝 Plan conjunto: HOY (no el 15) es cuando AdeS hace Meiji/Harajuku/Shibuya — proponerles cruzar en Shibuya a media tarde (ellos siguen a Omotesando/Nogi, nosotros seguimos a Azabudai) antes de separarnos para el atardecer en la Torre de Tokio.",
-am:"Mañana tranquila: repetir favoritos y cierre del álbum de sellos 🖊️.",pm:"Azabudai Hills y subir a la 🗼 Torre de Tokio al atardecer (main deck ~¥1.500).",night:"Cena tranquila en Tokio.",food:"Ramen",transport:"Metro",costT:600,costF:3500,
+am:"Mañana tranquila: repetir favoritos y cierre del álbum de sellos 🖊️.",pm:"Azabudai Hills y subir a la 🗼 Torre de Tokio al atardecer (main deck ~¥1.500).",night:"🏮 Roppongi Hills Keyakizaka Illumination (5 nov–25 dic, 17:00–22:00, gratis; ~15 min a pie de Azabudai): avenida de LEDs con la Torre de Tokio al fondo. Cena en Roppongi.",food:"Ramen",transport:"Metro",costT:600,costF:3500,
 img:IMG+"5/58/Tokyo_Tower_2023.jpg/960px-Tokyo_Tower_2023.jpg",
-acts:[{n:"Torre de Tokio",lat:35.6586,lng:139.7454,t:"pop",roi:5,w:"Tokyo_Tower"},{n:"Azabudai Hills",lat:35.6604,lng:139.7413,t:"pop",roi:4,w:"Azabudai_Hills"}]},
+acts:[{n:"Torre de Tokio",lat:35.6586,lng:139.7454,t:"pop",roi:5,w:"Tokyo_Tower"},{n:"Azabudai Hills",lat:35.6604,lng:139.7413,t:"pop",roi:4,w:"Azabudai_Hills"},{n:"🏮 Keyakizaka (Roppongi Hills)",lat:35.6595,lng:139.7300,t:"night",roi:4}]},
 
 {day:20,date:"Nov 17",dow:"Mar",week:"w4",title:"Compras y Barrios",loc:"Tokio·Ginza/Akihabara",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:30,contempl:30,joint:true,jointText:"🤝 Plan conjunto: su último día completo — compras juntos (Akihabara, Don Quijote) y CENA DE DESPEDIDA de los dos grupos (reservar mesa grande / izakaya privado).",
-am:"Ginza + tiendas insignia.",pm:"🎭 Kabuki de UN acto en Kabuki-za (~¥1.500, 60-90 min, entradas el mismo día) y Akihabara (2ª pasada), Don Quijote, Pokémon Center.",night:"Cena grupal de despedida con AdeS.",food:"Sushi · Souvenirs",transport:"Metro",costT:600,costF:5500,
+am:"Ginza + tiendas insignia.",pm:"🎭 Kabuki de UN acto en Kabuki-za (~¥1.500, 60-90 min, entradas el mismo día) y Akihabara (2ª pasada), Don Quijote, Pokémon Center.",night:"🏮 Antes de la cena: Marunouchi Illumination (desde el 12 nov) por la avenida Naka-dori + Estación de Tokio iluminada (a 10 min de Ginza). Luego, cena grupal de despedida con AdeS.",food:"Sushi · Souvenirs",transport:"Metro",costT:600,costF:5500,
 img:IMG+"5/5b/Ginza-WAKO_at_night.jpg/960px-Ginza-WAKO_at_night.jpg",
-acts:[{n:"Ginza y tiendas",lat:35.6717,lng:139.7650,t:"pop",roi:4},{n:"Kabuki-za (un acto)",lat:35.6697,lng:139.7674,t:"tradition",roi:5,w:"Kabuki-za"},{n:"Akihabara (2ª pasada)",lat:35.6984,lng:139.7731,t:"pop",roi:3,w:"Akihabara"}]},
+acts:[{n:"Ginza y tiendas",lat:35.6717,lng:139.7650,t:"pop",roi:4},{n:"Kabuki-za (un acto)",lat:35.6697,lng:139.7674,t:"tradition",roi:5,w:"Kabuki-za"},{n:"Akihabara (2ª pasada)",lat:35.6984,lng:139.7731,t:"pop",roi:3,w:"Akihabara"},{n:"🏮 Marunouchi Naka-dori",lat:35.6800,lng:139.7640,t:"night",roi:4}]},
 
 {day:21,date:"Nov 18",dow:"Mié",week:"w4",title:"🎂 Cumpleaños #2 · Sushi & Wagyu",loc:"Tokio·Tsukiji/Shinjuku",lodge:"Tokio",effort:2,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:40,joint:false,bday:true,
 am:"Tsukiji exterior: desayuno de mariscos.",pm:"🎂 Clase de hacer sushi (experiencia con chef).",night:"Cena wagyu teppanyaki + karaoke nomihodai de celebración.",food:"Sushi class · Wagyu A5 · Karaoke",transport:"Metro",costT:600,costF:11000,
@@ -680,14 +735,15 @@ acts:[{n:"Aeropuerto (Narita/Haneda)",lat:35.7720,lng:140.3929,t:"transit",roi:1
 
 // Opciones cercanas "si sobra tiempo" por día (lo fijo son las actividades; esto es el plus)
 const NEAR={
+ 0:"Nakano Sun Mall (galería techada), Daiso de la estación, cabeza de Godzilla en Shinjuku si sobra energía.",
  1:"Don Quijote 24h de Kabukicho, la cabeza de Godzilla, cena de konbini si llegan fundidos.",
  2:"Kappabashi (la calle de utensilios de cocina), mirador GRATIS del Asakusa Culture Center (8F), Kanda Myojin (santuario gamer).",
  3:"Mercado de Toyosu (al lado de Planets), estatua de Hachiko, Mega Don Quijote de Shibuya.",
  4:"Takeshita Street (crepes), Cat Street (vintage), arquitectura de Omotesando.",
  5:"Komachi-dori (calle de comida), Hokoku-ji (templo del bambú, ¥300), playa Yuigahama al atardecer.",
  6:"Pagoda Chureito (25 min en tren, LA foto del Fuji), Oishi Park, Momiji Corridor (festival de arces).",
- 7:"Zenko-ji en Nagano (si sobra tiempo al hacer transbordo), manzanas y oyaki de Shinshu.",
- 8:"Hozenji Yokocho (el callejón del templo musgoso), foto con el Glico Man, Den-Den Town.",
+ 7:"Mirador de Obasute desde el tren, manzanas y oyaki de Shinshu, los 9 sotoyu de Shibu Onsen (sellos en una toalla).",
+ 8:"En Kanazawa: helado con hoja de oro en Higashi Chaya, jardín Kenroku-en si sobra tiempo. En Osaka: Umeda Sky (abre hasta ~22:30), Hozenji Yokocho, foto con el Glico Man.",
  9:"Nishiki Market para almorzar, Yasaka-jinja iluminado de noche, callejón de Pontocho.",
  10:"En Himeji: oden local (especialidad). De vuelta: Triangle Park para calentar antes del baile.",
  11:"Mirador del puente Togetsukyō, %Arabica del río (café), Villa Ōkōchi Sansō (jardín secreto, ¥1.000 con té).",
@@ -712,9 +768,9 @@ function mainActs(d){return (d.acts||[]).filter(a=>a.t!=='transit');}
 
 function renderWeek(wk){
     const el=document.getElementById(wk);
-    const meta={w1:{t:'Semana 1 · Tokio',d:'29 oct – 2 nov. Llegada noche, cultura, samurái/ninja, Halloween en Shibuya, Kamakura.'},
-        w2:{t:'Semana 2 · Fuji & Monos de Nieve',d:'3 – 4 nov. Ryokan con onsen frente al Fuji y los monos de nieve de Jigokudani (Nagano).'},
-        w3:{t:'Semana 3 · Osaka Hub & Daytrips ⭐',d:'5 – 13 nov. Base 9 noches en Osaka: daytrips a Kioto ×2, Himeji, Kobe+Arima, Kurama (caminata 🥾), Uji, USJ, sumo+chanko, castillo y cumpleaños #1. Sin mover maletas.'},
+    const meta={w1:{t:'Semana 1 · Tokio',d:'28 oct – 2 nov. Llego antes (28, Nakano) y el grupo el 29 de noche. Luces de Showa Kinen, Skytree, samurái/ninja, Halloween, Kamakura.'},
+        w2:{t:'Semana 2 · Fuji & Alpes',d:'3 – 4 nov. Villa frente al Fuji y ruta escénica por los Alpes (Matsumoto) hasta el hotel de Yudanaka. Las maletas viajan solas a Osaka por Yamato.'},
+        w3:{t:'Semana 3 · Osaka Hub & Daytrips ⭐',d:'5 – 13 nov. Monos de nieve y ruta del norte por Kanazawa hasta Osaka. Base 9 noches: daytrips a Kioto ×2, Himeji, Kobe+Arima, Kurama (caminata 🥾), Uji, USJ, sumo+chanko, acuario Kaiyukan 🐋, cumpleaños #1 y Nabana como opción. Sin mover maletas.'},
         w4:{t:'Semana 4 · Tokio Final',d:'14 – 20 nov. Shinkansen a Tokio, Shichi-Go-San, Torre de Tokio + Tokyo Drift 🏎️, kabuki, compras, cumpleaños #2 y momiji en pico en el Monte Takao.'}}[wk];
     let html=`<div class="mb-8"><h2 class="font-jp text-2xl md:text-3xl font-black mb-1">${meta.t}</h2><p class="text-sm text-kuro/60">${meta.d}</p></div>`;
     DAYS.filter(d=>d.week===wk).forEach(d=>{
@@ -825,7 +881,7 @@ const PLANB=[
  ["🦀 Mercado Kuromon (comer caminando)","Osaka","⛅","Calle techada parcial; cualquier día."],
  ["🌆 Umeda Sky Building","Osaka","⛅","Mirador 360°; mejor sin lluvia."],
  ["🎮 teamLab Planets","Tokio","🌧️","Arte digital; reservar. Perfecto para lluvia."],
- ["🐟 Acuario Kaiyukan","Osaka","🌧️","De los mayores del mundo; salió del plan base al entrar Kurama — comodín perfecto de lluvia."],
+ ["🐟 Acuario Kaiyukan","Osaka","🌧️","Ya en el plan (D14, tarde). Si llueve otro día, se puede adelantar: es techado."],
  ["🌆 Abeno Harukas (mirador)","Osaka","⛅","El rascacielos más alto de Japón; comodín de atardecer (salió del plan base al entrar Kurama)."],
  ["🏬 Depachika (sótanos gourmet)","Tokio/Osaka","🌧️","Dulces y pastel de cumpleaños (D11, D21). Ginza/Umeda."],
  ["🍣 Sushi 'bala' Uobei","Tokio (Shibuya)","🌧️","Sushi en mini-trenes por pantalla; barato y divertido."],
@@ -840,8 +896,8 @@ function renderPlanB(){
     document.getElementById('planb-table').innerHTML=PLANB.map(r=>`<tr class="border-b border-haiiro/50"><td class="py-2 pr-3 font-bold">${r[0]}</td><td class="px-2 text-kuro/60 whitespace-nowrap">${r[1]}</td><td class="px-2"><span style="color:${tcolor[r[2]]||'#777'};font-weight:700">${r[2]}</span></td><td class="px-2 text-kuro/70">${r[3]}</td></tr>`).join('');
 }
 
-const TRANSPORT_LINES=[["Narita/Haneda→Shinjuku","N'EX",3250],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Tren Azusa+Fujikyu",3600],["Fuji→Matsumoto→Yudanaka","Tren+bus",6500],["Snow Monkey Pass","Nagaden",3500],["Nagano→Osaka","Shinkansen",13500],["Daytrips Osaka↔Kioto ×2","JR/Keihan",2500],["Daytrip Osaka↔Himeji","Shinkansen/JR",3000],["Daytrip Osaka↔Kobe","JR",820],["Daytrip Osaka↔Uji","JR",1200],["Daytrip Osaka↔Kurama","Keihan+Eizan",1900],["Osaka↔USJ r/t","JR",400],["Osaka→Tokio","Shinkansen",14500],["Metro/IC 23d","ICOCA/Suica",12000],["Tokio→Narita","N'EX",3250]];
-const ACT_LINES=[["teamLab Planets",3800],["🥋 Samurái + 🥷 Ninja",14000],["🍵 Ceremonia del té + kimono",5000],["🐒 Snow Monkey (entrada)",800],["🏯 Himeji + 🥩 Kobe wagyu",9000],["🍳 Clase de cocina",7000],["🤼 Sumo + chanko (Osaka)",8000],["🖐️ Cachetadas + 🌆 Umeda Sky",3000],["USJ + Express",20600],["Templos Kioto + Himeji",4500],["🖊️ Goshuincho + sellos",3000],["🎂 Cumpleaños #1 (maiko/sake)",9000],["🎂 Cumpleaños #2 (sushi/wagyu/karaoke)",11000],["🏯 Castillo de Osaka",600],["🥾 Kurama-dera + Kurama Onsen",1600],["♨️ Spa World (onsen)",1500],["🏎️ Tokyo Drift (ride-along, 2 coches/5)",25000],["🗼 Torre de Tokio (main deck)",1500],["🍁 Takao: funicular + onsen",1600],["🎭 Kabuki un acto",1500],["♨️ Arima Onsen (combo 2 baños)",1200],["🎨 teamLab Biovortex (Kioto)",4800],["🤼 Sumo Show (Shinjuku)",9800]];
+const TRANSPORT_LINES=[["Narita/Haneda→Shinjuku","N'EX",3250],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Tren Azusa+Fujikyu",3600],["Fuji→Matsumoto→Yudanaka","Tren+bus",6500],["🧳 Yamato maletas Fuji→Osaka","TA-Q-BIN",2800],["Snow Monkey Pass","Nagaden",3500],["Nagano→Kanazawa→Osaka","Hokuriku Shinkansen + Thunderbird",19500],["Daytrips Osaka↔Kioto ×2","JR/Keihan",2500],["Daytrip Osaka↔Himeji","Shinkansen/JR",3000],["Daytrip Osaka↔Kobe","JR",820],["Daytrip Osaka↔Uji","JR",1200],["Daytrip Osaka↔Kurama","Keihan+Eizan",1900],["Osaka↔USJ r/t","JR",400],["Osaka→Tokio","Shinkansen",14500],["Metro/IC 23d","ICOCA/Suica",12000],["Tokio→Narita","N'EX",3250]];
+const ACT_LINES=[["teamLab Planets",3800],["🥋 Samurái + 🥷 Ninja",14000],["🍵 Ceremonia del té + kimono",5000],["🐒 Snow Monkey (entrada)",800],["🏯 Himeji + 🥩 Kobe wagyu",9000],["🍳 Clase de cocina",7000],["🤼 Sumo + chanko (Osaka)",8000],["🖐️ Cachetadas + 🌆 Umeda Sky",3000],["USJ + Express",20600],["Templos Kioto + Himeji",4500],["🖊️ Goshuincho + sellos",3000],["🎂 Cumpleaños #1 (maiko/sake)",9000],["🎂 Cumpleaños #2 (sushi/wagyu/karaoke)",11000],["🏯 Castillo de Osaka",600],["🥾 Kurama-dera + Kurama Onsen",1600],["♨️ Spa World (onsen)",1500],["🏎️ Tokyo Drift (ride-along, 2 coches/5)",25000],["🗼 Torre de Tokio (main deck)",1500],["🍁 Takao: funicular + onsen",1600],["🎭 Kabuki un acto",1500],["♨️ Arima Onsen (combo 2 baños)",1200],["🎨 teamLab Biovortex (Kioto)",4800],["🐋 Acuario Kaiyukan + noria",4000],["🤼 Sumo Show (Shinjuku)",9800]];
 function costRows(lines){let t=0,h='';lines.forEach(([n,...r])=>{const c=r.length===2?r[1]:r[0],tp=r.length===2?r[0]:null;t+=c;h+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${n}${tp?` <span class="text-kuro/35">(${tp})</span>`:''}</span><span class="tooltip-usd" data-usd="${usdTip(c)}">¥${c.toLocaleString()}</span></div>`;});return{h,t};}
 // ===== CENTRO DE CONTROL =====
 const TRIP_LA_DEPART='2026-10-23';
@@ -1089,6 +1145,9 @@ function dayReelsBox(d){
 
 // ===== HOSPEDAJE ÓPTIMO =====
 const LODGING=[
+ {city:'Nakano · solo yo (llego antes) ✅',zg:'nakano',nights:1,checkin:'2026-10-28',checkout:'2026-10-29',area:'Nakano, Tokyo',adults:1,
+  fixed:{n:'Nakano (Yuai ホーム)',lat:35.7056,lng:139.6657},pp:'reservado (Airbnb, habitación)',local:'Gemas: Nakano Broadway, Sun Mall, izakayas detrás de la estación. JR Chuo directo a Shinjuku (5 min) y a Tachikawa/Showa Kinen (25 min).',
+  type:'Habitación en Nakano City (anfitrión Yuai ホーム) para la noche antes de que llegue el grupo.'},
  {city:'Tokio · 1ª etapa',zg:'tokio1',nights:5,checkin:'2026-10-29',checkout:'2026-11-03',area:'Shinjuku, Tokyo',adults:5,poiDays:[2,3,4],
   candidates:[{n:'Shinjuku',lat:35.690,lng:139.700},{n:'Ueno / Asakusa',lat:35.710,lng:139.785},{n:'Shibuya',lat:35.659,lng:139.701},{n:'Tokyo / Nihonbashi',lat:35.681,lng:139.767}],
   pp:'5.000–9.000',local:'Gemas: Omoide Yokocho y Golden Gai (Shinjuku), Shimokitazawa vintage, Nakameguro, baños sentō de barrio.',
@@ -1096,8 +1155,8 @@ const LODGING=[
  {city:'Fuji · Villa ✅ reservada',zg:'fuji',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,
   fixed:{n:'Ōishi, orilla norte del lago',lat:35.5018,lng:138.7660},pp:'reservado (Airbnb HMBFBFE5YP)',local:'Gemas: paseo en bici por el lago, Parque Ōishi, miradores del Fuji.',
   type:'Villa Airbnb con plataforma de observación y vista al lago/Fuji — sin kaiseki incluido, llevar cena (el pueblo cierra temprano).'},
- {city:'Nagano · Yudanaka',zg:'nagano',nights:1,checkin:'2026-11-04',checkout:'2026-11-05',area:'Yudanaka Onsen, Nagano',adults:5,
-  fixed:{n:'Yudanaka / Shibu Onsen',lat:36.7400,lng:138.4150},pp:'9.000–16.000',local:'Gemas: 9 baños públicos de Shibu Onsen (en yukata), pueblo histórico, base de los monos.',
+ {city:'Nagano · Yudanaka ✅ reservado',zg:'nagano',nights:1,checkin:'2026-11-04',checkout:'2026-11-05',area:'Yudanaka Onsen, Nagano',adults:5,
+  fixed:{n:'Hotel en Yamanouchi (PCR6+PWF)',lat:36.7418,lng:138.4123},pp:'reservado',local:'Gemas: 9 baños públicos de Shibu Onsen (en yukata), pueblo histórico, base de los monos.',
   type:'Ryokan en el pueblo onsen, a minutos de Jigokudani. Reservar pronto (pocas plazas).'},
  {city:'⭐ Osaka (HUB · 9 noches)',zg:'osaka',nights:9,checkin:'2026-11-05',checkout:'2026-11-14',area:'Namba, Osaka',adults:5,poiDays:[8,13,14,15,16],
   candidates:[{n:'Namba',lat:34.666,lng:135.502},{n:'Shinsaibashi',lat:34.674,lng:135.501},{n:'Umeda',lat:34.702,lng:135.496},{n:'Tennoji',lat:34.646,lng:135.513}],
@@ -1136,7 +1195,7 @@ function renderLodging(){
             ${recoHtml}
             <p class="text-xs text-kuro/60 mt-2">📌 <b>Local:</b> ${L.local}</p>
             <p class="text-sm mt-1 text-kuro/70">${L.type}</p>
-            <p class="text-sm mt-2">💴 ≈ <b>¥${L.pp}</b> /persona/noche · tramo (5 pers., ${L.nights}n): <span class="tooltip-usd font-bold text-kin" data-usd="${usdTip(gLo)} – ${usdTip(gHi)}">¥${gLo.toLocaleString()}–${gHi.toLocaleString()}</span></p>
+            ${isNaN(gLo)?`<p class="text-sm mt-2">✅ <b>${L.pp}</b></p>`:`<p class="text-sm mt-2">💴 ≈ <b>¥${L.pp}</b> /persona/noche · tramo (5 pers., ${L.nights}n): <span class="tooltip-usd font-bold text-kin" data-usd="${usdTip(gLo)} – ${usdTip(gHi)}">¥${gLo.toLocaleString()}–${gHi.toLocaleString()}</span></p>`}
             <div class="flex gap-2 mt-3 flex-wrap">
                 <button onclick="openZoneGuide('${L.zg}')" class="bg-midori text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-midori/80">🏘️ ¿En qué barrio quedarse?</button>
                 <a href="${lk.airbnb}" target="_blank" class="bg-aka text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-aka/80">🏠 Airbnb (5 huésp.)</a>
@@ -1154,7 +1213,7 @@ const LEGS=[
  {f:'Tokio',t:'Kawaguchiko (Fuji)',m:'Tren Azusa (Shinjuku→Ōtsuki) + Fujikyu — reservado E99391',d:'~2 h 15',y:3600,a:[35.6896,139.7006],b:[35.5018,138.7660]},
  {f:'Fuji',t:'Matsumoto → Yudanaka (Nagano)',m:'Tren + Ltd Express',d:'~4–5 h',y:6500,a:[35.5018,138.7660],b:[36.7400,138.4150]},
  {f:'Yudanaka',t:'Jigokudani (monos, ida/vuelta)',m:'Bus Nagaden',d:'~15 min + sendero',y:3500,a:[36.7400,138.4150],b:[36.7330,138.4620]},
- {f:'Nagano',t:'⭐ Osaka (base hub)',m:'Shinkansen (vía Tokio/Nagoya)',d:'~4–5 h',y:13500,a:[36.6480,138.1880],b:[34.6660,135.5020]},
+ {f:'Nagano',t:'⭐ Osaka (base hub) · ruta del norte',m:'Hokuriku Shinkansen → Kanazawa (parada) → Tsuruga + Thunderbird',d:'~4 h + parada',y:19500,a:[36.6480,138.1880],b:[34.6660,135.5020]},
  {f:'Osaka',t:'Kioto (daytrip ×2)',m:'JR / Keihan especial',d:'~30 min c/u',y:1200,a:[34.6660,135.5020],b:[35.0116,135.7681]},
  {f:'Osaka',t:'Himeji (daytrip)',m:'Shinkansen / JR especial',d:'~30–60 min',y:3300,a:[34.6660,135.5020],b:[34.8394,134.6939]},
  {f:'Osaka',t:'Kobe (daytrip)',m:'JR especial',d:'~25 min',y:820,a:[34.6660,135.5020],b:[34.6851,135.1880]},
@@ -1240,7 +1299,7 @@ function toggleDay(trigger,day){
     }
 }
 // Zona-hotel recomendada por tramo (misma lógica que la tarjeta de Hospedaje)
-const SLEEP_STAYS=[[1,5,'tokio1'],[6,6,'fuji'],[7,7,'nagano'],[8,16,'osaka'],[17,22,'tokio2']];
+const SLEEP_STAYS=[[0,0,'nakano'],[1,5,'tokio1'],[6,6,'fuji'],[7,7,'nagano'],[8,16,'osaka'],[17,22,'tokio2']];
 function hubOf(zg){const Ld=LODGING.find(l=>l.zg===zg); if(!Ld)return null;
     const h=Ld.candidates?rankHubs(poisOf(Ld.poiDays),Ld.candidates)[0].c:Ld.fixed;
     return {n:h.n,lat:h.lat,lng:h.lng};}
@@ -1276,9 +1335,9 @@ function initDayMap(day){
 }
 
 // ===== MAPA GENERAL =====
-const BASES=[{lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–5, D17–23"},{lat:35.5018,lng:138.7660,name:"Fuji",d:"D6"},{lat:36.7400,lng:138.4150,name:"Yudanaka (Nagano)",d:"D7"},{lat:34.6660,lng:135.5020,name:"⭐ Osaka (HUB)",d:"D8–16 · base de daytrips"}];
-const EXC=[{lat:35.319,lng:139.547,n:"Kamakura"},{lat:35.6250,lng:139.2437,n:"Monte Takao (daytrip)"},{lat:36.2384,lng:137.9690,n:"Matsumoto"},{lat:36.7330,lng:138.4620,n:"Jigokudani (monos)"},{lat:35.0116,lng:135.7681,n:"Kioto (daytrip)"},{lat:34.8394,lng:134.6939,n:"Himeji (daytrip)"},{lat:34.6851,lng:135.1880,n:"Kobe (daytrip)"},{lat:34.7963,lng:135.2478,n:"Arima Onsen"},{lat:34.8896,lng:135.8076,n:"Uji (daytrip)"},{lat:35.1180,lng:135.7710,n:"Kurama/Kibune (daytrip)"},{lat:34.6654,lng:135.4323,n:"USJ"}];
-const ROUTE_SEQ=[[35.6895,139.6917],[35.319,139.547],[35.6895,139.6917],[35.5018,138.7660],[36.2384,137.9690],[36.7330,138.4620],[36.7400,138.4150],[34.6660,135.5020],[35.0116,135.7681],[34.6660,135.5020],[34.8394,134.6939],[34.6851,135.1880],[34.6660,135.5020],[34.6654,135.4323],[34.6660,135.5020],[35.6896,139.7006]];
+const BASES=[{lat:35.6895,lng:139.6917,name:"Tokio",d:"D1–5, D17–23"},{lat:35.5018,lng:138.7660,name:"Fuji",d:"D6"},{lat:36.7418,lng:138.4123,name:"Yudanaka (Nagano)",d:"D7 · hotel reservado"},{lat:34.6660,lng:135.5020,name:"⭐ Osaka (HUB)",d:"D8–16 · base de daytrips"}];
+const EXC=[{lat:35.319,lng:139.547,n:"Kamakura"},{lat:35.6250,lng:139.2437,n:"Monte Takao (daytrip)"},{lat:36.2384,lng:137.9690,n:"Matsumoto"},{lat:36.7330,lng:138.4620,n:"Jigokudani (monos)"},{lat:36.5780,lng:136.6480,n:"Kanazawa (parada, ruta del norte)"},{lat:35.0696,lng:136.6847,n:"Nabana no Sato (opción)"},{lat:35.7060,lng:139.4010,n:"Showa Kinen (luces)"},{lat:35.0116,lng:135.7681,n:"Kioto (daytrip)"},{lat:34.8394,lng:134.6939,n:"Himeji (daytrip)"},{lat:34.6851,lng:135.1880,n:"Kobe (daytrip)"},{lat:34.7963,lng:135.2478,n:"Arima Onsen"},{lat:34.8896,lng:135.8076,n:"Uji (daytrip)"},{lat:35.1180,lng:135.7710,n:"Kurama/Kibune (daytrip)"},{lat:34.6654,lng:135.4323,n:"USJ"}];
+const ROUTE_SEQ=[[35.6895,139.6917],[35.319,139.547],[35.6895,139.6917],[35.5018,138.7660],[36.2384,137.9690],[36.7418,138.4123],[36.7330,138.4620],[36.5780,136.6480],[35.6450,136.0550],[34.6660,135.5020],[35.0116,135.7681],[34.6660,135.5020],[34.8394,134.6939],[34.6851,135.1880],[34.6660,135.5020],[34.6654,135.4323],[34.6660,135.5020],[35.6896,139.7006]];
 let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
@@ -1316,6 +1375,18 @@ let mapReady=false;
 document.getElementById('map-toggle').addEventListener('click',()=>{const c=document.getElementById('map-container');c.classList.toggle('open');document.getElementById('map-chevron').style.transform=c.classList.contains('open')?'rotate(180deg)':'';if(!mapReady){setTimeout(initMap,200);mapReady=true;}});
 document.getElementById('replay-btn').addEventListener('click',()=>{if(mapReady)animatePath();});
 
+// ===== INSTALAR COMO APP =====
+let installPrompt=null;
+const installBtn=document.getElementById('install-btn');
+if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone) installBtn.classList.add('hidden');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;});
+window.addEventListener('appinstalled',()=>installBtn.classList.add('hidden'));
+installBtn.addEventListener('click',async()=>{
+    if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;return;}
+    document.getElementById('install-help').classList.toggle('hidden');
+});
+
 </script>
+<script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
 </body>
 </html>
