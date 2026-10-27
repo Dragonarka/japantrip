@@ -42,8 +42,8 @@ const ALARMS=[
  {id:'torre',d:'2026-11-16',t:'16:00',dur:60,title:'🗼 Torre de Tokio al atardecer',where:'Tokyo Tower',a:[30],note:'Luego Keyakizaka y cena con AdeS cerca de Nogi.'},
  {id:'kabuki',d:'2026-11-17',t:'10:00',dur:30,title:'🎭 Comprar entrada de kabuki (un acto, mismo día)',where:'Kabuki-za, Ginza',a:[0],note:''},
  {id:'bday2',d:'2026-11-18',t:'00:00',dur:30,title:'🎂 Cumpleaños #2',where:'',a:[0],note:''},
- {id:'checkout-sumida',d:'2026-11-20',t:'09:30',dur:30,title:'🏠 Check-out en Sumida (límite 10:00)',where:'3-23-3 Honjo, Sumida, Tokyo',a:[30],note:'Línea Asakusa desde Honjo-azumabashi: Keisei a Narita (~1 h) o Keikyu a Haneda (~45 min).'},
- {id:'vuelo',d:'2026-11-20',t:'14:45',dur:60,title:'✈️ Vuelo Tokio → Colombia',where:'',a:[240,180],note:'Llegar al aeropuerto ~11:30. Llegada a Colombia 13:00 (hora local).'},
+ {id:'checkout-sumida',d:'2026-11-20',t:'09:30',dur:30,title:'🏠 Check-out en Sumida (límite 10:00)',where:'3-23-3 Honjo, Sumida, Tokyo',a:[30],note:'Keisei Access Express desde Honjo-azumabashi directo a Narita (~1 h).'},
+ {id:'vuelo',d:'2026-11-20',t:'14:45',dur:60,title:'✈️ Vuelo Narita → Colombia',where:'Narita Airport',a:[240,180],note:'Llegar al aeropuerto ~11:30. Llegada a Colombia 13:00 (hora local).'},
  {id:'takao',d:'2026-11-19',t:'08:00',dur:60,title:'🍁 Keio a Takao (momiji)',where:'Shinjuku Station',a:[30],note:''},
  // --- Noches: último tren (Uber/taxi solo como último recurso) ---
  {id:'ultimo-enoshima',d:'2026-11-02',t:'21:00',dur:30,title:'🚃 Salir de Enoshima/Kamakura de vuelta a Tokio',where:'Enoshima',a:[15],note:'Odakyu o JR; ~1 h a Shinjuku.'},

@@ -542,7 +542,7 @@ DTSTART:20261120T003000Z
 DTEND:20261120T010000Z
 SUMMARY:🏠 Check-out en Sumida (límite 10:00)
 LOCATION:3-23-3 Honjo\, Sumida\, Tokyo
-DESCRIPTION:Línea Asakusa desde Honjo-azumabashi: Keisei a Narita (~1 h) o Keikyu a Haneda (~45 min).
+DESCRIPTION:Keisei Access Express desde Honjo-azumabashi directo a Narita (~1 h).
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🏠 Check-out en Sumida (límite 10:00)
@@ -554,16 +554,17 @@ UID:vuelo@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261120T054500Z
 DTEND:20261120T064500Z
-SUMMARY:✈️ Vuelo Tokio → Colombia
+SUMMARY:✈️ Vuelo Narita → Colombia
+LOCATION:Narita Airport
 DESCRIPTION:Llegar al aeropuerto ~11:30. Llegada a Colombia 13:00 (hora local).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:✈️ Vuelo Tokio → Colombia
+DESCRIPTION:✈️ Vuelo Narita → Colombia
 TRIGGER:-PT240M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:✈️ Vuelo Tokio → Colombia
+DESCRIPTION:✈️ Vuelo Narita → Colombia
 TRIGGER:-PT180M
 END:VALARM
 END:VEVENT
