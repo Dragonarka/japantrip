@@ -833,11 +833,12 @@ const EFFORT_COLORS=['','#1A6B4A','#2471A3','#D4740E','#C0392B','#922B21'];
 function mainActs(d){return (d.acts||[]).filter(a=>a.t!=='transit');}
 
 // ===== AGENDA HORA POR HORA (datos en schedule-data.js) =====
+const durTxt=(a,b)=>{const m=t=>{const [h,mm]=t.split(':').map(Number);return h*60+mm;},d=m(b)-m(a);return d>=60?`${Math.floor(d/60)} h${d%60?' '+d%60+' min':''}`:`${d} min`;};
 const hhmm=t=>{const [h,m]=t.split(':').map(Number);return `${String(h%24).padStart(2,'0')}:${String(m).padStart(2,'0')}`;};
 function agendaItems(d){
     const day=(typeof SCHEDULE!=='undefined')?SCHEDULE[d.day]:null; if(!day)return [];
     return day.segs.map(s=>{
-        if(s.k==='move')return {s:hhmm(s.s),e:hhmm(s.e),icon:'🚆',t:`${PLACES[s.from].n} → ${PLACES[s.to].n}`,
+        if(s.k==='move')return {s:hhmm(s.s),e:hhmm(s.e),icon:'🚆',t:`${PLACES[s.from].n} → ${PLACES[s.to].n} (${durTxt(s.s,s.e)})`,
             sub:s.steps.map(([l,dir,off,exit])=>`${LINES[l].code} ${LINES[l].mode==='walk'?'a pie':'dir. '+dir} → ${off}${exit?' ('+exit+')':''}`).join(' · ')};
         return {s:hhmm(s.s),e:hhmm(s.e),icon:{act:'📍',free:'🧭',sleep:'😴'}[s.k],t:s.k==='free'?s.t:s.t,sub:s.p&&s.k!=='sleep'?PLACES[s.p].n:''};
     });

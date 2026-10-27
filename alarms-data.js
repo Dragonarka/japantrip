@@ -22,7 +22,7 @@ const ALARMS=[
  {id:'checkout-fuji',d:'2026-11-04',t:'08:15',dur:15,title:'🏠 Check-out de la villa (límite 10:00)',where:'Fujikawaguchiko',a:[0],note:'Bus a Kōfu 08:40.'},
  {id:'kofu',d:'2026-11-04',t:'08:40',dur:75,title:'🚌 Bus Kawaguchiko → Kōfu',where:'Kawaguchiko Station',a:[20],note:'Luego Azusa a Matsumoto y Shinano a Nagano.'},
  {id:'monos',d:'2026-11-05',t:'08:15',dur:150,title:'🐒 Bus + sendero a los monos (Jigokudani)',where:'Yudanaka Station',a:[30],note:'Antes: check-out (límite 11:00) y mochilas en la recepción. Abre 9:00. Volver ~10:45.'},
- {id:'tsuruga',d:'2026-11-05',t:'16:30',dur:150,title:'🚄 Kanazawa → Tsuruga → Osaka (Thunderbird)',where:'Kanazawa Station',a:[30],note:'Las maletas llegan al Airbnb 19–21 h.'},
+ {id:'tsuruga',d:'2026-11-05',t:'16:35',dur:150,title:'🚄 Kanazawa → Tsuruga → Osaka (Thunderbird)',where:'Kanazawa Station',a:[30],note:'Las maletas llegan al Airbnb 19–21 h.'},
  {id:'keihan',d:'2026-11-06',t:'05:10',dur:70,title:'⏰ Primer metro a Yodoyabashi → Keihan a Fushimi-Inari',where:'Namba Station (Midosuji)',a:[50,15],note:'Si no alcanzas el metro: taxi a Yodoyabashi (~10 min). Keihan directo a Fushimi-Inari (~50 min). Almuerzo en Nishiki con AdeS.'},
  {id:'te',d:'2026-11-06',t:'14:00',dur:120,title:'🍵 Ceremonia del té + kimono (reservado)',where:'Gion, Kyoto',a:[60,20],note:''},
  {id:'ultimo-kioto',d:'2026-11-06',t:'23:00',dur:30,title:'🚃 Salir de Pontocho: último tren a Osaka',where:'Gion-Shijo Station (Keihan)',a:[15,0],note:'Keihan a Yodoyabashi; el último metro a Namba sale ~24:00. Confirmar en Google Maps («último»). Taxi solo si se pierde.'},

@@ -67,3 +67,18 @@ export function stepAt(seg, min) {
 export function freeWindows(day) {
   return day.segs.filter(s => s.k === 'free' && s.eMin - s.sMin >= 20);
 }
+
+// Distancia aproximada por vía: línea recta × 1,2 (los rieles no van derecho).
+export function railKm(fromId, toId) {
+  const a = window.PLACES[fromId], b = window.PLACES[toId], R = 6371, r = x => (x * Math.PI) / 180;
+  const h = Math.sin(r(b.lat - a.lat) / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(r(b.lng - a.lng) / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h)) * 1.2;
+}
+
+export const dur = m => (m >= 60 ? `${Math.floor(m / 60)} h${m % 60 ? ` ${Math.round(m % 60)} min` : ''}` : `${Math.round(m)} min`);
+
+export function dayTransit(day) {
+  let min = 0, km = 0;
+  day.segs.forEach(s => { if (s.k === 'move') { min += s.eMin - s.sMin; km += railKm(s.from, s.to); } });
+  return { min, km };
+}

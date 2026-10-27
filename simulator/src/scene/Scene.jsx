@@ -1,12 +1,12 @@
 import { useMemo, useRef, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Sky, Stars, Line } from '@react-three/drei';
+import { OrbitControls, Sky, Stars, Line, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import Samurai from './Samurai';
 import Vehicle from './Vehicle';
 import Landmark from './Landmark';
 import { lerp3, seeded } from '../lib/layout';
-import { stepAt } from '../lib/schedule';
+import { stepAt, railKm, dur } from '../lib/schedule';
 
 // Noviembre en Tokio/Osaka: amanece ~6:05 y anochece ~16:50.
 const SUNRISE = 365, SUNSET = 1010;
@@ -66,10 +66,18 @@ function Decor({ pos }) {
 function Routes({ day, pos }) {
   return day.segs.filter(s => s.k === 'move' && s.from !== s.to).map((s, i) => {
     const main = s.steps.map(st => window.LINES[st[0]]).find(l => l.mode !== 'walk') || window.LINES.WALK;
-    const a = pos[s.from], b = pos[s.to];
+    const a = pos[s.from], b = pos[s.to], km = railKm(s.from, s.to);
     return (
-      <Line key={i} points={[[a[0], 0.12, a[2]], [b[0], 0.12, b[2]]]} color={main.c} lineWidth={main.mode === 'walk' ? 2 : 4}
-        dashed={main.mode === 'walk'} dashSize={0.6} gapSize={0.4} />
+      <group key={i}>
+        <Line points={[[a[0], 0.12, a[2]], [b[0], 0.12, b[2]]]} color={main.c} lineWidth={main.mode === 'walk' ? 2 : 4}
+          dashed={main.mode === 'walk'} dashSize={0.6} gapSize={0.4} />
+        {/* Los trayectos largos llevan su duración real: el mapa comprime la distancia, el reloj no. */}
+        {km >= 30 && (
+          <Html position={[(a[0] + b[0]) / 2, 0.5, (a[2] + b[2]) / 2]} center className="rlabel" zIndexRange={[5, 0]}>
+            {main.code} · {dur(s.eMin - s.sMin)} · ~{Math.round(km)} km
+          </Html>
+        )}
+      </group>
     );
   });
 }

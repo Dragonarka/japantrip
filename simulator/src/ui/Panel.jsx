@@ -1,4 +1,4 @@
-import { fmt, stepAt, freeWindows } from '../lib/schedule';
+import { fmt, stepAt, freeWindows, railKm, dur, dayTransit } from '../lib/schedule';
 
 // Letrero estilo estación japonesa: insignia de línea + dirección + dónde bajar + salida.
 export function StepSign({ step, active }) {
@@ -34,15 +34,23 @@ export default function Panel({ day, min, segIdx }) {
   const left = Math.max(0, Math.round(seg.eMin - min));
   const windows = freeWindows(day);
   const place = seg.p && window.PLACES[seg.p];
+  const transit = dayTransit(day);
 
   return (
     <div className="panel">
+      <div className="day-stats">🚆 Hoy en transporte: <b>{dur(transit.min)}</b> · ~{Math.round(transit.km)} km</div>
       <div className={`now k-${seg.k}`}>
         <div className="now-head"><span className="tag">AHORA</span><span className="range">{fmt(seg.sMin)}–{fmt(seg.eMin)} · quedan {left} min</span></div>
         <div className="now-title"><Title seg={seg} /></div>
         {place && seg.k !== 'sleep' && <div className="now-place">{place.n}</div>}
         {seg.k === 'free' && <div className="explore">🧭 Tienes <b>{left} min</b> libres para explorar alrededor de {place?.n}.</div>}
         {seg.tip && <div className="tip">💡 {seg.tip}</div>}
+        {seg.k === 'move' && (
+          <div className="trip">
+            <div>🕒 Trayecto de <b>{dur(seg.eMin - seg.sMin)}</b> · ~{Math.round(railKm(seg.from, seg.to))} km</div>
+            <div className="trip-bar"><div style={{ width: `${Math.min(100, ((min - seg.sMin) / (seg.eMin - seg.sMin)) * 100)}%` }} /></div>
+          </div>
+        )}
         {seg.k === 'move' && (
           <div className="steps">
             {seg.note && <div className="note">{seg.note}</div>}
