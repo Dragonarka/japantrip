@@ -48,36 +48,22 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:showa@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261029T071500Z
-DTEND:20261029T084500Z
-SUMMARY:🏮 Showa Kinen · Autumn Night Walk
-LOCATION:Showa Kinen Park\, Tachikawa
-DESCRIPTION:Opcional. Salir a las 17:45 hacia Haneda: JR Nambu a Kawasaki + Keikyu (~1 h 25).
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🏮 Showa Kinen · Autumn Night Walk
-TRIGGER:-PT60M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:grupo@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261029T110000Z
-DTEND:20261029T120000Z
-SUMMARY:👥 Recibir al grupo en Haneda T3 (llegadas)
-LOCATION:Haneda Airport Terminal 3
-DESCRIPTION:Vuelo CZ3085: sale de Guangzhou a las 15:00 hora de China (16:00 en Japón) y aterriza ~19:00–20:00 hora de Japón. Migración ~45 min. Luego Limousine Bus a Busta Shinjuku (¥1.400 c/u\, boletos en el mostrador de llegadas\; último ~22:00\, confirmar) y JR Chuo rápido (快速\, no 中央特快) a Nakano.
+DTSTART:20261029T121500Z
+DTEND:20261029T130000Z
+SUMMARY:👥 Recibir al grupo en Busta Shinjuku (4º piso)
+LOCATION:Busta Shinjuku\, 5-24-55 Sendagaya\, Shibuya\, Tokyo
+DESCRIPTION:Aterrizan en Haneda T3 ~19:00–20:00 hora de Japón (CZ3085) y toman el Limousine Bus a Busta Shinjuku (¥1.400 c/u\; último ~22:00). Que escriban al subirse: el bus tarda ~45 min. Luego JR Chuo rápido (快速\, no 中央特快) a Nakano.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:👥 Recibir al grupo en Haneda T3 (llegadas)
-TRIGGER:-PT120M
+DESCRIPTION:👥 Recibir al grupo en Busta Shinjuku (4º piso)
+TRIGGER:-PT60M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:👥 Recibir al grupo en Haneda T3 (llegadas)
-TRIGGER:-PT30M
+DESCRIPTION:👥 Recibir al grupo en Busta Shinjuku (4º piso)
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
