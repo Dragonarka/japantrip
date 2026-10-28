@@ -68,7 +68,7 @@ DTSTART:20261030T121500Z
 DTEND:20261030T131500Z
 SUMMARY:👥 Encuentro con el grupo en Shibuya
 LOCATION:Shibuya Station (Hachiko)
-DESCRIPTION:Aterrizan ~20:00 en Haneda T3 (CZ3085). Desde Asakusa: línea Ginza ~30 min.
+DESCRIPTION:Vuelo a las 15:00 hora de Guangzhou (16:00 en Japón)\; aterrizan ~19:00–20:00 hora de Japón en Haneda T3 (CZ3085). Desde Asakusa: línea Ginza ~30 min.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:👥 Encuentro con el grupo en Shibuya
@@ -139,29 +139,39 @@ END:VEVENT
 BEGIN:VEVENT
 UID:planets@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261031T000000Z
-DTEND:20261031T020000Z
-SUMMARY:🎮 teamLab Planets (confirmar hora de la reserva)
+DTSTART:20261030T230000Z
+DTEND:20261031T011500Z
+SUMMARY:🎮 teamLab Tokio (reservado: entrada 08:00–08:30)
 LOCATION:teamLab Planets Toyosu
-DESCRIPTION:Llevar ropa que se pueda remangar (hay agua). Después: almuerzo en Toyosu Senkyaku Banrai.
+DESCRIPTION:Salir de Nakano 07:05 (~50 min). Llevar ropa que se pueda remangar (hay agua). Después: brunch en Toyosu Senkyaku Banrai.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🎮 teamLab Planets (confirmar hora de la reserva)
+DESCRIPTION:🎮 teamLab Tokio (reservado: entrada 08:00–08:30)
+TRIGGER:-PT90M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎮 teamLab Tokio (reservado: entrada 08:00–08:30)
 TRIGGER:-PT60M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:samurai@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261101T003000Z
-DTEND:20261101T033000Z
-SUMMARY:🥋 Samurái + ninja (confirmar hora)
-LOCATION:Shinjuku\, Tokyo
-DESCRIPTION:Ajustar la hora cuando llegue la confirmación.
+DTSTART:20261106T050000Z
+DTEND:20261106T070000Z
+SUMMARY:🥋 Experiencia samurái (reservada)
+LOCATION:Kyoto
+DESCRIPTION:Después del almuerzo en Nishiki con AdeS. Luego Gion y Kōdai-ji iluminado.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🥋 Samurái + ninja (confirmar hora)
+DESCRIPTION:🥋 Experiencia samurái (reservada)
 TRIGGER:-PT60M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🥋 Experiencia samurái (reservada)
+TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -270,24 +280,6 @@ BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:⏰ Primer metro a Yodoyabashi → Keihan a Fushimi-Inari
 TRIGGER:-PT15M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:te@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261106T050000Z
-DTEND:20261106T070000Z
-SUMMARY:🍵 Ceremonia del té + kimono (reservado)
-LOCATION:Gion\, Kyoto
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🍵 Ceremonia del té + kimono (reservado)
-TRIGGER:-PT60M
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🍵 Ceremonia del té + kimono (reservado)
-TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -436,17 +428,17 @@ UID:biovortex@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261113T050000Z
 DTEND:20261113T060000Z
-SUMMARY:🎨 teamLab Biovortex (reservado 14:00–14:30)
+SUMMARY:🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)
 LOCATION:teamLab Biovortex Kyoto
 DESCRIPTION:A 8 min a pie de Kioto Estación.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🎨 teamLab Biovortex (reservado 14:00–14:30)
+DESCRIPTION:🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)
 TRIGGER:-PT60M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🎨 teamLab Biovortex (reservado 14:00–14:30)
+DESCRIPTION:🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)
 TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
@@ -706,7 +698,7 @@ DTSTART:20261031T195000Z
 DTEND:20261031T202000Z
 SUMMARY:🪩 Primer tren a casa (Halloween)
 LOCATION:Shibuya Station
-DESCRIPTION:Samurái a las 9:30: ducha y desayuno.
+DESCRIPTION:Mañana libre para dormir: Meiji Jingu ~12:45.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🪩 Primer tren a casa (Halloween)

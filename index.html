@@ -195,9 +195,19 @@
     <div class="bg-aka/10 border border-aka/30 rounded-xl p-4 mb-6 text-sm text-kuro/80">
         <b class="text-aka">📌 Esta es la versión definitiva (V6) — la pensada para empezar a reservar.</b> Reemplaza a v3/v4/v5. El gran cambio: <b>Osaka pasa a ser la base principal de Kansai (9 noches)</b> y desde ahí salimos a Kioto, Himeji, Kobe y Uji como <b>excursiones de un día sin mover maletas</b>. Guía de reservas (qué reservar y dónde) en la pestaña <b>🛏️ Hospedaje</b>.
     </div>
+    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm mb-6">
+        <h3 class="font-bold text-sm mb-1">📋 Copiar el itinerario</h3>
+        <p class="text-xs text-kuro/50 mb-3"><b>En texto</b> para el grupo de WhatsApp (día por día, hora por hora), o <b>en JSON</b> con todo el plan (días, recorridos, horarios, hospedajes, trayectos, alarmas, opciones, cruces con AdeS y preferencias del grupo) para pegarlo en Claude o ChatGPT desde el celular y preguntar detalles.</p>
+        <div class="flex flex-wrap gap-2">
+            <button id="plan-copy-text" type="button" class="bg-sumi text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-kuro">📝 Copiar itinerario (texto)</button>
+            <button id="plan-copy" type="button" class="bg-aka text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-aka/80">📋 Copiar plan completo (JSON)</button>
+            <button id="plan-download" type="button" class="bg-washi border border-haiiro text-xs font-bold px-3 py-2 rounded-lg hover:bg-haiiro">⬇️ Descargar .json</button>
+        </div>
+        <p id="plan-copy-status" class="text-[11px] text-kuro/50 mt-2"></p>
+    </div>
     <div class="bg-sumi text-white rounded-xl p-6 mb-6">
         <h2 class="font-jp font-bold text-xl text-kin mb-2">El viaje en una frase</h2>
-        <p class="text-sm text-white/80">5 amigos, 23 días con <b>Osaka como cuartel general</b>: daytrips a Kioto, Himeji, Kobe y Uji sin deshacer maletas. Vestir de samurái y entrenar como ninja, ceremonia del té, monos de nieve de Nagano, dos cumpleaños a lo japonés (8 y 18 nov), Osaka a fondo (Dotonbori, Kuromon, Umeda Sky, castillo, bar de cachetadas, batalla de baile, clase de cocina, sumo+chanko), la caminata ancestral de Kurama y un hilo de <b>sellos</b>. Coincidimos con el grupo AdeS varios días — es un <b>bonus</b>, no el eje.</p>
+        <p class="text-sm text-white/80">5 amigos, 23 días con <b>Osaka como cuartel general</b>: daytrips a Kioto, Himeji, Kobe y Uji sin deshacer maletas. experiencia samurái en Kioto, dos teamLab, monos de nieve de Nagano, dos cumpleaños a lo japonés (8 y 18 nov), Osaka a fondo (Dotonbori, Kuromon, Umeda Sky, castillo, bar de cachetadas, batalla de baile, clase de cocina, sumo+chanko), la caminata ancestral de Kurama y un hilo de <b>sellos</b>. Coincidimos con el grupo AdeS varios días — es un <b>bonus</b>, no el eje.</p>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 text-center">
             <div><p class="text-2xl font-black text-kin">23</p><p class="text-[11px] text-white/60">días</p></div>
             <div><p class="text-2xl font-black text-kin">9</p><p class="text-[11px] text-white/60">noches en Osaka ⭐</p></div>
@@ -209,15 +219,14 @@
         <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm">
             <h2 class="font-jp font-bold text-lg mb-3">🎌 Experiencias estrella</h2>
             <div class="space-y-1 text-sm text-kuro/80">
-                <p>🥋 Vestir samurái + entrenamiento ninja/espada (Tokio)</p>
+                <p>🥋 Experiencia samurái (Kioto, 6 nov 14:00)</p>
                 <p>🏎️ Tokyo Drift en JDM reales + 🗼 Torre de Tokio (Tokio)</p>
-                <p>🍵 Ceremonia del té + kimono (Kioto, daytrip)</p>
-                <p>🐒 Monos de nieve de Jigokudani (Nagano) · ♨️ Arima Onsen (Kobe)</p>
+                                <p>🐒 Monos de nieve de Jigokudani (Nagano) · ♨️ Arima Onsen (Kobe)</p>
                 <p>🥾 Kurama–Kibune + Kurama Onsen · 🍁 Monte Takao (momiji en pico)</p>
                 <p>🎭 Kabuki de un acto en Kabuki-za (Ginza)</p>
                 <p>🖐️ Bar de cachetadas · 🕺 batalla de baile · 🍳 clase de cocina (Osaka)</p>
                 <p>🤼 Sumo + chanko nabe · 🌆 Umeda Sky · 🦀 mercado Kuromon (Osaka)</p>
-                <p>🎮 teamLab <b>Planets</b> · 🎃 Halloween (Ikebukuro o Shibuya — en debate)</p>
+                <p>🎮 teamLab Tokio (31 oct 08:00) y Kioto (13 nov 14:00) · 🎃 Halloween (Ikebukuro o Shibuya — en debate)</p>
                 <p>🐋 Acuario Kaiyukan · 🏮 noches de luces (Showa Kinen, Senso-ji, Kōdai-ji, Midosuji, Roppongi, Marunouchi) · Nabana (opción)</p>
                 <p>🚄 Ruta del norte Nagano → Kanazawa → Osaka · 🍱 mercados (Toyosu, Nishiki, Kuromon, Kizu)</p>
                 <p>🎂 Cumpleaños #1 en Kioto (8 nov) y #2 en Tokio (18 nov)</p>
@@ -228,7 +237,7 @@
             <h2 class="font-jp font-bold text-lg mb-3">🏨 Bases · 5 amigos · 5 estadías reservadas</h2>
             <p class="text-xs text-kuro/50 mb-3">Para 5: Airbnb entero por base (suele ganar a hoteles). Detalle + barrio óptimo + guía de reserva en <b>🛏️ Hospedaje</b>.</p>
             <div class="space-y-2 text-sm">
-                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio · Nakano ✅ <span class="text-xs text-kuro/50">— 6 n (28 oct–3 nov) · in 15:00 / out 11:00</span> 🤝</p><p class="text-xs text-kuro/60">Para los 5. Llego el 28; el grupo el 30 a las 20:00 (Haneda). Techno, paracaidismo, Halloween, samurái, Kamakura.</p></div>
+                <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Tokio · Nakano ✅ <span class="text-xs text-kuro/50">— 6 n (28 oct–3 nov) · in 15:00 / out 11:00</span> 🤝</p><p class="text-xs text-kuro/60">Para los 5. Llego el 28; el grupo el 30 ~19:00–20:00 (Haneda). Techno, paracaidismo, teamLab, Halloween, Kamakura.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Fuji · villa ✅ <span class="text-xs text-kuro/50">— 1 n (3 nov) · in 16:00 / out 10:00</span> 🤝</p><p class="text-xs text-kuro/60">Ōishi, frente al lago y el Fuji.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3"><p class="font-bold">Nagano · Yamanouchi ✅ <span class="text-xs text-kuro/50">— 1 n (4 nov) · in 14:00 / out 11:00</span></p><p class="text-xs text-kuro/60">Hirao 3294, junto a la estación Yudanaka. Base de los monos.</p></div>
                 <div class="lodge-card bg-washi rounded-lg p-3" style="border-left-color:#C0392B;border-left-width:5px"><p class="font-bold text-aka">⭐ Osaka · Chuo-ku ✅ <span class="text-xs text-kuro/50">— 9 n (5–14 nov) · in 15:00 / out 11:00</span> 🤝</p><p class="text-xs text-kuro/60">Base de daytrips: Kioto ×2, Himeji, Kobe/Naruto, Kurama, Uji, USJ.</p></div>
@@ -326,15 +335,6 @@
             <p class="mt-1">Las horas están en hora de Japón: el teléfono las ajusta solo al llegar.</p>
         </details>
         <div id="alarms-list" class="divide-y divide-haiiro/60 text-sm max-h-96 overflow-y-auto"></div>
-    </div>
-    <div class="bg-white border border-haiiro rounded-xl p-5 shadow-sm mb-6">
-        <h3 class="font-bold text-sm mb-1">📋 Llevarme el plan a otro chat</h3>
-        <p class="text-xs text-kuro/50 mb-3">Copia todo el plan en JSON (días, recorridos, horarios, hospedajes, trayectos, alarmas, opciones, cruces con AdeS y preferencias del grupo) para pegarlo en Claude o ChatGPT desde el celular y preguntar detalles.</p>
-        <div class="flex flex-wrap gap-2">
-            <button id="plan-copy" type="button" class="bg-aka text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-aka/80">📋 Copiar plan completo (JSON)</button>
-            <button id="plan-download" type="button" class="bg-washi border border-haiiro text-xs font-bold px-3 py-2 rounded-lg hover:bg-haiiro">⬇️ Descargar .json</button>
-        </div>
-        <p id="plan-copy-status" class="text-[11px] text-kuro/50 mt-2"></p>
     </div>
     <h3 class="font-jp text-lg font-bold mb-3">🧭 Ir directo a</h3>
     <div class="flex flex-wrap gap-2">
@@ -690,20 +690,20 @@ am:"😴 Dormir después del techno. 🪂 ~12:00 paracaidismo indoor en FlyStati
 img:IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
 acts:[{n:"💃 Clase de baile (Session House o En Dance Studio)",t:"pop",roi:5},{n:"🪂 FlyStation (paracaidismo indoor)",t:"pop",roi:5},{n:"Shimokitazawa",lat:35.6616,lng:139.6680,t:"local",roi:4,w:"Shimokitazawa"},{n:"🏮 Showa Kinen Park · Autumn Night Walk",lat:35.7060,lng:139.4010,t:"night",roi:5,w:"Showa_Kinen_Park"},{n:"Omoide Yokocho",lat:35.6936,lng:139.6995,t:"local",roi:4}]},
 
-{day:2,date:"Oct 30",dow:"Vie",week:"w1",title:"Asakusa, Otaku y Sellos · 👥 llega el grupo (20:00)",loc:"Tokio·Asakusa→Akihabara",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:20,contempl:30,joint:true,stamps:true,jointText:"🤝 Hoy voy solo con AdeS (Tati y compañía): Senso-ji a las 16:50 y las proyecciones de las 18:00. Ellos suben al Skytree a las 18:54; yo salgo ~20:15 para encontrarme con mi grupo en Shibuya.",
-am:"🙋 Solo hasta la noche. Senso-ji + Nakamise. Compra el goshuincho y primer sello 🖊️.",pm:"Akihabara: Super Potato, arcades, eki stamps en estaciones. 🗼 16:00 Tokyo Skytree (hora fijada). ⚠️ Si las entradas del Skytree son para los 5, el grupo no llega a tiempo: cambiarlas a la etapa de Sumida (el Skytree queda a ~15 min a pie de Honjo).",night:"🏮 Proyecciones de Senso-ji con AdeS (18:00). 👥 El grupo aterriza en Haneda Terminal 3 ~20:00 (CZ3085 desde Guangzhou). ~21:15 encuentro en Shibuya (de Haneda: Keikyu + Yamanote, ~45 min; de Asakusa: línea Ginza, ~30 min). Cena juntos y a Nakano.",food:"Melon pan · Izakaya grupal",transport:"Metro",costT:600,costF:3500,
+{day:2,date:"Oct 30",dow:"Vie",week:"w1",title:"Asakusa, Otaku y Sellos · 👥 llega el grupo (~19:00–20:00)",loc:"Tokio·Asakusa→Akihabara",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:20,contempl:30,joint:true,stamps:true,jointText:"🤝 Hoy voy solo con AdeS (Tati y compañía): Senso-ji a las 16:50 y las proyecciones de las 18:00. Ellos suben al Skytree a las 18:54; yo salgo ~20:15 para encontrarme con mi grupo en Shibuya.",
+am:"🙋 Solo hasta la noche. Senso-ji + Nakamise. Compra el goshuincho y primer sello 🖊️.",pm:"Akihabara: Super Potato, arcades, eki stamps en estaciones. 🗼 16:00 Tokyo Skytree (hora fijada). ⚠️ Si las entradas del Skytree son para los 5, el grupo no llega a tiempo: cambiarlas a la etapa de Sumida (el Skytree queda a ~15 min a pie de Honjo).",night:"🏮 Proyecciones de Senso-ji con AdeS (18:00). 👥 El grupo sale de Guangzhou a las 15:00 hora de China (16:00 en Japón) y aterriza en Haneda Terminal 3 ~19:00–20:00 hora de Japón (CZ3085; el vuelo dura ~4 h y China va 1 h detrás de Japón). ~21:15 encuentro en Shibuya (de Haneda: Keikyu + Yamanote, ~45 min; de Asakusa: línea Ginza, ~30 min). Cena juntos y a Nakano.",food:"Melon pan · Izakaya grupal",transport:"Metro",costT:600,costF:3500,
 img:IMG+"4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg",
 acts:[{n:"Templo Senso-ji",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"},{n:"Tokyo Skytree (16:00)",lat:35.7101,lng:139.8107,t:"pop",roi:4,w:"Tokyo_Skytree"},{n:"🏮 Proyecciones en Senso-ji",lat:35.7146,lng:139.7966,t:"night",roi:5}]},
 
-{day:3,date:"Oct 31",dow:"Sáb",week:"w1",title:"teamLab Planets + Halloween 🎃 (Ikebukuro o Shibuya — en debate)",loc:"Tokio·Toyosu/Ikebukuro",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:25,joint:true,jointText:"🗳️ EN DEBATE: Shibuya el 31 se llena muchísimo y tiene restricciones (prohibido beber en la calle, cierres de calles y salidas de estación). AdeS va a Ikebukuro (Sunshine City), con el mismo ambiente de cosplay y menos gente. Propuesta: la tarde en Ikebukuro con ellos y, si hay ganas, pasar por Shibuya temprano solo a mirar.",
-am:"teamLab Planets (Toyosu) — caminar entre agua y luz. Reservar.",pm:"🍱 Almuerzo en Toyosu Senkyaku Banrai, el food hall estilo Edo junto al mercado de Toyosu (a 10 min de Planets): sushi, kaisen-don, wagyu y puestos para probar de todo. 🎃 Ikebukuro Halloween Cosplay Festival (31 oct, 10–18 h): desfile de cosplay por Sunshine 60-dori y la calle Animate + Gashapon Department Store (3.000+ máquinas). AdeS está ahí de 13:00 a 17:00.",night:"Opción A: cena e izakaya en Ikebukuro con AdeS. Opción B: pasar por Shibuya temprano (Hachiko, el cruce de noche). 🪩 NOCHE LARGA: discoteca hasta el primer tren (~5:00): Yonaguni Fiesta Halloween (reguetón y latino, Shibuya; boletos en yonagunifiesta.com), WOMB o TK Shibuya. En Shibuya la fiesta es en los clubs, no en la calle (prohibido beber afuera).",food:"Crepes · Street food",transport:"Yurikamome + Yamanote",costT:900,costF:3500,
+{day:3,date:"Oct 31",dow:"Sáb",week:"w1",title:"teamLab Tokio (08:00) + Halloween 🎃 (Ikebukuro o Shibuya — en debate)",loc:"Tokio·Toyosu/Ikebukuro",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:25,joint:true,jointText:"🗳️ EN DEBATE: Shibuya el 31 se llena muchísimo y tiene restricciones (prohibido beber en la calle, cierres de calles y salidas de estación). AdeS va a Ikebukuro (Sunshine City), con el mismo ambiente de cosplay y menos gente. Propuesta: la tarde en Ikebukuro con ellos y, si hay ganas, pasar por Shibuya temprano solo a mirar.",
+am:"🎮 RESERVADO: teamLab Tokio, entrada 08:00–08:30 (Planets, Toyosu: caminar entre agua y luz). ⏰ Salir de Nakano 07:05 (~50 min): Chuo-Sobu a Iidabashi + Yurakucho a Toyosu. Dentro ~2 h.",pm:"🍱 ~10:15 brunch en Toyosu Senkyaku Banrai, el food hall estilo Edo junto al mercado de Toyosu (a 10 min de Planets): sushi, kaisen-don, wagyu y puestos para probar de todo. 🎃 Ikebukuro Halloween Cosplay Festival (31 oct, 10–18 h): desfile de cosplay por Sunshine 60-dori y la calle Animate + Gashapon Department Store (3.000+ máquinas). AdeS está ahí de 13:00 a 17:00.",night:"Opción A: cena e izakaya en Ikebukuro con AdeS. Opción B: pasar por Shibuya temprano (Hachiko, el cruce de noche). 🪩 NOCHE LARGA: discoteca hasta el primer tren (~5:00): Yonaguni Fiesta Halloween (reguetón y latino, Shibuya; boletos en yonagunifiesta.com), WOMB o TK Shibuya. En Shibuya la fiesta es en los clubs, no en la calle (prohibido beber afuera).",food:"Crepes · Street food",transport:"Yurikamome + Yamanote",costT:900,costF:3500,
 img:IMG+"6/69/At_teamLab_Planets_%2848277793276%29.jpg/960px-At_teamLab_Planets_%2848277793276%29.jpg",
 acts:[{n:"teamLab Planets (Toyosu)",lat:35.6478,lng:139.7906,t:"pop",roi:5},{n:"🎃 Halloween en Ikebukuro (Sunshine City)",lat:35.7295,lng:139.7190,t:"night",roi:5},{n:"Gashapon Department Store",lat:35.7290,lng:139.7185,t:"pop",roi:4},{n:"Shibuya (opcional, temprano)",lat:35.6595,lng:139.7006,t:"night",roi:3,w:"Shibuya_Crossing"}]},
 
-{day:4,date:"Nov 1",dow:"Dom",week:"w1",title:"Samurái, Ninja y Tiendas",loc:"Tokio·Shinjuku/Harajuku",lodge:"Tokio",effort:3,luggage:false,laundry:true,transitMin:60,bufferP:20,contempl:30,joint:true,jointText:"🤝 AdeS (6 de 8) hace Palacio Imperial, Kabuki-za, Pokémon Center y Akihabara de 17:00 a 19:00. Sergio y Arley aterrizan en Narita a las 17:40 y van directo a Kinshicho. Cruce: Akihabara ~17:30 (de Harajuku son ~25 min) y cena juntos ~19:15.",
-am:"🥋 Vestir de samurái + entrenamiento ninja/espada (experiencia con instructor).",pm:"Meiji Jingu, Harajuku/Takeshita. 👟 Adidas Brand Flagship, Onitsuka Tiger, Pokémon Center.",night:"🤝 Cena con AdeS en Akihabara/Ueno (~19:15). Si no se dan las horas: 🍱 Shibuya Yokocho (Miyashita Park), un pasillo de puestos de comida regional de todo Japón, como un food hall, abierto hasta tarde.",food:"Ramen · Izakaya",transport:"Metro",costT:600,costF:3500,
+{day:4,date:"Nov 1",dow:"Dom",week:"w1",title:"Mañana de recuperación + Harajuku y Akihabara",loc:"Tokio·Harajuku/Akihabara",lodge:"Tokio",effort:3,luggage:false,laundry:true,transitMin:60,bufferP:20,contempl:30,joint:true,jointText:"🤝 AdeS (6 de 8) hace Palacio Imperial, Kabuki-za, Pokémon Center y Akihabara de 17:00 a 19:00. Sergio y Arley aterrizan en Narita a las 17:40 y van directo a Kinshicho. Cruce: Akihabara ~17:30 (de Harajuku son ~25 min) y cena juntos ~19:15.",
+am:"😴 Se vuelve en el primer tren después de Halloween: dormir hasta las 11:00, ducha y desayuno sin prisa (Nakano Broadway). La experiencia samurái pasó al 6 nov en Kioto.",pm:"~12:45 Meiji Jingu, Harajuku/Takeshita. 👟 Adidas Brand Flagship, Onitsuka Tiger, Pokémon Center.",night:"🤝 Cena con AdeS en Akihabara/Ueno (~19:15). Si no se dan las horas: 🍱 Shibuya Yokocho (Miyashita Park), un pasillo de puestos de comida regional de todo Japón, como un food hall, abierto hasta tarde.",food:"Ramen · Izakaya",transport:"Metro",costT:600,costF:3500,
 img:IMG+"a/a6/Samurai_on_horseback0.jpg/960px-Samurai_on_horseback0.jpg",
-acts:[{n:"Experiencia samurái (vestir)",lat:35.6954,lng:139.7026,t:"tradition",roi:5,w:"Samurai"},{n:"Entrenamiento ninja / espada",lat:35.6950,lng:139.7030,t:"tradition",roi:5,w:"Ninja"},{n:"Meiji Jingu",lat:35.6764,lng:139.6993,t:"tradition",roi:4,w:"Meiji_Shrine"},{n:"Harajuku y tiendas (Adidas/flagships)",lat:35.6700,lng:139.7028,t:"pop",roi:4}]},
+acts:[{n:"Meiji Jingu",lat:35.6764,lng:139.6993,t:"tradition",roi:4,w:"Meiji_Shrine"},{n:"Harajuku y tiendas (Adidas/flagships)",lat:35.6700,lng:139.7028,t:"pop",roi:4}]},
 
 {day:5,date:"Nov 2",dow:"Lun",week:"w1",title:"Gran Buda y el Mar",loc:"Tokio→Kamakura→Enoshima",lodge:"Tokio",effort:4,luggage:false,laundry:false,transitMin:180,bufferP:15,contempl:40,joint:true,jointText:"🤝 AdeS hace Tsukiji, Odaiba y Roppongi Hills (hasta 16:15). Después se dividen: Sergio, Arley, Pipe y Johan van al tour de Rápido y Furioso (Aomi, 17:30–21:30); Julián, Mafalda, Tati y Sebas suben a la Torre de Tokio y vuelven a Oshiage ~19:10. Cruce posible: cena con esos cuatro al volver de Kamakura (~20:00).",
 am:"Tren a Kamakura: Gran Buda (Kotoku-in), Hasedera.",pm:"Enoden a Enoshima, atardecer junto al mar.",night:"Regreso a Tokio. 🧳 Antes de dormir: maletas por Yamato desde un konbini de Nakano al Airbnb de Osaka, con fecha de entrega 5 nov, franja 19–21 h (~¥2.200 c/u desde Tokio). Del 3 al 5 viajamos solo con mochila.",food:"Shirasu-don",transport:"JR + Enoden Freepass",costT:1640,costF:3000,
@@ -725,10 +725,10 @@ am:"🧳 08:00 check-out (el límite es 11:00) y dejar las mochilas en la recepc
 img:IMG+"a/a8/Onsen_with_monkey_Jigokudani_b.jpg/960px-Onsen_with_monkey_Jigokudani_b.jpg",
 acts:[{n:"Monos de nieve (Jigokudani)",lat:36.7330,lng:138.4620,t:"nature",roi:5,w:"Jigokudani_Monkey_Park"},{n:"Mercado Ōmichō (Kanazawa)",lat:36.5713,lng:136.6566,t:"food",roi:5,w:"Ōmichō_Market"},{n:"Higashi Chaya (Kanazawa)",lat:36.5725,lng:136.6668,t:"history",roi:5,w:"Higashi_Chaya_District"},{n:"🏮 Midosuji Illumination",lat:34.6800,lng:135.5010,t:"night",roi:4},{n:"Dotonbori",lat:34.6687,lng:135.5010,t:"pop",roi:5,w:"Dōtonbori"}]},
 
-{day:9,date:"Nov 6",dow:"Vie",week:"w3",title:"Daytrip Kioto: Toriis, Té y Kimono",loc:"Osaka→Kioto (daytrip)",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:120,bufferP:20,contempl:45,joint:true,stamps:true,jointText:"🤝 AdeS hace Kiyomizu-dera al amanecer y Higashiyama de 9:30 a 13:00, Gion hasta las 16:00 y luego se muda a Osaka (recogen maletas a las 18:05). Cruce: Higashiyama a media mañana, 🍱 almuerzo juntos en el mercado Nishiki a las 12:00 y Gion a la 13:00, antes de nuestro té de las 14:00. De noche ya no están en Kioto.",
-am:"⏰ MADRUGÓN: 05:10 primer metro Midosuji de Namba a Yodoyabashi (3 paradas; si no alcanza, taxi ~10 min, ~¥1.500) → tren Keihan directo a Fushimi-Inari (~50 min; si es expreso, cambiar a local en Tambabashi). Llegada ~6:15–6:30, antes de las multitudes. Senbon Torii + sellos 🖊️. Luego Kiyomizu-dera y Higashiyama.",pm:"🍱 12:00 almuerzo en el mercado Nishiki, la «cocina de Kioto»: brochetas de mariscos, tamagoyaki, mochi y encurtidos (con AdeS). 🍵 RESERVADO 14:00: Ceremonia del té + alquiler de kimono por Gion.",night:"🏮 Kōdai-ji light-up (desde las 17:00, ~¥800, a 10 min a pie de Gion): bambú y jardín zen iluminados, todavía con el kimono puesto. Luego cena en Pontocho. Regreso: Keihan desde Gion-Shijo (al lado de Pontocho) a Yodoyabashi y metro a Namba. ⏰ Salir de Pontocho ~23:00: el último metro de Yodoyabashi sale ~24:00 (si se pierde: taxi ~¥1.500).",food:"Yudofu · Matcha",transport:"Metro Midosuji + Keihan (daytrip)",costT:1200,costF:4000,
+{day:9,date:"Nov 6",dow:"Vie",week:"w3",title:"Daytrip Kioto: Toriis y Samurái 🥋",loc:"Osaka→Kioto (daytrip)",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:120,bufferP:20,contempl:45,joint:true,stamps:true,jointText:"🤝 AdeS hace Kiyomizu-dera al amanecer y Higashiyama de 9:30 a 13:00, Gion hasta las 16:00 y luego se muda a Osaka (recogen maletas a las 18:05). Cruce: Higashiyama a media mañana, 🍱 almuerzo juntos en el mercado Nishiki a las 12:00 y un paseo corto antes de nuestra experiencia samurái de las 14:00. De noche ya no están en Kioto.",
+am:"⏰ MADRUGÓN: 05:10 primer metro Midosuji de Namba a Yodoyabashi (3 paradas; si no alcanza, taxi ~10 min, ~¥1.500) → tren Keihan directo a Fushimi-Inari (~50 min; si es expreso, cambiar a local en Tambabashi). Llegada ~6:15–6:30, antes de las multitudes. Senbon Torii + sellos 🖊️. Luego Kiyomizu-dera y Higashiyama.",pm:"🍱 12:00 almuerzo en el mercado Nishiki, la «cocina de Kioto»: brochetas de mariscos, tamagoyaki, mochi y encurtidos (con AdeS). 🥋 RESERVADO 14:00: experiencia samurái (~2 h). Luego Gion y Hanamikoji.",night:"🏮 Kōdai-ji light-up (desde las 17:00, ~¥800, a 10 min a pie de Gion): bambú y jardín zen iluminados, con la última luz del día. Luego cena en Pontocho. Regreso: Keihan desde Gion-Shijo (al lado de Pontocho) a Yodoyabashi y metro a Namba. ⏰ Salir de Pontocho ~23:00: el último metro de Yodoyabashi sale ~24:00 (si se pierde: taxi ~¥1.500).",food:"Yudofu · Matcha",transport:"Metro Midosuji + Keihan (daytrip)",costT:1200,costF:4000,
 img:IMG+"0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
-acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Templo Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomizu-dera"},{n:"Ceremonia del té + kimono",lat:35.0036,lng:135.7788,t:"tradition",roi:5},{n:"Gion y Yasaka",lat:35.0036,lng:135.7755,t:"tradition",roi:5,w:"Gion"},{n:"🏮 Kōdai-ji iluminado",lat:35.0006,lng:135.7808,t:"night",roi:5,w:"Kōdai-ji"}]},
+acts:[{n:"Fushimi Inari Taisha",lat:34.9671,lng:135.7727,t:"tradition",roi:5,w:"Fushimi_Inari-taisha"},{n:"Templo Kiyomizu-dera",lat:34.9949,lng:135.7850,t:"tradition",roi:5,w:"Kiyomizu-dera"},{n:"Experiencia samurái (vestir)",lat:35.0045,lng:135.7690,t:"tradition",roi:5,w:"Samurai"},{n:"Gion y Yasaka",lat:35.0036,lng:135.7755,t:"tradition",roi:5,w:"Gion"},{n:"🏮 Kōdai-ji iluminado",lat:35.0006,lng:135.7808,t:"night",roi:5,w:"Kōdai-ji"}]},
 
 {day:10,date:"Nov 7",dow:"Sáb",week:"w3",title:"Himeji + 🕺 Noche de Baile (sábado)",loc:"Osaka→Himeji + Amerikamura",lodge:"Osaka",effort:3,luggage:false,laundry:true,transitMin:120,bufferP:20,contempl:35,joint:true,jointText:"🤝 AdeS pasa el día en Osaka: Kuromon, Den Den Town, Shitennō-ji, Tennoji, Abeno Harukas y Shinsekai hasta las 19:00. Invitarlos a la noche de baile en Amerikamura (~20:00, a 15 min de Shinsekai).",stamps:true,
 am:"Shinkansen a Himeji (~30–60 min): el castillo blanco, el más bello y mejor conservado de Japón (UNESCO) + sellos 🖊️.",pm:"Jardín Koko-en junto al castillo; regreso a Osaka.",night:"🤝 Con AdeS: 🕺 ¡noche de baile! Sábado = máximo ambiente: bailarines en Amerikamura (Triangle Park) y battles en OCAT Ponte Plaza (junto a Namba, techado). 🪩 Y después, discoteca hasta el primer tren: Giraffe Osaka (house/disco) o Joule (gran club), en Shinsaibashi/Amerikamura, a pie del Airbnb. (Mañana es el cumpleaños: el 8 arranca ~9:00 en Arashiyama.)",food:"Anago-don · Street food",transport:"Shinkansen/JR (daytrip)",costT:3000,costF:4000,
@@ -759,7 +759,7 @@ img:IMG+"b/b3/Super_Nintendo_World_Entrance_5th_Anniversary_decoration_at_Univer
 acts:[{n:"Universal Studios Japan",lat:34.6654,lng:135.4323,t:"pop",roi:5,w:"Universal_Studios_Japan"}]},
 
 {day:16,date:"Nov 13",dow:"Vie",week:"w3",title:"Uji (Matcha) + teamLab Biovortex + Spa",loc:"Osaka→Uji→Kioto Estación + Osaka·Spa",lodge:"Osaka",effort:3,luggage:false,laundry:true,transitMin:120,bufferP:30,contempl:40,joint:false,stamps:true,
-am:"Daytrip a Uji (~40 min, sale de Kioto Estación): Byōdō-in (el templo del Fénix, el de la moneda de ¥10) + sellos 🖊️. Capital del matcha: cata, calle Omotesando, helado y cha-soba.",pm:"De regreso, parada en Kioto Estación: 🎨 RESERVAR 14:00–14:30: teamLab Biovortex (~1h, a 8 min a pie de la estación).",night:"Elige: ♨️ Spa World y despedida de Kansai en Ura-Namba — o 🏮 OPCIÓN Nabana no Sato: después de teamLab, Shinkansen Kioto→Nagoya (35 min) + bus a Nabana (~30 min); luces desde ~17:00 y vuelta en Kintetsu Nagoya→Osaka-Namba (~2 h), ~¥10.000 extra de trenes. 🪩 Viernes: discoteca hasta el primer tren (Circus para techno, Joule para gran club). 🧳 En la mañana: maletas por Yamato del Airbnb de Osaka a Sumida, con entrega el 14 nov entre 20 y 21 h (llegamos ~20:15 después del drift). Mañana check-out a las 11:00 y Shinkansen a las 9:00, solo con mochila. Mañana se duerme en el Shinkansen.",food:"Matcha · Cha-soba · Okonomiyaki",transport:"JR Nara line + metro",costT:1500,costF:4500,
+am:"Daytrip a Uji (~40 min, sale de Kioto Estación): Byōdō-in (el templo del Fénix, el de la moneda de ¥10) + sellos 🖊️. Capital del matcha: cata, calle Omotesando, helado y cha-soba.",pm:"De regreso, parada en Kioto Estación: 🎨 RESERVADO, entrada 14:00–14:30: teamLab Kioto · Biovortex (~1h, a 8 min a pie de la estación).",night:"Elige: ♨️ Spa World y despedida de Kansai en Ura-Namba — o 🏮 OPCIÓN Nabana no Sato: después de teamLab, Shinkansen Kioto→Nagoya (35 min) + bus a Nabana (~30 min); luces desde ~17:00 y vuelta en Kintetsu Nagoya→Osaka-Namba (~2 h), ~¥10.000 extra de trenes. 🪩 Viernes: discoteca hasta el primer tren (Circus para techno, Joule para gran club). 🧳 En la mañana: maletas por Yamato del Airbnb de Osaka a Sumida, con entrega el 14 nov entre 20 y 21 h (llegamos ~20:15 después del drift). Mañana check-out a las 11:00 y Shinkansen a las 9:00, solo con mochila. Mañana se duerme en el Shinkansen.",food:"Matcha · Cha-soba · Okonomiyaki",transport:"JR Nara line + metro",costT:1500,costF:4500,
 img:IMG+"6/69/Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg/960px-Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg",
 acts:[{n:"Byōdō-in (Uji)",lat:34.8896,lng:135.8076,t:"tradition",roi:5,w:"By%C5%8Dd%C5%8D-in"},{n:"Uji (matcha)",lat:34.8914,lng:135.8072,t:"food",roi:5},{n:"teamLab Biovortex (Kioto)",lat:34.9875,lng:135.7595,t:"pop",roi:5},{n:"Spa World (onsen)",lat:34.6492,lng:135.5063,t:"onsen",roi:4},{n:"🏮 Nabana no Sato (opción)",lat:35.0696,lng:136.6847,t:"night",roi:5}]},
 
@@ -848,6 +848,27 @@ function agendaHtml(d){
     return `<details class="mb-4 bg-washi border border-haiiro rounded-lg px-3 py-2"><summary class="cursor-pointer text-xs font-bold text-kuro/60">🕒 Agenda hora por hora (${items.length} bloques) · <a href="#" onclick="event.preventDefault();openSim(${d.day})" class="text-aka">🎮 ver este día en la simulación</a></summary>
         <ul class="mt-2 space-y-1">${items.map(i=>`<li class="flex gap-2 text-xs"><span class="shrink-0 w-24 font-bold text-kuro/60 tabular-nums">${i.s}–${i.e}</span><span>${i.icon} <b class="text-kuro/80">${i.t}</b>${i.sub?`<br><span class="text-kuro/50">${i.sub}</span>`:''}</span></li>`).join('')}</ul></details>`;
 }
+// Alarmas de un día (alarms-data.js), con botón para agregarlas al calendario.
+const dayIso=d=>new Date(Date.UTC(2026,9,28+d.day)).toISOString().slice(0,10);
+const dayAlarms=d=>(typeof ALARMS!=='undefined'?ALARMS:[]).filter(e=>e.d===dayIso(d)).sort((a,b)=>a.t.localeCompare(b.t));
+function downloadICS(list,name){
+    const url=URL.createObjectURL(new Blob([buildICS(list)],{type:'text/calendar'}));
+    const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function alarmICS(id){const e=ALARMS.find(x=>x.id===id);downloadICS([e],`alarma-${e.d}-${id}.ics`);}
+function dayICS(iso){downloadICS(ALARMS.filter(e=>e.d===iso),`alarmas-${iso}.ics`);}
+function dayAlarmsHtml(d){
+    const list=dayAlarms(d); if(!list.length)return '';
+    return `<div class="mb-4 bg-aka/5 border border-aka/20 rounded-lg px-3 py-2">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-1"><p class="text-xs font-bold text-aka uppercase tracking-wide">⏰ Alarmas del día (${list.length})</p>
+        <button type="button" onclick="dayICS('${dayIso(d)}')" class="text-[11px] font-bold bg-aka text-white rounded-lg px-2 py-1 hover:bg-aka/80">📅 ${list.length>1?`Agregar las ${list.length} al calendario`:'Agregar al calendario'}</button></div>
+        <ul class="divide-y divide-aka/10">${list.map(e=>`<li class="flex items-start gap-2 py-1.5 text-xs">
+            <b class="shrink-0 w-11 text-aka tabular-nums">${e.t}</b>
+            <span class="flex-1 min-w-0"><b class="text-kuro/85">${e.title}</b>${e.note?`<br><span class="text-kuro/55">${e.note}</span>`:''}<br><span class="text-[10px] text-kuro/40">🔔 ${e.a.map(m=>m?m+' min antes':'a la hora').join(' · ')}</span></span>
+            <span class="shrink-0 flex gap-1"><button type="button" onclick="alarmICS('${e.id}')" title="Agregar a mi calendario (iPhone / Outlook, con aviso)" class="font-bold border border-haiiro bg-white rounded-lg px-2 py-1 hover:border-aka hover:text-aka">📅</button><a href="${gcalLink(e)}" target="_blank" rel="noopener" title="Agregar a Google Calendar" class="font-bold border border-haiiro bg-white rounded-lg px-2 py-1 hover:border-aka hover:text-aka">G+</a></span>
+        </li>`).join('')}</ul></div>`;
+}
 let simDay=null;
 function openSim(day){
     if(day!==undefined&&day!==null){simDay=day;document.querySelector('nav [data-week="sim"]').click();return;}
@@ -859,7 +880,7 @@ function openSim(day){
 
 function renderWeek(wk){
     const el=document.getElementById(wk);
-    const meta={w1:{t:'Semana 1 · Tokio',d:'28 oct – 2 nov. Llego el 28 a Nakano; el grupo el 30 a las 20:00 (vuelo retrasado). Techno, paracaidismo, luces de Showa Kinen, Halloween, samurái/ninja, Kamakura.'},
+    const meta={w1:{t:'Semana 1 · Tokio',d:'28 oct – 2 nov. Llego el 28 a Nakano; el grupo el 30 ~19:00–20:00 (vuelo retrasado). Techno, paracaidismo, luces de Showa Kinen, teamLab, Halloween, Kamakura.'},
         w2:{t:'Semana 2 · Fuji & Alpes',d:'3 – 4 nov. Villa frente al Fuji y ruta escénica por los Alpes (Matsumoto) hasta el hotel de Yudanaka. Las maletas viajan solas a Osaka por Yamato.'},
         w3:{t:'Semana 3 · Osaka Hub & Daytrips ⭐',d:'5 – 13 nov. Monos de nieve y ruta del norte por Kanazawa hasta Osaka. Base 9 noches: daytrips a Kioto ×2, Himeji, Kobe+Arima, Kurama (caminata 🥾), Uji, USJ, sumo+chanko, acuario Kaiyukan 🐋, cumpleaños #1 y Nabana como opción. Sin mover maletas.'},
         w4:{t:'Semana 4 · Tokio Final',d:'14 – 20 nov. Shinkansen a Tokio, Shichi-Go-San, Torre de Tokio + Tokyo Drift 🏎️, kabuki, compras, cumpleaños #2 y momiji en pico en el Monte Takao.'}}[wk];
@@ -889,7 +910,7 @@ function renderWeek(wk){
                 <div class="flex items-center justify-between p-4">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="shrink-0 text-center"><div class="w-11 h-11 rounded-lg ${d.bday?'bg-aka/15 text-aka':(d.joint?'bg-midori/15 text-midori':'bg-aka/10 text-aka')} font-bold flex items-center justify-center text-sm">D${d.day}</div><p class="text-[10px] text-kuro/40 mt-0.5 font-bold">${d.dow} ${d.date}</p></div>
-                        <div class="min-w-0"><div class="flex flex-wrap items-center gap-2"><h3 class="font-bold text-sm md:text-base">${d.title}</h3>${bd}${sb}${lug}${lb}</div>
+                        <div class="min-w-0"><div class="flex flex-wrap items-center gap-2"><h3 class="font-bold text-sm md:text-base">${d.title}</h3>${bd}${sb}${lug}${lb}${dayAlarms(d).length?`<span class="text-[10px] font-bold text-aka border border-aka/30 rounded-full px-1.5">⏰ ${dayAlarms(d).length}</span>`:''}</div>
                         <p class="text-xs text-kuro/50">📍 ${d.loc}</p>
                         <div class="flex items-center gap-2 mt-1"><div class="effort-bar"><div class="effort-fill" style="width:${ef*20}%;background:${EFFORT_COLORS[ef]}"></div></div><span class="text-[10px] text-kuro/50">${EFFORT_LABELS[ef]} · ${dens} act</span></div></div>
                     </div>
@@ -902,6 +923,7 @@ function renderWeek(wk){
                 ${hasPts?`<div class="mb-5"><div class="flex items-baseline justify-between flex-wrap gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">🗺️ Desplazamientos del día</p><p id="mapinfo-${d.day}" class="text-[11px] text-kuro/50"></p></div><div id="minimap-${d.day}" class="minimap"></div><p class="text-[10px] text-kuro/35 mt-1">🏨 = tu zona-hotel recomendada · línea sólida = recorrido · punteada = regreso</p></div>`:''}
                 ${NEAR[d.day]?`<p class="text-xs text-kuro/50 mb-4">🧭 <b class="text-kuro/40 uppercase text-[10px]">Si sobra tiempo (cerca)</b> · ${NEAR[d.day]}</p>`:''}
                 ${dayReelsBox(d)}
+                ${dayAlarmsHtml(d)}
                 ${agendaHtml(d)}
                 <div class="grid md:grid-cols-2 gap-5">
                     <div class="space-y-3">
@@ -927,11 +949,11 @@ function renderWeek(wk){
 
 // ===== EXPERIENCIAS =====
 const EXP=[
- {img:POI_IMG["Experiencia samurái (vestir)"],t:"🥋 Vestir de Samurái",d:"Ponerte la armadura/kimono de samurái y posar/aprender posturas con instructor (Tokio). ~60–90 min.",c:8000,day:"D4 · 1 nov"},
- {img:POI_IMG["Entrenamiento ninja / espada"],t:"🥷 Entrenamiento Ninja / Espada",d:"Lanzar shuriken, manejo básico de katana y sigilo en un dojo. Ideal para el grupo.",c:6000,day:"D4 · 1 nov"},
- {img:POI_IMG["Ceremonia del té + kimono"],t:"🍵 Ceremonia del Té + Kimono",d:"Sesión de chanoyu con anfitrión y alquiler de kimono para recorrer Higashiyama (Kioto).",c:5000,day:"D9 · 6 nov"},
+ {img:POI_IMG["Experiencia samurái (vestir)"],t:"🥋 Experiencia samurái",d:"Ponerte la armadura/kimono de samurái y aprender posturas con instructor (Kioto). Reservada 14:00, ~2 h.",c:8000,day:"D9 · 6 nov 14:00"},
+ {img:POI_IMG["Entrenamiento ninja / espada"],t:"🥷 Entrenamiento Ninja / Espada",d:"Lanzar shuriken, manejo básico de katana y sigilo en un dojo. Ideal para el grupo.",c:6000,day:"Si la experiencia del 6 nov lo incluye"},
+ {img:POI_IMG["Ceremonia del té + kimono"],t:"🍵 Ceremonia del Té + Kimono",d:"Sesión de chanoyu con anfitrión y alquiler de kimono para recorrer Higashiyama (Kioto).",c:5000,day:"Opcional (sin reserva)"},
  {img:POI_IMG["Monos de nieve (Jigokudani)"],t:"🐒 Monos de Nieve (Jigokudani)",d:"Ver macacos bañándose en el onsen natural de Nagano. Snow Monkey Pass + ~30 min de sendero.",c:3500,day:"D7 · 4 nov"},
- {img:POI_IMG["teamLab Planets"],t:"🎮 teamLab Planets",d:"Museo de arte digital donde caminas descalzo entre agua y luz (Toyosu). Reservar fecha/hora.",c:3800,day:"D3 · 31 oct"},
+ {img:POI_IMG["teamLab Planets"],t:"🎮 teamLab Planets",d:"Museo de arte digital donde caminas descalzo entre agua y luz (Toyosu). Reservado: entrada 08:00–08:30.",c:3800,day:"D3 · 31 oct 08:00"},
  {img:POI_IMG["Halloween en Shibuya"],t:"🎃 Halloween en Shibuya",d:"La noche de disfraces más famosa de Japón en el cruce de Shibuya. Gratis (consumo aparte).",c:0,day:"D3 · 31 oct"},
  {img:POI_IMG["Shichi-Go-San (santuarios)"],t:"🎌 Festival Shichi-Go-San",d:"15 nov: familias llevan a los niños en kimono a los santuarios. Espectáculo cultural gratis de presenciar.",c:0,day:"D18 · 15 nov"},
  {img:POI_IMG["🎂 Cena con maiko (Gion)"],t:"🎂 Cumpleaños #1 · Maiko & Sake",d:"Cata de sake en Fushimi + cena con espectáculo de maiko en Gion. Celebración inmersiva (8 nov).",c:9000,day:"D11 · 8 nov"},
@@ -947,7 +969,7 @@ const EXP=[
  {img:POI_IMG["Castillo de Himeji"],t:"🏯 Castillo de Himeji (daytrip)",d:"El castillo feudal más bello y mejor conservado de Japón (UNESCO), a 30 min en shinkansen desde Osaka. Entrada ~¥1.000.",c:1000,day:"D10 · 7 nov"},
  {img:POI_IMG["Kobe (puerto y wagyu)"],t:"🥩 Kobe: Wagyu + Puerto (daytrip)",d:"Día propio en Kobe (~25 min): Kitano, barrio chino de Nankinmachi, teleférico Nunobiki y cena del legendario wagyu A5 a la teppanyaki. La experiencia gastronómica de Kansai.",c:8000,day:"D12 · 9 nov"},
  {img:POI_IMG["Byōdō-in (Uji)"],t:"🍵 Uji: Matcha & Byōdō-in (daytrip)",d:"La capital del té verde (~40 min): Byōdō-in (templo del Fénix, el de la moneda de ¥10), cata de matcha, helado y cha-soba. Día contemplativo y relajado.",c:1500,day:"D16 · 13 nov"},
- {img:POI_IMG["teamLab Biovortex (Kioto)"],t:"🎨 teamLab Biovortex (Kioto)",d:"Instalación inmersiva de teamLab a 8 min a pie de Kioto Estación — distinta de Planets (Tokio). Reservar entrada con horario; ~1h de recorrido. Encaja de camino a/desde Uji.",c:4800,day:"D16 · 13 nov"},
+ {img:POI_IMG["teamLab Biovortex (Kioto)"],t:"🎨 teamLab Biovortex (Kioto)",d:"Instalación inmersiva de teamLab a 8 min a pie de Kioto Estación — distinta de Planets (Tokio). Reservado: entrada 14:00–14:30; ~1 h de recorrido. Encaja de camino desde Uji.",c:4800,day:"D16 · 13 nov 14:00"},
  {img:POI_IMG["🤼 Sumo Show (Shinjuku)"],t:"🤼 Sumo Show (Shinjuku Sumo Club)",d:"Show de 1h30 con luchadores profesionales en Ōkubo (Shinjuku): demo en vivo, charla de historia/cultura, foto con los luchadores y sorteo para subir al ring (6 cupos). No es un torneo real — show + experiencia. ✅ Reservado 17:30–19:00.",c:9800,day:"D18 · dom 15 nov"},
  {img:POI_IMG["🏎️ Tokyo Drift (JDM ride-along)"],t:"🏎️ Tokyo Drift (JDM ride-along)",d:"Tour nocturno de 3h como copiloto en JDM reales (Skyline R34, RX-7, S15): Rainbow Bridge, Daikoku PA y la Torre de Tokio iluminada. Con piloto profesional — la licencia colombiana NO sirve para conducir en Japón (convenio 1949), por eso ride-along. 2 coches para 5. ✅ Reservado — sábado puede llevar recargo de fin de semana, confirmar con el operador.",c:25000,day:"D17 · sáb 14 nov"},
  {img:POI_IMG["Arima Onsen (Kin no Yu / Gin no Yu)"],t:"♨️ Arima Onsen (tattoo-friendly)",d:"Uno de los onsen más antiguos de Japón, a ~35 min de Kobe: Kin no Yu (agua dorada ferrosa) y Gin no Yu (plateada carbonatada) — ambos municipales y tattoo-friendly (combo ¥1.200). Evitar Taiko no Yu con tatuajes.",c:1200,day:"D12 · 9 nov"},
@@ -989,7 +1011,7 @@ function renderPlanB(){
 }
 
 const TRANSPORT_LINES=[["Narita/Haneda→Shinjuku","N'EX",3250],["Kamakura/Enoshima","Freepass",1640],["Tokio→Kawaguchiko","Tren Azusa+Fujikyu",3600],["Fuji→Matsumoto→Yudanaka","Tren+bus",6500],["🧳 Yamato maletas Tokio→Osaka","TA-Q-BIN",2200],["Snow Monkey Pass","Nagaden",3500],["Nagano→Kanazawa→Osaka","Hokuriku Shinkansen + Thunderbird",19500],["Daytrips Osaka↔Kioto ×2","JR/Keihan",2500],["Daytrip Osaka↔Himeji","Shinkansen/JR",3000],["Daytrip Osaka↔Kobe + bus a Awaji","JR + bus",2400],["Daytrip Osaka↔Uji","JR",1200],["Daytrip Osaka↔Kurama","Keihan+Eizan",1900],["Osaka↔USJ r/t","JR",400],["Osaka→Tokio","Shinkansen",14500],["Metro/IC 23d","ICOCA/Suica",12000],["Honjo-azumabashi→Narita","Keisei Access Express",1400]];
-const ACT_LINES=[["teamLab Planets",3800],["🥋 Samurái + 🥷 Ninja",14000],["🍵 Ceremonia del té + kimono",5000],["🐒 Snow Monkey (entrada)",800],["🏯 Himeji + 🥩 Kobe wagyu",9000],["🍳 Clase de cocina",7000],["🤼 Sumo + chanko (Osaka)",8000],["🖐️ Cachetadas + 🌆 Umeda Sky",3000],["USJ + Express",20600],["Templos Kioto + Himeji",4500],["🖊️ Goshuincho + sellos",3000],["🎂 Cumpleaños #1 (maiko/sake)",9000],["🎂 Cumpleaños #2 (sushi/wagyu/karaoke)",11000],["🏯 Castillo de Osaka",600],["🥾 Kurama-dera + Kurama Onsen",1600],["♨️ Spa World (onsen)",1500],["🏎️ Tokyo Drift (ride-along, 2 coches/5)",25000],["🗼 Torre de Tokio (main deck)",1500],["🍁 Takao: funicular + onsen",1600],["🎭 Kabuki un acto",1500],["♨️ Arima Onsen (combo 2 baños)",1200],["🎨 teamLab Biovortex (Kioto)",4800],["🐋 Acuario Kaiyukan + noria",4000],["🍥 Villa de Naruto (Nijigen no Mori)",4500],["🪩 Discotecas (4 noches, entrada)",14000],["🤼 Sumo Show (Shinjuku)",9800]];
+const ACT_LINES=[["teamLab Planets",3800],["🥋 Samurái + 🥷 Ninja",14000],["🐒 Snow Monkey (entrada)",800],["🏯 Himeji + 🥩 Kobe wagyu",9000],["🍳 Clase de cocina",7000],["🤼 Sumo + chanko (Osaka)",8000],["🖐️ Cachetadas + 🌆 Umeda Sky",3000],["USJ + Express",20600],["Templos Kioto + Himeji",4500],["🖊️ Goshuincho + sellos",3000],["🎂 Cumpleaños #1 (maiko/sake)",9000],["🎂 Cumpleaños #2 (sushi/wagyu/karaoke)",11000],["🏯 Castillo de Osaka",600],["🥾 Kurama-dera + Kurama Onsen",1600],["♨️ Spa World (onsen)",1500],["🏎️ Tokyo Drift (ride-along, 2 coches/5)",25000],["🗼 Torre de Tokio (main deck)",1500],["🍁 Takao: funicular + onsen",1600],["🎭 Kabuki un acto",1500],["♨️ Arima Onsen (combo 2 baños)",1200],["🎨 teamLab Biovortex (Kioto)",4800],["🐋 Acuario Kaiyukan + noria",4000],["🍥 Villa de Naruto (Nijigen no Mori)",4500],["🪩 Discotecas (4 noches, entrada)",14000],["🤼 Sumo Show (Shinjuku)",9800]];
 function costRows(lines){let t=0,h='';lines.forEach(([n,...r])=>{const c=r.length===2?r[1]:r[0],tp=r.length===2?r[0]:null;t+=c;h+=`<div class="flex justify-between py-1 border-b border-haiiro"><span>${n}${tp?` <span class="text-kuro/35">(${tp})</span>`:''}</span><span class="tooltip-usd" data-usd="${usdTip(c)}">¥${c.toLocaleString()}</span></div>`;});return{h,t};}
 // ===== CENTRO DE CONTROL =====
 const TRIP_LA_DEPART='2026-10-23';
@@ -1025,11 +1047,7 @@ function renderAlarms(){
         <a href="${gcalLink(e)}" target="_blank" rel="noopener" title="Agregar a Google Calendar" class="shrink-0 text-xs font-bold border border-haiiro rounded-lg px-2 py-1 hover:border-aka hover:text-aka">➕</a>
     </div>`).join('');
 }
-document.getElementById('alarms-download').addEventListener('click',()=>{
-    const url=URL.createObjectURL(new Blob([buildICS(ALARMS)],{type:'text/calendar'}));
-    const a=document.createElement('a');a.href=url;a.download='japon-2026-alarmas.ics';document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-});
+document.getElementById('alarms-download').addEventListener('click',()=>downloadICS(ALARMS,'japon-2026-alarmas.ics'));
 document.getElementById('alarms-copy').addEventListener('click',async e=>{
     const u='https://dragonarka.github.io/japantrip/alarmas.ics';
     try{await navigator.clipboard.writeText(u);e.target.textContent='✅ URL copiada';}catch(err){e.target.textContent=u;}
@@ -1037,7 +1055,7 @@ document.getElementById('alarms-copy').addEventListener('click',async e=>{
 
 // ===== EXPORTAR EL PLAN (JSON para preguntar en otro chat) =====
 const PLAN_PREFS=[
- 'Yo llego el 28 oct; mis 4 amigos llegan el 30 oct ~20:00 a Haneda T3 (vuelo CZ3085). Grupo V6: 5 amigos de alto rendimiento. Los días pesados no son problema, pero después de uno pesado nos gusta descansar (onsen, spa, mañana lenta).',
+ 'Yo llego el 28 oct; mis 4 amigos llegan el 30 oct ~19:00–20:00 hora de Japón a Haneda T3 (vuelo CZ3085, sale de Guangzhou a las 15:00 hora de China). Grupo V6: 5 amigos de alto rendimiento. Los días pesados no son problema, pero después de uno pesado nos gusta descansar (onsen, spa, mañana lenta).',
  'Algunas noches salimos a discoteca hasta el primer tren (~5:00) y al otro día seguimos el plan normal.',
  'De noche, prioridad: no perder el último tren (hay alarmas). Uber/taxi es la última opción.',
  'En mis días libres (28–29 oct) busco una joya para hacer solo: una clase (baile) o algo extremo.',
@@ -1048,7 +1066,7 @@ function planJSON(){
     const strip=html=>String(html||'').replace(/<[^>]+>/g,'');
     return {
         generado:new Date().toISOString(), fuente:location.href.split('?')[0],
-        viaje:'Japón 2026 · Plan V6 · 28 oct – 20 nov (yo llego el 28; el resto del grupo el 30 a las 20:00). Osaka como base de 9 noches. Vuelo de regreso 20 nov 14:45.',
+        viaje:'Japón 2026 · Plan V6 · 28 oct – 20 nov (yo llego el 28; el resto del grupo el 30 ~19:00–20:00). Osaka como base de 9 noches. Vuelo de regreso 20 nov 14:45.',
         notas:'Horas en JST (UTC+9). D0 = 28 oct, solo yo. AdeS = el otro grupo (8 personas) con el que nos cruzamos.',
         preferencias:PLAN_PREFS,
         dias:DAYS.map(d=>({dia:d.day,fecha:d.date+' 2026',dow:d.dow,titulo:d.title,lugar:d.loc,duermo:d.lodge,esfuerzo:EFFORT_LABELS[d.effort],
@@ -1067,6 +1085,21 @@ function planJSON(){
         grupo_AdeS:{ciudad_por_dia:ADES_CITY,actividades_por_dia:ADES_ACT,ventanas_de_encuentro:OVERLAP_WINDOWS},
     };
 }
+function planText(){
+    const out=['🇯🇵 Japón 2026 · Plan V6 (horas de Japón)',location.href.split('?')[0],''];
+    DAYS.forEach(d=>{
+        out.push(`*D${d.day} · ${d.dow} ${d.date} — ${d.title.replace(/<[^>]+>/g,'')}*`);
+        const al=dayAlarms(d); if(al.length)out.push('⏰ '+al.map(e=>`${e.t} ${e.title}`).join(' | '));
+        agendaItems(d).forEach(i=>out.push(`${i.s}–${i.e} ${i.icon} ${i.t}`));
+        out.push('');
+    });
+    return out.join('\n');
+}
+document.getElementById('plan-copy-text').addEventListener('click',async()=>{
+    const txt=planText(), st=document.getElementById('plan-copy-status');
+    try{await navigator.clipboard.writeText(txt);st.textContent=`✅ Itinerario copiado (${DAYS.length} días). Pégalo en WhatsApp o en una nota.`;}
+    catch(e){st.textContent='No se pudo copiar automáticamente en este navegador.';}
+});
 document.getElementById('plan-copy').addEventListener('click',async()=>{
     const txt=JSON.stringify(planJSON(),null,1), st=document.getElementById('plan-copy-status');
     try{await navigator.clipboard.writeText(txt);st.textContent=`✅ Copiado (${Math.round(txt.length/1024)} KB). Pégalo en el chat y pregunta lo que quieras.`;}
@@ -1304,7 +1337,7 @@ function dayReelsBox(d){
 const LODGING=[
  {city:'Tokio · Nakano ✅ reservado',zg:'tokio1',nights:6,checkin:'2026-10-28',checkout:'2026-11-03',area:'Nakano, Tokyo',adults:5,hours:'Check-in 15:00 · Check-out 11:00',
   fixed:{n:'Nakano (salida Norte / Sun Mall)',lat:35.7065,lng:139.6657},pp:'reservado',local:'Gemas: Nakano Broadway, Sun Mall, izakayas detrás de la estación. JR Chuo: Shinjuku en 5 min, Tachikawa/Showa Kinen en 25 min; metro Tozai directo a Nihombashi.',
-  type:'Reserva para los 5. Yo llego el 28; el grupo el 30 ~20:00 (vuelo retrasado, CZ3085 a Haneda T3). Base de toda la 1ª etapa en Tokio.'},
+  type:'Reserva para los 5. Yo llego el 28; el grupo el 30 ~19:00–20:00 (vuelo retrasado, CZ3085 a Haneda T3). Base de toda la 1ª etapa en Tokio.'},
  {city:'Fuji · Villa ✅ reservada',zg:'fuji',nights:1,checkin:'2026-11-03',checkout:'2026-11-04',area:'Fujikawaguchiko, Yamanashi',adults:5,hours:'Check-in 16:00 · Check-out 10:00',
   fixed:{n:'Ōishi, orilla norte del lago',lat:35.5018,lng:138.7660},pp:'reservado (Airbnb HMBFBFE5YP)',local:'Gemas: paseo en bici por el lago, Parque Ōishi, miradores del Fuji.',
   type:'Villa Airbnb con plataforma de observación y vista al lago/Fuji — sin kaiseki incluido, llevar cena (el pueblo cierra temprano).'},
@@ -1386,7 +1419,7 @@ function renderConnectivity(){
 
 // ===== GUÍA DE BARRIOS (modal por base) =====
 const ZONE_GUIDE={
- tokio1:{t:'Tokio · 1ª etapa (5 noches)',intro:'Ancla logística: el bus a Fuji sale de Busta Shinjuku, la clase samurái es en Shinjuku y llegan de noche. Ranking según guías (Lonely Planet, Time Out, Truly Tokyo).',
+ tokio1:{t:'Tokio · 1ª etapa (5 noches)',intro:'Ancla logística: el bus a Fuji sale de Busta Shinjuku, y llegan de noche. Ranking según guías (Lonely Planet, Time Out, Truly Tokyo).',
   zones:[
    {n:'Shinjuku',vibe:'El \'todo a la vez\': neón, izakayas y la mayor estación del mundo.',why:'Busta Shinjuku en la puerta (bus a Kawaguchiko sin arrastrar maletas); Omoide Yokocho y Golden Gai para izakaya-hopping; tren directo a Kamakura; la clase samurái al lado; fácil llegar de madrugada desde el aeropuerto.',ideal:'quieren salir cada noche sin depender del último tren (ustedes).',warn:'Kabukicho es zona red-light — segura pero con jaladores: NUNCA seguir a un tout a un bar. Duerman en el lado oeste/sur de la estación para menos ruido.',pick:true},
    {n:'Shibuya',vibe:'Epicentro joven: el cruce, música y bares hasta el amanecer.',why:'Zona cero de Halloween; nightlife en Dogenzaka y Nonbei Yokocho; a 10 min de Shinjuku para el bus a Fuji.',ideal:'la prioridad absoluta es la noche de Halloween.',warn:'Desde 2024 hay prohibición de beber en la calle y en Halloween cierran venta de alcohol y \'cancelan\' la fiesta callejera — la celebración real es en bares/clubs con entrada. De lo más caro por noche.'},
