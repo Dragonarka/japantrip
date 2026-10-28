@@ -50,11 +50,31 @@ const ALARMS=[
  {id:'ultimo-nabana',d:'2026-11-13',t:'19:30',dur:30,title:'🚃 Si fuiste a Nabana: salir hacia Kintetsu Nagoya',where:'Nabana no Sato',a:[15],note:'Último expreso a Osaka-Namba: confirmar en Google Maps.'},
  {id:'ultimo-golden',d:'2026-11-15',t:'23:30',dur:30,title:'🚃 Último tren Shinjuku → Sumida',where:'Shinjuku Station',a:[15,0],note:'~35 min hasta Sumida. Confirmar en Google Maps.'},
  // --- Noches de discoteca: volver en el primer tren ---
- {id:'club-0',d:'2026-10-29',t:'04:50',dur:30,title:'🪩 Primer tren a Nakano',where:'Shinjuku',a:[0],note:'FlyStation a las ~12:00: dormir.'},
  {id:'club-1',d:'2026-11-01',t:'04:50',dur:30,title:'🪩 Primer tren a casa (Halloween)',where:'Shibuya Station',a:[0],note:'Mañana libre para dormir: Meiji Jingu ~12:45.'},
  {id:'club-2',d:'2026-11-08',t:'04:50',dur:30,title:'🪩 Primer metro a casa (Amerikamura)',where:'Shinsaibashi',a:[0],note:'Cumpleaños: Arashiyama ~9:00.'},
  {id:'club-3',d:'2026-11-14',t:'04:50',dur:30,title:'🪩 Primer metro a casa (Osaka)',where:'Shinsaibashi',a:[0],note:'Shinkansen 9:00: dormir en el tren.'},
  {id:'club-4',d:'2026-11-15',t:'04:50',dur:30,title:'🪩 Primer tren a casa (Tokio)',where:'Ginza / Shibuya',a:[0],note:'Mañana de recuperación; Meiji a las 11:00.'},
+ // Despertar con el grupo (5 personas, 1 baño). Calculado con ducha la noche anterior: ~8 min de baño c/u,
+ // primero los hombres; maquillaje y peinado fuera del baño. Si se duchan en la mañana, restar 30 min.
+ {id:'wake-30oct',d:'2026-10-30',t:'08:30',dur:15,title:'⏰ Despertar (salir 09:30 · Skytree 16:00)',where:'Nakano',a:[0],note:'Turnos de baño de ~8 min. Si se duchan en la mañana: 08:00.'},
+ {id:'wake-31oct',d:'2026-10-31',t:'06:00',dur:15,title:'⏰ Despertar (salir 07:05 · teamLab 08:00)',where:'Nakano',a:[0],note:'Ducharse la noche del 30. Si se duchan en la mañana: 05:30.'},
+ {id:'wake-2nov',d:'2026-11-02',t:'05:30',dur:15,title:'⏰ Despertar (salir 06:30 · Kamakura)',where:'Nakano',a:[0],note:'Si se duchan en la mañana: 05:00.'},
+ {id:'wake-3nov',d:'2026-11-03',t:'05:15',dur:15,title:'⏰ Despertar (check-out 06:15 · Azusa 07:00)',where:'Nakano',a:[0],note:'Mochilas hechas la noche del 2. Estar en el andén de Shinjuku a las 06:50. Si se duchan en la mañana: 04:45.'},
+ {id:'wake-4nov',d:'2026-11-04',t:'07:15',dur:15,title:'⏰ Despertar (check-out 08:15 · bus 08:40)',where:'Fujikawaguchiko',a:[0],note:'Para ver el Fuji al amanecer: 05:45.'},
+ {id:'wake-5nov',d:'2026-11-05',t:'06:15',dur:15,title:'⏰ Despertar (desayuno del ryokan 06:45)',where:'Yudanaka',a:[0],note:'Bañarse en el onsen en vez de ducharse.'},
+ {id:'wake-6nov',d:'2026-11-06',t:'04:10',dur:15,title:'⏰ Despertar (salir 05:10 · Fushimi Inari)',where:'Osaka (Chuo-ku)',a:[0],note:'Ducha obligatoria la noche del 5 y ropa lista. Plan B si están muy cansados: salir 07:00 (el samurái es a las 14:00).'},
+ {id:'wake-7nov',d:'2026-11-07',t:'06:45',dur:15,title:'⏰ Despertar (salir 07:45 · Himeji)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:15.'},
+ {id:'wake-8nov',d:'2026-11-08',t:'07:00',dur:15,title:'⏰ Despertar 🎂 (salir 08:00 · Arashiyama)',where:'Osaka (Chuo-ku)',a:[0],note:'Vienen de la discoteca (~05:10): ducharse al llegar y dejar la ropa lista antes de salir el 7.'},
+ {id:'wake-9nov',d:'2026-11-09',t:'05:40',dur:15,title:'⏰ Despertar (salir 06:40 · Kizu → Naruto)',where:'Osaka (Chuo-ku)',a:[0],note:'Llevar pasaporte. Si se duchan en la mañana: 05:10.'},
+ {id:'wake-10nov',d:'2026-11-10',t:'06:30',dur:15,title:'⏰ Despertar (salir 07:30 · Kurama)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:00.'},
+ {id:'wake-11nov',d:'2026-11-11',t:'06:45',dur:15,title:'⏰ Despertar (salir 07:45 · Kuromon + cocina 09:30)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:15.'},
+ {id:'wake-12nov',d:'2026-11-12',t:'06:15',dur:15,title:'⏰ Despertar (salir 07:15 · USJ)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 05:45.'},
+ {id:'wake-13nov',d:'2026-11-13',t:'07:30',dur:15,title:'⏰ Despertar (maletas Yamato 08:30 · teamLab 14:00)',where:'Osaka (Chuo-ku)',a:[0],note:'Maletas cerradas la noche del 12. Si se duchan en la mañana: 07:00.'},
+ {id:'wake-14nov',d:'2026-11-14',t:'07:00',dur:15,title:'⏰ Despertar (check-out 07:45 · shinkansen 09:00)',where:'Osaka (Chuo-ku)',a:[0],note:'Vienen de la discoteca (~05:10): ducharse al llegar y dejar las mochilas hechas antes de salir el 13.'},
+ {id:'wake-15nov',d:'2026-11-15',t:'09:15',dur:15,title:'⏰ Despertar (salir 10:15 · sumo 17:30)',where:'Sumida',a:[0],note:'Si se duchan en la mañana: 08:45.'},
+ {id:'wake-18nov',d:'2026-11-18',t:'06:30',dur:15,title:'⏰ Despertar 🎂 (salir 07:30 · Tsukiji)',where:'Sumida',a:[0],note:'Si se duchan en la mañana: 06:00.'},
+ {id:'wake-19nov',d:'2026-11-19',t:'06:00',dur:15,title:'⏰ Despertar (salir 07:00 · Takao)',where:'Sumida',a:[0],note:'Si se duchan en la mañana: 05:30.'},
+ {id:'wake-20nov',d:'2026-11-20',t:'07:30',dur:15,title:'⏰ Despertar (check-out 09:00 · vuelo 14:45)',where:'Sumida',a:[0],note:'Maletas hechas la noche del 19. Si se duchan en la mañana: 07:00.'},
 ];
 
 // Genera un calendario .ics (los horarios se convierten de JST a UTC).
