@@ -189,7 +189,7 @@ const SCHEDULE={
   M('17:45','19:10','showa','haneda',[['JN','Kawasaki','Kawasaki','Cambiar a Keikyu-Kawasaki',55],['KK','Haneda Aeropuerto','Haneda T3','',15]]),
   F('19:10','20:00','haneda','Libre: Edo Market Place y mirador del T3 mientras salen de migración'),
   A('20:00','20:30','haneda','👥 Llega el grupo (Haneda T3, salida de llegadas)',{mood:'meet'}),
-  M('20:30','21:40','haneda','nakano',[['KK','Shinagawa','Shinagawa','',15],['JY','Shibuya / Shinjuku','Shinjuku','',20],['JC','Tachikawa','Nakano','北口',5]]),
+  M('20:30','21:40','haneda','nakano',[['BUS','Shinjuku (Limousine Bus, ¥1.400)','Busta Shinjuku 4F','Maletas en la bodega del bus',45],['WALK','JR Shinjuku','Salida Sur → andenes 7–8','',10],['JC','Takao / Tachikawa (快速, no 中央特快)','Nakano','北口',5]]),
   A('21:40','22:00','nakano','Check-in del grupo'),
   A('22:00','23:30','nakano','🍻 Cena de bienvenida en Nakano'),
   Z('23:30','29:30','nakano'),

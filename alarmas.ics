@@ -68,7 +68,7 @@ DTSTART:20261029T110000Z
 DTEND:20261029T120000Z
 SUMMARY:👥 Recibir al grupo en Haneda T3 (llegadas)
 LOCATION:Haneda Airport Terminal 3
-DESCRIPTION:Vuelo CZ3085: sale de Guangzhou a las 15:00 hora de China (16:00 en Japón) y aterriza ~19:00–20:00 hora de Japón. Migración ~45 min. Luego Keikyu a Shinagawa + Yamanote + Chuo a Nakano (~70 min).
+DESCRIPTION:Vuelo CZ3085: sale de Guangzhou a las 15:00 hora de China (16:00 en Japón) y aterriza ~19:00–20:00 hora de Japón. Migración ~45 min. Luego Limousine Bus a Busta Shinjuku (¥1.400 c/u\, boletos en el mostrador de llegadas\; último ~22:00\, confirmar) y JR Chuo rápido (快速\, no 中央特快) a Nakano.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:👥 Recibir al grupo en Haneda T3 (llegadas)
