@@ -50,11 +50,11 @@ END:VEVENT
 BEGIN:VEVENT
 UID:showa@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261029T073000Z
-DTEND:20261029T103000Z
+DTSTART:20261029T071500Z
+DTEND:20261029T084500Z
 SUMMARY:🏮 Showa Kinen · Autumn Night Walk
 LOCATION:Showa Kinen Park\, Tachikawa
-DESCRIPTION:JR Chuo rápido desde Nakano (~25 min). Hoy el jardín japonés no cobra extra.
+DESCRIPTION:Opcional. Salir a las 17:45 hacia Haneda: JR Nambu a Kawasaki + Keikyu (~1 h 25).
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🏮 Showa Kinen · Autumn Night Walk
@@ -64,22 +64,27 @@ END:VEVENT
 BEGIN:VEVENT
 UID:grupo@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261030T121500Z
-DTEND:20261030T131500Z
-SUMMARY:👥 Encuentro con el grupo en Shibuya
-LOCATION:Shibuya Station (Hachiko)
-DESCRIPTION:Vuelo a las 15:00 hora de Guangzhou (16:00 en Japón)\; aterrizan ~19:00–20:00 hora de Japón en Haneda T3 (CZ3085). Desde Asakusa: línea Ginza ~30 min.
+DTSTART:20261029T110000Z
+DTEND:20261029T120000Z
+SUMMARY:👥 Recibir al grupo en Haneda T3 (llegadas)
+LOCATION:Haneda Airport Terminal 3
+DESCRIPTION:Vuelo CZ3085: sale de Guangzhou a las 15:00 hora de China (16:00 en Japón) y aterriza ~19:00–20:00 hora de Japón. Migración ~45 min. Luego Keikyu a Shinagawa + Yamanote + Chuo a Nakano (~70 min).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:👥 Encuentro con el grupo en Shibuya
-TRIGGER:-PT45M
+DESCRIPTION:👥 Recibir al grupo en Haneda T3 (llegadas)
+TRIGGER:-PT120M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:👥 Recibir al grupo en Haneda T3 (llegadas)
+TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:flystation@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261029T030000Z
-DTEND:20261029T050000Z
+DTSTART:20261029T034500Z
+DTEND:20261029T054500Z
 SUMMARY:🪂 FlyStation (confirmar la hora reservada)
 LOCATION:FlyStation Japan\, Koshigaya Laketown
 DESCRIPTION:~1 h desde Nakano. Ajustar la hora cuando reserves.
@@ -90,27 +95,13 @@ TRIGGER:-PT90M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:techno-2@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261029T140000Z
-DTEND:20261029T190000Z
-SUMMARY:🪩 Travesura #2 (rave / concierto)
-LOCATION:Tokyo
-DESCRIPTION:Revisar ra.co / iflyer para el jueves 29.
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🪩 Travesura #2 (rave / concierto)
-TRIGGER:-PT60M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:skytree@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261030T070000Z
 DTEND:20261030T083000Z
 SUMMARY:🗼 Tokyo Skytree
 LOCATION:Tokyo Skytree
-DESCRIPTION:Hora fijada. Si las entradas eran para los 5: cambiarlas a la etapa de Sumida (el grupo llega a las 20:00).
+DESCRIPTION:Hora fijada. El grupo ya llegó (29)\, así que van los 5.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🗼 Tokyo Skytree
@@ -129,7 +120,7 @@ DTSTART:20261030T090000Z
 DTEND:20261030T110000Z
 SUMMARY:🏮 Proyecciones en Senso-ji con AdeS
 LOCATION:Senso-ji\, Asakusa
-DESCRIPTION:Gratis\, 18:00–21:30. Salir ~20:15 a Shibuya para encontrar al grupo.
+DESCRIPTION:Gratis\, 18:00–21:30. Luego Shibuya de noche y cena\; a Nakano ~22:15 (teamLab mañana 08:00).
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🏮 Proyecciones en Senso-ji con AdeS

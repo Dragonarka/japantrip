@@ -57,7 +57,7 @@ function normCity(c){ return (c||"").split(/[\/→ ]/)[0]; }
 
 // Ventanas de encuentro con el grupo AdeS (compartidas por ambas páginas)
 const OVERLAP_WINDOWS=[
- ['🟢 Tokio · 30 oct – 2 nov','30: solo yo con ellos en Senso-ji y las proyecciones (16:50–20:15); mi grupo aterriza ~19:00–20:00. 31: Halloween en Ikebukuro (13–17 h). 1: Akihabara ~17:30 y cena. 2: cena con los 4 que no van al tour de Rápido y Furioso.'],
+ ['🟢 Tokio · 30 oct – 2 nov','30: los 5 con ellos en Senso-ji y las proyecciones (16:50–20:15); mi grupo llegó el 29. 31: Halloween en Ikebukuro (13–17 h). 1: Akihabara ~17:30 y cena. 2: cena con los 4 que no van al tour de Rápido y Furioso.'],
  ['🟢 Fuji · 3 nov','Almuerzo en Kawaguchiko 13:00 y Parque Ōishi 14:00–15:00, al lado de nuestra villa.'],
  ['🟢 Kioto · 6 nov','Higashiyama de media mañana, almuerzo en Nishiki 12:00 y Gion 13:00. Ellos se van a Osaka a las 16:00.'],
  ['🟢 Osaka · 7 y 10 nov (noches)','7: noche de baile en Amerikamura después de su Shinsekai. 10: cena en Dotonbori (~20:00), la última en Kansai. El 8 (cumpleaños) y el 9 cada uno en lo suyo.'],
