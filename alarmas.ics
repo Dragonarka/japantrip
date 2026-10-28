@@ -69,15 +69,20 @@ END:VEVENT
 BEGIN:VEVENT
 UID:flystation@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261029T034500Z
-DTEND:20261029T054500Z
-SUMMARY:🪂 FlyStation (confirmar la hora reservada)
+DTSTART:20261029T033000Z
+DTEND:20261029T050000Z
+SUMMARY:🪂 FlyStation (reservado: estar a las 12:30)
 LOCATION:FlyStation Japan\, Koshigaya Laketown
-DESCRIPTION:~1 h desde Nakano. Ajustar la hora cuando reserves.
+DESCRIPTION:Salir de Nakano a las 11:00: JR Chuo a Nishi-Kokubunji + JR Musashino a Koshigaya-Laketown (~1 h 15).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🪂 FlyStation (confirmar la hora reservada)
+DESCRIPTION:🪂 FlyStation (reservado: estar a las 12:30)
 TRIGGER:-PT90M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🪂 FlyStation (reservado: estar a las 12:30)
+TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
