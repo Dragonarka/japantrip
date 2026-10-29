@@ -59,6 +59,9 @@
         .tag-transit{color:#777;border-color:#77777733;background:#7777770D}
         .week-tab{cursor:pointer;padding:10px 14px;font-size:.75rem;font-weight:600;border-bottom:2px solid transparent;transition:all .2s;color:#888;white-space:nowrap}
         .week-tab:hover{color:#1A1A1A}
+        .ag-now{background:rgba(192,57,43,.10);outline:2px solid #C0392B;border-radius:6px;padding:2px 4px}
+        .ag-now b::after{content:' · AHORA';color:#C0392B;font-size:10px;font-weight:800}
+        .day-card.day-today{box-shadow:0 0 0 2px #C0392B}
         .week-tab.active{color:#C0392B;border-color:#C0392B}
         /* nav agrupado con menús */
         .navbtn{cursor:pointer;padding:12px 14px;font-size:.8rem;font-weight:700;color:#555;background:none;border:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;border-radius:8px 8px 0 0}
@@ -710,10 +713,10 @@ am:"😴 Dormir hasta ~10:15 y desayunar en Nakano. 🪂 RESERVADO: FlyStation J
 img:IMG+"9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg",
 acts:[{n:"💃 Clase de baile (Session House o En Dance Studio)",t:"pop",roi:5},{n:"🪂 FlyStation (paracaidismo indoor)",t:"pop",roi:5},{n:"Shimokitazawa",lat:35.6616,lng:139.6680,t:"local",roi:4,w:"Shimokitazawa"},{n:"🎮 Tokyu Kabukicho Tower (arcade)",lat:35.6957,lng:139.7005,t:"pop",roi:5},{n:"🥢 Make Your Own Chopsticks (U-Natura 5F)",lat:35.6627,lng:139.7013,t:"pop",roi:5},{n:"🚦 Cruce de Shibuya",lat:35.6595,lng:139.7006,t:"pop",roi:4,w:"Shibuya_Crossing"},{n:"👥 Busta Shinjuku (llega el grupo)",lat:35.6885,lng:139.7005,t:"transit",roi:5}]},
 
-{day:2,date:"Oct 30",dow:"Vie",week:"w1",title:"Asakusa, Otaku, Skytree y Sellos (primer día de los 5)",loc:"Tokio·Asakusa→Akihabara",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:20,contempl:30,joint:true,stamps:true,jointText:"🤝 Con AdeS (Tati y compañía): Senso-ji a las 16:50 y las proyecciones de las 18:00. Ellos suben al Skytree a las 18:54; nosotros salimos ~20:15 a Shibuya.",
-am:"😴 Mañana lenta por el jet lag. ~10:15 Senso-ji + Nakamise. Compra el goshuincho y primer sello 🖊️. 🥢 Regalo práctico: en Nakamise y en Kappabashi (la calle de utensilios de cocina, a 10 min a pie) hay tiendas de palillos que graban nombres (名入れ箸, «na-ire bashi»); suele tomar minutos u horas, así que encargarlos en la mañana y recogerlos de vuelta.",pm:"Akihabara: Super Potato, arcades, eki stamps en estaciones. 🗼 16:00 Tokyo Skytree (hora fijada). Con el grupo ya aquí, van los 5.",night:"🏮 Proyecciones de Senso-ji con AdeS (18:00). ~20:15 línea Ginza a Shibuya (~30 min): 🌃 el cruce de noche y cena. A Nakano ~22:15: mañana teamLab a las 08:00.",food:"Melon pan · Izakaya grupal",transport:"Metro",costT:600,costF:3500,
+{day:2,date:"Oct 30",dow:"Vie",week:"w1",title:"Palacio Imperial, Yurakucho, Akihabara, Skytree y Senso-ji de noche (primer día de los 5)",loc:"Tokio·Marunouchi/Yurakucho→Akihabara→Asakusa",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:20,contempl:30,joint:true,stamps:true,jointText:"🤝 Con AdeS (Tati y compañía): Senso-ji a las 16:50 y las proyecciones de las 18:00. Ellos suben al Skytree a las 18:54; nosotros salimos ~20:15 a Shibuya.",
+am:"🏯 09:30 JR Chuo rápido directo de Nakano a Tokio (~20 min, salida Marunouchi). 10:00 Palacio Imperial: explanada exterior (Kōkyo Gaien) y puente Nijūbashi, gratis. Los Jardines del Este cierran lunes y viernes, así que hoy no. 🖼️ 11:15 Yurakucho Museum (Tokyo International Forum, a 1 min de JR Yurakucho): confirmar antes qué exposición hay hoy. 🍢 12:15 almuerzo en los izakayas bajo las vías de Yurakucho. El sello de Senso-ji (goshuincho 🖊️) y los palillos con nombre (名入れ箸) quedan para el 14–20 nov, cuando duermen en Sumida, al lado de Asakusa.",pm:"13:10 Akihabara (Yamanote, 4 min): Super Potato, arcades, eki stamps en estaciones. 🗼 16:00 Tokyo Skytree (hora fijada). Con el grupo ya aquí, van los 5.",night:"🏮 Senso-ji de noche y proyecciones con AdeS (18:00). La oficina del sello y muchas tiendas de Nakamise cierran ~17:00. ~20:15 línea Ginza a Shibuya (~30 min): 🌃 el cruce de noche y cena. A Nakano ~22:15: mañana teamLab a las 08:00.",food:"Melon pan · Izakaya grupal",transport:"Metro",costT:600,costF:3500,
 img:IMG+"4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg",
-acts:[{n:"Templo Senso-ji",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"},{n:"Tokyo Skytree (16:00)",lat:35.7101,lng:139.8107,t:"pop",roi:4,w:"Tokyo_Skytree"},{n:"🏮 Proyecciones en Senso-ji",lat:35.7146,lng:139.7966,t:"night",roi:5}]},
+acts:[{n:"🏯 Palacio Imperial · Nijūbashi",lat:35.6809,lng:139.7543,t:"history",roi:4,w:"Tokyo_Imperial_Palace"},{n:"🖼️ Yurakucho Museum (Tokyo International Forum)",lat:35.6767,lng:139.7638,t:"pop",roi:4},{n:"Templo Senso-ji (de noche)",lat:35.7148,lng:139.7967,t:"tradition",roi:5,w:"Sensō-ji"},{n:"Akihabara",lat:35.6984,lng:139.7731,t:"pop",roi:5,w:"Akihabara"},{n:"Tokyo Skytree (16:00)",lat:35.7101,lng:139.8107,t:"pop",roi:4,w:"Tokyo_Skytree"},{n:"🏮 Proyecciones en Senso-ji",lat:35.7146,lng:139.7966,t:"night",roi:5}]},
 
 {day:3,date:"Oct 31",dow:"Sáb",week:"w1",title:"teamLab Tokio (08:00) + Halloween 🎃 (Ikebukuro o Shibuya — en debate)",loc:"Tokio·Toyosu/Ikebukuro",lodge:"Tokio",effort:3,luggage:false,laundry:false,transitMin:70,bufferP:15,contempl:25,joint:true,jointText:"🗳️ EN DEBATE: Shibuya el 31 se llena muchísimo y tiene restricciones (prohibido beber en la calle, cierres de calles y salidas de estación). AdeS va a Ikebukuro (Sunshine City), con el mismo ambiente de cosplay y menos gente. Propuesta: la tarde en Ikebukuro con ellos y, si hay ganas, pasar por Shibuya temprano solo a mirar.",
 am:"🎮 RESERVADO: teamLab Tokio, entrada 08:00–08:30 (Planets, Toyosu: caminar entre agua y luz). ⏰ Salir de Nakano 07:05 (~50 min): Chuo-Sobu a Iidabashi + Yurakucho a Toyosu. Dentro ~2 h.",pm:"🍱 ~10:15 brunch en Toyosu Senkyaku Banrai, el food hall estilo Edo junto al mercado de Toyosu (a 10 min de Planets): sushi, kaisen-don, wagyu y puestos para probar de todo. 🎃 Ikebukuro Halloween Cosplay Festival (31 oct, 10–18 h): desfile de cosplay por Sunshine 60-dori y la calle Animate + Gashapon Department Store (3.000+ máquinas). AdeS está ahí de 13:00 a 17:00.",night:"Opción A: cena e izakaya en Ikebukuro con AdeS. Opción B: pasar por Shibuya temprano (Hachiko, el cruce de noche). 🪩 NOCHE LARGA: discoteca hasta el primer tren (~5:00): Yonaguni Fiesta Halloween (reguetón y latino, Shibuya; boletos en yonagunifiesta.com), WOMB o TK Shibuya. En Shibuya la fiesta es en los clubs, no en la calle (prohibido beber afuera).",food:"Crepes · Street food",transport:"Yurikamome + Yamanote",costT:900,costF:3500,
@@ -823,7 +826,7 @@ acts:[{n:"Aeropuerto (Narita/Haneda)",lat:35.7720,lng:140.3929,t:"transit",roi:1
 const NEAR={
  0:"Nakano Sun Mall (galería techada), Daiso de la estación, Kabukicho/Golden Gai a 1 parada si sobra energía.",
  1:"Don Quijote 24h de Kabukicho, la cabeza de Godzilla, cena de konbini si llegan fundidos.",
- 2:"Kappabashi (la calle de utensilios de cocina), mirador GRATIS del Asakusa Culture Center (8F), Kanda Myojin (santuario gamer).",
+ 2:"Tokyo Station de ladrillo y la terraza GRATIS de KITTE (6F) con vista a la estación, Kanda Myojin (santuario gamer, cerca de Akihabara), mirador GRATIS del Asakusa Culture Center (8F, abierto hasta las 22:00).",
  3:"Mercado de Toyosu (al lado de Planets), estatua de Hachiko, Mega Don Quijote de Shibuya.",
  4:"Takeshita Street (crepes), Cat Street (vintage), arquitectura de Omotesando.",
  5:"Komachi-dori (calle de comida), Hokoku-ji (templo del bambú, ¥300), playa Yuigahama al atardecer.",
@@ -854,6 +857,7 @@ function mainActs(d){return (d.acts||[]).filter(a=>a.t!=='transit');}
 
 // ===== AGENDA HORA POR HORA (datos en schedule-data.js) =====
 const durTxt=(a,b)=>{const m=t=>{const [h,mm]=t.split(':').map(Number);return h*60+mm;},d=m(b)-m(a);return d>=60?`${Math.floor(d/60)} h${d%60?' '+d%60+' min':''}`:`${d} min`;};
+const agMin=t=>{const [h,m]=t.split(':').map(Number);return h*60+m;};
 const hhmm=t=>{const [h,m]=t.split(':').map(Number);return `${String(h%24).padStart(2,'0')}:${String(m).padStart(2,'0')}`;};
 function agendaItems(d){
     const day=(typeof SCHEDULE!=='undefined')?SCHEDULE[d.day]:null; if(!day)return [];
@@ -861,12 +865,12 @@ function agendaItems(d){
         if(s.k==='move')return {s:hhmm(s.s),e:hhmm(s.e),icon:'🚆',t:`${PLACES[s.from].n} → ${PLACES[s.to].n} (${durTxt(s.s,s.e)})`,
             sub:s.steps.map(([l,dir,off,exit])=>`${LINES[l].code} ${LINES[l].mode==='walk'?'a pie':'dir. '+dir} → ${off}${exit?' ('+exit+')':''}`).join(' · ')};
         return {s:hhmm(s.s),e:hhmm(s.e),icon:{act:'📍',free:'🧭',sleep:'😴'}[s.k],t:s.k==='free'?s.t:s.t,sub:s.p&&s.k!=='sleep'?PLACES[s.p].n:''};
-    });
+    }).map((it,i)=>Object.assign(it,{rs:agMin(day.segs[i].s),re:agMin(day.segs[i].e)}));
 }
 function agendaHtml(d){
     const items=agendaItems(d); if(!items.length)return '';
-    return `<details class="mb-4 bg-washi border border-haiiro rounded-lg px-3 py-2"><summary class="cursor-pointer text-xs font-bold text-kuro/60">🕒 Agenda hora por hora (${items.length} bloques) · <a href="#" onclick="event.preventDefault();openSim(${d.day})" class="text-aka">🎮 ver este día en la simulación</a></summary>
-        <ul class="mt-2 space-y-1">${items.map(i=>`<li class="flex gap-2 text-xs"><span class="shrink-0 w-24 font-bold text-kuro/60 tabular-nums">${i.s}–${i.e}</span><span>${i.icon} <b class="text-kuro/80">${i.t}</b>${i.sub?`<br><span class="text-kuro/50">${i.sub}</span>`:''}</span></li>`).join('')}</ul></details>`;
+    return `<details id="agenda-${d.day}" class="mb-4 bg-washi border border-haiiro rounded-lg px-3 py-2"><summary class="cursor-pointer text-xs font-bold text-kuro/60">🕒 Agenda hora por hora (${items.length} bloques) · <a href="#" onclick="event.preventDefault();openSim(${d.day})" class="text-aka">🎮 ver este día en la simulación</a></summary>
+        <ul class="mt-2 space-y-1">${items.map(i=>`<li class="ag-item flex gap-2 text-xs" data-day="${d.day}" data-s="${i.rs}" data-e="${i.re}"><span class="shrink-0 w-24 font-bold text-kuro/60 tabular-nums">${i.s}–${i.e}</span><span>${i.icon} <b class="text-kuro/80">${i.t}</b>${i.sub?`<br><span class="text-kuro/50">${i.sub}</span>`:''}</span></li>`).join('')}</ul></details>`;
 }
 // Alarmas de un día (alarms-data.js), con botón para agregarlas al calendario.
 const dayIso=d=>new Date(Date.UTC(2026,9,28+d.day)).toISOString().slice(0,10);
@@ -924,7 +928,7 @@ function renderWeek(wk){
             <p class="text-sm text-kuro/75">${adesToday}</p>
             ${d.joint&&d.jointText?`<p class="text-sm text-midori font-bold mt-2 pt-2 border-t border-haiiro">${d.jointText}</p>`:''}
         </div>`:(d.joint&&d.jointText?`<div class="bg-midori/10 border border-midori/30 rounded-lg p-3 mb-2"><p class="text-sm text-midori font-bold">${d.jointText}</p></div>`:'');
-        html+=`<div class="day-card bg-white border ${accent} rounded-xl mb-3 hover:shadow-md transition-shadow">
+        html+=`<div id="daycard-${d.day}" class="day-card bg-white border ${accent} rounded-xl mb-3 hover:shadow-md transition-shadow">
             <div class="cursor-pointer select-none" onclick="toggleDay(this,${d.day})">
                 <img class="day-hero" loading="lazy" src="${d.img}" alt="${d.title}">
                 <div class="flex items-center justify-between p-4">
@@ -1547,7 +1551,14 @@ let map,animLine,animMarker;
 function initMap(){map=L.map('route-map',{scrollWheelZoom:false}).setView([35.0,135.5],5);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);BASES.forEach(b=>L.circleMarker([b.lat,b.lng],{radius:7,fillColor:'#C0392B',color:'#fff',weight:2,fillOpacity:.9}).bindPopup(`<strong>${b.name}</strong><br><span style="font-size:11px;color:#888">${b.d}</span>`).addTo(map));EXC.forEach(p=>L.circleMarker([p.lat,p.lng],{radius:5,fillColor:'#2D2D2D',color:'#fff',weight:1.5,fillOpacity:.8}).bindPopup(`<strong>${p.n}</strong>`).addTo(map));animatePath();}
 function animatePath(){if(animLine)map.removeLayer(animLine);if(animMarker)map.removeLayer(animMarker);animLine=L.polyline([],{color:'#C0392B',weight:2.5,opacity:.7,dashArray:'6,8'}).addTo(map);animMarker=L.circleMarker(ROUTE_SEQ[0],{radius:6,fillColor:'#C5982A',color:'#fff',weight:2,fillOpacity:1}).addTo(map);let i=0;(function s(){if(i>=ROUTE_SEQ.length)return;animLine.addLatLng(ROUTE_SEQ[i]);animMarker.setLatLng(ROUTE_SEQ[i]);i++;setTimeout(s,300);})();}
 
-function renderAll(){fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();renderControl();renderAlarms();}
+function renderAll(){
+    // conservar las tarjetas abiertas (loadRates vuelve a dibujar todo cuando llega el tipo de cambio)
+    const keep=[...document.querySelectorAll('.day-card.open')].map(c=>c.id), agKeep=[...document.querySelectorAll('details[id^="agenda-"][open]')].map(x=>x.id);
+    fmtFxBanner();['w1','w2','w3','w4'].forEach(renderWeek);renderExperiencias();renderPlanB();renderLodging();renderConnectivity();renderCosts();renderMetrics();renderOverlap();renderReels();renderControl();renderAlarms();
+    keep.forEach(id=>{const c=document.getElementById(id),day=+id.split('-')[1]; if(!c)return; c.classList.add('open'); delete dayMaps[day]; setTimeout(()=>initDayMap(day),260);});
+    agKeep.forEach(id=>{const x=document.getElementById(id); if(x)x.open=true;});
+    markNow();
+}
 renderAll(); loadRates();
 document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('click',e=>{
     e.stopPropagation();
@@ -1569,6 +1580,31 @@ document.querySelectorAll('nav [data-week]').forEach(tab=>tab.addEventListener('
     const y=sec.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-24;
     window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
 }));
+// ===== ABRIR EN EL DÍA Y LA HORA ACTUALES (hora de Japón) =====
+function jstNow(){
+    const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+    let day=Math.round((Date.UTC(+p.year,+p.month-1,+p.day)-Date.UTC(2026,9,28))/86400000), min=(+p.hour)*60+(+p.minute);
+    // de madrugada sigue el día anterior si su agenda pasa de la medianoche (p. ej. 28:50)
+    const prev=typeof SCHEDULE!=='undefined'?SCHEDULE[day-1]:null;
+    if(prev){const segs=prev.segs.filter(s=>s.k!=='sleep');if(segs.length&&min+1440<agMin(segs[segs.length-1].e)){day--;min+=1440;}}
+    return {day,min};
+}
+function markNow(){
+    const {day,min}=jstNow();
+    document.querySelectorAll('.ag-item').forEach(li=>li.classList.toggle('ag-now',+li.dataset.day===day&&+li.dataset.s<=min&&min<+li.dataset.e));
+    document.querySelectorAll('.day-card').forEach(c=>c.classList.toggle('day-today',c.id==='daycard-'+day));
+}
+function openNow(){
+    const {day}=jstNow(), d=DAYS.find(x=>x.day===day); if(!d)return;
+    document.querySelector(`nav [data-week="${d.week}"]`).click();
+    const card=document.getElementById('daycard-'+day); if(!card)return;
+    if(!card.classList.contains('open'))toggleDay(card.firstElementChild,day);
+    const ag=document.getElementById('agenda-'+day); if(ag)ag.open=true;
+    markNow();
+    setTimeout(()=>{const t=card.querySelector('.ag-now')||card,nav=document.querySelector('nav');
+        window.scrollTo({top:Math.max(0,t.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-90),behavior:'smooth'});},700);
+}
+openNow(); setInterval(markNow,60000);
 // abrir/cerrar grupos (touch); en desktop también abren por hover
 document.querySelectorAll('.navtop').forEach(b=>b.addEventListener('click',e=>{
     e.stopPropagation();

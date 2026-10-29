@@ -1,7 +1,7 @@
 // Service worker: permite instalar el sitio como app y usarlo sin señal.
 // Páginas y datos propios: red primero (para ver siempre lo último) y caché si no hay conexión.
 // CDN, fuentes, fotos y mapas: caché primero y se actualiza en segundo plano.
-const VERSION = 'v10';
+const VERSION = 'v11';
 const CORE = `core-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 const CORE_FILES = [
