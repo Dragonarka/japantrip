@@ -680,7 +680,7 @@ DTSTART:20261107T195000Z
 DTEND:20261107T202000Z
 SUMMARY:🪩 Primer metro a casa (Amerikamura)
 LOCATION:Shinsaibashi
-DESCRIPTION:Cumpleaños: Arashiyama ~9:00.
+DESCRIPTION:Cumpleaños: salir a Arashiyama 08:00 (despertar 07:00).
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🪩 Primer metro a casa (Amerikamura)
@@ -774,14 +774,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-4nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261103T221500Z
-DTEND:20261103T223000Z
-SUMMARY:⏰ Despertar (check-out 08:15 · bus 08:40)
+DTSTART:20261103T211500Z
+DTEND:20261103T213000Z
+SUMMARY:⏰ Despertar (amanecer con el Fuji · check-out 08:15)
 LOCATION:Fujikawaguchiko
-DESCRIPTION:Para ver el Fuji al amanecer: 05:45.
+DESCRIPTION:Sale el sol ~06:00. Si prefieren dormir: 07:15 (alcanza para el check-out y el bus de 08:40).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (check-out 08:15 · bus 08:40)
+DESCRIPTION:⏰ Despertar (amanecer con el Fuji · check-out 08:15)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
@@ -806,7 +806,7 @@ DTSTART:20261105T191000Z
 DTEND:20261105T192500Z
 SUMMARY:⏰ Despertar (salir 05:10 · Fushimi Inari)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Ducha obligatoria la noche del 5 y ropa lista. Plan B si están muy cansados: salir 07:00 (el samurái es a las 14:00).
+DESCRIPTION:Ducha obligatoria la noche del 5 y ropa lista. Plan A: Fushimi Inari al amanecer.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:⏰ Despertar (salir 05:10 · Fushimi Inari)
