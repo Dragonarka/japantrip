@@ -140,19 +140,19 @@ END:VEVENT
 BEGIN:VEVENT
 UID:samurai@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261106T050000Z
-DTEND:20261106T070000Z
-SUMMARY:🥋 Experiencia samurái (reservada)
+DTSTART:20261106T044000Z
+DTEND:20261106T064000Z
+SUMMARY:🥷 Experiencia ninja (reservada 13:40)
 LOCATION:Kyoto
-DESCRIPTION:Después del almuerzo en Nishiki con AdeS. Luego Gion y Kōdai-ji iluminado.
+DESCRIPTION:Inamovible. Antes: Sanjūsangen-dō y almuerzo en Nishiki. Después: taxi a Kiyomizu-dera\, Hōkan-ji (pagoda Yasaka) y Kōdai-ji iluminado.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🥋 Experiencia samurái (reservada)
+DESCRIPTION:🥷 Experiencia ninja (reservada 13:40)
 TRIGGER:-PT60M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🥋 Experiencia samurái (reservada)
+DESCRIPTION:🥷 Experiencia ninja (reservada 13:40)
 TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
@@ -246,22 +246,36 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:keihan@japantrip
+UID:maletas-reclamo@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261105T201000Z
-DTEND:20261105T212000Z
-SUMMARY:⏰ Primer metro a Yodoyabashi → Keihan a Fushimi-Inari
-LOCATION:Namba Station (Midosuji)
-DESCRIPTION:Si no alcanzas el metro: taxi a Yodoyabashi (~10 min). Keihan directo a Fushimi-Inari (~50 min). Almuerzo en Nishiki con AdeS.
+DTSTART:20261106T000000Z
+DTEND:20261106T004500Z
+SUMMARY:🧳 Reclamar las maletas (Yamato)
+LOCATION:Osaka (Chuo-ku)
+DESCRIPTION:No llegaron el 5. Con las maletas listas\, salir 09:45 a Kioto: Midosuji a Yodoyabashi + Keihan expreso a Shichijo (Sanjūsangen-dō).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Primer metro a Yodoyabashi → Keihan a Fushimi-Inari
-TRIGGER:-PT50M
+DESCRIPTION:🧳 Reclamar las maletas (Yamato)
+TRIGGER:-PT30M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Primer metro a Yodoyabashi → Keihan a Fushimi-Inari
-TRIGGER:-PT15M
+DESCRIPTION:🧳 Reclamar las maletas (Yamato)
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:salida-6nov@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261106T004500Z
+DTEND:20261106T015000Z
+SUMMARY:🚃 Salir a Kioto: Sanjūsangen-dō
+LOCATION:Namba Station (Midosuji)
+DESCRIPTION:Metro Midosuji a Yodoyabashi + Keihan expreso a Shichijo (salida 3\, 7 min a pie). La experiencia ninja es a las 13:40.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚃 Salir a Kioto: Sanjūsangen-dō
+TRIGGER:-PT10M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -384,7 +398,7 @@ DTSTART:20261111T060000Z
 DTEND:20261111T083000Z
 SUMMARY:🐋 Acuario Kaiyukan + noria de Tempozan
 LOCATION:Osaka Aquarium Kaiyukan
-DESCRIPTION:Última entrada 19:00. Noria al atardecer ~17:00.
+DESCRIPTION:Del sumo (14:00): Midosuji a Hommachi + Chuo a Osakako\, salida 1. Acuario ~1 h 30\; noria a las ~16:40 para el atardecer (~16:55). Shinsekai 18:30.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🐋 Acuario Kaiyukan + noria de Tempozan
@@ -802,14 +816,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-6nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261105T191000Z
-DTEND:20261105T192500Z
-SUMMARY:⏰ Despertar (salir 05:10 · Fushimi Inari)
+DTSTART:20261105T230000Z
+DTEND:20261105T231500Z
+SUMMARY:⏰ Despertar (maletas Yamato 09:00 · salir 09:45)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Ducha obligatoria la noche del 5 y ropa lista. Plan A: Fushimi Inari al amanecer.
+DESCRIPTION:Si se duchan en la mañana: 07:30.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 05:10 · Fushimi Inari)
+DESCRIPTION:⏰ Despertar (maletas Yamato 09:00 · salir 09:45)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
