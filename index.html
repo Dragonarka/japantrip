@@ -772,7 +772,7 @@ img:IMG+"e/e4/Kurama-dera_sanmon.jpg/960px-Kurama-dera_sanmon.jpg",
 acts:[{n:"Kurama-dera (montaña sagrada)",lat:35.1180,lng:135.7710,t:"tradition",roi:5,w:"Kurama-dera"},{n:"Santuario Kifune (Kibune)",lat:35.1216,lng:135.7628,t:"tradition",roi:5,w:"Kifune_Shrine"},{n:"Kurama Onsen",lat:35.1223,lng:135.7743,t:"onsen",roi:5}]},
 
 {day:14,date:"Nov 11",dow:"Mié",week:"w3",title:"Osaka a Fondo: Cocina, Sumo, Acuario 🐋 & Cachetadas",loc:"Osaka·Namba/Tempozan/Shinsekai",lodge:"Osaka",effort:3,luggage:false,laundry:false,transitMin:50,bufferP:35,contempl:25,joint:false,
-am:"🍱 08:00 desayuno en el mercado Kuromon: mariscos a la parrilla, wagyu en brocheta y fruta japonesa. 🍳 Clase de cocina japonesa (ramen/okonomiyaki/sushi) con chef local.",pm:"🤼 Espectáculo de sumo + almuerzo chanko nabe. 14:00 metro Midosuji a Hommachi + Chuo a Osakako (salida 1, ~35 min). 🐋 15:00 Acuario Kaiyukan con e-ticket (~1 h 30: el recorrido baja en espiral alrededor del tanque del Pacífico, con el tiburón ballena; ~¥2.700–3.200). 🎡 16:40 noria de Tempozan justo al atardecer (~16:55). 17:45 metro a Shinsekai.",night:"Metro a Shinsekai, con la Tsutenkaku iluminada: 🖐️ bar de cachetadas (harisen) + crawl de kushikatsu. ¡Día social! (La batalla de baile va el sábado, ver D10.)",food:"Chanko nabe · Kushikatsu",transport:"Metro Midosuji + Chuo",costT:900,costF:5000,
+am:"🍱 08:00 desayuno en el mercado Kuromon: mariscos a la parrilla, wagyu en brocheta y fruta japonesa. 🍳 Clase de cocina japonesa (ramen/okonomiyaki/sushi) con chef local.",pm:"🤼 Espectáculo de sumo + almuerzo chanko nabe. 14:00 🚕 Uber/taxi a Tempozan (~25 min, ~¥3.500–4.000 por carro; en metro son 2 líneas). 🐋 15:00 Acuario Kaiyukan con e-ticket (~1 h 30: el recorrido baja en espiral alrededor del tanque del Pacífico, con el tiburón ballena; ~¥2.700–3.200). 🎡 16:40 noria de Tempozan justo al atardecer (~16:55). 18:05 🚕 Uber/taxi a Shinsekai (~25 min).",night:"Metro a Shinsekai, con la Tsutenkaku iluminada: 🖐️ bar de cachetadas (harisen) + crawl de kushikatsu. ¡Día social! (La batalla de baile va el sábado, ver D10.)",food:"Chanko nabe · Kushikatsu",transport:"Metro Midosuji + Chuo",costT:900,costF:5000,
 img:IMG+"9/95/Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg/960px-Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg",
 acts:[{n:"Clase de cocina japonesa",lat:34.6660,lng:135.5020,t:"food",roi:5},{n:"Sumo + chanko nabe",lat:34.6660,lng:135.5050,t:"tradition",roi:4,w:"Sumo"},{n:"🐋 Acuario Kaiyukan",lat:34.6545,lng:135.4290,t:"nature",roi:5,w:"Osaka_Aquarium_Kaiyukan"},{n:"🎡 Noria de Tempozan",lat:34.6563,lng:135.4313,t:"pop",roi:4},{n:"Bar de cachetadas (Shinsekai)",lat:34.6524,lng:135.5063,t:"night",roi:4},{n:"Kushikatsu crawl (Shinsekai)",lat:34.6524,lng:135.5063,t:"food",roi:4}]},
 
@@ -863,7 +863,7 @@ function agendaItems(d){
     const day=(typeof SCHEDULE!=='undefined')?SCHEDULE[d.day]:null; if(!day)return [];
     return day.segs.map(s=>{
         if(s.k==='move')return {s:hhmm(s.s),e:hhmm(s.e),icon:'🚆',t:`${PLACES[s.from].n} → ${PLACES[s.to].n} (${durTxt(s.s,s.e)})`,
-            sub:s.steps.map(([l,dir,off,exit])=>`${LINES[l].code} ${LINES[l].mode==='walk'?'a pie':'dir. '+dir} → ${off}${exit?' ('+exit+')':''}`).join(' · ')};
+            sub:s.steps.map(([l,dir,off,exit])=>LINES[l].mode==='taxi'?`🚕 Uber/taxi → ${off}${exit?' ('+exit+')':''}`:`${LINES[l].code} ${LINES[l].mode==='walk'?'a pie':'dir. '+dir} → ${off}${exit?' ('+exit+')':''}`).join(' · ')};
         return {s:hhmm(s.s),e:hhmm(s.e),icon:{act:'📍',free:'🧭',sleep:'😴'}[s.k],t:s.k==='free'?s.t:s.t,sub:s.p&&s.k!=='sleep'?PLACES[s.p].n:''};
     }).map((it,i)=>Object.assign(it,{rs:agMin(day.segs[i].s),re:agMin(day.segs[i].e)}));
 }
@@ -906,7 +906,7 @@ function renderWeek(wk){
     const el=document.getElementById(wk);
     const meta={w1:{t:'Semana 1 · Tokio',d:'28 oct – 2 nov. Llego el 28 a Nakano; el grupo el 29 en la noche (bus de Haneda a Shinjuku). Techno, paracaidismo, arcade, teamLab, Halloween, Kamakura.'},
         w2:{t:'Semana 2 · Fuji & Alpes',d:'3 – 4 nov. Villa frente al Fuji y ruta escénica por los Alpes (Matsumoto) hasta el hotel de Yudanaka. Las maletas viajan solas a Osaka por Yamato.'},
-        w3:{t:'Semana 3 · Osaka Hub & Daytrips ⭐',d:'5 – 13 nov. Monos de nieve y ruta del norte por Kanazawa hasta Osaka. Base 9 noches: daytrips a Kioto ×2, Himeji, Kobe+Arima, Kurama (caminata 🥾), Uji, USJ, sumo+chanko, acuario Kaiyukan 🐋, cumpleaños #1 y Nabana como opción. Sin mover maletas.'},
+        w3:{t:'Semana 3 · Osaka Hub & Daytrips ⭐',d:'5 – 13 nov. Monos de nieve y ruta del norte por Kanazawa hasta Osaka. Base 9 noches: daytrips a Kioto ×2, Himeji, Kobe+Arima, Kurama (caminata 🥾), Uji, USJ, sumo+chanko, acuario Kaiyukan 🐋, cumpleaños #1 y Nabana como opción. Sin mover maletas. 🚕 En Osaka, para trayectos cortos con 2 trasbordos, Uber/GO/taxi sale mejor: 5 personas = 2 carros (o 1 jumbo), ~¥1.000–4.000 por carro.'},
         w4:{t:'Semana 4 · Tokio Final',d:'14 – 20 nov. Shinkansen a Tokio, Shichi-Go-San, Torre de Tokio + Tokyo Drift 🏎️, kabuki, compras, cumpleaños #2 y momiji en pico en el Monte Takao.'}}[wk];
     let html=`<div class="mb-8"><h2 class="font-jp text-2xl md:text-3xl font-black mb-1">${meta.t}</h2><p class="text-sm text-kuro/60">${meta.d}</p></div>`;
     DAYS.filter(d=>d.week===wk).forEach(d=>{

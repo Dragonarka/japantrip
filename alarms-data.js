@@ -31,7 +31,7 @@ const ALARMS=[
  {id:'maletas-sumida',d:'2026-11-13',t:'09:00',dur:30,title:'🧳 Maletas por Yamato de Osaka a Sumida',where:'Osaka (Chuo-ku)',a:[0],note:'Entrega 14 nov, franja 20–21 h, en Honjo 3-23-3 (Plan d\'Or Honjo 3F). Avisar al anfitrión.'},
  {id:'kaiyukan-ticket',d:'2026-11-01',t:'20:00',dur:15,title:'🐋 Comprar e-ticket del Kaiyukan (11 nov, 15:00)',where:'',a:[0],note:'kaiyukan.com — precio dinámico, comprar con hora.'},
  {id:'kuromon',d:'2026-11-11',t:'08:00',dur:60,title:'🍱 Desayuno en el mercado Kuromon',where:'Kuromon Market',a:[20],note:'Antes de la clase de cocina.'},
- {id:'kaiyukan',d:'2026-11-11',t:'15:00',dur:150,title:'🐋 Acuario Kaiyukan + noria de Tempozan',where:'Osaka Aquarium Kaiyukan',a:[45],note:'Del sumo (14:00): Midosuji a Hommachi + Chuo a Osakako, salida 1. Acuario ~1 h 30; noria a las ~16:40 para el atardecer (~16:55). Shinsekai 18:30.'},
+ {id:'kaiyukan',d:'2026-11-11',t:'15:00',dur:150,title:'🐋 Acuario Kaiyukan + noria de Tempozan',where:'Osaka Aquarium Kaiyukan',a:[45],note:'Del sumo (14:00): Uber/taxi a Tempozan (~25 min, 2 carros). Acuario ~1 h 30; noria a las ~16:40 para el atardecer (~16:55). Shinsekai 18:30.'},
  {id:'usj',d:'2026-11-12',t:'08:00',dur:600,title:'🎢 USJ (e-ticket reservado)',where:'Universal Studios Japan',a:[60],note:'Llegar antes de la apertura para Super Nintendo World.'},
  {id:'biovortex',d:'2026-11-13',t:'14:00',dur:60,title:'🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)',where:'teamLab Biovortex Kyoto',a:[60,20],note:'A 8 min a pie de Kioto Estación.'},
  {id:'nozomi',d:'2026-11-14',t:'09:00',dur:150,title:'🚄 Shinkansen Osaka → Tokio',where:'Shin-Osaka Station',a:[60],note:'Check-out de Osaka antes (límite 11:00). Solo mochila: las maletas llegan a Sumida 20–21 h.'},
