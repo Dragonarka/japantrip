@@ -351,34 +351,6 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:kizu@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261108T220000Z
-DTEND:20261108T224500Z
-SUMMARY:🍱 Desayuno en el mercado Kizu
-LOCATION:Osaka Kizu Market
-DESCRIPTION:Luego JR a Kobe-Sannomiya y bus a Awaji (villa de Naruto).
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🍱 Desayuno en el mercado Kizu
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:naruto@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261109T000000Z
-DTEND:20261109T040000Z
-SUMMARY:🍥 Bus Sannomiya → Nijigen no Mori (villa de Naruto)
-LOCATION:Kobe Sannomiya Bus Terminal
-DESCRIPTION:~50 min\, ~¥780. Abre 10:00. Volver ~13:00 para ir a Arima.
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🍥 Bus Sannomiya → Nijigen no Mori (villa de Naruto)
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:maletas-sumida@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261113T000000Z
@@ -527,17 +499,30 @@ TRIGGER:-PT60M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:torre@japantrip
+UID:disneysea@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261116T070000Z
-DTEND:20261116T080000Z
-SUMMARY:🗼 Torre de Tokio al atardecer
-LOCATION:Tokyo Tower
-DESCRIPTION:Luego Keyakizaka y cena con AdeS cerca de Nogi.
+DTSTART:20261115T223000Z
+DTEND:20261116T120000Z
+SUMMARY:🌋 Los 3 de DisneySea: salir (abre 09:00)
+LOCATION:Tokyo DisneySea
+DESCRIPTION:Toei Asakusa a Ningyocho + Hibiya a Hatchobori + JR Keiyo a Maihama + monorriel. Entradas online con fecha: llevarlas en la app.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🗼 Torre de Tokio al atardecer
-TRIGGER:-PT30M
+DESCRIPTION:🌋 Los 3 de DisneySea: salir (abre 09:00)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:disneysea-tickets@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261107T110000Z
+DTEND:20261107T111500Z
+SUMMARY:🎟️ Comprar 3 entradas de Tokyo DisneySea (16 nov)
+DESCRIPTION:Solo online y con fecha (web o app oficial de Tokyo Disney Resort). Se agotan: comprar cuanto antes.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎟️ Comprar 3 entradas de Tokyo DisneySea (16 nov)
+TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -900,14 +885,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-9nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261108T204000Z
-DTEND:20261108T205500Z
-SUMMARY:⏰ Despertar (salir 06:40 · Kizu → Naruto)
+DTSTART:20261108T213000Z
+DTEND:20261108T214500Z
+SUMMARY:⏰ Despertar (salir 07:30 · Fushimi Inari)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Llevar pasaporte. Si se duchan en la mañana: 05:10.
+DESCRIPTION:Si se duchan en la mañana: 06:00. Ropa cómoda para subir la montaña.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 06:40 · Kizu → Naruto)
+DESCRIPTION:⏰ Despertar (salir 07:30 · Fushimi Inari)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
@@ -993,6 +978,48 @@ BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:⏰ Despertar (salir 10:15 · sumo 17:30)
 TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wake-16nov@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261115T213000Z
+DTEND:20261115T214500Z
+SUMMARY:⏰ Los 3 de DisneySea: despertar (salir 07:30)
+LOCATION:Sumida
+DESCRIPTION:Si se duchan en la mañana: 06:00. La noche anterior es Golden Gai: volver en el último tren.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Los 3 de DisneySea: despertar (salir 07:30)
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wake2-16nov@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261116T000000Z
+DTEND:20261116T001500Z
+SUMMARY:⏰ Los otros 2: despertar (salir 09:30 · Kiyosumi)
+LOCATION:Sumida
+DESCRIPTION:El baño queda libre después de las 07:30.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Los otros 2: despertar (salir 09:30 · Kiyosumi)
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:torre@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261116T070000Z
+DTEND:20261116T080000Z
+SUMMARY:🗼 Los otros 2: Torre de Tokio al atardecer
+LOCATION:Tokyo Tower
+DESCRIPTION:Antes Azabudai Hills\; después Keyakizaka iluminado y cena en Roppongi.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🗼 Los otros 2: Torre de Tokio al atardecer
+TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT

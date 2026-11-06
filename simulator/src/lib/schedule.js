@@ -27,11 +27,13 @@ export function dayLabel(dateIso) {
 }
 
 // Normaliza un día: minutos absolutos y huecos ≥ 5 min convertidos en «libre para explorar».
-export function buildDay(idx) {
+// alt = true arma la agenda del otro grupo en los días con el grupo dividido.
+export function buildDay(idx, alt = false) {
   const raw = window.SCHEDULE[idx];
+  const useAlt = alt && !!raw.alt;
   const segs = [];
   let prev = null;
-  for (const r of raw.segs) {
+  for (const r of (useAlt ? raw.alt.segs : raw.segs)) {
     const seg = { ...r, sMin: toMin(r.s), eMin: toMin(r.e) };
     if (prev && seg.sMin - prev.eMin >= 5) {
       const at = prev.k === 'move' ? prev.to : prev.p;
@@ -42,7 +44,8 @@ export function buildDay(idx) {
   }
   const places = new Set();
   segs.forEach(s => [s.p, s.from, s.to].forEach(p => p && places.add(p)));
-  return { idx: Number(idx), date: raw.date, segs, places: [...places], start: segs[0].sMin, end: segs[segs.length - 1].eMin };
+  const groups = raw.alt ? [raw.g, raw.alt.g] : null;
+  return { idx: Number(idx), date: raw.date, segs, places: [...places], start: segs[0].sMin, end: segs[segs.length - 1].eMin, groups, alt: useAlt };
 }
 
 export function segAt(day, min) {

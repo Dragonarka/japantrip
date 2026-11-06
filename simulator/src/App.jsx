@@ -36,16 +36,18 @@ export default function App() {
   const days = useMemo(() => Object.keys(window.SCHEDULE).map(buildDay), []);
   const init = useMemo(() => initialState(days), [days]);
   const [dayIdx, setDayIdx] = useState(init.day);
+  const [alt, setAlt] = useState(() => new URLSearchParams(location.search).get('g') === '2');
   const [tick, setTick] = useState(init.min);
   const [playing, setPlaying] = useState(true);
   const [speed, setSpeed] = useState(5);
   const [auto, setAuto] = useState(true);
   const [panelOpen, setPanelOpen] = useState(true);
   const clock = useRef({ min: init.min });
-  const live = useRef({ playing, speed, auto, dayIdx });
-  live.current = { playing, speed, auto, dayIdx };
+  // Días con el grupo dividido: alt elige la agenda del otro grupo.
+  const day = useMemo(() => (alt && days[dayIdx].groups ? buildDay(dayIdx, true) : days[dayIdx]), [days, dayIdx, alt]);
+  const live = useRef({ playing, speed, auto, dayIdx, day });
+  live.current = { playing, speed, auto, dayIdx, day };
 
-  const day = days[dayIdx];
   const pos = useMemo(() => layoutPlaces(day.places, window.PLACES), [day]);
 
   // Reloj: corre con requestAnimationFrame; la interfaz se refresca ~8 veces por segundo.
@@ -53,7 +55,7 @@ export default function App() {
     let raf, last = performance.now(), lastUi = 0;
     const loop = now => {
       const dt = Math.min(0.25, (now - last) / 1000); last = now;
-      const c = clock.current, L = live.current, d = days[L.dayIdx];
+      const c = clock.current, L = live.current, d = L.day;
       if (L.playing) {
         c.min += dt * L.speed;
         if (c.min >= d.end) {
@@ -70,8 +72,9 @@ export default function App() {
 
   useEffect(() => {
     const q = new URLSearchParams(location.search); q.set('day', dayIdx); q.delete('t');
+    if (alt && days[dayIdx].groups) q.set('g', '2'); else q.delete('g');
     history.replaceState(null, '', `?${q}`);
-  }, [dayIdx]);
+  }, [dayIdx, alt, days]);
 
   useEffect(() => {
     const k = e => { if (e.code === 'Space') { e.preventDefault(); setPlaying(p => !p); } };
@@ -102,6 +105,11 @@ export default function App() {
           </select>
           <button onClick={() => goDay(Math.min(days.length - 1, dayIdx + 1))} disabled={dayIdx === days.length - 1} aria-label="Día siguiente">▶</button>
         </div>
+        {days[dayIdx].groups && (
+          <select className="group" value={alt ? 2 : 1} onChange={e => { const a = e.target.value === '2'; setAlt(a); const d = a ? buildDay(dayIdx, true) : days[dayIdx]; clock.current.min = Math.min(Math.max(clock.current.min, d.start), d.end - 0.01); }}>
+            {days[dayIdx].groups.map((g, i) => <option key={i} value={i + 1}>{g}</option>)}
+          </select>
+        )}
         <div className={`clock ${night ? 'night' : ''}`}>{night ? '🌙' : '☀️'} {fmt(tick)}</div>
         <div className="controls">
           <button className="play" onClick={() => setPlaying(p => !p)}>{playing ? '⏸' : '▶'}</button>
