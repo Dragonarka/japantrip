@@ -1,7 +1,7 @@
 // Service worker: permite instalar el sitio como app y usarlo sin señal.
 // Páginas y datos propios: red primero (para ver siempre lo último) y caché si no hay conexión.
 // CDN, fuentes, fotos y mapas: caché primero y se actualiza en segundo plano.
-const VERSION = 'v15';
+const VERSION = 'v16';
 const CORE = `core-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 const CORE_FILES = [
@@ -18,7 +18,7 @@ const CDN_FILES = [
 self.addEventListener('install', e => {
   e.waitUntil((async () => {
     const c = await caches.open(CORE);
-    await c.addAll(CORE_FILES);
+    await c.addAll(CORE_FILES.map(u => new Request(u, { cache: 'reload' })));
     // Un CDN caído no debe impedir la instalación.
     await Promise.all(CDN_FILES.map(u => c.add(u).catch(() => {})));
     self.skipWaiting();
