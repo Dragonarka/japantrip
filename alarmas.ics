@@ -298,6 +298,34 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:shosha-bus@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261107T040500Z
+DTEND:20261107T045000Z
+SUMMARY:🚌 Bus al Monte Shosha (Shinki #10 u #8)
+LOCATION:Himeji Station North Exit\, bus stop 10
+DESCRIPTION:Dársena 10 de la salida Norte\, ~30 min\, ~¥320. Teleférico cada 15 min (¥1.200 ida y vuelta) + Engyō-ji ¥500.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚌 Bus al Monte Shosha (Shinki #10 u #8)
+TRIGGER:-PT20M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:shosha-bajar@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261107T071500Z
+DTEND:20261107T073000Z
+SUMMARY:🚡 Bajar del Monte Shosha
+LOCATION:Mt. Shosha Ropeway
+DESCRIPTION:Último teleférico ~17:00. Luego bus a la estación de Himeji y shinkansen ~17:15 a Shin-Osaka.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚡 Bajar del Monte Shosha
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:baile@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261107T110000Z
@@ -417,6 +445,20 @@ BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🎢 USJ (e-ticket reservado)
 TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:katsuoji-vuelta@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261113T023500Z
+DTEND:20261113T040500Z
+SUMMARY:🚌 Salir de Katsuo-ji hacia Kioto (teamLab 14:00)
+LOCATION:Katsuo-ji\, Minoh
+DESCRIPTION:Bus a Senri-Chuo + Midosuji a Shin-Osaka + JR rápido especial a Kioto. Si el bus tarda: Uber/taxi a Shin-Osaka (~30 min).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚌 Salir de Katsuo-ji hacia Kioto (teamLab 14:00)
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
