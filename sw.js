@@ -1,7 +1,7 @@
 // Service worker: permite instalar el sitio como app y usarlo sin señal.
 // Páginas y datos propios: red primero (para ver siempre lo último) y caché si no hay conexión.
 // CDN, fuentes, fotos y mapas: caché primero y se actualiza en segundo plano.
-const VERSION = 'v14';
+const VERSION = 'v15';
 const CORE = `core-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 const CORE_FILES = [
@@ -35,7 +35,8 @@ self.addEventListener('activate', e => {
 
 async function networkFirst(req) {
   try {
-    const res = await fetch(req);
+    // no-cache: revalidar con el servidor y no servir la copia de 10 min que guarda el navegador (GitHub Pages)
+    const res = await fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' });
     if (res.ok) (await caches.open(CORE)).put(req, res.clone());
     return res;
   } catch (err) {
