@@ -329,9 +329,10 @@ BEGIN:VEVENT
 UID:baile@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261107T110000Z
-DTEND:20261107T140000Z
+DTEND:20261107T141500Z
 SUMMARY:🕺 Noche de baile (Amerikamura) + AdeS
 LOCATION:Triangle Park\, Amerikamura
+DESCRIPTION:Volver ~23:15 y dormir: el 8 se madruga (despertar 05:15) para Fushimi Inari.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🕺 Noche de baile (Amerikamura) + AdeS
@@ -715,20 +716,6 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:club-2@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261107T195000Z
-DTEND:20261107T202000Z
-SUMMARY:🪩 Primer metro a casa (Amerikamura)
-LOCATION:Shinsaibashi
-DESCRIPTION:Cumpleaños: salir a Arashiyama 08:00 (despertar 07:00).
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🪩 Primer metro a casa (Amerikamura)
-TRIGGER:-PT0M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:club-3@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261113T195000Z
@@ -871,28 +858,28 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-8nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261107T220000Z
-DTEND:20261107T221500Z
-SUMMARY:⏰ Despertar 🎂 (salir 08:00 · Arashiyama)
+DTSTART:20261107T201500Z
+DTEND:20261107T203000Z
+SUMMARY:⏰ Despertar 🎂 (salir 06:15 · Fushimi Inari)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Vienen de la discoteca (~05:10): ducharse al llegar y dejar la ropa lista antes de salir el 7.
+DESCRIPTION:Ducharse la noche del 7 al volver del baile (~23:30) y dejar la ropa lista. Si se duchan en la mañana: 04:45.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar 🎂 (salir 08:00 · Arashiyama)
+DESCRIPTION:⏰ Despertar 🎂 (salir 06:15 · Fushimi Inari)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:wake-9nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261108T213000Z
-DTEND:20261108T214500Z
-SUMMARY:⏰ Despertar (salir 07:30 · Fushimi Inari)
+DTSTART:20261108T233000Z
+DTEND:20261108T234500Z
+SUMMARY:⏰ Despertar (salir 09:30 · Arima Onsen)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Si se duchan en la mañana: 06:00. Ropa cómoda para subir la montaña.
+DESCRIPTION:Día tranquilo: Arima y wagyu en Kobe.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 07:30 · Fushimi Inari)
+DESCRIPTION:⏰ Despertar (salir 09:30 · Arima Onsen)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
