@@ -631,21 +631,49 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:arima-ida@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261109T003000Z
+DTEND:20261109T020000Z
+SUMMARY:♨️ Salir a Arima (metro 09:39 → JR 10:00 → bus 10:30)
+LOCATION:Namba Station (Midosuji)
+DESCRIPTION:Midosuji a Umeda\, JR shinkaisoku de las 10:00 (andén 5) a Sannomiya y Shinki Bus de las 10:30 a Arima Onsen (Taikobashi\, 10:59).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:♨️ Salir a Arima (metro 09:39 → JR 10:00 → bus 10:30)
+TRIGGER:-PT10M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:arima-vuelta@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261109T080000Z
+DTEND:20261109T084000Z
+SUMMARY:🚃 Salir de Arima a Kobe (tren 17:09)
+LOCATION:Arima Onsen Station
+DESCRIPTION:Shintetsu a Arimaguchi\, cambio en Tanigami (17:14) al metro de Kobe: Sannomiya 17:38. Wagyu a las 19:00.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚃 Salir de Arima a Kobe (tren 17:09)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:ultimo-kobe@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261109T140000Z
-DTEND:20261109T143000Z
-SUMMARY:🚃 Último JR Sannomiya → Osaka
+DTSTART:20261109T133000Z
+DTEND:20261109T140000Z
+SUMMARY:🚃 JR Sannomiya → Osaka (shinkaisoku de las 22:37)
 LOCATION:Sannomiya Station
 DESCRIPTION:Confirmar en Google Maps («último»).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🚃 Último JR Sannomiya → Osaka
+DESCRIPTION:🚃 JR Sannomiya → Osaka (shinkaisoku de las 22:37)
 TRIGGER:-PT15M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🚃 Último JR Sannomiya → Osaka
+DESCRIPTION:🚃 JR Sannomiya → Osaka (shinkaisoku de las 22:37)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT

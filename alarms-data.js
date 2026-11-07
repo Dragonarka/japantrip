@@ -48,7 +48,9 @@ const ALARMS=[
  // --- Noches: último tren (Uber/taxi solo como último recurso) ---
  {id:'ultimo-enoshima',d:'2026-11-02',t:'21:00',dur:30,title:'🚃 Salir de Enoshima/Kamakura de vuelta a Tokio',where:'Enoshima',a:[15],note:'Odakyu o JR; ~1 h a Shinjuku.'},
  {id:'ultimo-kioto-bday',d:'2026-11-08',t:'23:00',dur:30,title:'🚃 Último tren Kioto → Osaka (cumpleaños)',where:'Gion-Shijo Station (Keihan)',a:[15,0],note:'Keihan a Yodoyabashi + metro a Namba (~24:00).'},
- {id:'ultimo-kobe',d:'2026-11-09',t:'23:00',dur:30,title:'🚃 Último JR Sannomiya → Osaka',where:'Sannomiya Station',a:[15,0],note:'Confirmar en Google Maps («último»).'},
+ {id:'arima-ida',d:'2026-11-09',t:'09:30',dur:90,title:'♨️ Salir a Arima (metro 09:39 → JR 10:00 → bus 10:30)',where:'Namba Station (Midosuji)',a:[10],note:'Midosuji a Umeda, JR shinkaisoku de las 10:00 (andén 5) a Sannomiya y Shinki Bus de las 10:30 a Arima Onsen (Taikobashi, 10:59).'},
+ {id:'arima-vuelta',d:'2026-11-09',t:'17:00',dur:40,title:'🚃 Salir de Arima a Kobe (tren 17:09)',where:'Arima Onsen Station',a:[15],note:'Shintetsu a Arimaguchi, cambio en Tanigami (17:14) al metro de Kobe: Sannomiya 17:38. Wagyu a las 19:00.'},
+ {id:'ultimo-kobe',d:'2026-11-09',t:'22:30',dur:30,title:'🚃 JR Sannomiya → Osaka (shinkaisoku de las 22:37)',where:'Sannomiya Station',a:[15,0],note:'Confirmar en Google Maps («último»).'},
  {id:'ultimo-kurama',d:'2026-11-10',t:'20:30',dur:30,title:'🚃 Último tren Eizan desde Kurama (confirmar hora)',where:'Kurama Station',a:[30,10],note:'Después del onsen. Luego Keihan desde Demachiyanagi.'},
  {id:'ultimo-nabana',d:'2026-11-13',t:'19:30',dur:30,title:'🚃 Si fuiste a Nabana: salir hacia Kintetsu Nagoya',where:'Nabana no Sato',a:[15],note:'Último expreso a Osaka-Namba: confirmar en Google Maps.'},
  {id:'ultimo-golden',d:'2026-11-15',t:'23:30',dur:30,title:'🚃 Último tren Shinjuku → Sumida',where:'Shinjuku Station',a:[15,0],note:'~35 min hasta Sumida. Confirmar en Google Maps.'},
