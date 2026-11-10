@@ -680,34 +680,43 @@ END:VEVENT
 BEGIN:VEVENT
 UID:kurama-ida@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261109T224000Z
-DTEND:20261110T005000Z
-SUMMARY:🚃 Salir a Kurama (metro 07:53 → Keihan 08:05 → Eizan 09:15)
-LOCATION:Namba Station (Midosuji)
-DESCRIPTION:Midosuji a Yodoyabashi\, Keihan tokkyu de las 08:05 (andén 4) a Demachiyanagi (09:06) y Eizan de las 09:15 a Kurama (09:46).
+DTSTART:20261110T013000Z
+DTEND:20261110T035000Z
+SUMMARY:🚃 Salir a Kurama (Sakaisuji 10:45 → Keihan 11:01 → Eizan 12:15)
+LOCATION:Nipponbashi Station
+DESCRIPTION:Sakaisuji a Kitahama (10:50)\, Keihan tokkyu de las 11:01 a Demachiyanagi (11:54) y Eizan de las 12:15 a Kurama (12:47). Si se pierde: Sakaisuji 10:58 llega igual.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🚃 Salir a Kurama (metro 07:53 → Keihan 08:05 → Eizan 09:15)
+DESCRIPTION:🚃 Salir a Kurama (Sakaisuji 10:45 → Keihan 11:01 → Eizan 12:15)
 TRIGGER:-PT10M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:kurama-goshuin@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261110T043000Z
+DTEND:20261110T044500Z
+SUMMARY:⛩️ Kurama-dera: goshuin y empezar el sendero antes de las 14:00
+LOCATION:Kurama-dera
+DESCRIPTION:El templo principal cierra a las 16:15. Si van tarde\, funicular (¥200).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⛩️ Kurama-dera: goshuin y empezar el sendero antes de las 14:00
+TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ultimo-kurama@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261110T080000Z
-DTEND:20261110T083000Z
-SUMMARY:🚃 Salir del onsen: Eizan de las 17:21 desde Kurama
-LOCATION:Kurama Station
-DESCRIPTION:Eizan a Demachiyanagi (17:53) y Keihan tokkyu de las 18:11 a Yodoyabashi (19:09). Dotonbori ~19:30.
+DTSTART:20261110T090000Z
+DTEND:20261110T093000Z
+SUMMARY:🚌 Bus 33 a Kibuneguchi → Eizan de las 18:34
+LOCATION:Kifune Shrine
+DESCRIPTION:Eizan por el túnel de arces iluminado a Demachiyanagi (19:05)\, Keihan tokkyu de las 19:21 a Kitahama (20:14) y Sakaisuji a Nipponbashi (20:28).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🚃 Salir del onsen: Eizan de las 17:21 desde Kurama
-TRIGGER:-PT20M
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🚃 Salir del onsen: Eizan de las 17:21 desde Kurama
-TRIGGER:-PT5M
+DESCRIPTION:🚌 Bus 33 a Kibuneguchi → Eizan de las 18:34
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -928,14 +937,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-10nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261109T214000Z
-DTEND:20261109T215500Z
-SUMMARY:⏰ Despertar (salir 07:40 · Kurama)
+DTSTART:20261110T003000Z
+DTEND:20261110T004500Z
+SUMMARY:⏰ Despertar (salir 10:30 · Kurama y Kibune)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Si se duchan en la mañana: 06:10. Zapatos para caminar en montaña.
+DESCRIPTION:Zapatos para caminar en montaña y abrigo para la noche en Kibune.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 07:40 · Kurama)
+DESCRIPTION:⏰ Despertar (salir 10:30 · Kurama y Kibune)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
