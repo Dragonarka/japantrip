@@ -431,9 +431,10 @@ const SCHEDULE={
  15:{date:'2026-11-12',segs:[
   A('06:15','07:15','osaka','🚿 Arreglarse (5 personas, turnos de baño de ~8 min)'),
   M('07:15','07:45','osaka','usj',[['TAXI','Universal Studios Japan','USJ (entrada principal)','~¥4.000 por carro; de vuelta mejor tren (filas de taxis)',30]]),
-  A('08:00','20:00','usj','🎢 USJ: Super Nintendo World, Harry Potter',{mood:'play'}),
-  M('20:00','20:40','usj','uranamba',[['JP','Nishikujo','Nishikujo','',5],['HS','Osaka-Namba','Osaka-Namba','',10]]),
-  A('20:40','22:00','uranamba','Cena en Namba'),
+  F('07:45','08:15','usj','Libre: fila en la puerta antes de abrir'),
+  A('08:15','20:00','usj','🎢 USJ: Super Nintendo World primero, luego Harry Potter y Flying Dinosaur',{mood:'play',tip:'Confirmar en la app oficial la hora de apertura y cierre del 12 (noviembre tiene horario reducido). Con Express Pass, usar sus horas; si no, pedir en la app el ingreso con hora a Super Nintendo World al entrar.'}),
+  M('20:00','20:40','usj','uranamba',[['WALK','Estación Universal City','Universal City','',8],['JP','Nishikujo (20:15)','Nishikujo','Llega 20:20',5],['HS','Osaka-Namba (20:29)','Osaka-Namba','Llega 20:38',9]]),
+  A('20:45','22:00','uranamba','Cena en Ura-Namba'),
   Z('22:30','31:30','osaka'),
  ]},
  16:{date:'2026-11-13',segs:[

@@ -409,15 +409,29 @@ END:VEVENT
 BEGIN:VEVENT
 UID:usj@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261111T230000Z
-DTEND:20261112T090000Z
-SUMMARY:🎢 USJ (e-ticket reservado)
+DTSTART:20261111T224500Z
+DTEND:20261112T110000Z
+SUMMARY:🎢 USJ: fila en la puerta (e-ticket reservado)
 LOCATION:Universal Studios Japan
-DESCRIPTION:Llegar antes de la apertura para Super Nintendo World.
+DESCRIPTION:Confirmar en la app la hora de apertura del 12 (noviembre tiene horario reducido). Super Nintendo World primero. Vuelta: JR Yumesaki de las 20:15 + Hanshin de las 20:29 a Osaka-Namba (20:38).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🎢 USJ (e-ticket reservado)
-TRIGGER:-PT60M
+DESCRIPTION:🎢 USJ: fila en la puerta (e-ticket reservado)
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:usj-salida@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261112T110000Z
+DTEND:20261112T114000Z
+SUMMARY:🚃 Salir de USJ: JR de las 20:15
+LOCATION:Universal City Station
+DESCRIPTION:JR Yumesaki a Nishikujo (20:20) + Hanshin de las 20:29 a Osaka-Namba (20:38). Si salen antes: 20:06 + 20:21\, llega 20:31.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚃 Salir de USJ: JR de las 20:15
+TRIGGER:-PT10M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
