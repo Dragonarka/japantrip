@@ -379,16 +379,30 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:kuromon@japantrip
+UID:katsuoji-ida@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261110T233000Z
-DTEND:20261111T001500Z
-SUMMARY:🍱 Desayuno en el mercado Kuromon
-LOCATION:Kuromon Market
-DESCRIPTION:La mayoría de puestos abre ~08:30–09:00. Clase de cocina a las 09:30.
+DTEND:20261111T005500Z
+SUMMARY:🔴 Salir a Katsuo-ji (metro 08:47 → bus 09:30)
+LOCATION:Namba Station (Midosuji)
+DESCRIPTION:Midosuji directo a Minoh-Kayano (09:23) + Hankyu Bus 30 de las 09:30 a Katsuo-ji (09:52). Si se pierde: metro 09:18 + bus 10:00.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🍱 Desayuno en el mercado Kuromon
+DESCRIPTION:🔴 Salir a Katsuo-ji (metro 08:47 → bus 09:30)
+TRIGGER:-PT10M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:katsuoji-vuelta@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261111T031500Z
+DTEND:20261111T044500Z
+SUMMARY:🚌 Bus de vuelta de Katsuo-ji (12:20) → acuario
+LOCATION:Katsuo-ji\, Minoh
+DESCRIPTION:Bus a Minoh-Kayano (12:41)\, metro 12:51 a Hommachi y línea Chuo de las 13:30 a Osakako (13:41). El siguiente bus sale 12:50.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚌 Bus de vuelta de Katsuo-ji (12:20) → acuario
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
@@ -399,7 +413,7 @@ DTSTART:20261111T060000Z
 DTEND:20261111T083000Z
 SUMMARY:🐋 Acuario Kaiyukan + noria de Tempozan
 LOCATION:Osaka Aquarium Kaiyukan
-DESCRIPTION:Del sumo (14:00): Uber/taxi a Tempozan (~25 min\, 2 carros). Acuario ~1 h 30\; noria a las ~16:40 para el atardecer (~16:55). Shinsekai 18:30.
+DESCRIPTION:Llegan de Katsuo-ji a Osakako a las 13:41 y almuerzan en Tempozan. Acuario ~1 h 30\; noria a las ~16:40 para el atardecer. Shinsekai 18:30.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🐋 Acuario Kaiyukan + noria de Tempozan
@@ -432,20 +446,6 @@ BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🚃 Salir de USJ: JR de las 20:15
 TRIGGER:-PT10M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:katsuoji-vuelta@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261113T023500Z
-DTEND:20261113T040500Z
-SUMMARY:🚌 Salir de Katsuo-ji hacia Kioto (teamLab 14:00)
-LOCATION:Katsuo-ji\, Minoh
-DESCRIPTION:Bus a Senri-Chuo + Midosuji a Shin-Osaka + JR rápido especial a Kioto. Si el bus tarda: Uber/taxi a Shin-Osaka (~30 min).
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🚌 Salir de Katsuo-ji hacia Kioto (teamLab 14:00)
-TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -965,14 +965,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-11nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261110T221500Z
-DTEND:20261110T223000Z
-SUMMARY:⏰ Despertar (salir 08:15 · Kuromon + cocina 09:30)
+DTSTART:20261110T223000Z
+DTEND:20261110T224500Z
+SUMMARY:⏰ Despertar (salir 08:30 · Katsuo-ji)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Si se duchan en la mañana: 06:45.
+DESCRIPTION:Si se duchan en la mañana: 07:00.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 08:15 · Kuromon + cocina 09:30)
+DESCRIPTION:⏰ Despertar (salir 08:30 · Katsuo-ji)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
