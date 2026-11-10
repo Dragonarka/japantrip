@@ -678,22 +678,36 @@ TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ultimo-kurama@japantrip
+UID:kurama-ida@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261110T113000Z
-DTEND:20261110T120000Z
-SUMMARY:🚃 Último tren Eizan desde Kurama (confirmar hora)
-LOCATION:Kurama Station
-DESCRIPTION:Después del onsen. Luego Keihan desde Demachiyanagi.
+DTSTART:20261109T224000Z
+DTEND:20261110T005000Z
+SUMMARY:🚃 Salir a Kurama (metro 07:53 → Keihan 08:05 → Eizan 09:15)
+LOCATION:Namba Station (Midosuji)
+DESCRIPTION:Midosuji a Yodoyabashi\, Keihan tokkyu de las 08:05 (andén 4) a Demachiyanagi (09:06) y Eizan de las 09:15 a Kurama (09:46).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🚃 Último tren Eizan desde Kurama (confirmar hora)
-TRIGGER:-PT30M
+DESCRIPTION:🚃 Salir a Kurama (metro 07:53 → Keihan 08:05 → Eizan 09:15)
+TRIGGER:-PT10M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ultimo-kurama@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261110T080000Z
+DTEND:20261110T083000Z
+SUMMARY:🚃 Salir del onsen: Eizan de las 17:21 desde Kurama
+LOCATION:Kurama Station
+DESCRIPTION:Eizan a Demachiyanagi (17:53) y Keihan tokkyu de las 18:11 a Yodoyabashi (19:09). Dotonbori ~19:30.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚃 Salir del onsen: Eizan de las 17:21 desde Kurama
+TRIGGER:-PT20M
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🚃 Último tren Eizan desde Kurama (confirmar hora)
-TRIGGER:-PT10M
+DESCRIPTION:🚃 Salir del onsen: Eizan de las 17:21 desde Kurama
+TRIGGER:-PT5M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -914,14 +928,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-10nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261109T213000Z
-DTEND:20261109T214500Z
-SUMMARY:⏰ Despertar (salir 07:30 · Kurama)
+DTSTART:20261109T214000Z
+DTEND:20261109T215500Z
+SUMMARY:⏰ Despertar (salir 07:40 · Kurama)
 LOCATION:Osaka (Chuo-ku)
-DESCRIPTION:Si se duchan en la mañana: 06:00.
+DESCRIPTION:Si se duchan en la mañana: 06:10. Zapatos para caminar en montaña.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 07:30 · Kurama)
+DESCRIPTION:⏰ Despertar (salir 07:40 · Kurama)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT

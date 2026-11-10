@@ -51,7 +51,8 @@ const ALARMS=[
  {id:'arima-ida',d:'2026-11-09',t:'09:30',dur:90,title:'♨️ Salir a Arima (metro 09:39 → JR 10:00 → bus 10:30)',where:'Namba Station (Midosuji)',a:[10],note:'Midosuji a Umeda, JR shinkaisoku de las 10:00 (andén 5) a Sannomiya y Shinki Bus de las 10:30 a Arima Onsen (Taikobashi, 10:59).'},
  {id:'arima-vuelta',d:'2026-11-09',t:'17:00',dur:40,title:'🚃 Salir de Arima a Kobe (tren 17:09)',where:'Arima Onsen Station',a:[15],note:'Shintetsu a Arimaguchi, cambio en Tanigami (17:14) al metro de Kobe: Sannomiya 17:38. Wagyu a las 19:00.'},
  {id:'ultimo-kobe',d:'2026-11-09',t:'22:30',dur:30,title:'🚃 JR Sannomiya → Osaka (shinkaisoku de las 22:37)',where:'Sannomiya Station',a:[15,0],note:'Confirmar en Google Maps («último»).'},
- {id:'ultimo-kurama',d:'2026-11-10',t:'20:30',dur:30,title:'🚃 Último tren Eizan desde Kurama (confirmar hora)',where:'Kurama Station',a:[30,10],note:'Después del onsen. Luego Keihan desde Demachiyanagi.'},
+ {id:'kurama-ida',d:'2026-11-10',t:'07:40',dur:130,title:'🚃 Salir a Kurama (metro 07:53 → Keihan 08:05 → Eizan 09:15)',where:'Namba Station (Midosuji)',a:[10],note:'Midosuji a Yodoyabashi, Keihan tokkyu de las 08:05 (andén 4) a Demachiyanagi (09:06) y Eizan de las 09:15 a Kurama (09:46).'},
+ {id:'ultimo-kurama',d:'2026-11-10',t:'17:00',dur:30,title:'🚃 Salir del onsen: Eizan de las 17:21 desde Kurama',where:'Kurama Station',a:[20,5],note:'Eizan a Demachiyanagi (17:53) y Keihan tokkyu de las 18:11 a Yodoyabashi (19:09). Dotonbori ~19:30.'},
  {id:'ultimo-nabana',d:'2026-11-13',t:'19:30',dur:30,title:'🚃 Si fuiste a Nabana: salir hacia Kintetsu Nagoya',where:'Nabana no Sato',a:[15],note:'Último expreso a Osaka-Namba: confirmar en Google Maps.'},
  {id:'ultimo-golden',d:'2026-11-15',t:'23:30',dur:30,title:'🚃 Último tren Shinjuku → Sumida',where:'Shinjuku Station',a:[15,0],note:'~35 min hasta Sumida. Confirmar en Google Maps.'},
  // --- Noches de discoteca: volver en el primer tren ---
@@ -70,7 +71,7 @@ const ALARMS=[
  {id:'wake-7nov',d:'2026-11-07',t:'06:45',dur:15,title:'⏰ Despertar (salir 07:45 · Himeji)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:15.'},
  {id:'wake-8nov',d:'2026-11-08',t:'05:15',dur:15,title:'⏰ Despertar 🎂 (salir 06:15 · Fushimi Inari)',where:'Osaka (Chuo-ku)',a:[0],note:'Ducharse la noche del 7 al volver del baile (~23:30) y dejar la ropa lista. Si se duchan en la mañana: 04:45.'},
  {id:'wake-9nov',d:'2026-11-09',t:'08:30',dur:15,title:'⏰ Despertar (salir 09:30 · Arima Onsen)',where:'Osaka (Chuo-ku)',a:[0],note:'Día tranquilo: Arima y wagyu en Kobe.'},
- {id:'wake-10nov',d:'2026-11-10',t:'06:30',dur:15,title:'⏰ Despertar (salir 07:30 · Kurama)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:00.'},
+ {id:'wake-10nov',d:'2026-11-10',t:'06:40',dur:15,title:'⏰ Despertar (salir 07:40 · Kurama)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:10. Zapatos para caminar en montaña.'},
  {id:'wake-11nov',d:'2026-11-11',t:'06:45',dur:15,title:'⏰ Despertar (salir 07:45 · Kuromon + cocina 09:30)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 06:15.'},
  {id:'wake-12nov',d:'2026-11-12',t:'06:15',dur:15,title:'⏰ Despertar (salir 07:15 · USJ)',where:'Osaka (Chuo-ku)',a:[0],note:'Si se duchan en la mañana: 05:45.'},
  {id:'wake-13nov',d:'2026-11-13',t:'07:30',dur:15,title:'⏰ Despertar (maletas Yamato 08:30 · teamLab 14:00)',where:'Osaka (Chuo-ku)',a:[0],note:'Maletas cerradas la noche del 12. Si se duchan en la mañana: 07:00.'},
