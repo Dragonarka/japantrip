@@ -354,8 +354,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:maletas-sumida@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261113T000000Z
-DTEND:20261113T003000Z
+DTSTART:20261112T233000Z
+DTEND:20261113T000000Z
 SUMMARY:🧳 Maletas por Yamato de Osaka a Sumida
 LOCATION:Osaka (Chuo-ku)
 DESCRIPTION:Entrega 14 nov\, franja 20–21 h\, en Honjo 3-23-3 (Plan d'Or Honjo 3F). Avisar al anfitrión.
@@ -455,7 +455,7 @@ DTSTART:20261113T050000Z
 DTEND:20261113T060000Z
 SUMMARY:🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)
 LOCATION:teamLab Biovortex Kyoto
-DESCRIPTION:A 8 min a pie de Kioto Estación.
+DESCRIPTION:~15 min a pie de Kioto Estación (salida Hachijo). Salir a las 15:25 para el tren de las 15:45 a Spa World.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)
@@ -465,6 +465,34 @@ BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:🎨 teamLab Kioto · Biovortex (reservado: entrada 14:00–14:30)
 TRIGGER:-PT20M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:uji-ida@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261113T000000Z
+DTEND:20261113T014000Z
+SUMMARY:🍵 Salir a Uji (metro 09:22 → Keihan 09:34)
+LOCATION:Namba Station (Midosuji)
+DESCRIPTION:Midosuji a Yodoyabashi (09:28)\, Keihan expreso limitado 09:34 a Chushojima (10:13) y línea Uji 10:16 a Uji (10:31). ¥680.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🍵 Salir a Uji (metro 09:22 → Keihan 09:34)
+TRIGGER:-PT10M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:uji-vuelta@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261113T035000Z
+DTEND:20261113T044500Z
+SUMMARY:🚃 Caminar a JR Uji: tren 13:07 a Kioto (teamLab 14:00)
+LOCATION:JR Uji Station
+DESCRIPTION:Miyakoji rápido 13:07 → Kioto 13:25 (el siguiente\, 13:10 → 13:32). 15 min a pie a teamLab.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🚃 Caminar a JR Uji: tren 13:07 a Kioto (teamLab 14:00)
+TRIGGER:-PT10M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -599,16 +627,58 @@ TRIGGER:-PT180M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:takao@japantrip
+UID:shibuyasky-19nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261118T230000Z
-DTEND:20261119T000000Z
-SUMMARY:🍁 Keio a Takao (momiji)
-LOCATION:Shinjuku Station
+DTSTART:20261119T000000Z
+DTEND:20261119T001500Z
+SUMMARY:🌇 Comprar SHIBUYA SKY (franja 16:00)
+DESCRIPTION:Online en la web oficial de SHIBUYA SKY\; atardecer 16:31 y se agota.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🍁 Keio a Takao (momiji)
-TRIGGER:-PT30M
+DESCRIPTION:🌇 Comprar SHIBUYA SKY (franja 16:00)
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:anime-19nov@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261119T010000Z
+DTEND:20261119T014500Z
+SUMMARY:🌠 Salir a Suga Jinja (Your Name)
+LOCATION:5 Sugachō\, Shinjuku\, Tokyo 160-0018
+DESCRIPTION:Honjo-azumabashi → Asakusabashi → JR Sobu a Yotsuya + 12 min a pie.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🌠 Salir a Suga Jinja (Your Name)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:maihama-19nov@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261119T095500Z
+DTEND:20261119T110500Z
+SUMMARY:🎆 Salir de Shibuya hacia Maihama (fuegos 20:30)
+LOCATION:JR Shibuya
+DESCRIPTION:Yamanote a Tokio + Keiyo a Maihama (~1 h). Revisar en la web de Tokyo Disneyland que los fuegos no se cancelaron por viento.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎆 Salir de Shibuya hacia Maihama (fuegos 20:30)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fuegos-19nov@japantrip
+DTSTAMP:20261027T030000Z
+DTSTART:20261119T113000Z
+DTEND:20261119T114000Z
+SUMMARY:🎆 Fuegos Starbright Christmas (Tokyo Disneyland)
+LOCATION:1-1 Maihama\, Urayasu\, Chiba 279-0031
+DESCRIPTION:Desde la explanada frente a la entrada principal\, sin boleto. ~5 min.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎆 Fuegos Starbright Christmas (Tokyo Disneyland)
+TRIGGER:-PT10M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -1091,14 +1161,14 @@ END:VEVENT
 BEGIN:VEVENT
 UID:wake-19nov@japantrip
 DTSTAMP:20261027T030000Z
-DTSTART:20261118T210000Z
-DTEND:20261118T211500Z
-SUMMARY:⏰ Despertar (salir 07:00 · Takao)
+DTSTART:20261119T000000Z
+DTEND:20261119T001500Z
+SUMMARY:⏰ Despertar (salir 10:00 · ruta anime)
 LOCATION:Sumida
-DESCRIPTION:Si se duchan en la mañana: 05:30.
+DESCRIPTION:Si se duchan en la mañana: 08:30.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⏰ Despertar (salir 07:00 · Takao)
+DESCRIPTION:⏰ Despertar (salir 10:00 · ruta anime)
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
