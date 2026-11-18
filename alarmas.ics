@@ -627,29 +627,16 @@ TRIGGER:-PT180M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:shibuyasky-19nov@japantrip
-DTSTAMP:20261027T030000Z
-DTSTART:20261119T000000Z
-DTEND:20261119T001500Z
-SUMMARY:🌇 Comprar SHIBUYA SKY (franja 16:00)
-DESCRIPTION:Online en la web oficial de SHIBUYA SKY\; atardecer 16:31 y se agota.
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🌇 Comprar SHIBUYA SKY (franja 16:00)
-TRIGGER:-PT0M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:anime-19nov@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261119T010000Z
 DTEND:20261119T014500Z
-SUMMARY:🌠 Salir a Suga Jinja (Your Name)
-LOCATION:5 Sugachō\, Shinjuku\, Tokyo 160-0018
-DESCRIPTION:Honjo-azumabashi → Asakusabashi → JR Sobu a Yotsuya + 12 min a pie.
+SUMMARY:🌠 Salir a Yotsuya (ruta Your Name)
+LOCATION:5-6 Sugachō\, Shinjuku\, Tokyo 160-0018
+DESCRIPTION:Honjo-azumabashi → Asakusabashi → JR Sobu a Yotsuya (salida Akasaka). Guía visual: dia19.html
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🌠 Salir a Suga Jinja (Your Name)
+DESCRIPTION:🌠 Salir a Yotsuya (ruta Your Name)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
@@ -658,12 +645,12 @@ UID:maihama-19nov@japantrip
 DTSTAMP:20261027T030000Z
 DTSTART:20261119T095500Z
 DTEND:20261119T110500Z
-SUMMARY:🎆 Salir de Shibuya hacia Maihama (fuegos 20:30)
-LOCATION:JR Shibuya
-DESCRIPTION:Yamanote a Tokio + Keiyo a Maihama (~1 h). Revisar en la web de Tokyo Disneyland que los fuegos no se cancelaron por viento.
+SUMMARY:🎆 Salir de Omoide Yokocho hacia Maihama (fuegos 20:30)
+LOCATION:JR Shinjuku (salida Sur)
+DESCRIPTION:Chuo rápido a Tokio + Keiyo a Maihama (~1 h). Revisar en la web de Tokyo Disneyland que los fuegos no se cancelaron por viento.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🎆 Salir de Shibuya hacia Maihama (fuegos 20:30)
+DESCRIPTION:🎆 Salir de Omoide Yokocho hacia Maihama (fuegos 20:30)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT

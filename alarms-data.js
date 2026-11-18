@@ -47,9 +47,8 @@ const ALARMS=[
  {id:'bday2',d:'2026-11-18',t:'00:00',dur:30,title:'🎂 Cumpleaños #2',where:'',a:[0],note:''},
  {id:'checkout-sumida',d:'2026-11-20',t:'09:30',dur:30,title:'🏠 Check-out en Sumida (límite 10:00)',where:'3-23-3 Honjo, Sumida, Tokyo',a:[30],note:'Keisei Access Express desde Honjo-azumabashi directo a Narita (~1 h).'},
  {id:'vuelo',d:'2026-11-20',t:'14:45',dur:60,title:'✈️ Vuelo Narita → Colombia',where:'Narita Airport',a:[240,180],note:'Llegar al aeropuerto ~11:30. Llegada a Colombia 13:00 (hora local).'},
- {id:'shibuyasky-19nov',d:'2026-11-19',t:'09:00',dur:15,title:'🌇 Comprar SHIBUYA SKY (franja 16:00)',where:'',a:[0],note:'Online en la web oficial de SHIBUYA SKY; atardecer 16:31 y se agota.'},
- {id:'anime-19nov',d:'2026-11-19',t:'10:00',dur:45,title:'🌠 Salir a Suga Jinja (Your Name)',where:'5 Sugachō, Shinjuku, Tokyo 160-0018',a:[15],note:'Honjo-azumabashi → Asakusabashi → JR Sobu a Yotsuya + 12 min a pie.'},
- {id:'maihama-19nov',d:'2026-11-19',t:'18:55',dur:70,title:'🎆 Salir de Shibuya hacia Maihama (fuegos 20:30)',where:'JR Shibuya',a:[15],note:'Yamanote a Tokio + Keiyo a Maihama (~1 h). Revisar en la web de Tokyo Disneyland que los fuegos no se cancelaron por viento.'},
+ {id:'anime-19nov',d:'2026-11-19',t:'10:00',dur:45,title:'🌠 Salir a Yotsuya (ruta Your Name)',where:'5-6 Sugachō, Shinjuku, Tokyo 160-0018',a:[15],note:'Honjo-azumabashi → Asakusabashi → JR Sobu a Yotsuya (salida Akasaka). Guía visual: dia19.html'},
+ {id:'maihama-19nov',d:'2026-11-19',t:'18:55',dur:70,title:'🎆 Salir de Omoide Yokocho hacia Maihama (fuegos 20:30)',where:'JR Shinjuku (salida Sur)',a:[15],note:'Chuo rápido a Tokio + Keiyo a Maihama (~1 h). Revisar en la web de Tokyo Disneyland que los fuegos no se cancelaron por viento.'},
  {id:'fuegos-19nov',d:'2026-11-19',t:'20:30',dur:10,title:'🎆 Fuegos Starbright Christmas (Tokyo Disneyland)',where:'1-1 Maihama, Urayasu, Chiba 279-0031',a:[10],note:'Desde la explanada frente a la entrada principal, sin boleto. ~5 min.'},
  // --- Noches: último tren (Uber/taxi solo como último recurso) ---
  {id:'ultimo-enoshima',d:'2026-11-02',t:'21:00',dur:30,title:'🚃 Salir de Enoshima/Kamakura de vuelta a Tokio',where:'Enoshima',a:[15],note:'Odakyu o JR; ~1 h a Shinjuku.'},

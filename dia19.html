@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#C0392B">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <title>19 nov · Ruta anime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-washi: #FAF7F0;
+            --color-aka: #C0392B;
+            --color-kuro: #2D2D2D;
+            --color-kin: #C5982A;
+            --color-haiiro: #E8E4DC;
+            --color-ao: #2471A3;
+            --color-budou: #5B2A6B;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <style>
+        body{font-family:'DM Sans',sans-serif;background:#FAF7F0;color:#1A1A1A}
+        .font-jp{font-family:'Noto Serif JP',serif}
+        .pill{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:12px;border-radius:999px;padding:2px 9px;color:#fff;white-space:nowrap}
+        .rail{position:relative;padding-left:22px}
+        .rail::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:4px;border-radius:2px;background:var(--c)}
+        .rail.walk::before{background:repeating-linear-gradient(var(--c) 0 6px,transparent 6px 11px)}
+        .dot{position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--c)}
+        .shot{position:relative}
+        .shot img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;border:1px solid #E8E4DC;background:#eee;cursor:zoom-in}
+        .shot .lbl{position:absolute;left:6px;top:6px;font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;color:#fff}
+        .mini{height:190px;border-radius:10px;border:1px solid #E8E4DC;z-index:0}
+        .btn{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;border:1px solid #E8E4DC;background:#fff;border-radius:9px;padding:6px 10px}
+        .btn:hover{border-color:#C0392B;color:#C0392B}
+        .now{outline:3px solid #C5982A;outline-offset:3px}
+        .num{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;color:#fff;font-weight:800;font-size:13px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+        #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:1000}
+        #lightbox.on{display:flex}
+        #lightbox img{max-width:96%;max-height:92%;border-radius:8px}
+    </style>
+</head>
+<body>
+<header class="bg-aka text-white px-4 pt-4 pb-5">
+    <a href="index.html" class="text-xs text-white/80 underline">← Volver al plan</a>
+    <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/70">Jueves 19 nov · D22</p>
+    <h1 class="font-jp text-2xl md:text-3xl font-black leading-tight mt-1">Ruta anime: Your Name 🌠 + Jujutsu Kaisen 🩸 + Fuegos 🎆</h1>
+    <p class="text-sm text-white/85 mt-2">Sale de Honjo 3-23-3 a las 10:00. Cada parada tiene la escena del anime, una foto real, un mapa y el GPS. Cada tramo dice la línea, la dirección, dónde bajar y la salida.</p>
+    <div id="legend" class="flex flex-wrap gap-1.5 mt-3"></div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 py-5">
+    <section class="mb-6">
+        <div id="overview" style="height:340px" class="rounded-xl border border-haiiro"></div>
+        <p class="text-[11px] text-kuro/50 mt-1">Trazado aproximado (líneas rectas entre puntos). Toca un número para ir a esa parada.</p>
+        <button id="gonow" type="button" class="btn mt-2 hidden">⏱️ Ir a lo que toca ahora</button>
+    </section>
+    <ol id="route" class="space-y-4"></ol>
+    <p class="text-[11px] text-kuro/45 mt-8">Capturas del anime: comparativas de <a class="underline" href="https://tokyofox.net/2017/06/24/tokyo-filming-locations-16-your-name-2016/" target="_blank" rel="noopener">TokyoFox</a> (Your Name) y la wiki de <a class="underline" href="https://jujutsu-kaisen.fandom.com/" target="_blank" rel="noopener">Jujutsu Kaisen</a>. Fotos reales: Wikimedia Commons y TokyoFox. Si una imagen no carga, aparece un botón para buscar la escena.</p>
+</main>
+<div id="lightbox" onclick="this.classList.remove('on')"><img id="lightbox-img" src="" alt=""></div>
+
+<script>
+// Líneas: color oficial, código y tipo.
+const L={
+ WALK:{n:'A pie',code:'🚶',c:'#8A8A8A'},
+ A:{n:'Toei Asakusa',code:'A',c:'#E85298'},
+ JB:{n:'JR Chuo-Sobu (local)',code:'JB',c:'#E6B800'},
+ E:{n:'Toei Oedo',code:'E',c:'#B6007A'},
+ C:{n:'Metro Chiyoda',code:'C',c:'#00BB85'},
+ JY:{n:'JR Yamanote',code:'JY',c:'#80C241'},
+ F:{n:'Metro Fukutoshin',code:'F',c:'#9C5E31'},
+ JC:{n:'JR Chuo (rápido)',code:'JC',c:'#F15A22'},
+ JE:{n:'JR Keiyo',code:'JE',c:'#C9242F'},
+ H:{n:'Metro Hibiya',code:'H',c:'#9CAEB7'},
+};
+const SERIES={yn:{t:'Your Name',c:'#2471A3',i:'🌠'},jjk:{t:'Jujutsu Kaisen',c:'#5B2A6B',i:'🩸'},fx:{t:'Fuegos',c:'#C5982A',i:'🎆'},base:{t:'Casa',c:'#2D2D2D',i:'🏠'}};
+const TF='https://tokyofox.net/wp-content/uploads/2017/06/';
+const tf=f=>TF+f+'?w=640';
+const WM='https://upload.wikimedia.org/wikipedia/commons/thumb/';
+const JK='https://static.wikia.nocookie.net/jujutsu-kaisen/images/';
+
+// Ruta: spot = parada, leg = trayecto. p = [lat,lng].
+const R=[
+ {k:'spot',s:'09:00',e:'10:00',ser:'base',n:'Airbnb Sumida',p:[35.7058,139.8062],addr:'3-23-3 Honjo, Sumida, Tokyo 130-0004',jp:'本所3-23-3',scene:'Arreglarse, desayuno y salir a las 10:00 con la Suica cargada (hoy son ~¥1.500 de trenes).'},
+ {k:'leg',s:'10:00',e:'10:42',steps:[
+   {l:'WALK',t:'Caminar a la estación Honjo-azumabashi (A-19)',m:8,to:[35.7087,139.8040]},
+   {l:'A',dir:'Nishi-magome / Aeropuerto de Haneda',on:'Honjo-azumabashi A-19',off:'Asakusabashi A-16',stops:3,m:5},
+   {l:'WALK',t:'Transbordo: salida A3 → JR Asakusabashi, entrada Este (東口)',m:4},
+   {l:'JB',dir:'Mitaka / Nakano (amarilla)',on:'Asakusabashi JB20',off:'Yotsuya JB14',stops:6,m:16,exit:'Salida Akasaka (赤坂口)'},
+ ]},
+ {k:'spot',s:'10:42',e:'10:52',ser:'yn',n:'Estación JR Yotsuya · salida Akasaka',p:[35.6852,139.7300],addr:'Yotsuya 1-chōme, Shinjuku, Tokyo 160-0004',jp:'JR四ツ谷駅 赤坂口',
+  scene:'Miki espera a Taki para su cita (~1:34 de la película) y la estación aparece cuando Taki va al trabajo.',
+  anime:[tf('screen-shot-2017-06-09-at-22-10-22.png'),tf('screen-shot-2017-06-09-at-22-07-56.png')],real:[tf('img_3790.jpg'),tf('img_3792.jpg')],
+  tip:'Salir de los torniquetes por la salida Akasaka y tomar la foto desde la acera de enfrente, mirando la entrada.'},
+ {k:'leg',s:'10:52',e:'11:05',steps:[
+   {l:'WALK',t:'Ir al oeste por Shinjuku-dori ~5 min, girar a la izquierda hacia Wakaba / Sugachō siguiendo los letreros 須賀神社 y bajar la cuesta. En Maps: «Kimi no Na wa stairs».',m:12,km:'0,9 km'},
+ ]},
+ {k:'spot',s:'11:05',e:'11:45',ser:'yn',n:'Escaleras de Suga Jinja (Otokozaka)',p:[35.6857,139.7224],addr:'5-6 Sugachō, Shinjuku, Tokyo 160-0018',jp:'須賀神社 男坂',
+  scene:'La escena final: Taki y Mitsuha se cruzan en las escaleras y se preguntan el nombre. Arriba, el santuario aparece justo antes.',
+  anime:[tf('screen-shot-2017-06-09-at-22-25-31.png'),tf('screen-shot-2017-06-09-at-22-22-51.png')],real:[tf('img_3803.jpg'),WM+'7/71/Suga_Shrine%2C_Shinjuku_02.jpg/960px-Suga_Shrine%2C_Shinjuku_02.jpg',tf('img_3801.jpg')],
+  tip:'Foto desde abajo mirando hacia arriba, con la baranda roja al centro. Calle residencial: hablar bajito y no bloquear el paso. El santuario da sello 🖊️ (goshuin).'},
+ {k:'leg',s:'11:45',e:'12:03',steps:[
+   {l:'WALK',t:'Al sur por la calle Gaien-higashi hasta la estación Shinanomachi; el puente peatonal está frente a la estación.',m:18,km:'1,1 km'},
+ ]},
+ {k:'spot',s:'12:03',e:'12:18',ser:'yn',n:'Puente peatonal de Shinanomachi + torre Docomo',p:[35.6800,139.7210],addr:'Minamimotomachi 19, Shinjuku, Tokyo 160-0012',jp:'信濃町駅前歩道橋',
+  scene:'Taki intenta llamar a Mitsuha desde este puente y aquí vuelve años después. Al fondo, la torre NTT Docomo de Yoyogi (sale con el amanecer).',
+  anime:[tf('screen-shot-2017-06-09-at-22-02-10.png'),tf('screen-shot-2017-06-09-at-22-04-28.png'),tf('screen-shot-2017-06-09-at-22-00-43.png')],real:[tf('img_3805.jpg'),tf('img_3807.jpg')],
+  tip:'Mirar hacia el oeste: vías del Chuo-Sobu y la torre Docomo de fondo, igual que en la película.'},
+ {k:'leg',s:'12:18',e:'12:24',steps:[
+   {l:'JB',dir:'Mitaka / Nakano (amarilla)',on:'Shinanomachi JB13',off:'Yoyogi JB11',stops:2,m:4,exit:'Quedarse en el andén del Sobu para la foto'},
+ ]},
+ {k:'spot',s:'12:24',e:'12:30',ser:'yn',n:'Andén de la línea Sobu en Yoyogi',p:[35.6834,139.7020],addr:'Yoyogi 1-chōme, Shibuya, Tokyo 151-0053',jp:'JR代々木駅 総武線ホーム',
+  scene:'Mitsuha ve a Taki en el tren de enfrente y corre a hablarle (~1:14).',
+  anime:[tf('screen-shot-2017-06-09-at-22-05-47.png')],real:[tf('19366151_10158940494715613_7751512820614525926_n.jpg')],
+  tip:'La foto es desde el mismo andén donde bajan. Luego salir por la salida Oeste (西口) hacia el metro Oedo.'},
+ {k:'leg',s:'12:30',e:'12:50',steps:[
+   {l:'WALK',t:'Salida Oeste → metro Oedo Yoyogi (E-26), conectado por la calle',m:3},
+   {l:'E',dir:'Daimon / Ryogoku (vía Roppongi)',on:'Yoyogi E-26',off:'Roppongi E-23',stops:3,m:6,exit:'Salida 7'},
+   {l:'WALK',t:'Salida 7 → National Art Center (entrada principal)',m:5,km:'0,4 km'},
+ ]},
+ {k:'spot',s:'12:50',e:'13:55',ser:'yn',n:'National Art Center · almuerzo',p:[35.6652,139.7264],addr:'7-22-2 Roppongi, Minato, Tokyo 106-8558',jp:'国立新美術館',
+  scene:'La cita de Taki (Mitsuha en su cuerpo) con Okudera: almuerzo en la Brasserie Paul Bocuse Le Musée, sobre el cono invertido del 3F.',
+  anime:[tf('screen-shot-2017-06-09-at-21-57-33.png')],real:[tf('img_0387.jpg'),WM+'f/fd/National_Art_Center_Tokyo_2008.jpg/960px-National_Art_Center_Tokyo_2008.jpg'],
+  tip:'Edificio gratis (abre 10:00; hoy jueves abre, cierra los martes). Paul Bocuse (3F) es el de la película; más barato: Salon de Thé ROND (2F, el cono de abajo) o el café del 1F.'},
+ {k:'leg',s:'13:55',e:'14:12',steps:[
+   {l:'WALK',t:'Del museo directo a la salida 6 de Nogizaka (conectada)',m:3},
+   {l:'C',dir:'Yoyogi-uehara',on:'Nogizaka C-05',off:'Meiji-jingumae C-03',stops:2,m:4,exit:'Salida 2'},
+ ]},
+ {k:'spot',s:'14:12',e:'14:20',ser:'jjk',n:'Meiji-jingumae · afuera de la salida 2',p:[35.6687,139.7053],addr:'Jingūmae 1-chōme, Shibuya, Tokyo 150-0001',jp:'明治神宮前駅 2番出口',
+  scene:'Incidente de Shibuya: punto de encuentro del grupo de Mei Mei; los pisos B4F y B5F de esta estación también salen en el arco.',
+  anime:[JK+'8/89/Meiji-Jingumae_Station_outside_exit_2_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'b/b9/Meiji-jingu_Mae_Stn_exit_-_2018_4_22.jpg/960px-Meiji-jingu_Mae_Stn_exit_-_2018_4_22.jpg']},
+ {k:'leg',s:'14:20',e:'14:27',steps:[
+   {l:'WALK',t:'Por Meiji-dori hacia el norte hasta la entrada de Takeshita-dori (lado Meiji-dori)',m:5,km:'0,35 km'},
+ ]},
+ {k:'spot',s:'14:27',e:'15:05',ser:'jjk',n:'Takeshita-dori → estación JR Harajuku',p:[35.6713,139.7040],addr:'1-17 Jingūmae, Shibuya, Tokyo 150-0001',jp:'竹下通り',
+  scene:'Episodio 3: llega Nobara Kugisaki, se presenta y persigue a un cazatalentos por esta calle.',
+  anime:[JK+'e/ea/Nobara_introduces_herself_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'9/92/Takeshita_Street.jpg/960px-Takeshita_Street.jpg'],
+  tip:'Cruzar la calle completa hasta el arco del lado de la estación (foto del arco). Crepes y gashapon por el camino.'},
+ {k:'leg',s:'15:05',e:'15:15',steps:[
+   {l:'JY',dir:'Shibuya / Shinagawa',on:'Harajuku JY19',off:'Shibuya JY20',stops:1,m:2,exit:'Salida Hachikō (ハチ公口)'},
+ ]},
+ {k:'spot',s:'15:15',e:'15:35',ser:'jjk',n:'Cruce de Shibuya frente a TSUTAYA + Hachikō',p:[35.6597,139.7004],addr:'21-6 Udagawachō, Shibuya, Tokyo 150-0042 (QFRONT)',jp:'渋谷スクランブル交差点',
+  scene:'Aquí empieza el Incidente de Shibuya (31 oct). Episodio 40: Megumi contra Toji frente a TSUTAYA.',
+  anime:[JK+'a/a9/Shibuya_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg/960px-Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg'],
+  tip:'Cruzar en diagonal y grabar desde el centro. La estatua de Hachikō está a la salida misma.'},
+ {k:'leg',s:'15:35',e:'15:40',steps:[
+   {l:'WALK',t:'Volver a la estación y subir al pasillo 2F de Mark City (hacia la línea Keio Inokashira)',m:4},
+ ]},
+ {k:'spot',s:'15:40',e:'15:58',ser:'jjk',n:'Pasillo de Mark City · mural «El mito del mañana»',p:[35.6587,139.6996],addr:'1-12-1 Dōgenzaka, Shibuya, Tokyo 150-0043',jp:'渋谷マークシティ連絡通路 · 明日の神話',
+  scene:'Episodio 38: Zen\'in, Maki y Nanami contra Dagon. El pasillo, las puertas del Inokashira y el mural salen de fondo.',
+  anime:[JK+'3/3b/Shibuya_Mark_City_%28Anime%29.png/revision/latest/scale-to-width-down/640',JK+'8/82/Shibuya_Station_Inokashira_Line_Gate_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'e/e1/Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg/960px-Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg'],
+  tip:'Está fuera de los torniquetes. Desde las ventanas del pasillo se ve el cruce desde arriba.'},
+ {k:'leg',s:'15:58',e:'16:05',steps:[
+   {l:'WALK',t:'Cruzar la estación hacia el lado Este y bajar al B3F de Hikarie (concourse del metro)',m:6},
+ ]},
+ {k:'spot',s:'16:05',e:'16:20',ser:'jjk',n:'Shibuya Hikarie B3F',p:[35.6590,139.7036],addr:'2-21-1 Shibuya, Shibuya, Tokyo 150-8510',jp:'渋谷ヒカリエ B3F',
+  scene:'Episodio 32: Gojo baja y ve a la multitud atrapada por la «cortina».',
+  anime:[JK+'3/31/Hikarie_Building_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'a/a9/Shibuya_Hikarie_2.jpg/960px-Shibuya_Hikarie_2.jpg']},
+ {k:'spot',s:'16:20',e:'16:35',ser:'jjk',n:'Andén B5F de la línea Fukutoshin (metro Shibuya)',p:[35.6585,139.7030],addr:'Estación Shibuya (Tokyo Metro), B5F · torniquete Hikarie 1',jp:'東京メトロ渋谷駅 副都心線ホーム B5F',
+  scene:'Gojo contra Jogo, Hanami y Choso, y Geto lo sella en la Prisión. En el B4F, Yuji contra Choso.',
+  anime:[JK+'2/2f/Tokyo_Metro_stations_adjacent_to_Shibuya_Station_%28Anime%29.png/revision/latest/scale-to-width-down/640',JK+'1/13/Mahito_running_through_Shibuya_Station_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[],
+  tip:'Entrar con la Suica por el torniquete «Hikarie 1» (B4F) y bajar al andén: de aquí mismo sale el tren del siguiente tramo, así que no cuesta extra.'},
+ {k:'leg',s:'16:35',e:'16:50',steps:[
+   {l:'F',dir:'Ikebukuro / Wakoshi (marrón)',on:'Shibuya F-16',off:'Shinjuku-sanchome F-13',stops:3,m:7,exit:'Salida E1/A1, hacia Shinjuku-dori'},
+   {l:'WALK',t:'Por Shinjuku-dori al oeste hasta Labi (frente a la salida Este de JR)',m:6,km:'0,5 km'},
+ ]},
+ {k:'spot',s:'16:50',e:'17:00',ser:'yn',n:'Labi Shinjuku Higashiguchi',p:[35.6909,139.7017],addr:'3-23-7 Shinjuku, Shinjuku, Tokyo 160-0022',jp:'ラビ新宿東口館',
+  scene:'El primer edificio reconocible cuando la película llega a Tokio, y sale otra vez casi al final.',
+  anime:[tf('screen-shot-2017-06-09-at-21-49-07.png'),tf('screen-shot-2017-06-09-at-22-15-02.png')],real:[tf('img_3827.jpg'),tf('img_3824.jpg')]},
+ {k:'leg',s:'17:00',e:'17:07',steps:[
+   {l:'WALK',t:'Al norte hasta Yasukuni-dori, cruce con Kabukichō Sakura-dori',m:6,km:'0,45 km'},
+ ]},
+ {k:'spot',s:'17:07',e:'17:17',ser:'jjk',n:'Cruce de Kabukichō',p:[35.6935,139.7010],addr:'Kabukichō 1-chōme, Shinjuku, Tokyo 160-0021',jp:'歌舞伎町 靖国通り×さくら通り',
+  scene:'Episodio 5: Geto camina por Kabukichō con Jogo, Hanami y Dagon.',
+  anime:[JK+'9/96/Shinjuku_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg']},
+ {k:'leg',s:'17:17',e:'17:35',steps:[
+   {l:'WALK',t:'Pasar bajo las vías por el túnel Shinjuku Ōgado (al lado de Omoide Yokocho) y seguir al oeste hacia los rascacielos',m:15,km:'1,1 km'},
+ ]},
+ {k:'spot',s:'17:35',e:'17:47',ser:'yn',n:'Edificio Sompo y su puente peatonal',p:[35.6915,139.6953],addr:'1-26-1 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023',jp:'損保ジャパン本社ビル',
+  scene:'Taki camina por este puente entre los rascacielos ya de adulto, buscando trabajo (~1:37).',
+  anime:[tf('screen-shot-2017-06-09-at-22-18-53.png'),tf('screen-shot-2017-06-09-at-22-20-24.png')],real:[tf('img_3819.jpg'),tf('img_3817.jpg')]},
+ {k:'leg',s:'17:47',e:'17:52',steps:[{l:'WALK',t:'Dos cuadras al oeste hasta la torre I-Land',m:5,km:'0,35 km'}]},
+ {k:'spot',s:'17:52',e:'18:00',ser:'yn',n:'Escultura LOVE · Shinjuku I-Land Tower',p:[35.6925,139.6927],addr:'6-5-1 Nishi-Shinjuku, Shinjuku, Tokyo 163-1390',jp:'新宿アイランドタワー LOVE',
+  scene:'El cruce junto a la escultura LOVE sale cuando Mitsuha recorre Tokio buscando a Taki (~0:30).',
+  anime:[tf('screen-shot-2017-06-09-at-21-52-32.png')],real:[tf('img_3835.jpg'),WM+'5/52/LOVE_sculpture_in_Shinjuku._%2841548094124%29.jpg/960px-LOVE_sculpture_in_Shinjuku._%2841548094124%29.jpg']},
+ {k:'leg',s:'18:00',e:'18:12',steps:[{l:'WALK',t:'De vuelta al este hasta la salida Oeste de JR Shinjuku',m:12,km:'0,9 km'}]},
+ {k:'spot',s:'18:12',e:'18:55',ser:'jjk',n:'Omoide Yokocho · cena',p:[35.6930,139.6996],addr:'1-2 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023',jp:'思い出横丁',
+  scene:'Gojo y Geto se ven por última vez como amigos en estas calles de Shinjuku. Cena de yakitori en los puestos.',
+  anime:[],real:[WM+'4/45/Entrance_to_Omoide_Yokocho.jpg/960px-Entrance_to_Omoide_Yokocho.jpg'],
+  tip:'Puestos chicos: separarse en 2–3 grupos si están llenos. Salir a las 18:55 en punto.'},
+ {k:'leg',s:'18:55',e:'19:02',steps:[{l:'WALK',t:'Al sur por la calle de la estación hasta el puente de la salida Sur (Kōshū-kaidō)',m:6,km:'0,45 km'}]},
+ {k:'spot',s:'19:02',e:'19:07',ser:'yn',n:'Salida Sur de JR Shinjuku (vista desde el puente)',p:[35.6885,139.7003],addr:'Shinjuku 3-chōme, Shinjuku, Tokyo 160-0022',jp:'JR新宿駅 南口',
+  scene:'La salida Sur vista desde el puente, de las primeras tomas de Tokio en la película.',
+  anime:[tf('screen-shot-2017-06-09-at-21-50-17.png')],real:[tf('img_3812.jpg')],
+  tip:'Foto rápida y entrar por la salida Sur: el tren a Tokio sale de aquí.'},
+ {k:'leg',s:'19:07',e:'20:05',steps:[
+   {l:'JC',dir:'Tokio (naranja, rápido)',on:'Shinjuku JC05',off:'Tokio JC01',stops:4,m:15},
+   {l:'WALK',t:'Transbordo largo: seguir los letreros rojos «Keiyo Line» (andenes subterráneos)',m:12},
+   {l:'JE',dir:'Soga / Kaihin-Makuhari',on:'Tokio JE01',off:'Maihama JE07',stops:6,m:16,exit:'Salida Sur (南口)'},
+   {l:'WALK',t:'Por el paseo hacia la entrada principal de Tokyo Disneyland',m:8,km:'0,6 km'},
+ ]},
+ {k:'spot',s:'20:05',e:'20:45',ser:'fx',n:'Fuegos Starbright Christmas · Tokyo Disneyland (desde afuera)',p:[35.6345,139.8806],addr:'1-1 Maihama, Urayasu, Chiba 279-0031',jp:'東京ディズニーランド 正面エントランス前',
+  scene:'20:30, unos 5 minutos de fuegos con música de Navidad. Se ven gratis desde la explanada frente a la entrada principal, por encima del castillo.',
+  anime:[],real:[WM+'d/df/Tokyo_Disneylands_cinderella_castle.jpg/960px-Tokyo_Disneylands_cinderella_castle.jpg'],
+  tip:'Se cancelan con viento: revisar el horario de hoy en la web oficial de Tokyo Disneyland antes de salir de Shinjuku. Plan B bajo techo: Ikspiari, al lado de la estación.'},
+ {k:'leg',s:'20:45',e:'21:50',steps:[
+   {l:'WALK',t:'Volver a la estación Maihama',m:8},
+   {l:'JE',dir:'Tokio',on:'Maihama JE07',off:'Hatchobori JE02',stops:5,m:14},
+   {l:'H',dir:'Kita-senju',on:'Hatchobori H-12',off:'Ningyocho H-14',stops:2,m:3},
+   {l:'A',dir:'Oshiage',on:'Ningyocho A-14',off:'Honjo-azumabashi A-19',stops:5,m:10},
+   {l:'WALK',t:'A casa',m:8},
+ ]},
+ {k:'spot',s:'21:50',e:'23:30',ser:'base',n:'Airbnb Sumida · empacar',p:[35.7058,139.8062],addr:'3-23-3 Honjo, Sumida, Tokyo 130-0004',jp:'本所3-23-3',scene:'Empacar: check-out mañana a las 10:00 y vuelo a las 14:45.'},
+];
+
+const gm=p=>`https://www.google.com/maps/search/?api=1&query=${p[0]},${p[1]}`;
+const gdir=(a,b,mode)=>`https://www.google.com/maps/dir/?api=1&origin=${a[0]},${a[1]}&destination=${b[0]},${b[1]}&travelmode=${mode}`;
+const sv=p=>`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${p[0]},${p[1]}`;
+const gimg=q=>`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}`;
+const pill=l=>`<span class="pill" style="background:${L[l].c}">${L[l].code}</span>`;
+const min=t=>{const [h,m]=t.split(':').map(Number);return h*60+m;};
+
+// Numerar paradas y saber de dónde viene cada trayecto.
+let num=0; R.forEach((r,i)=>{if(r.k==='spot')r.num=++num;});
+R.forEach((r,i)=>{if(r.k==='leg'){r.from=R[i-1].p;r.to=R[i+1].p;r.toName=R[i+1].n;}});
+
+function shotHtml(url,kind,q){
+    const lbl=kind==='a'?['Anime','#5B2A6B']:['Real','#1A6B4A'];
+    return `<div class="shot"><img loading="lazy" src="${url}" alt="" onclick="zoom(this.src)" onerror="this.parentNode.innerHTML='<a class=&quot;btn w-full justify-center&quot; style=&quot;aspect-ratio:16/10&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;${gimg(q)}&quot;>🔎 Ver escena (${lbl[0]})</a>'"><span class="lbl" style="background:${lbl[1]}">${lbl[0]}</span></div>`;
+}
+function spotHtml(r){
+    const S=SERIES[r.ser];
+    const q=(r.ser==='yn'?'Your Name kimi no na wa ':r.ser==='jjk'?'Jujutsu Kaisen ':'')+r.n+' anime real';
+    const anime=r.anime||[], real=r.real||[];
+    const pics=[...anime.map(u=>shotHtml(u,'a',q)),...real.map(u=>shotHtml(u,'r',q))];
+    if((r.ser==='yn'||r.ser==='jjk')&&!anime.length)pics.unshift(`<a class="btn justify-center" style="aspect-ratio:16/10" target="_blank" rel="noopener" href="${gimg(q)}">🔎 Ver escena del anime</a>`);
+    return `<li id="s${r.num}" data-s="${min(r.s)}" data-e="${min(r.e)}" class="bg-white border border-haiiro rounded-xl overflow-hidden">
+      <div class="flex items-center gap-2 px-3 py-2" style="background:${S.c}10;border-bottom:1px solid #E8E4DC">
+        <span class="num" style="background:${S.c}">${r.num}</span>
+        <div class="min-w-0 flex-1"><p class="text-[11px] font-bold" style="color:${S.c}">${S.i} ${S.t} · ${r.s}–${r.e}</p><h2 class="font-bold leading-tight">${r.n}</h2></div>
+      </div>
+      <div class="p-3 space-y-3">
+        ${r.scene?`<p class="text-sm text-kuro/80">${r.scene}</p>`:''}
+        ${pics.length?`<div class="grid grid-cols-2 gap-2">${pics.join('')}</div>`:''}
+        <div class="mini" data-lat="${r.p[0]}" data-lng="${r.p[1]}" data-c="${S.c}"></div>
+        <div class="text-sm"><p>📍 <b>${r.addr}</b></p><p class="font-jp text-xs text-kuro/60">${r.jp}</p>
+          <p class="text-xs text-kuro/60 mt-0.5">GPS <button type="button" class="underline decoration-dotted" onclick="copy('${r.p[0]}, ${r.p[1]}',this)">${r.p[0]}, ${r.p[1]}</button> <span class="text-kuro/40">(toca para copiar)</span></p></div>
+        ${r.tip?`<p class="text-xs bg-washi border border-haiiro rounded-lg px-2.5 py-2">💡 ${r.tip}</p>`:''}
+        <div class="flex flex-wrap gap-1.5"><a class="btn" target="_blank" rel="noopener" href="${gm(r.p)}">🗺️ Abrir en Maps</a><a class="btn" target="_blank" rel="noopener" href="${sv(r.p)}">🧍 Street View</a></div>
+      </div></li>`;
+}
+function legHtml(r){
+    const total=min(r.e)-min(r.s);
+    const transit=r.steps.some(s=>s.l!=='WALK');
+    const rows=r.steps.map(s=>{
+        const ln=L[s.l];
+        if(s.l==='WALK')return `<div class="rail walk py-1.5" style="--c:${ln.c}"><span class="dot" style="top:9px"></span>
+            <p class="text-sm">🚶 <b>${s.m} min</b>${s.km?` · ${s.km}`:''}</p><p class="text-xs text-kuro/70">${s.t}</p></div>`;
+        return `<div class="rail py-1.5" style="--c:${ln.c}"><span class="dot" style="top:9px"></span>
+            <p class="text-sm">${pill(s.l)} <b>${ln.n}</b> <span class="text-kuro/50 text-xs">· ${s.m} min · ${s.stops} parada${s.stops>1?'s':''}</span></p>
+            <p class="text-xs mt-1">➡️ Dirección <b>${s.dir}</b></p>
+            <p class="text-xs">🟢 Sube en <b>${s.on}</b> → 🔴 baja en <b>${s.off}</b></p>
+            ${s.exit?`<p class="text-xs">🚪 <b>${s.exit}</b></p>`:''}</div>`;
+    }).join('');
+    return `<li data-s="${min(r.s)}" data-e="${min(r.e)}" class="bg-washi border border-dashed border-haiiro rounded-xl px-3 py-2">
+      <p class="text-[11px] font-bold text-kuro/50 uppercase tracking-wide">${r.s}–${r.e} · ${total} min → ${r.toName}</p>
+      <div class="mt-1">${rows}</div>
+      <a class="btn mt-2" target="_blank" rel="noopener" href="${gdir(r.from,r.to,transit?'transit':'walking')}">${transit?'🚆 Ruta en Google Maps':'🚶 Caminata en Google Maps'}</a></li>`;
+}
+document.getElementById('route').innerHTML=R.map(r=>r.k==='spot'?spotHtml(r):legHtml(r)).join('');
+document.getElementById('legend').innerHTML=['A','JB','E','C','JY','F','JC','JE','H'].map(l=>`<span class="pill" style="background:${L[l].c}">${L[l].code} ${L[l].n}</span>`).join('');
+
+function zoom(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('on');}
+function copy(t,el){navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{el.textContent='✅ copiado';setTimeout(()=>el.textContent=t,1500);});}
+
+// Mapa general: color por tramo según la línea principal del tramo.
+const tiles=()=>L_.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'});
+const L_=window.L;
+const map=L_.map('overview',{scrollWheelZoom:false});tiles().addTo(map);
+const pts=[];
+R.forEach(r=>{
+    if(r.k==='leg'){const main=(r.steps.find(s=>s.l!=='WALK')||r.steps[0]).l;
+        L_.polyline([r.from,r.to],{color:L[main].c,weight:5,opacity:.85,dashArray:main==='WALK'?'6 8':null}).addTo(map);}
+    else{pts.push(r.p);const S=SERIES[r.ser];
+        L_.marker(r.p,{icon:L_.divIcon({className:'',html:`<span class="num" style="background:${S.c}">${r.num}</span>`,iconSize:[26,26],iconAnchor:[13,13]})})
+          .addTo(map).on('click',()=>document.getElementById('s'+r.num).scrollIntoView({behavior:'smooth',block:'start'}));}
+});
+map.fitBounds(pts,{padding:[18,18]});
+
+// Mini mapas: se crean al aparecer en pantalla.
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+    const d=e.target.dataset,p=[+d.lat,+d.lng],m=L_.map(e.target,{scrollWheelZoom:false,zoomControl:false}).setView(p,17);
+    tiles().addTo(m);L_.circleMarker(p,{radius:9,color:'#fff',weight:3,fillColor:d.c,fillOpacity:1}).addTo(m);}),{rootMargin:'200px'});
+document.querySelectorAll('.mini').forEach(el=>io.observe(el));
+
+// Resaltar lo que toca ahora (hora de Japón) el 19 nov.
+function markNow(){
+    const now=new Date(Date.now()+9*3600e3), iso=now.toISOString().slice(0,10), m=now.getUTCHours()*60+now.getUTCMinutes();
+    document.querySelectorAll('#route>li').forEach(li=>li.classList.toggle('now',iso==='2026-11-19'&&m>=+li.dataset.s&&m<+li.dataset.e));
+    const cur=document.querySelector('#route>li.now'),b=document.getElementById('gonow');
+    b.classList.toggle('hidden',!cur);b.onclick=()=>cur&&cur.scrollIntoView({behavior:'smooth',block:'start'});
+}
+markNow();setInterval(markNow,60000);
+</script>
+</body>
+</html>

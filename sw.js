@@ -1,12 +1,12 @@
 // Service worker: permite instalar el sitio como app y usarlo sin señal.
 // Páginas y datos propios: red primero (para ver siempre lo último) y caché si no hay conexión.
 // CDN, fuentes, fotos y mapas: caché primero y se actualiza en segundo plano.
-const VERSION = 'v28';
+const VERSION = 'v29';
 const CORE = `core-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 const CORE_FILES = [
   './', 'index.html', 'trip-data.js', 'grupo-ades.html', 'alarms-data.js', 'alarmas.ics', 'schedule-data.js',
-  'ades-japan-oct30-nov19.html', 'manifest.webmanifest',
+  'ades-japan-oct30-nov19.html', 'dia19.html', 'manifest.webmanifest',
   'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 const CDN_FILES = [
