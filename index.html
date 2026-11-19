@@ -29,7 +29,10 @@
             --color-budou: #5B2A6B;
             --color-cha: #7D6608;
         }
-    </style>
+    .spot-card{width:min(86vw,360px)}
+.spot-cur{border-color:#C0392B;box-shadow:0 0 0 2px #C0392B33}
+.spot-miss{display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;border:1px dashed #E5E1D8;border-radius:8px;font-size:.72rem;font-weight:700;color:#C0392B;background:#fff}
+</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <style>
@@ -143,6 +146,7 @@
 <nav class="sticky top-0 z-40 bg-washi border-b border-haiiro">
     <div class="max-w-5xl mx-auto flex flex-wrap items-center gap-1 px-2 py-1">
         <button class="navbtn active" data-week="overview">Resumen</button>
+        <button class="navbtn" type="button" onclick="event.stopPropagation();openNow()" style="color:#C0392B">📍 Hoy</button>
         <button class="navbtn" data-week="control">🧠 Control</button>
         <div class="navgroup">
             <button class="navbtn navtop" id="navtop-itin" type="button">🗓️ Itinerario ▾</button>
@@ -693,12 +697,11 @@ const POI_IMG={
  "Azabudai Hills":IMG+"6/6d/Azabudai_Hills_%28Garden_Plaza_B%2C_towers%2C_and_sign%3B_2025-11-06%29.jpg/960px-Azabudai_Hills_%28Garden_Plaza_B%2C_towers%2C_and_sign%3B_2025-11-06%29.jpg",
  "🏎️ Tokyo Drift (JDM ride-along)":IMG+"0/06/Nissan_Skyline_GT-R_R34_V_Spec_II.jpg/960px-Nissan_Skyline_GT-R_R34_V_Spec_II.jpg",
  "🌠 Escaleras de Suga Jinja (Your Name)":IMG+"7/71/Suga_Shrine%2C_Shinjuku_02.jpg/960px-Suga_Shrine%2C_Shinjuku_02.jpg",
- "🌠 National Art Center · café ROND (Your Name)":IMG+"f/fd/National_Art_Center_Tokyo_2008.jpg/960px-National_Art_Center_Tokyo_2008.jpg",
  "🩸 Takeshita-dori (Jujutsu Kaisen)":IMG+"9/92/Takeshita_Street.jpg/960px-Takeshita_Street.jpg",
  "🩸 Cruce de Shibuya (Jujutsu Kaisen)":IMG+"c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg/960px-Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg",
  "🩸 Pasillo de Mark City (Jujutsu Kaisen)":IMG+"e/e1/Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg/960px-Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg",
  "🩸 Kabukichō + Omoide Yokocho (Jujutsu Kaisen)":IMG+"4/45/Entrance_to_Omoide_Yokocho.jpg/960px-Entrance_to_Omoide_Yokocho.jpg",
- "🌠 Edificio Sompo + LOVE (Your Name)":IMG+"5/52/LOVE_sculpture_in_Shinjuku._%2841548094124%29.jpg/960px-LOVE_sculpture_in_Shinjuku._%2841548094124%29.jpg",
+ "🍗 KFC de Gojo y Geto (Jujutsu Kaisen)":"https://i.blogs.es/677221/imagen_2025-07-09_183235577/450_1000.webp",
  "🎆 Fuegos artificiales de Tokyo Disneyland":IMG+"d/df/Tokyo_Disneylands_cinderella_castle.jpg/960px-Tokyo_Disneylands_cinderella_castle.jpg",
  "Arima Onsen (Kin no Yu / Gin no Yu)":IMG+"5/52/Kin-no-yu_Arima_Onsen01s3200.jpg/960px-Kin-no-yu_Arima_Onsen01s3200.jpg",
 };
@@ -819,10 +822,10 @@ am:"Tsukiji exterior: desayuno de mariscos.",pm:"🎂 Clase de hacer sushi (expe
 img:IMG+"6/60/Sushi_platter.jpg/960px-Sushi_platter.jpg",
 acts:[{n:"Tsukiji (exterior)",lat:35.6655,lng:139.7707,t:"food",roi:5,w:"Tsukiji"},{n:"🎂 Clase de sushi + wagyu",lat:35.6940,lng:139.7000,t:"food",roi:5}]},
 
-{day:22,date:"Nov 19",dow:"Jue",week:"w4",title:"Ruta anime: Your Name 🌠 + Jujutsu Kaisen 🩸 + Fuegos 🎆",loc:"Tokio·Yotsuya/Roppongi/Harajuku/Shibuya/Shinjuku→Maihama",lodge:"Tokio",effort:4,luggage:false,laundry:false,transitMin:150,bufferP:15,contempl:40,joint:false,stamps:true,guide:"dia19.html",
-am:"🌠 Your Name desde las 10:00: salida Akasaka de JR Yotsuya → escaleras de Suga Jinja (escena final, sello 🖊️) → puente de Shinanomachi con la torre Docomo → andén Sobu de Yoyogi → almuerzo en el National Art Center (la cita con Okudera).",pm:"🩸 Jujutsu Kaisen: salida 2 de Meiji-jingumae (Mei Mei) → Takeshita-dori (llega Nobara) → Incidente de Shibuya: cruce frente a TSUTAYA, pasillo de Mark City, Hikarie B3F y andén B5F de la Fukutoshin, donde sellan a Gojo → Fukutoshin a Shinjuku: Labi (Your Name), cruce de Kabukichō (Geto), puente Sompo y escultura LOVE (Your Name).",night:"🍢 Cena en Omoide Yokocho (Gojo y Geto) y foto de la salida Sur de Shinjuku (Your Name) → Chuo + Keiyo a Maihama. 🎆 20:30 fuegos Starbright Christmas de Tokyo Disneyland vistos gratis desde afuera (~5 min, se cancelan con viento). Vuelta ~21:50 y empacar.",food:"Almuerzo en el National Art Center · Crepes de Takeshita · Yakitori en Omoide Yokocho",transport:"Toei Asakusa + JR Sobu + Oedo + Chiyoda + Yamanote + Fukutoshin + Chuo + Keiyo",costT:1500,costF:6000,
+{day:22,date:"Nov 19",dow:"Jue",week:"w4",title:"Ruta anime: Your Name 🌠 + Jujutsu Kaisen 🩸 + Fuegos 🎆",loc:"Tokio·Yotsuya/Harajuku/Shibuya/Shinjuku→Maihama",lodge:"Tokio",effort:4,luggage:false,laundry:false,transitMin:150,bufferP:15,contempl:40,joint:false,stamps:true,guide:"dia19.html",
+am:"🌠 Your Name desde las 10:00: salida Akasaka de JR Yotsuya → caminata a las escaleras de Suga Jinja (escena final, sello 🖊️). Luego JR a Harajuku: Takeshita-dori (llega Nobara) + almuerzo.",pm:"🩸 Jujutsu Kaisen en Shibuya: cruce frente a TSUTAYA, pasillo de Mark City, andén B5F de la Fukutoshin (sellan a Satoru Gojo) y salida Nuevo Sur / Shibuya Stream (muerte de Nanami) → JR a Shinjuku: cruce de Kabukichō (Geto), el KFC de Nishi-Shinjuku (despedida de Gojo y Geto) y Omoide Yokocho.",night:"🍢 Cena en Omoide Yokocho → Chuo + Keiyo a Maihama. 🎆 20:30 fuegos Starbright Christmas de Tokyo Disneyland vistos gratis desde afuera (~5 min, se cancelan con viento). Vuelta ~21:50 y empacar.",food:"Almuerzo en Takeshita · KFC de Nishi-Shinjuku · Yakitori en Omoide Yokocho",transport:"Toei Asakusa + JR Sobu + Yamanote + Saikyo + Chuo + Keiyo",costT:1500,costF:6000,
 img:IMG+"7/71/Suga_Shrine%2C_Shinjuku_02.jpg/960px-Suga_Shrine%2C_Shinjuku_02.jpg",
-acts:[{n:"🌠 Escaleras de Suga Jinja (Your Name)",lat:35.6857,lng:139.7224,t:"pop",roi:5,w:"Your_Name"},{n:"🌠 Puente de Shinanomachi (Your Name)",lat:35.6800,lng:139.7210,t:"pop",roi:4},{n:"🌠 National Art Center · café ROND (Your Name)",lat:35.6652,lng:139.7264,t:"pop",roi:5,w:"The_National_Art_Center,_Tokyo"},{n:"🩸 Takeshita-dori (Jujutsu Kaisen)",lat:35.6713,lng:139.7040,t:"pop",roi:4,w:"Takeshita_Street"},{n:"🩸 Cruce de Shibuya (Jujutsu Kaisen)",lat:35.6597,lng:139.7004,t:"pop",roi:5,w:"Jujutsu_Kaisen"},{n:"🩸 Pasillo de Mark City (Jujutsu Kaisen)",lat:35.6587,lng:139.6996,t:"pop",roi:4,w:"Myth_of_Tomorrow"},{n:"🩸 Hikarie + andén B5F (Jujutsu Kaisen)",lat:35.6590,lng:139.7036,t:"pop",roi:4},{n:"🌠 Edificio Sompo + LOVE (Your Name)",lat:35.6915,lng:139.6953,t:"pop",roi:3},{n:"🩸 Kabukichō + Omoide Yokocho (Jujutsu Kaisen)",lat:35.6930,lng:139.6996,t:"food",roi:4},{n:"🎆 Fuegos artificiales de Tokyo Disneyland",lat:35.6345,lng:139.8806,t:"night",roi:5}]},
+acts:[{n:"🌠 Escaleras de Suga Jinja (Your Name)",lat:35.6857,lng:139.7224,t:"pop",roi:5,w:"Your_Name"},{n:"🩸 Takeshita-dori (Jujutsu Kaisen)",lat:35.6713,lng:139.7040,t:"pop",roi:4,w:"Takeshita_Street"},{n:"🩸 Cruce de Shibuya (Jujutsu Kaisen)",lat:35.6597,lng:139.7004,t:"pop",roi:5,w:"Jujutsu_Kaisen"},{n:"🩸 Pasillo de Mark City (Jujutsu Kaisen)",lat:35.6587,lng:139.6996,t:"pop",roi:4,w:"Myth_of_Tomorrow"},{n:"🩸 Andén B5F: sellan a Gojo (Jujutsu Kaisen)",lat:35.6590,lng:139.7036,t:"pop",roi:5},{n:"🩸 Muerte de Nanami · salida Nuevo Sur (Jujutsu Kaisen)",lat:35.6566,lng:139.7022,t:"pop",roi:4},{n:"🍗 KFC de Gojo y Geto (Jujutsu Kaisen)",lat:35.69296,lng:139.69942,t:"food",roi:5},{n:"🩸 Kabukichō + Omoide Yokocho (Jujutsu Kaisen)",lat:35.6930,lng:139.6996,t:"food",roi:4},{n:"🎆 Fuegos artificiales de Tokyo Disneyland",lat:35.6345,lng:139.8806,t:"night",roi:5}]},
 
 {day:23,date:"Nov 20",dow:"Vie",week:"w4",title:"Sayonara 日本",loc:"Tokio→Aeropuerto",lodge:"—",effort:1,luggage:true,laundry:false,transitMin:120,bufferP:50,contempl:40,joint:false,
 am:"Check-out a las 10:00 (vuelo a las 14:45). Directo a Narita desde Honjo-azumabashi (línea Asakusa, ~5–8 min a pie): Keisei Access Express sin transbordo (~1 h, ~¥1.400, se paga con Suica). Llegar a las ~11:30, 3 h antes del vuelo.",pm:"✈️ 14:45 vuelo Narita → Colombia (llegada 13:00 hora de Colombia).",night:"Vuelo internacional.",food:"Último ramen aeropuerto",transport:"Keisei Access Express (Honjo-azumabashi → Narita)",costT:3250,costF:2000,
@@ -854,7 +857,7 @@ const NEAR={
  19:"Ikspiari y Bon Voyage (tienda Disney) en Maihama, a la salida, si les queda energía.",
  20:"Izakayas bajo las vías de Yūrakuchō (gado-shita), papelería Itoya (12 pisos), Uniqlo Ginza (12 plantas).",
  21:"Depachika de Ginza/Mitsukoshi para el pastel de cumpleaños 🎂, jardín Hamarikyū junto a Tsukiji.",
- 22:"JUMP SHOP (Shibuya PARCO 6F) para mercancía de Jujutsu Kaisen, Hotel New Otani (sale en Your Name, a 5 min de Yotsuya), Shinjuku Sanchome (final del episodio 24 de JJK). Maihama: Ikspiari para esperar los fuegos bajo techo.",
+ 22:"JUMP SHOP (Shibuya PARCO 6F) para mercancía de Jujutsu Kaisen, salida 2 de Meiji-jingumae (Mei Mei, al final de Takeshita), Shinjuku Sanchome (final del episodio 24 de JJK). Maihama: Ikspiari para esperar los fuegos bajo techo.",
  23:"Últimos souvenirs y ramen de despedida en la terminal.",
 };
 const TYPE_LABELS={tradition:'⛩️ Tradición',history:'🏯 Historia',nature:'🍁 Naturaleza',pop:'🎮 Pop',local:'🏮 Local',food:'🍱 Gastro',onsen:'♨️ Onsen',night:'🌙 Noche',transit:'🚆 Tránsito'};
@@ -874,9 +877,47 @@ function agendaItems(d,alt){
         if(s.k==='move')return {s:hhmm(s.s),e:hhmm(s.e),icon:'🚆',t:`${PLACES[s.from].n} → ${PLACES[s.to].n} (${durTxt(s.s,s.e)})`,
             sub:s.steps.map(([l,dir,off,exit])=>LINES[l].mode==='taxi'?`🚕 Uber/taxi → ${off}${exit?' ('+exit+')':''}`:`${LINES[l].code} ${LINES[l].mode==='walk'?'a pie':'dir. '+dir} → ${off}${exit?' ('+exit+')':''}`).join(' · ')};
         const pl=s.p&&s.k!=='sleep'?PLACES[s.p]:null;
-        const sub=pl?pl.n+(pl.a?` · <a href="${gmapsPt(pl.lat,pl.lng)}" target="_blank" rel="noopener" class="underline decoration-dotted">📍 ${pl.a}</a>`:'')+(s.tip?`<br>💡 ${s.tip}`:''):'';
+        const pics=pl&&s.k==='act'?[...(pl.ani||[]).map(u=>['Anime','#5B2A6B',u]),...(pl.foto||[]).map(u=>['Real','#1A6B4A',u])]:[];
+        const picsHtml=pics.length?`<span class="flex gap-1.5 overflow-x-auto mt-1 pb-0.5">${pics.map(([l,c,u])=>`<span class="relative shrink-0"><img loading="lazy" src="${u}" onclick="openLightbox('${u}')" onerror="this.parentNode.remove()" class="h-20 w-32 object-cover rounded-md border border-haiiro cursor-zoom-in"><span class="absolute left-1 top-1 text-[9px] font-bold text-white rounded-full px-1.5" style="background:${c}">${l}</span></span>`).join('')}</span>`:'';
+        const sub=pl?pl.n+(pl.a?` · <a href="${gmapsPt(pl.lat,pl.lng)}" target="_blank" rel="noopener" class="underline decoration-dotted">📍 ${pl.a}</a>`:'')+(s.tip?`<br>💡 ${s.tip}`:'')+picsHtml:'';
         return {s:hhmm(s.s),e:hhmm(s.e),icon:{act:'📍',free:'🧭',sleep:'😴'}[s.k],t:s.t,sub};
     }).map((it,i)=>Object.assign(it,{rs:agMin(segs[i].s),re:agMin(segs[i].e)}));
+}
+// Tarjetas de spots (estilo panel de la simulación): fotos anime/real, dirección y cómo llegar.
+const txtOn=c=>{const n=parseInt(c.slice(1),16);return ((n>>16)*299+((n>>8)&255)*587+(n&255)*114)/1000>150?'#2D2D2D':'#fff';};
+function spotPic(l,c,u,q){return `<figure class="relative m-0"><img loading="lazy" src="${u}" onclick="openLightbox('${u}')" onerror="this.outerHTML='<a href=\\'https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}\\' target=\\'_blank\\' rel=\\'noopener\\' class=\\'spot-miss\\'>🔎 Ver escena</a>'" class="w-full object-cover rounded-lg border border-haiiro bg-haiiro/40 cursor-zoom-in" style="aspect-ratio:16/10"><figcaption class="absolute left-1 top-1 text-[10px] font-bold text-white rounded-full px-1.5" style="background:${c}">${l}</figcaption></figure>`;}
+function spotSteps(m){
+    return `<ol class="space-y-1">${m.steps.map(([l,dir,off,exit,min])=>{const L_=LINES[l]||{code:l,c:'#888',mode:'metro'},walk=L_.mode==='walk';
+        return `<li class="flex items-start gap-2"><span class="shrink-0 min-w-9 text-center text-[10px] font-black rounded px-1 py-0.5" style="background:${walk?'#E5E1D8':L_.c};color:${walk?'#2D2D2D':txtOn(L_.c)}">${walk?'🚶':L_.code}</span><span class="flex-1">${walk?`A pie → <b>${off}</b>`:`${L_.n} <span class="text-kuro/45">dir. ${dir}</span> → bajar en <b>${off}</b>`}${exit?`<br><span class="text-aka font-bold">🚪 ${exit}</span>`:''}</span>${min?`<span class="shrink-0 text-kuro/40 tabular-nums">${min} min</span>`:''}</li>`;}).join('')}</ol>`;
+}
+function spotsHtml(d){
+    const day=(typeof SCHEDULE!=='undefined')?SCHEDULE[d.day]:null; if(!day)return '';
+    const segs=day.segs, cards=[]; let prevP=null;
+    segs.forEach((s,i)=>{
+        if(s.k!=='act'){if(s.k==='move')prevP=s.from;return;}
+        const pl=PLACES[s.p], pics=[...(pl.ani||[]).map(u=>['Anime','#5B2A6B',u]),...(pl.foto||[]).map(u=>['Real','#1A6B4A',u])];
+        if(!pics.length){prevP=s.p;return;}
+        const mv=segs[i-1]&&segs[i-1].k==='move'&&segs[i-1].to===s.p?segs[i-1]:null, from=mv?mv.from:prevP, fp=from&&PLACES[from];
+        const dirUrl=`https://www.google.com/maps/dir/?api=1${fp?`&origin=${fp.lat},${fp.lng}`:''}&destination=${pl.lat},${pl.lng}&travelmode=${mv&&mv.steps.some(x=>LINES[x[0]]&&LINES[x[0]].mode!=='walk')?'transit':'walking'}`;
+        const how=mv?spotSteps(mv):(fp?`<p>🚶 A pie desde <b>${fp.n}</b> (${durTxt(segs[i-1].e,s.s)} con la parada anterior).</p>`:'');
+        cards.push(`<div class="spot-card snap-start shrink-0 bg-white border border-haiiro rounded-xl p-3 shadow-sm" data-day="${d.day}" data-s="${agMin(s.s)}" data-e="${agMin(s.e)}">
+            <div class="flex items-baseline gap-2"><span class="shrink-0 w-6 h-6 rounded-full bg-sumi text-white text-[11px] font-black flex items-center justify-center">${cards.length+1}</span><span class="text-xs font-bold text-kuro/50 tabular-nums">${hhmm(s.s)}–${hhmm(s.e)}</span><span class="spot-now hidden text-[10px] font-black text-white bg-aka rounded-full px-2">AHORA</span></div>
+            <p class="font-bold text-sm mt-1 leading-snug">${s.t}</p>
+            <p class="text-xs text-kuro/60 mt-0.5"><b>${pl.n}</b>${pl.a?` · <a href="${gmapsPt(pl.lat,pl.lng)}" target="_blank" rel="noopener" class="text-[#2471A3] underline decoration-dotted">📍 ${pl.a}</a>`:''}</p>
+            <div class="grid ${pics.length>2?'grid-cols-2':'grid-cols-'+pics.length} gap-1.5 mt-2">${pics.slice(0,4).map(([l,c,u])=>spotPic(l,c,u,pl.n+' '+(l==='Anime'?s.t.split(':')[0]:''))).join('')}</div>
+            ${s.tip?`<p class="text-xs text-kuro/70 bg-kin/10 rounded-lg px-2 py-1 mt-2">💡 ${s.tip}</p>`:''}
+            ${how?`<div class="text-xs text-kuro/75 mt-2 border-t border-dashed border-haiiro pt-2"><p class="text-[10px] font-bold text-kuro/40 uppercase tracking-wider mb-1">🚆 Cómo llegar${fp?` desde ${fp.n}`:''}</p>${how}</div>`:''}
+            <div class="flex flex-wrap gap-1.5 mt-2.5 text-[11px] font-bold">
+                <a href="${dirUrl}" target="_blank" rel="noopener" class="bg-aka text-white rounded-lg px-2.5 py-1.5">🧭 Ir</a>
+                <a href="${gmapsPt(pl.lat,pl.lng)}" target="_blank" rel="noopener" class="bg-sumi text-white rounded-lg px-2.5 py-1.5">🗺️ Maps</a>
+                <a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${pl.lat},${pl.lng}" target="_blank" rel="noopener" class="border border-haiiro rounded-lg px-2.5 py-1.5">👁️ Street View</a>
+                <button type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText('${pl.lat},${pl.lng}');this.textContent='✅ Copiado'" class="border border-haiiro rounded-lg px-2.5 py-1.5">📋 GPS</button>
+            </div></div>`);
+        prevP=s.p;
+    });
+    if(!cards.length)return '';
+    return `<div id="spots-${d.day}" class="mb-5"><div class="flex items-baseline justify-between gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">📸 Spots del día (${cards.length}) · anime vs. real</p><p class="text-[11px] text-kuro/40">desliza →</p></div>
+        <div class="spots-row flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2">${cards.join('')}</div></div>`;
 }
 function agendaHtml(d){
     const items=agendaItems(d); if(!items.length)return '';
@@ -960,7 +1001,7 @@ function renderWeek(wk){
             <div class="day-detail border-t border-haiiro"><div class="p-4 md:p-6">
                 ${jointBox}
                 ${d.guide?`<a href="${d.guide}" class="flex items-center justify-center gap-2 mb-4 bg-aka text-white font-bold rounded-xl px-4 py-3 hover:bg-aka/85">🗺️ Abrir la guía visual del día: mapa, escenas del anime, fotos y trenes paso a paso</a>`:''}
-                ${galleryHtml(d)}
+                ${spotsHtml(d)||galleryHtml(d)}
                 ${hasPts?`<div class="mb-5"><div class="flex items-baseline justify-between flex-wrap gap-2 mb-1.5"><p class="text-xs font-bold text-kuro/40 uppercase tracking-wider">🗺️ Desplazamientos del día</p><p id="mapinfo-${d.day}" class="text-[11px] text-kuro/50"></p></div><div id="minimap-${d.day}" class="minimap"></div><p class="text-[10px] text-kuro/35 mt-1">🏨 = tu zona-hotel recomendada · línea sólida = recorrido · punteada = regreso</p></div>`:''}
                 ${NEAR[d.day]?`<p class="text-xs text-kuro/50 mb-4">🧭 <b class="text-kuro/40 uppercase text-[10px]">Si sobra tiempo (cerca)</b> · ${NEAR[d.day]}</p>`:''}
                 ${dayReelsBox(d)}
@@ -1014,7 +1055,7 @@ const EXP=[
  {img:POI_IMG["🤼 Sumo Show (Shinjuku)"],t:"🤼 Sumo Show (Shinjuku Sumo Club)",d:"Show de 1h30 con luchadores profesionales en Ōkubo (Shinjuku): demo en vivo, charla de historia/cultura, foto con los luchadores y sorteo para subir al ring (6 cupos). No es un torneo real — show + experiencia. ✅ Reservado 17:30–19:00.",c:9800,day:"D18 · dom 15 nov"},
  {img:POI_IMG["🏎️ Tokyo Drift (JDM ride-along)"],t:"🏎️ Tokyo Drift (JDM ride-along)",d:"Tour nocturno de 3h como copiloto en JDM reales (Skyline R34, RX-7, S15): Rainbow Bridge, Daikoku PA y la Torre de Tokio iluminada. Con piloto profesional — la licencia colombiana NO sirve para conducir en Japón (convenio 1949), por eso ride-along. 2 coches para 5. ✅ Reservado — sábado puede llevar recargo de fin de semana, confirmar con el operador.",c:25000,day:"D17 · sáb 14 nov"},
  {img:POI_IMG["Arima Onsen (Kin no Yu / Gin no Yu)"],t:"♨️ Arima Onsen (tattoo-friendly)",d:"Uno de los onsen más antiguos de Japón, a ~35 min de Kobe: Kin no Yu (agua dorada ferrosa) y Gin no Yu (plateada carbonatada) — ambos municipales y tattoo-friendly (combo ¥1.200). Evitar Taiko no Yu con tatuajes.",c:1200,day:"D12 · 9 nov"},
- {img:POI_IMG["🌠 Escaleras de Suga Jinja (Your Name)"],t:"🌠 Ruta anime: Your Name + Jujutsu Kaisen",d:"16 paradas con la escena del anime al lado de la foto real: Yotsuya, Suga Jinja, Shinanomachi y el National Art Center (Your Name), Harajuku, el Incidente de Shibuya y Kabukichō (Jujutsu Kaisen), y cierre con los fuegos de Tokyo Disneyland vistos desde afuera. Guía visual en dia19.html.",c:4500,day:"D22 · 19 nov"},
+ {img:POI_IMG["🌠 Escaleras de Suga Jinja (Your Name)"],t:"🌠 Ruta anime: Your Name + Jujutsu Kaisen",d:"Your Name: de la salida Akasaka de Yotsuya caminando a las escaleras de Suga Jinja. Jujutsu Kaisen: Takeshita, el Incidente de Shibuya (cruce, Mark City, andén B5F donde sellan a Gojo, salida Nuevo Sur donde muere Nanami) y Shinjuku (Kabukichō, el KFC y Omoide Yokocho de Gojo y Geto). Cierre con los fuegos de Tokyo Disneyland vistos desde afuera. Cada spot con foto anime vs. real en la tarjeta del día.",c:4500,day:"D22 · 19 nov"},
  {img:POI_IMG["Kabuki-za (un acto)"],t:"🎭 Kabuki de Un Acto (Kabuki-za)",d:"Teatro tradicional en el templo del kabuki (Ginza) sin comprometer la tarde: entrada de un solo acto ~¥1.500, 60-90 min, se compra el mismo día. El clásico cultural que faltaba.",c:1500,day:"D20 · 17 nov"},
  {img:POI_IMG["Kurama-dera (montaña sagrada)"],t:"🥾 Caminata Kurama–Kibune + Onsen",d:"La caminata ancestral de Kioto norte (la de la V1): montaña sagrada del tengu, Kurama-dera, camino de raíces de cedro, ~2h de sendero hasta el santuario Kifune (faroles rojos) y ♨️ Kurama Onsen al final (reabrió nov 2024). Regreso en el túnel de arces iluminado del tren Eizan.",c:1900,day:"D15 · 12 nov"},
 ];
@@ -1610,6 +1651,19 @@ function markNow(){
     const {day,min}=jstNow();
     document.querySelectorAll('.ag-item').forEach(li=>li.classList.toggle('ag-now',+li.dataset.day===day&&+li.dataset.s<=min&&min<+li.dataset.e));
     document.querySelectorAll('.day-card').forEach(c=>c.classList.toggle('day-today',c.id==='daycard-'+day));
+    // spot actual (o el siguiente) resaltado en el carrusel de spots
+    document.querySelectorAll('.spots-row').forEach(row=>{
+        const cards=[...row.querySelectorAll('.spot-card')], cur=cards.find(c=>+c.dataset.day===day&&min<+c.dataset.e);
+        cards.forEach(c=>{const on=c===cur;c.classList.toggle('spot-cur',on);c.querySelector('.spot-now').classList.toggle('hidden',!on);
+            c.querySelector('.spot-now').textContent=on&&min<+c.dataset.s?'SIGUIENTE':'AHORA';});
+    });
+}
+function scrollToSpot(){
+    const cur=document.querySelector('.spot-cur'); if(!cur)return false;
+    const row=cur.parentElement; row.scrollTo({left:cur.offsetLeft-row.offsetLeft,behavior:'smooth'});
+    const nav=document.querySelector('nav');
+    window.scrollTo({top:Math.max(0,row.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-60),behavior:'smooth'});
+    return true;
 }
 function openNow(){
     const {day}=jstNow(), d=DAYS.find(x=>x.day===day); if(!d)return;
@@ -1618,7 +1672,7 @@ function openNow(){
     if(!card.classList.contains('open'))toggleDay(card.firstElementChild,day);
     const ag=document.getElementById('agenda-'+day); if(ag)ag.open=true;
     markNow();
-    setTimeout(()=>{const t=card.querySelector('.ag-now')||card,nav=document.querySelector('nav');
+    setTimeout(()=>{if(scrollToSpot())return;const t=card.querySelector('.ag-now')||card,nav=document.querySelector('nav');
         window.scrollTo({top:Math.max(0,t.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-90),behavior:'smooth'});},700);
 }
 openNow(); setInterval(markNow,60000);

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { fmt, stepAt, freeWindows, railKm, dur, dayTransit } from '../lib/schedule';
 
 // Letrero estilo estación japonesa: insignia de línea + dirección + dónde bajar + salida.
@@ -21,6 +22,33 @@ export function StepSign({ step, active }) {
 
 const KIND = { act: '📍', move: '🚆', free: '🧭', sleep: '😴' };
 
+// Fotos del lugar: escena del anime y foto real, lado a lado. Si una no carga, queda un botón para buscarla.
+export function Photos({ place, small }) {
+  const [big, setBig] = useState(null);
+  const pics = [...(place.ani || []).map(u => ['Anime', u]), ...(place.foto || []).map(u => ['Real', u])];
+  if (!pics.length) return null;
+  const q = encodeURIComponent(place.n + ' anime real');
+  return (
+    <>
+      <div className={`photos ${small ? 'small' : ''}`}>
+        {pics.map(([lbl, u], i) => (
+          <figure key={i} className="photo">
+            <img src={u} loading="lazy" alt="" onClick={() => setBig(u)}
+              onError={e => { e.currentTarget.replaceWith(Object.assign(document.createElement('a'), { href: `https://www.google.com/search?tbm=isch&q=${q}`, target: '_blank', rel: 'noopener', className: 'photo-miss', textContent: '🔎 Ver escena' })); }} />
+            <figcaption className={lbl === 'Anime' ? 'ani' : 'real'}>{lbl}</figcaption>
+          </figure>
+        ))}
+      </div>
+      {big && <div className="photo-big" onClick={() => setBig(null)}><img src={big} alt="" /></div>}
+    </>
+  );
+}
+
+function PlaceInfo({ place }) {
+  if (!place.a) return null;
+  return <div className="addr">📍 <a href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`} target="_blank" rel="noopener">{place.a}</a></div>;
+}
+
 function Title({ seg }) {
   if (seg.k === 'move') return <>{KIND.move} {window.PLACES[seg.from].n} → {window.PLACES[seg.to].n}</>;
   if (seg.k === 'free') return <>{KIND.free} Libre para explorar{seg.t && seg.t !== 'Libre para explorar' ? `: ${seg.t.replace(/^Libre:\s*/, '')}` : ''}</>;
@@ -43,6 +71,8 @@ export default function Panel({ day, min, segIdx }) {
         <div className="now-head"><span className="tag">AHORA</span><span className="range">{fmt(seg.sMin)}–{fmt(seg.eMin)} · quedan {left} min</span></div>
         <div className="now-title"><Title seg={seg} /></div>
         {place && seg.k !== 'sleep' && <div className="now-place">{place.n}</div>}
+        {place && seg.k !== 'sleep' && <PlaceInfo place={place} />}
+        {place && seg.k !== 'sleep' && <Photos key={seg.p} place={place} />}
         {seg.k === 'free' && <div className="explore">🧭 Tienes <b>{left} min</b> libres para explorar alrededor de {place?.n}.</div>}
         {seg.tip && <div className="tip">💡 {seg.tip}</div>}
         {seg.k === 'move' && (
@@ -55,6 +85,13 @@ export default function Panel({ day, min, segIdx }) {
           <div className="steps">
             {seg.note && <div className="note">{seg.note}</div>}
             {seg.steps.map((s, i) => <StepSign key={i} step={s} active={st && st.i === i} />)}
+          </div>
+        )}
+        {seg.k === 'move' && window.PLACES[seg.to].foto && (
+          <div className="arriving">
+            <div className="arriving-title">Llegando a: <b>{window.PLACES[seg.to].n}</b></div>
+            <PlaceInfo place={window.PLACES[seg.to]} />
+            <Photos key={seg.to} place={window.PLACES[seg.to]} small />
           </div>
         )}
       </div>

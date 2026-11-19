@@ -75,6 +75,7 @@ const L={
  JC:{n:'JR Chuo (rápido)',code:'JC',c:'#F15A22'},
  JE:{n:'JR Keiyo',code:'JE',c:'#C9242F'},
  H:{n:'Metro Hibiya',code:'H',c:'#9CAEB7'},
+ JS:{n:'JR Saikyo / Shonan-Shinjuku',code:'JS',c:'#00AC9A'},
 };
 const SERIES={yn:{t:'Your Name',c:'#2471A3',i:'🌠'},jjk:{t:'Jujutsu Kaisen',c:'#5B2A6B',i:'🩸'},fx:{t:'Fuegos',c:'#C5982A',i:'🎆'},base:{t:'Casa',c:'#2D2D2D',i:'🏠'}};
 const TF='https://tokyofox.net/wp-content/uploads/2017/06/';
@@ -102,100 +103,62 @@ const R=[
   scene:'La escena final: Taki y Mitsuha se cruzan en las escaleras y se preguntan el nombre. Arriba, el santuario aparece justo antes.',
   anime:[tf('screen-shot-2017-06-09-at-22-25-31.png'),tf('screen-shot-2017-06-09-at-22-22-51.png')],real:[tf('img_3803.jpg'),WM+'7/71/Suga_Shrine%2C_Shinjuku_02.jpg/960px-Suga_Shrine%2C_Shinjuku_02.jpg',tf('img_3801.jpg')],
   tip:'Foto desde abajo mirando hacia arriba, con la baranda roja al centro. Calle residencial: hablar bajito y no bloquear el paso. El santuario da sello 🖊️ (goshuin).'},
- {k:'leg',s:'11:45',e:'12:03',steps:[
-   {l:'WALK',t:'Al sur por la calle Gaien-higashi hasta la estación Shinanomachi; el puente peatonal está frente a la estación.',m:18,km:'1,1 km'},
+ {k:'leg',s:'11:45',e:'12:15',steps:[
+   {l:'WALK',t:'Subir de vuelta la cuesta hasta JR Yotsuya',m:12,km:'0,9 km'},
+   {l:'JB',dir:'Mitaka / Nakano (amarilla)',on:'Yotsuya JB14',off:'Yoyogi JB11',stops:3,m:6,exit:'Cambiar al andén de la Yamanote (verde)'},
+   {l:'JY',dir:'Shibuya / Shinagawa',on:'Yoyogi JY17',off:'Harajuku JY19',stops:2,m:3,exit:'Salida Takeshita (竹下口)'},
  ]},
- {k:'spot',s:'12:03',e:'12:18',ser:'yn',n:'Puente peatonal de Shinanomachi + torre Docomo',p:[35.6800,139.7210],addr:'Minamimotomachi 19, Shinjuku, Tokyo 160-0012',jp:'信濃町駅前歩道橋',
-  scene:'Taki intenta llamar a Mitsuha desde este puente y aquí vuelve años después. Al fondo, la torre NTT Docomo de Yoyogi (sale con el amanecer).',
-  anime:[tf('screen-shot-2017-06-09-at-22-02-10.png'),tf('screen-shot-2017-06-09-at-22-04-28.png'),tf('screen-shot-2017-06-09-at-22-00-43.png')],real:[tf('img_3805.jpg'),tf('img_3807.jpg')],
-  tip:'Mirar hacia el oeste: vías del Chuo-Sobu y la torre Docomo de fondo, igual que en la película.'},
- {k:'leg',s:'12:18',e:'12:24',steps:[
-   {l:'JB',dir:'Mitaka / Nakano (amarilla)',on:'Shinanomachi JB13',off:'Yoyogi JB11',stops:2,m:4,exit:'Quedarse en el andén del Sobu para la foto'},
- ]},
- {k:'spot',s:'12:24',e:'12:30',ser:'yn',n:'Andén de la línea Sobu en Yoyogi',p:[35.6834,139.7020],addr:'Yoyogi 1-chōme, Shibuya, Tokyo 151-0053',jp:'JR代々木駅 総武線ホーム',
-  scene:'Mitsuha ve a Taki en el tren de enfrente y corre a hablarle (~1:14).',
-  anime:[tf('screen-shot-2017-06-09-at-22-05-47.png')],real:[tf('19366151_10158940494715613_7751512820614525926_n.jpg')],
-  tip:'La foto es desde el mismo andén donde bajan. Luego salir por la salida Oeste (西口) hacia el metro Oedo.'},
- {k:'leg',s:'12:30',e:'12:50',steps:[
-   {l:'WALK',t:'Salida Oeste → metro Oedo Yoyogi (E-26), conectado por la calle',m:3},
-   {l:'E',dir:'Daimon / Ryogoku (vía Roppongi)',on:'Yoyogi E-26',off:'Roppongi E-23',stops:3,m:6,exit:'Salida 7'},
-   {l:'WALK',t:'Salida 7 → National Art Center (entrada principal)',m:5,km:'0,4 km'},
- ]},
- {k:'spot',s:'12:50',e:'13:55',ser:'yn',n:'National Art Center · almuerzo',p:[35.6652,139.7264],addr:'7-22-2 Roppongi, Minato, Tokyo 106-8558',jp:'国立新美術館',
-  scene:'La cita de Taki (Mitsuha en su cuerpo) con Okudera: almuerzo en la Brasserie Paul Bocuse Le Musée, sobre el cono invertido del 3F.',
-  anime:[tf('screen-shot-2017-06-09-at-21-57-33.png')],real:[tf('img_0387.jpg'),WM+'f/fd/National_Art_Center_Tokyo_2008.jpg/960px-National_Art_Center_Tokyo_2008.jpg'],
-  tip:'Edificio gratis (abre 10:00; hoy jueves abre, cierra los martes). Paul Bocuse (3F) es el de la película; más barato: Salon de Thé ROND (2F, el cono de abajo) o el café del 1F.'},
- {k:'leg',s:'13:55',e:'14:12',steps:[
-   {l:'WALK',t:'Del museo directo a la salida 6 de Nogizaka (conectada)',m:3},
-   {l:'C',dir:'Yoyogi-uehara',on:'Nogizaka C-05',off:'Meiji-jingumae C-03',stops:2,m:4,exit:'Salida 2'},
- ]},
- {k:'spot',s:'14:12',e:'14:20',ser:'jjk',n:'Meiji-jingumae · afuera de la salida 2',p:[35.6687,139.7053],addr:'Jingūmae 1-chōme, Shibuya, Tokyo 150-0001',jp:'明治神宮前駅 2番出口',
-  scene:'Incidente de Shibuya: punto de encuentro del grupo de Mei Mei; los pisos B4F y B5F de esta estación también salen en el arco.',
-  anime:[JK+'8/89/Meiji-Jingumae_Station_outside_exit_2_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'b/b9/Meiji-jingu_Mae_Stn_exit_-_2018_4_22.jpg/960px-Meiji-jingu_Mae_Stn_exit_-_2018_4_22.jpg']},
- {k:'leg',s:'14:20',e:'14:27',steps:[
-   {l:'WALK',t:'Por Meiji-dori hacia el norte hasta la entrada de Takeshita-dori (lado Meiji-dori)',m:5,km:'0,35 km'},
- ]},
- {k:'spot',s:'14:27',e:'15:05',ser:'jjk',n:'Takeshita-dori → estación JR Harajuku',p:[35.6713,139.7040],addr:'1-17 Jingūmae, Shibuya, Tokyo 150-0001',jp:'竹下通り',
+ {k:'spot',s:'12:15',e:'13:20',ser:'jjk',n:'Takeshita-dori + almuerzo',p:[35.6713,139.7040],addr:'1-17 Jingūmae, Shibuya, Tokyo 150-0001',jp:'竹下通り',
   scene:'Episodio 3: llega Nobara Kugisaki, se presenta y persigue a un cazatalentos por esta calle.',
   anime:[JK+'e/ea/Nobara_introduces_herself_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'9/92/Takeshita_Street.jpg/960px-Takeshita_Street.jpg'],
-  tip:'Cruzar la calle completa hasta el arco del lado de la estación (foto del arco). Crepes y gashapon por el camino.'},
- {k:'leg',s:'15:05',e:'15:15',steps:[
+  tip:'Foto del arco del lado de la estación. Almorzar aquí. Extra: la salida 2 de Meiji-jingumae (Mei Mei) está al final de la calle.'},
+ {k:'leg',s:'13:20',e:'13:30',steps:[
    {l:'JY',dir:'Shibuya / Shinagawa',on:'Harajuku JY19',off:'Shibuya JY20',stops:1,m:2,exit:'Salida Hachikō (ハチ公口)'},
  ]},
- {k:'spot',s:'15:15',e:'15:35',ser:'jjk',n:'Cruce de Shibuya frente a TSUTAYA + Hachikō',p:[35.6597,139.7004],addr:'21-6 Udagawachō, Shibuya, Tokyo 150-0042 (QFRONT)',jp:'渋谷スクランブル交差点',
+ {k:'spot',s:'13:30',e:'13:55',ser:'jjk',n:'Cruce de Shibuya frente a TSUTAYA + Hachikō',p:[35.6597,139.7004],addr:'21-6 Udagawachō, Shibuya, Tokyo 150-0042 (QFRONT)',jp:'渋谷スクランブル交差点',
   scene:'Aquí empieza el Incidente de Shibuya (31 oct). Episodio 40: Megumi contra Toji frente a TSUTAYA.',
   anime:[JK+'a/a9/Shibuya_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg/960px-Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg'],
   tip:'Cruzar en diagonal y grabar desde el centro. La estatua de Hachikō está a la salida misma.'},
- {k:'leg',s:'15:35',e:'15:40',steps:[
+ {k:'leg',s:'13:55',e:'14:00',steps:[
    {l:'WALK',t:'Volver a la estación y subir al pasillo 2F de Mark City (hacia la línea Keio Inokashira)',m:4},
  ]},
- {k:'spot',s:'15:40',e:'15:58',ser:'jjk',n:'Pasillo de Mark City · mural «El mito del mañana»',p:[35.6587,139.6996],addr:'1-12-1 Dōgenzaka, Shibuya, Tokyo 150-0043',jp:'渋谷マークシティ連絡通路 · 明日の神話',
+ {k:'spot',s:'14:00',e:'14:20',ser:'jjk',n:'Pasillo de Mark City · mural «El mito del mañana»',p:[35.6587,139.6996],addr:'1-12-1 Dōgenzaka, Shibuya, Tokyo 150-0043',jp:'渋谷マークシティ連絡通路 · 明日の神話',
   scene:'Episodio 38: Zen\'in, Maki y Nanami contra Dagon. El pasillo, las puertas del Inokashira y el mural salen de fondo.',
   anime:[JK+'3/3b/Shibuya_Mark_City_%28Anime%29.png/revision/latest/scale-to-width-down/640',JK+'8/82/Shibuya_Station_Inokashira_Line_Gate_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'e/e1/Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg/960px-Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg'],
   tip:'Está fuera de los torniquetes. Desde las ventanas del pasillo se ve el cruce desde arriba.'},
- {k:'leg',s:'15:58',e:'16:05',steps:[
-   {l:'WALK',t:'Cruzar la estación hacia el lado Este y bajar al B3F de Hikarie (concourse del metro)',m:6},
+ {k:'leg',s:'14:20',e:'14:28',steps:[
+   {l:'WALK',t:'Cruzar la estación hacia el lado Este (Hikarie) y bajar al B4F, torniquete «Hikarie 1»',m:7},
  ]},
- {k:'spot',s:'16:05',e:'16:20',ser:'jjk',n:'Shibuya Hikarie B3F',p:[35.6590,139.7036],addr:'2-21-1 Shibuya, Shibuya, Tokyo 150-8510',jp:'渋谷ヒカリエ B3F',
-  scene:'Episodio 32: Gojo baja y ve a la multitud atrapada por la «cortina».',
-  anime:[JK+'3/31/Hikarie_Building_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'a/a9/Shibuya_Hikarie_2.jpg/960px-Shibuya_Hikarie_2.jpg']},
- {k:'spot',s:'16:20',e:'16:35',ser:'jjk',n:'Andén B5F de la línea Fukutoshin (metro Shibuya)',p:[35.6585,139.7030],addr:'Estación Shibuya (Tokyo Metro), B5F · torniquete Hikarie 1',jp:'東京メトロ渋谷駅 副都心線ホーム B5F',
-  scene:'Gojo contra Jogo, Hanami y Choso, y Geto lo sella en la Prisión. En el B4F, Yuji contra Choso.',
-  anime:[JK+'2/2f/Tokyo_Metro_stations_adjacent_to_Shibuya_Station_%28Anime%29.png/revision/latest/scale-to-width-down/640',JK+'1/13/Mahito_running_through_Shibuya_Station_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[],
-  tip:'Entrar con la Suica por el torniquete «Hikarie 1» (B4F) y bajar al andén: de aquí mismo sale el tren del siguiente tramo, así que no cuesta extra.'},
- {k:'leg',s:'16:35',e:'16:50',steps:[
-   {l:'F',dir:'Ikebukuro / Wakoshi (marrón)',on:'Shibuya F-16',off:'Shinjuku-sanchome F-13',stops:3,m:7,exit:'Salida E1/A1, hacia Shinjuku-dori'},
-   {l:'WALK',t:'Por Shinjuku-dori al oeste hasta Labi (frente a la salida Este de JR)',m:6,km:'0,5 km'},
+ {k:'spot',s:'14:28',e:'15:00',ser:'jjk',n:'Andén B5F de la Fukutoshin · sellan a Satoru Gojo',p:[35.6585,139.7030],addr:'Estación Shibuya (Tokyo Metro), B5F · torniquete Hikarie 1',jp:'東京メトロ渋谷駅 副都心線ホーム B5F',
+  scene:'Gojo contra Jogo, Hanami y Choso, y Geto lo sella en la Prisión. Antes, en Hikarie B3F, Gojo ve a la multitud atrapada.',
+  anime:[JK+'2/2f/Tokyo_Metro_stations_adjacent_to_Shibuya_Station_%28Anime%29.png/revision/latest/scale-to-width-down/640',JK+'3/31/Hikarie_Building_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:['https://tabimaniajapan.com/wp-content/uploads/2026/01/%E9%83%BD%E5%BF%83%E3%83%A1%E3%83%88%E3%83%AD%E6%B8%8B%E8%B0%B7%E9%A7%85-B5F%E6%96%B0%E9%83%BD%E5%BF%83%E7%B7%9A%E3%83%9B%E3%83%BC%E3%83%A0_-768x1024.jpg'],
+  tip:'Mirar los pilares entre los andenes 5 y 6. Salir por el mismo torniquete (cobra el mínimo).'},
+ {k:'leg',s:'15:00',e:'15:10',steps:[
+   {l:'WALK',t:'Al sur por el pasillo de Shibuya Stream hasta la salida Nuevo Sur (新南口) de JR',m:8,km:'0,5 km'},
  ]},
- {k:'spot',s:'16:50',e:'17:00',ser:'yn',n:'Labi Shinjuku Higashiguchi',p:[35.6909,139.7017],addr:'3-23-7 Shinjuku, Shinjuku, Tokyo 160-0022',jp:'ラビ新宿東口館',
-  scene:'El primer edificio reconocible cuando la película llega a Tokio, y sale otra vez casi al final.',
-  anime:[tf('screen-shot-2017-06-09-at-21-49-07.png'),tf('screen-shot-2017-06-09-at-22-15-02.png')],real:[tf('img_3827.jpg'),tf('img_3824.jpg')]},
- {k:'leg',s:'17:00',e:'17:07',steps:[
-   {l:'WALK',t:'Al norte hasta Yasukuni-dori, cruce con Kabukichō Sakura-dori',m:6,km:'0,45 km'},
+ {k:'spot',s:'15:10',e:'15:35',ser:'jjk',n:'Salida Nuevo Sur · Shibuya Stream (muerte de Nanami)',p:[35.6566,139.7022],addr:'Shibuya 3-chōme (Shibuya Stream), Shibuya, Tokyo 150-0002',jp:'JR渋谷駅 新南口',
+  scene:'Las guías del Incidente de Shibuya ubican aquí los últimos momentos de Nanami Kento (lugar aproximado).',
+  anime:[],real:['https://tabimaniajapan.com/wp-content/uploads/2026/01/Nanami_locker.jpg'],
+  tip:'Referencia: los casilleros de monedas junto a la salida Nuevo Sur. De aquí mismo sale el tren a Shinjuku.'},
+ {k:'leg',s:'15:35',e:'15:55',steps:[
+   {l:'JS',dir:'Shinjuku / Omiya (andén Saikyo / Shonan-Shinjuku)',on:'Shibuya (salida Nuevo Sur)',off:'Shinjuku',stops:1,m:5,exit:'Salida Este (東口)'},
+   {l:'WALK',t:'Al norte hasta Yasukuni-dori, cruce con Kabukichō Sakura-dori',m:8,km:'0,6 km'},
  ]},
- {k:'spot',s:'17:07',e:'17:17',ser:'jjk',n:'Cruce de Kabukichō',p:[35.6935,139.7010],addr:'Kabukichō 1-chōme, Shinjuku, Tokyo 160-0021',jp:'歌舞伎町 靖国通り×さくら通り',
+ {k:'spot',s:'15:55',e:'16:15',ser:'jjk',n:'Cruce de Kabukichō',p:[35.6935,139.7010],addr:'Kabukichō 1-chōme, Shinjuku, Tokyo 160-0021',jp:'歌舞伎町 靖国通り×さくら通り',
   scene:'Episodio 5: Geto camina por Kabukichō con Jogo, Hanami y Dagon.',
   anime:[JK+'9/96/Shinjuku_%28Anime%29.png/revision/latest/scale-to-width-down/640'],real:[WM+'9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg']},
- {k:'leg',s:'17:17',e:'17:35',steps:[
-   {l:'WALK',t:'Pasar bajo las vías por el túnel Shinjuku Ōgado (al lado de Omoide Yokocho) y seguir al oeste hacia los rascacielos',m:15,km:'1,1 km'},
+ {k:'leg',s:'16:15',e:'16:30',steps:[
+   {l:'WALK',t:'Al oeste bajo las vías por el túnel Shinjuku Ōgado; sale en Ōme-kaidō, junto a Omoide Yokocho',m:12,km:'0,8 km'},
  ]},
- {k:'spot',s:'17:35',e:'17:47',ser:'yn',n:'Edificio Sompo y su puente peatonal',p:[35.6915,139.6953],addr:'1-26-1 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023',jp:'損保ジャパン本社ビル',
-  scene:'Taki camina por este puente entre los rascacielos ya de adulto, buscando trabajo (~1:37).',
-  anime:[tf('screen-shot-2017-06-09-at-22-18-53.png'),tf('screen-shot-2017-06-09-at-22-20-24.png')],real:[tf('img_3819.jpg'),tf('img_3817.jpg')]},
- {k:'leg',s:'17:47',e:'17:52',steps:[{l:'WALK',t:'Dos cuadras al oeste hasta la torre I-Land',m:5,km:'0,35 km'}]},
- {k:'spot',s:'17:52',e:'18:00',ser:'yn',n:'Escultura LOVE · Shinjuku I-Land Tower',p:[35.6925,139.6927],addr:'6-5-1 Nishi-Shinjuku, Shinjuku, Tokyo 163-1390',jp:'新宿アイランドタワー LOVE',
-  scene:'El cruce junto a la escultura LOVE sale cuando Mitsuha recorre Tokio buscando a Taki (~0:30).',
-  anime:[tf('screen-shot-2017-06-09-at-21-52-32.png')],real:[tf('img_3835.jpg'),WM+'5/52/LOVE_sculpture_in_Shinjuku._%2841548094124%29.jpg/960px-LOVE_sculpture_in_Shinjuku._%2841548094124%29.jpg']},
- {k:'leg',s:'18:00',e:'18:12',steps:[{l:'WALK',t:'De vuelta al este hasta la salida Oeste de JR Shinjuku',m:12,km:'0,9 km'}]},
- {k:'spot',s:'18:12',e:'18:55',ser:'jjk',n:'Omoide Yokocho · cena',p:[35.6930,139.6996],addr:'1-2 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023',jp:'思い出横丁',
-  scene:'Gojo y Geto se ven por última vez como amigos en estas calles de Shinjuku. Cena de yakitori en los puestos.',
+ {k:'spot',s:'16:30',e:'17:00',ser:'jjk',n:'KFC Nishi-Shinjuku (Gojo y Geto)',p:[35.69296,139.69942],addr:'Nishi-Shinjuku 1-chōme, Shinjuku, Tokyo 160-0023 (Ōme-kaidō)',jp:'ケンタッキー 西新宿',
+  scene:'Hidden Inventory: Gojo encuentra a Geto en Shinjuku y hablan frente a este KFC; es la despedida de los dos.',
+  anime:['https://i.blogs.es/677221/imagen_2025-07-09_183235577/450_1000.webp'],real:[],
+  tip:'La imagen ya trae anime arriba y real abajo. Foto desde la acera de enfrente con la baranda delante. Merienda de pollo 🍗.'},
+ {k:'spot',s:'17:00',e:'18:55',ser:'jjk',n:'Omoide Yokocho · caminata de Gojo y Geto + cena',p:[35.6930,139.6996],addr:'1-2 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023',jp:'思い出横丁',
+  scene:'Según las guías, las calles de la despedida de Gojo y Geto se basan en Omoide Yokocho, a una cuadra del KFC. Cena de yakitori.',
   anime:[],real:[WM+'4/45/Entrance_to_Omoide_Yokocho.jpg/960px-Entrance_to_Omoide_Yokocho.jpg'],
   tip:'Puestos chicos: separarse en 2–3 grupos si están llenos. Salir a las 18:55 en punto.'},
- {k:'leg',s:'18:55',e:'19:02',steps:[{l:'WALK',t:'Al sur por la calle de la estación hasta el puente de la salida Sur (Kōshū-kaidō)',m:6,km:'0,45 km'}]},
- {k:'spot',s:'19:02',e:'19:07',ser:'yn',n:'Salida Sur de JR Shinjuku (vista desde el puente)',p:[35.6885,139.7003],addr:'Shinjuku 3-chōme, Shinjuku, Tokyo 160-0022',jp:'JR新宿駅 南口',
-  scene:'La salida Sur vista desde el puente, de las primeras tomas de Tokio en la película.',
-  anime:[tf('screen-shot-2017-06-09-at-21-50-17.png')],real:[tf('img_3812.jpg')],
-  tip:'Foto rápida y entrar por la salida Sur: el tren a Tokio sale de aquí.'},
+ {k:'leg',s:'18:55',e:'19:07',steps:[{l:'WALK',t:'Al sur por la calle de la estación hasta la salida Sur de JR Shinjuku',m:8,km:'0,5 km'}]},
  {k:'leg',s:'19:07',e:'20:05',steps:[
    {l:'JC',dir:'Tokio (naranja, rápido)',on:'Shinjuku JC05',off:'Tokio JC01',stops:4,m:15},
    {l:'WALK',t:'Transbordo largo: seguir los letreros rojos «Keiyo Line» (andenes subterráneos)',m:12},
@@ -271,7 +234,7 @@ function legHtml(r){
       <a class="btn mt-2" target="_blank" rel="noopener" href="${gdir(r.from,r.to,transit?'transit':'walking')}">${transit?'🚆 Ruta en Google Maps':'🚶 Caminata en Google Maps'}</a></li>`;
 }
 document.getElementById('route').innerHTML=R.map(r=>r.k==='spot'?spotHtml(r):legHtml(r)).join('');
-document.getElementById('legend').innerHTML=['A','JB','E','C','JY','F','JC','JE','H'].map(l=>`<span class="pill" style="background:${L[l].c}">${L[l].code} ${L[l].n}</span>`).join('');
+document.getElementById('legend').innerHTML=['A','JB','JY','JS','JC','JE','H'].map(l=>`<span class="pill" style="background:${L[l].c}">${L[l].code} ${L[l].n}</span>`).join('');
 
 function zoom(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('on');}
 function copy(t,el){navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{el.textContent='✅ copiado';setTimeout(()=>el.textContent=t,1500);});}

@@ -114,17 +114,13 @@ const PLACES={
  // 19 nov · ruta anime (a = dirección para Maps / taxi). Guía visual: dia19.html
  yotsuya:{n:'JR Yotsuya · salida Akasaka (Your Name)',k:'station',lat:35.6852,lng:139.7300,a:'Yotsuya 1-chōme, Shinjuku, Tokyo 160-0004 · 四ツ谷駅 赤坂口'},
  sugajinja:{n:'Escaleras de Suga Jinja (Your Name)',k:'torii',lat:35.6857,lng:139.7224,a:'5-6 Sugachō, Shinjuku, Tokyo 160-0018 · 須賀神社 男坂'},
- shinanomachi:{n:'Puente peatonal de Shinanomachi (Your Name)',k:'station',lat:35.6800,lng:139.7210,a:'Minamimotomachi 19, Shinjuku, Tokyo 160-0012 · 信濃町駅前歩道橋'},
- yoyogi:{n:'Andén Sobu de Yoyogi (Your Name)',k:'station',lat:35.6834,lng:139.7020,a:'Yoyogi 1-chōme, Shibuya, Tokyo 151-0053 · 代々木駅'},
- nact:{n:'National Art Center (Your Name)',k:'theater',lat:35.6652,lng:139.7264,a:'7-22-2 Roppongi, Minato, Tokyo 106-8558 · 国立新美術館'},
- meijijingumae:{n:'Meiji-jingumae salida 2 (Jujutsu Kaisen)',k:'station',lat:35.6687,lng:139.7053,a:'Jingūmae 1-chōme, Shibuya, Tokyo 150-0001 · 明治神宮前駅 2番出口'},
  takeshita:{n:'Takeshita-dori (Jujutsu Kaisen)',k:'shop',lat:35.6713,lng:139.7040,a:'1-17 Jingūmae, Shibuya, Tokyo 150-0001 · 竹下通り'},
  hachiko:{n:'Cruce de Shibuya frente a TSUTAYA (Jujutsu Kaisen)',k:'lights',lat:35.6597,lng:139.7004,a:'21-6 Udagawachō, Shibuya, Tokyo 150-0042 · 渋谷スクランブル交差点'},
  asunoshinwa:{n:'Pasillo de Mark City (Jujutsu Kaisen)',k:'theater',lat:35.6587,lng:139.6996,a:'1-12-1 Dōgenzaka, Shibuya, Tokyo 150-0043 · 明日の神話'},
  hikarie:{n:'Hikarie B3F + andén B5F Fukutoshin (Jujutsu Kaisen)',k:'tower',lat:35.6590,lng:139.7036,a:'2-21-1 Shibuya, Shibuya, Tokyo 150-8510 · 渋谷ヒカリエ'},
- labi:{n:'Labi Shinjuku Higashiguchi (Your Name)',k:'shop',lat:35.6909,lng:139.7017,a:'3-23-7 Shinjuku, Shinjuku, Tokyo 160-0022 · ラビ新宿東口館'},
  kabukicross:{n:'Cruce de Kabukichō (Jujutsu Kaisen)',k:'lights',lat:35.6935,lng:139.7010,a:'Kabukichō 1-chōme, Shinjuku, Tokyo 160-0021'},
- sompo:{n:'Sompo + escultura LOVE (Your Name)',k:'tower',lat:35.6915,lng:139.6953,a:'1-26-1 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023 · 損保ジャパン本社ビル'},
+ nanami:{n:'Salida Nuevo Sur de JR Shibuya · Shibuya Stream (Jujutsu Kaisen)',k:'station',lat:35.6566,lng:139.7022,a:'Shibuya 3-chōme (Shibuya Stream), Shibuya, Tokyo 150-0002 · JR渋谷駅 新南口'},
+ kfcnishi:{n:'KFC Nishi-Shinjuku (Jujutsu Kaisen)',k:'food',lat:35.69296,lng:139.69942,a:'Nishi-Shinjuku 1-chōme, Shinjuku, Tokyo 160-0023 (Ōme-kaidō, junto a Omoide Yokocho) · ケンタッキー 西新宿'},
  omoideyn:{n:'Omoide Yokocho (Jujutsu Kaisen)',k:'food',lat:35.6930,lng:139.6996,a:'1-2 Nishi-Shinjuku, Shinjuku, Tokyo 160-0023 · 思い出横丁'},
  tdlfireworks:{n:'Fuegos artificiales de Tokyo Disneyland (desde afuera)',k:'theme',lat:35.6345,lng:139.8806,a:'1-1 Maihama, Urayasu, Chiba 279-0031 · explanada de la entrada principal'},
  zouk:{n:'Zouk Tokyo (Ginza)',k:'club',lat:35.6712,lng:139.7645},
@@ -147,6 +143,27 @@ const PLACES={
 };
 
 // Líneas: c = color de la línea, code = lo que dice el letrero. Colores aproximados a los oficiales.
+// Fotos por lugar (19 nov): ani = escena del anime, foto = foto real. Las usan la agenda de index.html y la simulación.
+(function(){
+ const tf=f=>'https://tokyofox.net/wp-content/uploads/2017/06/'+f+'?w=640';
+ const wm=f=>'https://upload.wikimedia.org/wikipedia/commons/thumb/'+f;
+ const jk=f=>'https://static.wikia.nocookie.net/jujutsu-kaisen/images/'+f+'/revision/latest/scale-to-width-down/640';
+ const P={
+  yotsuya:{ani:[tf('screen-shot-2017-06-09-at-22-10-22.png'),tf('screen-shot-2017-06-09-at-22-07-56.png')],foto:[tf('img_3790.jpg'),tf('img_3792.jpg')]},
+  sugajinja:{ani:[tf('screen-shot-2017-06-09-at-22-25-31.png'),tf('screen-shot-2017-06-09-at-22-22-51.png')],foto:[tf('img_3803.jpg'),wm('7/71/Suga_Shrine%2C_Shinjuku_02.jpg/960px-Suga_Shrine%2C_Shinjuku_02.jpg'),tf('img_3801.jpg')]},
+  takeshita:{ani:[jk('e/ea/Nobara_introduces_herself_%28Anime%29.png')],foto:[wm('9/92/Takeshita_Street.jpg/960px-Takeshita_Street.jpg')]},
+  hachiko:{ani:[jk('a/a9/Shibuya_%28Anime%29.png')],foto:[wm('c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg/960px-Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg')]},
+  asunoshinwa:{ani:[jk('3/3b/Shibuya_Mark_City_%28Anime%29.png'),jk('8/82/Shibuya_Station_Inokashira_Line_Gate_%28Anime%29.png')],foto:[wm('e/e1/Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg/960px-Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg')]},
+  hikarie:{ani:[jk('3/31/Hikarie_Building_%28Anime%29.png'),jk('2/2f/Tokyo_Metro_stations_adjacent_to_Shibuya_Station_%28Anime%29.png'),jk('1/13/Mahito_running_through_Shibuya_Station_%28Anime%29.png')],foto:['https://tabimaniajapan.com/wp-content/uploads/2026/01/%E9%83%BD%E5%BF%83%E3%83%A1%E3%83%88%E3%83%AD%E6%B8%8B%E8%B0%B7%E9%A7%85-B5F%E6%96%B0%E9%83%BD%E5%BF%83%E7%B7%9A%E3%83%9B%E3%83%BC%E3%83%A0_-768x1024.jpg',wm('a/a9/Shibuya_Hikarie_2.jpg/960px-Shibuya_Hikarie_2.jpg')]},
+  kabukicross:{ani:[jk('9/96/Shinjuku_%28Anime%29.png')],foto:[wm('9/92/Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg/960px-Kabukicho_red_gate_and_colorful_neon_street_signs_at_night%2C_Shinjuku%2C_Tokyo%2C_Japan.jpg')]},
+  nanami:{ani:[],foto:['https://tabimaniajapan.com/wp-content/uploads/2026/01/Nanami_locker.jpg']},
+  kfcnishi:{ani:['https://i.blogs.es/677221/imagen_2025-07-09_183235577/450_1000.webp'],foto:[]},
+  omoideyn:{ani:[],foto:[wm('4/45/Entrance_to_Omoide_Yokocho.jpg/960px-Entrance_to_Omoide_Yokocho.jpg')]},
+  tdlfireworks:{ani:[],foto:[wm('d/df/Tokyo_Disneylands_cinderella_castle.jpg/960px-Tokyo_Disneylands_cinderella_castle.jpg')]},
+ };
+ for(const k in P)Object.assign(PLACES[k],P[k]);
+})();
+
 const LINES={
  NEX:{n:"Narita Express (N'EX)",code:"N'EX",c:'#C8102E',mode:'train'},
  JC:{n:'JR Chuo (rápido)',code:'JC',c:'#F15A22',mode:'metro'},
@@ -550,28 +567,20 @@ const SCHEDULE={
   A('10:42','10:52','yotsuya','🌠 Your Name: salida Akasaka de Yotsuya (Miki espera a Taki)'),
   M('10:52','11:05','yotsuya','sugajinja',[['WALK','Suga Jinja','Escaleras','Oeste por Shinjuku-dori y bajar hacia Sugachō (letreros 須賀神社)',12]]),
   A('11:05','11:45','sugajinja','🌠 Your Name: escaleras de Suga Jinja (escena final) + sello 🖊️'),
-  M('11:45','12:03','sugajinja','shinanomachi',[['WALK','Shinanomachi','Puente frente a la estación','Al sur por Gaien-higashi, 1,1 km',18]]),
-  A('12:03','12:18','shinanomachi','🌠 Your Name: puente de Shinanomachi + torre Docomo'),
-  M('12:18','12:24','shinanomachi','yoyogi',[['JB','Mitaka / Nakano','Yoyogi (JB11)','Quedarse en el andén para la foto',4]]),
-  A('12:24','12:30','yoyogi','🌠 Your Name: andén Sobu de Yoyogi (Mitsuha ve a Taki en el tren)'),
-  M('12:30','12:50','yoyogi','nact',[['WALK','Oedo Yoyogi (E-26)','Yoyogi','Salida Oeste',3],['E','Daimon / Ryogoku','Roppongi (E-23)','Salida 7',6],['WALK','National Art Center','National Art Center','',5]]),
-  A('12:50','13:55','nact','🌠 Your Name: almuerzo en el National Art Center (Paul Bocuse 3F o café ROND 2F)'),
-  M('13:55','14:12','nact','meijijingumae',[['WALK','Nogizaka salida 6','Nogizaka (C-05)','Conectada al museo',3],['CY','Yoyogi-uehara','Meiji-jingumae (C-03)','Salida 2',4]]),
-  A('14:12','14:20','meijijingumae','🩸 Jujutsu Kaisen: salida 2 de Meiji-jingumae (encuentro con Mei Mei)'),
-  M('14:20','14:27','meijijingumae','takeshita',[['WALK','Takeshita-dori','Takeshita-dori','Por Meiji-dori al norte',5]]),
-  A('14:27','15:05','takeshita','🩸 Jujutsu Kaisen: Takeshita-dori → JR Harajuku (llega Nobara)',{mood:'play'}),
-  M('15:05','15:15','takeshita','hachiko',[['JY','Shibuya / Shinagawa','Shibuya (JY20)','Salida Hachikō',2]]),
-  A('15:15','15:35','hachiko','🩸 Jujutsu Kaisen: Cruce de Shibuya frente a TSUTAYA + Hachikō'),
-  A('15:40','15:58','asunoshinwa','🩸 Jujutsu Kaisen: pasillo de Mark City y mural «El mito del mañana»'),
-  A('16:05','16:35','hikarie','🩸 Jujutsu Kaisen: Hikarie B3F y andén B5F de la Fukutoshin (Gojo sellado)'),
-  M('16:35','16:50','hikarie','labi',[['FK','Ikebukuro / Wakoshi','Shinjuku-sanchome (F-13)','Hacia Shinjuku-dori',7],['WALK','Labi','Labi Shinjuku Higashiguchi','Al oeste por Shinjuku-dori',6]]),
-  A('16:50','17:00','labi','🌠 Your Name: Labi Shinjuku Higashiguchi'),
-  A('17:07','17:17','kabukicross','🩸 Jujutsu Kaisen: cruce de Kabukichō (Geto con Jogo, Hanami y Dagon)'),
-  M('17:17','17:35','kabukicross','sompo',[['WALK','Nishi-Shinjuku','Sompo','Bajo las vías por Shinjuku Ōgado',15]]),
-  A('17:35','18:00','sompo','🌠 Your Name: puente del edificio Sompo + escultura LOVE'),
-  M('18:00','18:12','sompo','omoideyn',[['WALK','Omoide Yokocho','Omoide Yokocho','',12]]),
-  A('18:12','18:55','omoideyn','🩸 Cena en Omoide Yokocho (Gojo y Geto)'),
-  M('18:55','20:05','omoideyn','tdlfireworks',[['WALK','Salida Sur JR Shinjuku','Shinjuku','Foto de Your Name desde el puente de la salida Sur',8],['JC','Tokio','Tokio (JC01)','',15],['WALK','Andenes Keiyo','Tokio (Keiyo)','Pasillo largo: ~12 min',12],['KY','Soga / Kaihin-Makuhari','Maihama (JE07)','Salida Sur',16],['WALK','Entrada de Tokyo Disneyland','Explanada','',8]]),
+  M('11:45','12:15','sugajinja','takeshita',[['WALK','JR Yotsuya','Yotsuya (JB14)','De vuelta por la misma cuesta',12],['JB','Mitaka / Nakano','Yoyogi (JB11)','Bajar y cambiar al andén de la Yamanote',6],['JY','Shibuya / Shinagawa','Harajuku (JY19)','Salida Takeshita (竹下口)',3]]),
+  A('12:15','13:20','takeshita','🩸 Jujutsu Kaisen: Takeshita-dori (llega Nobara) + almuerzo',{mood:'play',tip:'Almorzar aquí (crepes, Marion, o ramen en Meiji-dori). La salida 2 de Meiji-jingumae (encuentro de Mei Mei) está al final de la calle si sobra tiempo.'}),
+  M('13:20','13:30','takeshita','hachiko',[['JY','Shibuya / Shinagawa','Shibuya (JY20)','Salida Hachikō',2]]),
+  A('13:30','13:55','hachiko','🩸 Jujutsu Kaisen: Cruce de Shibuya frente a TSUTAYA (empieza el Incidente de Shibuya)'),
+  A('14:00','14:20','asunoshinwa','🩸 Jujutsu Kaisen: pasillo de Mark City y mural «El mito del mañana»'),
+  A('14:28','15:00','hikarie','🩸 Jujutsu Kaisen: andén B5F de la Fukutoshin, donde sellan a Satoru Gojo (+ Hikarie B3F)',{tip:'Entrar con la Suica por el torniquete «Hikarie 1» (B4F) y bajar al andén B5F; mirar los pilares entre los andenes 5 y 6. Salir por el mismo torniquete (cobra el mínimo).'}),
+  M('15:00','15:10','hikarie','nanami',[['WALK','Salida Nuevo Sur','JR Shibuya salida Nuevo Sur (新南口)','Al sur por el pasillo de Shibuya Stream',8]]),
+  A('15:10','15:35','nanami','🩸 Jujutsu Kaisen: muerte de Nanami (salida Nuevo Sur / Shibuya Stream)',{tip:'Los casilleros de monedas junto a la salida Nuevo Sur son la referencia de las guías. Lugar aproximado: la escena no es una calle exacta.'}),
+  M('15:35','15:55','nanami','kabukicross',[['JS','Shinjuku / Omiya (andén Saikyo / Shonan-Shinjuku)','Shinjuku (JS20)','Salida Este (東口)',5],['WALK','Kabukichō','Yasukuni-dori × Sakura-dori','Al norte por la salida Este',8]]),
+  A('15:55','16:15','kabukicross','🩸 Jujutsu Kaisen: cruce de Kabukichō (Geto con Jogo, Hanami y Dagon)'),
+  M('16:15','16:30','kabukicross','kfcnishi',[['WALK','Nishi-Shinjuku','KFC Nishi-Shinjuku','Bajo las vías por el túnel Shinjuku Ōgado, sale en Ōme-kaidō',12]]),
+  A('16:30','17:00','kfcnishi','🍗 Jujutsu Kaisen: el KFC de la despedida de Gojo y Geto (merienda)',{tip:'Foto desde la acera de enfrente, con la baranda delante, igual que el anime. De noche hay menos gente.'}),
+  A('17:00','18:55','omoideyn','🩸 Omoide Yokocho: las calles por donde caminan Gojo y Geto + cena',{tip:'La caminata de la despedida (Gojo encorvado con las manos en los bolsillos, Geto derecho) según las guías se ambienta en estas calles junto al KFC. Salir 18:55 hacia la salida Sur de JR.'}),
+  M('18:55','20:05','omoideyn','tdlfireworks',[['WALK','Salida Sur JR Shinjuku','Shinjuku','Entrar por la salida Sur',8],['JC','Tokio','Tokio (JC01)','',15],['WALK','Andenes Keiyo','Tokio (Keiyo)','Pasillo largo: ~12 min',12],['KY','Soga / Kaihin-Makuhari','Maihama (JE07)','Salida Sur',16],['WALK','Entrada de Tokyo Disneyland','Explanada','',8]]),
   A('20:05','20:45','tdlfireworks','🎆 Fuegos Starbright Christmas (20:30, ~5 min)',{mood:'party',tip:'Sin boleto: desde la explanada frente a la entrada principal. Se cancelan con viento.'}),
   M('20:45','21:50','tdlfireworks','sumida',[['WALK','Maihama','Maihama','',8],['KY','Tokio','Hatchobori','',14],['H','Kita-senju','Ningyocho','',3],['A','Oshiage','Honjo-azumabashi','',10],['WALK','Honjo','Honjo','',8]]),
   A('21:50','23:30','sumida','🧳 Empacar (check-out mañana 10:00)'),

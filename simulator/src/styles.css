@@ -90,3 +90,18 @@ button:disabled { opacity: .4; cursor: default; }
 .trip-bar { height: 6px; border-radius: 3px; background: #e2ddd2; overflow: hidden; margin-top: 3px; }
 .trip-bar div { height: 100%; background: #1d4f91; }
 .rlabel { white-space: nowrap; font-size: 11px; font-weight: 800; color: #fff; background: rgba(29,79,145,.9); border-radius: 6px; padding: 1px 6px; pointer-events: none; }
+
+/* Fotos del lugar: anime vs real */
+.addr { font-size: .75rem; margin-top: 3px; }
+.addr a { color: #2471A3; }
+.photos { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.photos.small { grid-template-columns: repeat(3, 1fr); }
+.photo { position: relative; margin: 0; }
+.photo img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; border: 1px solid var(--haiiro); background: #eee; cursor: zoom-in; display: block; }
+.photo figcaption { position: absolute; left: 4px; top: 4px; font-size: .62rem; font-weight: 700; color: #fff; border-radius: 999px; padding: 1px 6px; }
+.photo figcaption.ani { background: #5B2A6B; }
+.photo figcaption.real { background: #1A6B4A; }
+.photo-miss { display: flex; align-items: center; justify-content: center; aspect-ratio: 16 / 10; border: 1px dashed var(--haiiro); border-radius: 8px; font-size: .72rem; font-weight: 700; color: var(--aka); background: #fff; text-decoration: none; }
+.photo-big { position: fixed; inset: 0; z-index: 20; background: #000d; display: flex; align-items: center; justify-content: center; }
+.photo-big img { max-width: 96%; max-height: 92%; border-radius: 8px; }
+.arriving { margin-top: 8px; border-top: 1px dashed var(--haiiro); padding-top: 6px; font-size: .8rem; }
